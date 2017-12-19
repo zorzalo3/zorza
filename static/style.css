@@ -1,0 +1,205 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto" !important;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+@media (min-width: 576px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #1d2124;
+  background-image: url("bg_noise.png");
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding: 0.8rem;
+  margin-left: -0.8rem;
+}
+
+.navbar-brand > img {
+  display: block;
+  height: 1.1rem;
+}
+
+#table-wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse !important;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.table th, .table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.1rem;
+}
+
+@media (min-width: 576px) {
+  .table th, .table td {
+    padding: 0.3rem;
+  }
+}
+
+.timetable tr td:nth-child(1) {
+  text-align: center;
+  padding-right: 0;
+}
+
+.timetable tr td:nth-child(2) {
+  text-align: center;
+  white-space: normal;
+  padding-left: 0;
+}
+
+.timetable .class-table {
+  display: table;
+  width: 100%;
+}
+
+.timetable .class-table .class-row {
+  display: table-row;
+}
+
+.timetable .class-table .teacher {
+  text-align: right;
+  display: table-cell;
+  font-family: monospace;
+}
+
+.timetable .class-table .room {
+  text-align: right;
+  display: table-cell;
+  font-family: monospace;
+}
+
+.timetable .class-table .class-name {
+  display: table-cell;
+  padding-left: 0.3rem;
+  padding-right: 0.5rem;
+  width: 99%;
+}
+
+header {
+  background-image: url("aurora_header.jpg");
+  background-size: cover;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+a {
+  color: #79b6da;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.nav-link:hover {
+  color: #79b6da;
+  transition: all 0.2s ease;
+}
+
+.nav {
+  display: flex;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  justify-content: flex-end !important;
+  height: 3rem;
+  line-height: 2rem;
+}
+
+.nav-link {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.nav-link:focus, .nav-link:hover {
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #79b6da;
+  transition: all 0.2s ease;
+}
+
+.nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 575px) {
+  .sm-hide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .md-hide {
+    display: none !important;
+  }
+}
+
+footer {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}

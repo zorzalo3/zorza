@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8">
+		<title>Zorza</title>
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	</head>
+	<body>
+		<header class="header">
+			<nav class="navbar container">
+				<a class="navbar-brand" href="#"><img src="{% static 'zorza_text.svg' %}"></a>
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Plan lekcji</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Dokumenty</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main class="container">
+		{% block content %}
+		{% endblock %}
+		</main>
+		<footer class="container text-center">
+			<a href="#">O projekcie</a>
+
+			<a href="#">Kontakt</a>
+		</footer>
+	</body>
+</html>
+
