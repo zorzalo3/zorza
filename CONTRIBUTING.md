@@ -15,8 +15,12 @@ Create a branch with your changes and send a pull request.
 
 # SCSS and HTML style
 Classes should be lowercase with dashes between words, eg. `example-div`.
+
 Make use of HTML5 tags like `<main>`, `<section>`.
+
 Try not to use inline styling.
+
+Use i18n (`{% load i18n %}` and `{% trans "string to translate" %}`).
 
 ```
 $primary-color: #123456;
@@ -34,3 +38,8 @@ $primary-color: #123456;
 }
 ```
 
+# Translations
+Extract strings to translate with `python3 manage.py makemessages -l <LANGUAGE_CODE>`.
+Edit the strings in `locale/<LANGUAGE_CODE>`, then
+`python3 manage.py compilemessages`.
+Remember to set your `LANGUAGE_CODE` in settings.

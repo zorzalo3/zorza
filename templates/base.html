@@ -1,22 +1,23 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
-<html lang="pl">
+<html lang="{% get_current_language as lang %}{{ lang }}">
 	<head>
 		<meta charset="utf-8">
 		<title>Zorza</title>
-		<link rel="stylesheet" href="{% static 'style.css' %}">
+		<link rel="stylesheet" href="{% static "style.css" %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	</head>
 	<body>
 		<header class="header">
 			<nav class="navbar container">
-				<a class="navbar-brand" href="#"><img src="{% static 'zorza_text.svg' %}"></a>
+				<a class="navbar-brand" href="#"><img src="{% static "zorza_text.svg" %}"></a>
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Plan lekcji</a>
+						<a class="nav-link" href="#">{% trans "Timetable" %}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Dokumenty</a>
+						<a class="nav-link" href="#">{% trans "Documents" %}</a>
 					</li>
 				</ul>
 			</nav>
@@ -26,9 +27,10 @@
 		{% endblock %}
 		</main>
 		<footer class="container text-center">
-			<a href="#">O projekcie</a>
+			<a href="#">{% trans "About" %}</a>
 
-			<a href="#">Kontakt</a>
+			<a href="#">{% trans "Contact us" %}</a>
+
 		</footer>
 	</body>
 </html>
