@@ -1,0 +1,13 @@
+# Python cache and bytecode
+*.py[cod]
+__pycache__
+
+localsettings.py
+
+# Databases
+*.sqlite3
+
+# KDE Dolphin cache files
+.directory
+
+/venv
