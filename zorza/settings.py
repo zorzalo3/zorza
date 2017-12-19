@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'timetable',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    import localsettings
+    from .localsettings import *
 except ImportError:
     print("localsettings.py not found")
