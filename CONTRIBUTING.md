@@ -5,9 +5,9 @@ Run the site locally with `python3 manage.py runserver`.
 Create a branch with your changes and send a pull request.
 
 # Requirements
-* Python 3
-* Django
-* sassc
+* Python 3.4 and later
+* Django 2.0
+* sassc (for compiling .scss files to .css)
 
 # Python style
 * https://www.python.org/dev/peps/pep-0008/
