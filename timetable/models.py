@@ -19,15 +19,15 @@ class Room(models.Model):
     full_name = models.CharField(max_length=20)
     short_name = models.CharField(max_length=5)
 
-DAY_OF_THE_WEEK = {
-    '1': _('Monday'),
-    '2': _('Tuesday'),
-    '3': _('Wednesday'),
-    '4': _('Thursday'),
-    '5': _('Friday'),
-    '6': _('Saturday'),
-    '7': _('Sunday'),
-}
+DAY_OF_THE_WEEK = (
+    ('1', _('Monday')),
+    ('2', _('Tuesday')),
+    ('3', _('Wednesday')),
+    ('4', _('Thursday')),
+    ('5', _('Friday')),
+    ('6', _('Saturday')),
+    ('7', _('Sunday')),
+)
 
 
 class Period(models.Model):
@@ -38,8 +38,8 @@ class Period(models.Model):
         pass
 
 class Lesson(models.Model):
-    group = models.ForeignKey(Group)
-    subject = models.ForeignKey(Subject)
-    teacher = models.ForeignKey(Teacher)
-    period = models.ForeignKey(Period)
-    room = models.ForgeinKey(Room)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    period = models.ForeignKey(Period, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
