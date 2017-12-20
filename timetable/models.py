@@ -1,22 +1,45 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 class Class(models.Model):
-    pass
+    name = models.CharField(max_length=20)
 
 class Group(models.Model):
-    pass
-
-class Lesson(models.Model):
-    pass
+    name = models.CharField(max_length=20)
+    classes = models.ManyToManyField(Class)
 
 class Subject(models.Model):
-    pass
+    name = models.CharField(max_length=20)
 
 class Teacher(models.Model):
-    pass
+    name = models.CharField(max_length=100)
+    initials = models.CharField(max_length=3)
 
 class Room(models.Model):
-    pass
+    full_name = models.CharField(max_length=20)
+    short_name = models.CharField(max_length=5)
 
-class Time(models.Model):
-    pass
+DAY_OF_THE_WEEK = {
+    '1': _('Monday'),
+    '2': _('Tuesday'),
+    '3': _('Wednesday'),
+    '4': _('Thursday'),
+    '5': _('Friday'),
+    '6': _('Saturday'),
+    '7': _('Sunday'),
+}
+
+
+class Period(models.Model):
+    weekday = models.CharField(max_length=2, choices=DAY_OF_THE_WEEK)
+    begin_time = models.TimeField()
+    end_time = models.TimeField()
+    def __str__(self): # Display time range
+        pass
+
+class Lesson(models.Model):
+    group = models.ForeignKey(Group)
+    subject = models.ForeignKey(Subject)
+    teacher = models.ForeignKey(Teacher)
+    period = models.ForeignKey(Period)
+    room = models.ForgeinKey(Room)
