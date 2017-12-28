@@ -5,21 +5,36 @@ class Class(models.Model):
     """A collection of groups to which students of a class can belong"""
     name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
+
 class Group(models.Model):
     name = models.CharField(max_length=15)
     classes = models.ManyToManyField(Class, blank=True)
+
+    def __str__(self):
+        return self.name
 
 class Subject(models.Model):
     name = models.CharField(max_length=40)
     short_name = models.CharField(max_length=15)
 
+    def __str__(self):
+        return self.name
+
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
     initials = models.CharField(max_length=3)
 
+    def __str__(self):
+        return self.name
+
 class Room(models.Model):
-    full_name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40)
     short_name = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
 
 class Times(models.Model):
     """A collection of periods (by foreign keys in Period). AKA timetable.
@@ -28,6 +43,9 @@ class Times(models.Model):
     """
     name = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.name
+
 class Period(models.Model):
     number = models.PositiveIntegerField()
     begin_time = models.TimeField()
@@ -35,7 +53,9 @@ class Period(models.Model):
     timetable = models.ForeignKey(Times, on_delete=models.CASCADE)
 
     def __str__(self): # Display time range
-        pass
+        return '%.2d:%.2d-%.2d:%.2d' % \
+            (self.begin_time.hour, self.begin_time.minute, \
+             self.end_time.hour,   self.end_time.minute)
 
     class Meta:
         unique_together = (('number', 'timetable'),)
@@ -57,6 +77,9 @@ class DayPlan(models.Model):
     timetable = models.ForeignKey(Times, on_delete=models.CASCADE, null=True)
     # None if no timetable (eg. lessons cancelled)
 
+    def __str__(self):
+        return str(day)
+
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -64,3 +87,9 @@ class Lesson(models.Model):
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
     weekday = models.IntegerField(choices=DAY_OF_THE_WEEK)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s %s %s, %s, %s %d %s' % \
+            (self.teacher.initials, self.subject.short_name,
+             self.room.short_name, self.group.name, _('Lesson'),
+             self.period.number, DAY_OF_THE_WEEK[self.weekday][1])
