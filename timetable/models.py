@@ -7,7 +7,7 @@ class Class(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=15)
-    classes = models.ManyToManyField(Class)
+    classes = models.ManyToManyField(Class, blank=True)
 
 class Subject(models.Model):
     name = models.CharField(max_length=40)
