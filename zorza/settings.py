@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -125,6 +126,17 @@ STATICFILES_DIRS = [
 
 # Where collectstatic collects static (for production)
 STATIC_ROOT = 'staticfiles/'
+
+# Weekdays rendered on pages and allowed as choices in timetable.models.Lesson
+TIMETABLE_WEEKDAYS = (
+    (0, _('Monday')),
+    (1, _('Tuesday')),
+    (2, _('Wednesday')),
+    (3, _('Thursday')),
+    (4, _('Friday')),
+    #(5, _('Saturday')),
+    #(6, _('Sunday')),
+)
 
 try:
     from .localsettings import *
