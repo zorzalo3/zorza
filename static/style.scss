@@ -81,6 +81,7 @@ body {
 			text-align: center;
 			//color: $font-color-secondary;
 			padding-right: 0;
+			padding-left: 0;
 		}
 		&:nth-child(2) {
 			// hours
@@ -88,6 +89,15 @@ body {
 			//color: $font-color-secondary;
 			white-space: normal;
 			padding-left: 0;
+		}
+	}
+	tr th {
+		&:nth-child(1) {
+			padding-left: 0.2rem;
+			padding-right: 0.2rem;
+		}
+		&:nth-child(2) {
+			padding-left: 0.2rem;
 		}
 	}
 	.lesson-table {

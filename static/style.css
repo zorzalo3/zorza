@@ -82,12 +82,22 @@ body {
 .timetable tr td:nth-child(1) {
   text-align: center;
   padding-right: 0;
+  padding-left: 0;
 }
 
 .timetable tr td:nth-child(2) {
   text-align: center;
   white-space: normal;
   padding-left: 0;
+}
+
+.timetable tr th:nth-child(1) {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+}
+
+.timetable tr th:nth-child(2) {
+  padding-left: 0.2rem;
 }
 
 .timetable .lesson-table {
