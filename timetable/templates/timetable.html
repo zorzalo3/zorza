@@ -18,13 +18,13 @@
 				<td>{{ period.number }}</td>
 				<td>{{ period }}</td>
 				{% for _, hour in row.items %}
-				<td><div class="class-table">
+				<td><div class="lesson-table">
 					{% for lesson in hour %}
-					<div class="class-row">
+					<div class="lesson">
 						<a class="teacher" href="#" title="{{ lesson.teacher.name }}">
 							{{ lesson.teacher.initials }}
 						</a>
-						<div class="class-name" title="{{ lesson.subject.name }}">
+						<div class="subject" title="{{ lesson.subject.name }}">
 							{{ lesson.subject.short_name }}
 						</div>
 						<a class="room" href="#" title="{{ lesson.room.name }}">
