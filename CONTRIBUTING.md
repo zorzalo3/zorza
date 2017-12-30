@@ -53,3 +53,4 @@ Remember to set your `LANGUAGE_CODE` in settings to see the websites in your lan
 * How to write git commit messages: https://chris.beams.io/posts/git-commit/
 * A git development model: http://nvie.com/posts/a-successful-git-branching-model/
 * Check whether your page is readable (text contrast): https://webaim.org/resources/contrastchecker/
+* About git squashing: http://jamescooke.info/git-to-squash-or-not-to-squash.html
