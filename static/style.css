@@ -76,7 +76,7 @@ body {
 
 .table th, .table td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .timetable tr td:nth-child(1) {
@@ -115,7 +115,7 @@ body {
 .timetable .lesson-table .lesson .subject {
   display: table-cell;
   padding-left: 0.3rem;
-  padding-right: 0.5rem;
+  padding-right: 0.3rem;
   width: 99%;
 }
 
