@@ -76,13 +76,7 @@ body {
 
 .table th, .table td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.1rem;
-}
-
-@media (min-width: 576px) {
-  .table th, .table td {
-    padding: 0.3rem;
-  }
+  padding: 0.3rem 0.6rem;
 }
 
 .timetable tr td:nth-child(1) {
@@ -99,6 +93,7 @@ body {
 .timetable .lesson-table {
   display: table;
   width: 100%;
+  min-width: 5rem;
 }
 
 .timetable .lesson-table .lesson {

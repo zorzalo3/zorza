@@ -71,12 +71,7 @@ body {
 	white-space: nowrap;
 	th, td {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-		padding: 0.1rem;
-	}
-	@media (min-width: 576px) {
-		th, td {
-			padding: 0.3rem;
-		}
+		padding: 0.3rem 0.6rem;
 	}
 }
 .timetable {
@@ -98,6 +93,7 @@ body {
 	.lesson-table {
 		display: table;
 		width: 100%;
+		min-width: 5rem;
 		.lesson {
 			display: table-row;
 			.teacher {
