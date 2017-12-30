@@ -96,28 +96,28 @@ body {
   padding-left: 0;
 }
 
-.timetable .class-table {
+.timetable .lesson-table {
   display: table;
   width: 100%;
 }
 
-.timetable .class-table .class-row {
+.timetable .lesson-table .lesson {
   display: table-row;
 }
 
-.timetable .class-table .teacher {
+.timetable .lesson-table .lesson .teacher {
   text-align: right;
   display: table-cell;
   font-family: monospace;
 }
 
-.timetable .class-table .room {
+.timetable .lesson-table .lesson .room {
   text-align: right;
   display: table-cell;
   font-family: monospace;
 }
 
-.timetable .class-table .class-name {
+.timetable .lesson-table .lesson .subject {
   display: table-cell;
   padding-left: 0.3rem;
   padding-right: 0.5rem;

@@ -1,4 +1,42 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
-Hello, world!
+<div id="table-wrapper">
+	<table class="table timetable">
+		<thead>
+			<tr>
+			<th>{% trans "No." %}</th>
+			<th>{% trans "Period" %}</th>
+			{% for _, day in days %}
+				<th>{{ day }}</th>
+			{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for period, row in table.items %}
+			<tr>
+				<td>{{ period.number }}</td>
+				<td>{{ period }}</td>
+				{% for _, hour in row.items %}
+				<td><div class="lesson-table">
+					{% for lesson in hour %}
+					<div class="lesson">
+						<a class="teacher" href="#" title="{{ lesson.teacher.name }}">
+							{{ lesson.teacher.initials }}
+						</a>
+						<div class="subject" title="{{ lesson.subject.name }}">
+							{{ lesson.subject.short_name }}
+						</div>
+						<a class="room" href="#" title="{{ lesson.room.name }}">
+							{{ lesson.room.short_name }}
+						</a>
+					</div>
+					{% endfor %}
+				</div></td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
 {% endblock %}

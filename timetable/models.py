@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -61,16 +62,6 @@ class Period(models.Model):
         unique_together = (('number', 'timetable'),)
         ordering = ['timetable', 'number']
 
-DAY_OF_THE_WEEK = (
-    (0, _('Monday')),
-    (1, _('Tuesday')),
-    (2, _('Wednesday')),
-    (3, _('Thursday')),
-    (4, _('Friday')),
-    (5, _('Saturday')),
-    (6, _('Sunday')),
-)
-
 class DayPlan(models.Model):
     """A DayPlan says which timetable (or none) to use on a given day"""
     day = models.DateField(unique=True)
@@ -85,11 +76,11 @@ class Lesson(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
-    weekday = models.IntegerField(choices=DAY_OF_THE_WEEK)
+    weekday = models.IntegerField(choices=settings.TIMETABLE_WEEKDAYS)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s %s %s, %s, %s %d %s' % \
             (self.teacher.initials, self.subject.short_name,
              self.room.short_name, self.group.name, _('Lesson'),
-             self.period.number, DAY_OF_THE_WEEK[self.weekday][1])
+             self.period.number, settings.TIMETABLE_WEEKDAYS[self.weekday][1])

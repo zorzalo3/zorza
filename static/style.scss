@@ -95,27 +95,27 @@ body {
 			padding-left: 0;
 		}
 	}
-	.class-table {
+	.lesson-table {
 		display: table;
 		width: 100%;
-		.class-row {
+		.lesson {
 			display: table-row;
-		}
-		.teacher {
-			text-align: right;
-			display: table-cell;
-			font-family: monospace;
-		}
-		.room {
-			text-align: right;
-			display: table-cell;
-			font-family: monospace;
-		}
-		.class-name {
-			display: table-cell;
-			padding-left: 0.3rem;
-			padding-right: 0.5rem;
-			width: 99%; // so cells on both sides are shrunk
+			.teacher {
+				text-align: right;
+				display: table-cell;
+				font-family: monospace;
+			}
+			.room {
+				text-align: right;
+				display: table-cell;
+				font-family: monospace;
+			}
+			.subject {
+				display: table-cell;
+				padding-left: 0.3rem;
+				padding-right: 0.5rem;
+				width: 99%; // so cells on both sides are shrunk
+			}
 		}
 	}
 }
