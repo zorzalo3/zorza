@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load hyphen_break %}
 {% block content %}
 <div id="table-wrapper">
 	<table class="table timetable">
@@ -16,7 +17,11 @@
 			{% for period, row in table.items %}
 			<tr>
 				<td>{{ period.number }}</td>
-				<td>{{ period }}</td>
+				<td>
+					{% autoescape off %}
+					{{ period|hyphen_break }}
+					{% endautoescape %}
+				</td>
 				{% for _, hour in row.items %}
 				<td><div class="lesson-table">
 					{% for lesson in hour %}
