@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load hyphen_break %}
 {% block content %}
+<h3 class="center">{% for group in groups %}{{ group }} {% endfor %}</h3>
 <div id="table-wrapper">
 	<table class="table timetable">
 		<thead>

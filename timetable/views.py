@@ -1,20 +1,22 @@
 from itertools import groupby
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.conf import settings
 from .models import *
+from .utils import get_timetable_context
 
-days = settings.TIMETABLE_WEEKDAYS
 
 def show_default_timetable(request):
     pass
 
-def show_class_timetable(request):
-    pass
+def show_class_timetable(request, class_id):
+    klass = get_object_or_404(Class, pk=class_id)
+    groups = Group.objects.filter(classes=klass)
+    lessons = Lesson.objects.filter(group__in=groups)
+    context = get_timetable_context(lessons)
+    context['class'] = klass
+    return render(request, 'timetable.html', context)
 
 def show_groups_timetable(request, group_ids):
-    periods = Period.objects.all()
-    # TODO: implement DayPlan
     try:
         group_ids = {int(n) for n in group_ids.split(',')} # convert to set
     except:
@@ -22,15 +24,8 @@ def show_groups_timetable(request, group_ids):
 
     groups = [get_object_or_404(Group, pk=n) for n in group_ids]
     lessons = Lesson.objects.filter(group__in=group_ids)
-    table = {period: {day[0]: [] for day in days} for period in periods}
-    for lesson in lessons:
-        # Will throw exception if lesson.weekday not in days
-        table[lesson.period][lesson.weekday].append(lesson)
-
-    context = {
-        'days': days,
-        'table': table,
-    }
+    context = get_timetable_context(lessons)
+    context['groups'] = groups
     return render(request, 'timetable.html', context)
 
 def show_room_timetable(request):
