@@ -13,6 +13,8 @@ def show_class_timetable(request):
     pass
 
 def show_groups_timetable(request, group_ids):
+    periods = Period.objects.all()
+    # TODO: implement DayPlan
     try:
         group_ids = {int(n) for n in group_ids.split(',')} # convert to set
     except:
@@ -20,7 +22,6 @@ def show_groups_timetable(request, group_ids):
 
     groups = [get_object_or_404(Group, pk=n) for n in group_ids]
     lessons = Lesson.objects.filter(group__in=group_ids)
-    periods = {lesson.period for lesson in lessons}
     table = {period: {day[0]: [] for day in days} for period in periods}
     for lesson in lessons:
         # Will throw exception if lesson.weekday not in days
