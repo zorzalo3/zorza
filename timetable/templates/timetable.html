@@ -6,8 +6,8 @@
 	<table class="table timetable">
 		<thead>
 			<tr>
-			<th>{% trans "No." %}</th>
-			<th>{% trans "Period" %}</th>
+			<th>{% trans "No." context "timetable header" %}</th>
+			<th>{% trans "Period" context "timetable header" %}</th>
 			{% for _, day in days %}
 				<th>{{ day }}</th>
 			{% endfor %}

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 18:43+0000\n"
+"POT-Creation-Date: 2017-12-31 00:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,18 +14,52 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: templates/base.html:18
+#: templates/base.html:17
 msgid "Timetable"
 msgstr "Plan lekcji"
 
-#: templates/base.html:23
+#: templates/base.html:20
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: templates/base.html:35
+#: templates/base.html:30
 msgid "About"
 msgstr "O projekcie"
 
-#: templates/base.html:39
+#: templates/base.html:32
 msgid "Contact us"
 msgstr "Kontakt"
+
+#: timetable/models.py:85
+msgid "Lesson"
+msgstr ""
+
+#: timetable/templates/timetable.html:9
+msgctxt "timetable header"
+msgid "No."
+msgstr "Nr"
+
+#: timetable/templates/timetable.html:10
+msgctxt "timetable header"
+msgid "Period"
+msgstr "Godz."
+
+#: zorza/settings.py:132
+msgid "Monday"
+msgstr ""
+
+#: zorza/settings.py:133
+msgid "Tuesday"
+msgstr ""
+
+#: zorza/settings.py:134
+msgid "Wednesday"
+msgstr ""
+
+#: zorza/settings.py:135
+msgid "Thursday"
+msgstr ""
+
+#: zorza/settings.py:136
+msgid "Friday"
+msgstr ""
