@@ -4,4 +4,4 @@ register = template.Library()
 
 @register.filter
 def hyphen_break(value):
-    return str(value).replace('-', '-<wbr>')
+    return str(value).replace('–', '–<wbr>')

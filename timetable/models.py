@@ -54,7 +54,7 @@ class Period(models.Model):
     timetable = models.ForeignKey(Times, on_delete=models.CASCADE)
 
     def __str__(self): # Display time range
-        return '%.2d:%.2d-%.2d:%.2d' % \
+        return '%d:%.2d–%d:%.2d' % \
             (self.begin_time.hour, self.begin_time.minute, \
              self.end_time.hour,   self.end_time.minute)
 
