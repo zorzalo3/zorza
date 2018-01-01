@@ -28,8 +28,16 @@ def show_groups_timetable(request, group_ids):
     context['groups'] = groups
     return render(request, 'group_timetable.html', context)
 
-def show_room_timetable(request):
-    pass
+def show_room_timetable(request, room_id):
+    room = get_object_or_404(Room, pk=room_id)
+    lessons = Lesson.objects.filter(room=room)
+    context = get_timetable_context(lessons)
+    context['room'] = room
+    return render(request, 'room_timetable.html', context)
 
-def show_teacher_timetable(request):
-    pass
+def show_teacher_timetable(request, teacher_id):
+    teacher = get_object_or_404(Teacher, pk=teacher_id)
+    lessons = Lesson.objects.filter(teacher=teacher)
+    context = get_timetable_context(lessons)
+    context['teacher'] = teacher
+    return render(request, 'teacher_timetable.html', context)

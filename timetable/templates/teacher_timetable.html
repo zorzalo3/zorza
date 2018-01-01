@@ -1,0 +1,16 @@
+{% extends "timetable_base.html" %}
+{% block caption %}
+	{{ teacher.name }}
+{% endblock %}
+{% block lesson %}
+<a class="group">
+	{{ lesson.group.name }}
+</a>
+<div class="subject" title="{{ lesson.subject.name }}">
+	{{ lesson.subject.short_name }}
+</div>
+<a class="room" href="#" title="{{ lesson.room.name }}">
+	{{ lesson.room.short_name }}
+</a>
+{% endblock %}
+
