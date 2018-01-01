@@ -2,11 +2,13 @@
 {% load i18n %}
 {% load hyphen_break %}
 {% block content %}
+<h2>Plan lekcji</h2>
+<p>
+{% trans "It is" context "datetime" %} {% now "DATETIME_FORMAT" %}.
+</p>
+<h3 class="text-center">{% block caption %}{% endblock %}</h3>
 <div id="table-wrapper">
 	<table class="table timetable">
-		<caption>
-			{% block caption %}{% endblock %}
-		</caption>
 		<thead>
 			<tr>
 				<th>{% trans "No." context "timetable header" %}</th>
