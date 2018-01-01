@@ -47,7 +47,7 @@ body {
 	justify-content: space-between;
 }
 
-.navbar-brand {
+.site-logo {
 	display: inline-block;
 	padding: 0.8rem; // more clickable area
 	margin-left: -0.8rem; // but still left-aligned to container's edge
@@ -55,6 +55,12 @@ body {
 		display: block;
 		height: 1.1rem;
 	}
+}
+
+h1.logo-wrapper {
+	margin: 0;
+	padding: 0;
+	line-height: 0;
 }
 
 #table-wrapper {

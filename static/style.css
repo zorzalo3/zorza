@@ -47,15 +47,21 @@ body {
   justify-content: space-between;
 }
 
-.navbar-brand {
+.site-logo {
   display: inline-block;
   padding: 0.8rem;
   margin-left: -0.8rem;
 }
 
-.navbar-brand > img {
+.site-logo > img {
   display: block;
   height: 1.1rem;
+}
+
+h1.logo-wrapper {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
 }
 
 #table-wrapper {
