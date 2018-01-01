@@ -3,13 +3,13 @@
 	{{ teacher.name }}
 {% endblock %}
 {% block lesson %}
-<a class="group">
+<a class="group" href="{% url "groups_timetable" lesson.group.pk %}">
 	{{ lesson.group.name }}
 </a>
 <div class="subject" title="{{ lesson.subject.name }}">
 	{{ lesson.subject.short_name }}
 </div>
-<a class="room" href="#" title="{{ lesson.room.name }}">
+<a class="room" href="{% url "room_timetable" lesson.room.pk %}" title="{{ lesson.room.name }}">
 	{{ lesson.room.short_name }}
 </a>
 {% endblock %}

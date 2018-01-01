@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block lesson %}
-<a class="teacher" href="#" title="{{ lesson.teacher.name }}">
+<a class="teacher" href="{% url "teacher_timetable" lesson.teacher.pk %}" title="{{ lesson.teacher.name }}">
 	{{ lesson.teacher.initials }}
 </a>
 <div class="subject" title="{{ lesson.subject.name }}">
 	{{ lesson.subject.short_name }}
 </div>
-<a class="room" href="#" title="{{ lesson.room.name }}">
+<a class="room" href="{% url "room_timetable" lesson.room.pk %}" title="{{ lesson.room.name }}">
 	{{ lesson.room.short_name }}
 </a>
 {% endblock %}
