@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hyphen_break %}
+{% block content %}
+<div id="table-wrapper">
+	<table class="table timetable">
+		<caption>
+			{% block caption %}{% endblock %}
+		</caption>
+		<thead>
+			<tr>
+				<th>{% trans "No." context "timetable header" %}</th>
+				<th>{% trans "Period" context "timetable header" %}</th>
+				{% for _, day in days %}
+					<th>{{ day }}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for period, row in table.items %}
+			<tr>
+				<td>{{ period.number }}</td>
+				<td>
+					{% autoescape off %}
+					{{ period|hyphen_break }}
+					{% endautoescape %}
+				</td>
+				{% for _, hour in row.items %}
+				<td>
+					<div class="lesson-table">
+						{% for lesson in hour %}
+							<div class="lesson">
+							{% block lesson %}{% endblock %}
+							</div>
+						{% endfor %}
+					</div>
+				</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
