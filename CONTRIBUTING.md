@@ -1,6 +1,9 @@
 # How to contribute?
 Install all requirements and clone the repository.
-Create zorza/localsettings.py and there add `DEBUG=True`.
+Create zorza/localsettings.py and there, add `DEBUG=True`
+and a random string `SECRET_KEY`. You can use `head /dev/urandom | base64`
+for that.
+
 Run the site locally with `python3 manage.py runserver`.
 Now you can create a branch for a feature or a bug fix and send a pull request!
 
