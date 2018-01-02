@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-01 16:55+0000\n"
+"POT-Creation-Date: 2018-01-02 14:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: templates/base.html:15
+msgid "Visit the main page"
+msgstr "Odwiedź stronę główną"
 
 #: templates/base.html:19
 msgid "Timetable"
@@ -33,11 +37,6 @@ msgstr "Kontakt"
 #: timetable/models.py:85
 msgid "Lesson"
 msgstr ""
-
-#: timetable/templates/timetable_base.html:7
-msgctxt "datetime"
-msgid "It is"
-msgstr "Jest"
 
 #: timetable/templates/timetable_base.html:14
 msgctxt "timetable header"
@@ -68,3 +67,7 @@ msgstr ""
 #: zorza/settings.py:136
 msgid "Friday"
 msgstr ""
+
+#~ msgctxt "datetime"
+#~ msgid "It is"
+#~ msgstr "Jest"
