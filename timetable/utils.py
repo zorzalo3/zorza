@@ -13,5 +13,8 @@ def get_timetable_context(lessons):
     context = {
         'days': days,
         'table': table,
+        'class_list': Class.objects.all(),
+        'teacher_list': Teacher.objects.all(),
+        'room_list': Room.objects.all()
     }
     return context
