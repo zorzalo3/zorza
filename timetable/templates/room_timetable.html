@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block lesson %}
-<a class="teacher" href="{% url "teacher_timetable" lesson.teacher.pk %}" title="{{ lesson.teacher.name }}">
-	{{ lesson.teacher.initials }}
-</a>
+<div class="lesson-table">
+	<div class="table-row">
+		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher.pk %}" title="{{ lesson.teacher.name }}">
+			{{ lesson.teacher.initials }}
+		</a>
+		<a class="group" href="{% url "groups_timetable" lesson.group.pk %}">
+			{{ lesson.group }}
+		</a>
+	</div>
+</div>
 <div class="subject" title="{{ lesson.subject.name }}">
 	{{ lesson.subject.short_name }}
 </div>
-<a class="group" href="{% url "groups_timetable" lesson.group.pk %}">
-	{{ lesson.group }}
-</a>
 {% endblock %}
 

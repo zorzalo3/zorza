@@ -100,33 +100,52 @@ h1.logo-wrapper {
   padding-left: 0.2rem;
 }
 
-.timetable .lesson-table {
-  display: table;
+.timetable .subject {
+  margin: 0 auto;
   width: 100%;
-  min-width: 5rem;
+  text-align: center;
 }
 
-.timetable .lesson-table .lesson {
+.timetable .lesson-table {
+  display: table;
+  min-width: 5rem;
+  margin: 0 auto;
+}
+
+.timetable .lesson-table .table-row {
   display: table-row;
 }
 
-.timetable .lesson-table .lesson .teacher {
+.timetable .lesson-table .table-row .teacher {
+  display: table-cell;
+  font-family: monospace;
+}
+
+.timetable .lesson-table .table-row .room {
   text-align: right;
   display: table-cell;
   font-family: monospace;
 }
 
-.timetable .lesson-table .lesson .room {
-  text-align: right;
+.timetable .lesson-table .table-row .subject {
   display: table-cell;
-  font-family: monospace;
-}
-
-.timetable .lesson-table .lesson .subject {
-  display: table-cell;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
   width: 99%;
+  text-align: left;
+}
+
+.timetable .lesson-table .table-row .group {
+  display: table-cell;
+}
+
+.timetable .lesson-table .table-row .teacher + .group {
+  text-align: right;
+  padding-left: 0.4rem;
+}
+
+.timetable .lesson-table .table-row .group + .room {
+  padding-left: 0.4rem;
 }
 
 header {

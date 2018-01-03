@@ -29,13 +29,9 @@
 				</td>
 				{% for _, hour in row.items %}
 				<td>
-					<div class="lesson-table">
-						{% for lesson in hour %}
-							<div class="lesson">
-							{% block lesson %}{% endblock %}
-							</div>
-						{% endfor %}
-					</div>
+					{% for lesson in hour %}
+						{% block lesson %}{% endblock %}
+					{% endfor %}
 				</td>
 				{% endfor %}
 			</tr>

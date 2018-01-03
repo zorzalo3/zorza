@@ -101,14 +101,18 @@ h1.logo-wrapper {
 			padding-left: 0.2rem;
 		}
 	}
+	.subject {
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+	}
 	.lesson-table {
 		display: table;
-		width: 100%;
 		min-width: 5rem;
-		.lesson {
+		margin: 0 auto;
+		.table-row {
 			display: table-row;
 			.teacher {
-				text-align: right;
 				display: table-cell;
 				font-family: monospace;
 			}
@@ -119,9 +123,20 @@ h1.logo-wrapper {
 			}
 			.subject {
 				display: table-cell;
-				padding-left: 0.3rem;
-				padding-right: 0.3rem;
+				padding-left: 0.4rem;
+				padding-right: 0.4rem;
 				width: 99%; // so cells on both sides are shrunk
+				text-align: left;
+			}
+			.group {
+				display: table-cell;
+			}
+			.teacher + .group {
+				text-align: right;
+				padding-left: 0.4rem;
+			}
+			.group + .room {
+				padding-left: 0.4rem;
 			}
 		}
 	}
