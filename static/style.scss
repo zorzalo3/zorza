@@ -1,5 +1,8 @@
 $font-color-primary: rgba(255, 255, 255, 0.9);
 $font-color-secondary: rgba(255, 255, 255, 0.8);
+$link-color: #79b6da;
+$font-default: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$shadow-default: 0 1px 8px rgba(0, 0, 0, 0.3);
 *, *::before, *::after {
 	box-sizing: border-box;
 }
@@ -26,7 +29,7 @@ body {
 	background-image: url("bg_noise.png");
 	color: $font-color-primary;
 	font-size: 1rem;
-	font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-family: $font-default;
 }
 
 .container {
@@ -147,21 +150,17 @@ header {
 	background-image: url("aurora_header.jpg");
 	background-size: cover;
 	margin-bottom: 2rem;
-	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: $shadow-default;
 }
 
 a {
-	color: #79b6da;
+	color: $link-color;
 	text-decoration:none;
 	&:hover {
 		text-decoration: underline;
 	}
 }
 
-.nav-link:hover {
-	color: #79b6da;
-	transition: all 0.2s ease;
-}
 .nav {
 	display: flex;
 	padding-left: 0;
@@ -182,7 +181,7 @@ a {
 		text-decoration: none;
 	}
 	&:hover {
-		color: #79b6da;
+		color: $link-color;
 		transition: all 0.2s ease;
 	}
 }
@@ -213,4 +212,9 @@ footer {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	margin-bottom: 1rem;
+}
+
+select {
+	font-size: 1.1rem;
+	font-family: $font-default;
 }

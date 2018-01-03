@@ -165,11 +165,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.nav-link:hover {
-  color: #79b6da;
-  transition: all 0.2s ease;
-}
-
 .nav {
   display: flex;
   padding-left: 0;
@@ -227,4 +222,9 @@ footer {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+select {
+  font-size: 1.1rem;
+  font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
