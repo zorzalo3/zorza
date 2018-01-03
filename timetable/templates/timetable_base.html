@@ -38,8 +38,12 @@
 			{% endfor %}
 		</tbody>
 	</table>
+</div>
+<h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
+<div class="text-center">
 	{% if class_list %}
 	<select>
+		<option disabled selected value>{% trans "Choose a class" %}</option>
 		{% for class_item in class_list %}
 		<option value="{{ class_item.pk }}">{{ class_item.name }} </option>
 		{% endfor %}
@@ -47,6 +51,7 @@
 	{% endif %}
 	{% if teacher_list %}
 	<select>
+		<option disabled selected value>{% trans "Choose a teacher" %}</option>
 		{% for teacher_item in teacher_list %}
 		<option value="{{ teacher_item.pk }}">{{ teacher_item.name }} </option>
 		{% endfor %}
@@ -54,6 +59,7 @@
 	{% endif %}
 	{% if room_list %}
 	<select>
+		<option disabled selected value>{% trans "Choose a classroom" %}</option>
 		{% for room_item in room_list %}
 		<option value="{{ room_item.pk }}">{{ room_item.short_name }} </option>
 		{% endfor %}

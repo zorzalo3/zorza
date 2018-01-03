@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-02 14:19+0100\n"
+"POT-Creation-Date: 2018-01-03 14:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
-#: templates/base.html:19
+#: templates/base.html:19 timetable/templates/timetable_base.html:5
 msgid "Timetable"
 msgstr "Plan lekcji"
 
@@ -47,6 +47,22 @@ msgstr "Nr"
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
+
+#: timetable/templates/timetable_base.html:42
+msgid "Choose timetable to display"
+msgstr "Wybierz plan lekcji"
+
+#: timetable/templates/timetable_base.html:46
+msgid "Choose a class"
+msgstr "Wybierz klasę"
+
+#: timetable/templates/timetable_base.html:54
+msgid "Choose a teacher"
+msgstr "Wybierz nauczyciela"
+
+#: timetable/templates/timetable_base.html:62
+msgid "Choose a classroom"
+msgstr "Wybierz salę"
 
 #: zorza/settings.py:132
 msgid "Monday"
