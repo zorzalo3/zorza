@@ -11,3 +11,5 @@ localsettings.py
 .directory
 
 /venv
+staticfiles
+media
