@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 14:28+0100\n"
+"POT-Creation-Date: 2018-01-03 23:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,24 @@ msgstr "Kontakt"
 
 #: timetable/models.py:85
 msgid "Lesson"
-msgstr ""
+msgstr "Lekcja"
+
+#: timetable/templates/class_timetable.html:5
+msgid "Class"
+msgstr "Klasa"
+
+#: timetable/templates/group_timetable.html:6
+msgid "Group"
+msgstr "Grupa"
+
+#: timetable/templates/group_timetable.html:8
+msgid "Groups"
+msgstr "Grupy"
+
+#: timetable/templates/room_timetable.html:5
+#| msgid "Choose a classroom"
+msgid "Classroom"
+msgstr "Sala"
 
 #: timetable/templates/timetable_base.html:14
 msgctxt "timetable header"
