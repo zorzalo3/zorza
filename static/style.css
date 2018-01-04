@@ -48,13 +48,11 @@ body {
 }
 
 .site-logo {
-  display: inline-block;
   padding: 0.8rem;
   margin-left: -0.8rem;
 }
 
 .site-logo > img {
-  display: block;
   height: 1.1rem;
 }
 
@@ -200,18 +198,6 @@ a:hover {
 
 .text-center {
   text-align: center;
-}
-
-@media (max-width: 575px) {
-  .sm-hide {
-    display: none !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .md-hide {
-    display: none !important;
-  }
 }
 
 footer {

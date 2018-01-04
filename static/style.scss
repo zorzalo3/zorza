@@ -51,11 +51,9 @@ body {
 }
 
 .site-logo {
-	display: inline-block;
 	padding: 0.8rem; // more clickable area
 	margin-left: -0.8rem; // but still left-aligned to container's edge
 	&>img {
-		display: block;
 		height: 1.1rem;
 	}
 }
@@ -192,17 +190,6 @@ a {
 
 .text-center {
 	text-align: center;
-}
-
-@media (max-width: 575px) {
-	.sm-hide {
-		display: none !important;
-	}
-}
-@media (max-width: 767px) {
-	.md-hide {
-		display: none !important;
-	}
 }
 footer {
 	margin-top: 2rem;
