@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'timetable',
+    'timetable',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,8 @@ TIMETABLE_WEEKDAYS = (
     #(5, _('Saturday')),
     #(6, _('Sunday')),
 )
+
+SITE_ID = 1
 
 try:
     from .localsettings import *

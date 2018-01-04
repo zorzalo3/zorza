@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from django.contrib.flatpages import views
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', views.flatpage, {'url': '/home/'}, name='home'),
+    path('about/', views.flatpage, {'url': '/about/'}, name='about'),
+    path('pages/', include('django.contrib.flatpages.urls')),
     path('timetable/', include('timetable.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
