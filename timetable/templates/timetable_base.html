@@ -13,15 +13,15 @@
 			<tr>
 				<th>{% trans "No." context "timetable header" %}</th>
 				<th>{% trans "Period" context "timetable header" %}</th>
-				{% for _, day in days %}
-					<th>{{ day }}</th>
+				{% for day_id, day in days %}
+				<th id="day-{{ day_id }}">{{ day }}</th>
 				{% endfor %}
 			</tr>
 		</thead>
 		<tbody>
 			{% for period, row in table.items %}
 			<tr>
-				<td>{{ period.number }}</td>
+				<td id="period-{{ period.number }}">{{ period.number }}</td>
 				<td>
 					{% autoescape off %}
 					{{ period|hyphen_break }}
