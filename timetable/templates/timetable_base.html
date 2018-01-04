@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load hyphen_break %}
+
 {% block content %}
 <h2>{% trans "Timetable" %}</h2>
 <p>
@@ -30,7 +31,7 @@
 				{% for _, hour in row.items %}
 				<td>
 					{% for lesson in hour %}
-						{% block lesson %}{% endblock %}
+					{% block lesson %}{% endblock %}
 					{% endfor %}
 				</td>
 				{% endfor %}
