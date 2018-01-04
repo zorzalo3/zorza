@@ -12,7 +12,9 @@
 		<header>
 			<nav class="navbar container">
 				<h1 class="logo-wrapper">
-					<a class="site-logo" href="#" title="{% trans "Visit the main page" %}"><img src="{% static "zorza_text.svg" %}" alt="Zorza"></a>
+					<a class="site-logo" href="{% url "home" %}" title="{% trans "Visit the main page" %}">
+						<img src="{% static "zorza_text.svg" %}" alt="Zorza">
+					</a>
 				</h1>
 				<ul class="nav">
 					<li class="nav-item">
@@ -29,7 +31,7 @@
 			{% endblock %}
 		</main>
 		<footer class="container text-center">
-			<a href="#">{% trans "About" %}</a>
+			<a href="{% url "about" %}">{% trans "About" %}</a>
 
 			<a href="#">{% trans "Contact us" %}</a>
 
