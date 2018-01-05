@@ -212,3 +212,16 @@ select {
 	font-family: $font-default;
 	margin-bottom: 0.5rem;
 }
+
+#set-def-button {
+	font-size: 1rem;
+	margin-top: -2rem;
+	background: none !important;
+	border: none;
+	color: $link-color;
+	padding: 0 !important;
+	font-family: $font-default;
+	&:hover {
+		text-decoration: underline;
+	}
+}

@@ -223,3 +223,17 @@ select {
   font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   margin-bottom: 0.5rem;
 }
+
+#set-def-button {
+  font-size: 1rem;
+  margin-top: -2rem;
+  background: none !important;
+  border: none;
+  color: #79b6da;
+  padding: 0 !important;
+  font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+#set-def-button:hover {
+  text-decoration: underline;
+}

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 23:21+0100\n"
+"POT-Creation-Date: 2018-01-05 01:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
-#: templates/base.html:19 timetable/templates/timetable_base.html:5
+#: templates/base.html:21 timetable/templates/timetable_base.html:7
 msgid "Timetable"
 msgstr "Plan lekcji"
 
-#: templates/base.html:22
+#: templates/base.html:24
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: templates/base.html:32
+#: templates/base.html:34
 msgid "About"
 msgstr "O projekcie"
 
-#: templates/base.html:34
+#: templates/base.html:36
 msgid "Contact us"
 msgstr "Kontakt"
 
@@ -51,53 +51,56 @@ msgid "Groups"
 msgstr "Grupy"
 
 #: timetable/templates/room_timetable.html:5
-#| msgid "Choose a classroom"
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/timetable_base.html:14
+#: timetable/templates/timetable_base.html:13
+msgid "Set as default timetable"
+msgstr "Ustaw jako domyślny plan lekcji"
+
+#: timetable/templates/timetable_base.html:21
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
-#: timetable/templates/timetable_base.html:15
+#: timetable/templates/timetable_base.html:22
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/templates/timetable_base.html:42
+#: timetable/templates/timetable_base.html:49
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:46
+#: timetable/templates/timetable_base.html:53
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:54
+#: timetable/templates/timetable_base.html:61
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:62
+#: timetable/templates/timetable_base.html:69
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: zorza/settings.py:132
+#: zorza/settings.py:134
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:133
+#: zorza/settings.py:135
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:134
+#: zorza/settings.py:136
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:135
+#: zorza/settings.py:137
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:136
+#: zorza/settings.py:138
 msgid "Friday"
 msgstr ""
 
