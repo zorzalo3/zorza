@@ -28,7 +28,7 @@
 		<tbody>
 			{% for period, row in table.items %}
 			<tr>
-				<td id="period-{{ period.number }}">{{ period.number }}</td>
+				<td id="period-{{ period }}">{{ period }}</td>
 				<td>
 					{% autoescape off %}
 					{{ period|hyphen_break }}

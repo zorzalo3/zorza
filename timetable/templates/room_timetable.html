@@ -8,16 +8,16 @@
 {% block lesson %}
 <div class="lesson-table">
 	<div class="table-row">
-		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher.pk %}" title="{{ lesson.teacher.name }}">
-			{{ lesson.teacher.initials }}
+		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher__name }}">
+			{{ lesson.teacher__initials }}
 		</a>
-		<a class="group" href="{% url "groups_timetable" lesson.group.pk %}">
-			{{ lesson.group }}
+		<a class="group" href="{% url "groups_timetable" lesson.group_id %}">
+			{{ lesson.group__name }}
 		</a>
 	</div>
 </div>
-<div class="subject" title="{{ lesson.subject.name }}">
-	{{ lesson.subject.short_name }}
+<div class="subject" title="{{ lesson.subject__name }}">
+	{{ lesson.subject__short_name }}
 </div>
 {% endblock %}
 
