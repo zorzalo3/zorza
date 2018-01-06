@@ -10,7 +10,10 @@
 </p>
 <h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
 <div class="text-right">
-	<button id="set-def-button" class="text-right" onclick="setDefaultTimetable()">
+	<button id="set-def-button" onclick="setDefaultTimetable()"
+		{% if request.COOKIES.timetable_default == request.path %}
+		class="hidden"
+  		{% endif %}>
 		{% trans "Set as default timetable" %}
 	</button>
 </div>

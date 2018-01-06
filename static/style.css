@@ -241,3 +241,7 @@ select {
 #set-def-button:hover {
   text-decoration: underline;
 }
+
+.hidden {
+  visibility: hidden;
+}

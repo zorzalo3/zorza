@@ -8,9 +8,11 @@ if (th_today) {
 
 var def_cookie = "timetable_default";
 var attributes = "; path=/timetable/; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+var def_button = document.getElementById("set-def-button");
 function setDefaultTimetable() {
 	var path = window.location.pathname;
 	document.cookie = def_cookie+"="+path+attributes;
+	def_button.style.visibility = "hidden";
 }
 
 //TODO: fixed left column/table header
