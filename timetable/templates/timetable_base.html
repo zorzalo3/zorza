@@ -31,10 +31,10 @@
 				<td id="period-{{ period }}">{{ period }}</td>
 				<td>
 					{% autoescape off %}
-					{{ period|hyphen_break }}
+					{{ row.0|hyphen_break }}
 					{% endautoescape %}
 				</td>
-				{% for _, hour in row.items %}
+				{% for _, hour in row.1.items %}
 				<td>
 					{% for lesson in hour %}
 					{% block lesson %}{% endblock %}
