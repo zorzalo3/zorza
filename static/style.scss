@@ -227,6 +227,7 @@ select {
 	font-family: $font-default;
 	&:hover {
 		text-decoration: underline;
+		cursor: pointer;
 	}
 }
 

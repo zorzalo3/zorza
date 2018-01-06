@@ -240,6 +240,7 @@ select {
 
 #set-def-button:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .hidden {
