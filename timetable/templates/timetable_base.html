@@ -8,12 +8,12 @@
 <p>
 	{% now "l" %}, {% now "DATETIME_FORMAT" %}.
 </p>
+<h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
 <div class="text-right">
 	<button id="set-def-button" class="text-right" onclick="setDefaultTimetable()">
 		{% trans "Set as default timetable" %}
 	</button>
 </div>
-<h3 class="text-center">{% block caption %}{% endblock %}</h3>
 <div id="table-wrapper">
 	<table class="table timetable">
 		<thead>

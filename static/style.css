@@ -224,9 +224,13 @@ select {
   margin-bottom: 0.5rem;
 }
 
+.timetable-caption {
+  margin-bottom: 0;
+  text-align: center;
+}
+
 #set-def-button {
   font-size: 1rem;
-  margin-top: -2rem;
   background: none !important;
   border: none;
   color: #79b6da;
