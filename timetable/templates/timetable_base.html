@@ -52,7 +52,7 @@
 	<select onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a class" %}</option>
 		{% for class_item in class_list %}
-		<option value="{% url "class_timetable" class_item.pk %}">{{ class_item.name }} </option>
+		<option value="{% url "class_timetable" class_item.id %}">{{ class_item.name }} </option>
 		{% endfor %}
 	</select>
 	{% endif %}
@@ -60,7 +60,7 @@
 	<select onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a teacher" %}</option>
 		{% for teacher_item in teacher_list %}
-		<option value="{% url "teacher_timetable" teacher_item.pk %}">{{ teacher_item.name }} </option>
+		<option value="{% url "teacher_timetable" teacher_item.id %}">{{ teacher_item.name }} </option>
 		{% endfor %}
 	</select>
 	{% endif %}
@@ -68,7 +68,7 @@
 	<select onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a classroom" %}</option>
 		{% for room_item in room_list %}
-		<option value="{% url "room_timetable" room_item.pk %}">{{ room_item.short_name }}</option>
+		<option value="{% url "room_timetable" room_item.id %}">{{ room_item.short_name }}</option>
 		{% endfor %}
 	</select>
 	{% endif %}
