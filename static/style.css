@@ -269,6 +269,6 @@ input[type="submit"] {
 }
 
 .form-small {
-  max-width: 400px;
+  max-width: 25rem;
   margin: 0 auto;
 }
