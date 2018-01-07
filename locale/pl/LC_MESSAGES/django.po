@@ -88,10 +88,9 @@ msgid "Timetable personalization"
 msgstr "Personalizacja planu"
 
 #: timetable/templates/personalization.html:18
-#, fuzzy
 #| msgid "Timetable"
 msgid "Go to timetable"
-msgstr "Plan lekcji"
+msgstr "Przejdź do planu"
 
 #: timetable/templates/room_timetable.html:5
 msgid "Classroom"
