@@ -23,11 +23,14 @@ def get_timetable_context(lessons):
         # Will throw exception if lesson.weekday not in days
         table[lesson['period__number']][1][lesson['weekday']].append(lesson)
 
+    teachers = Teacher.objects.all().values()
+    # Temporary
+    teachers = sorted(teachers, key=lambda s: s['name'].split()[1])
     context = {
         'days': days,
         'table': table,
         'class_list': Class.objects.all().values(),
-        'teacher_list': Teacher.objects.all().values(),
+        'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
     }
     return context
