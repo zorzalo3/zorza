@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'timetable',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'contact',
 ]
 
 MIDDLEWARE = [

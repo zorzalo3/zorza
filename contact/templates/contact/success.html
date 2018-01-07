@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Message sent succesfully" %}
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "Success" %}</h2>
+<p>
+{% trans "Your message was sent succesfully." %}
+</p>
+{% endblock %}

@@ -24,5 +24,6 @@ urlpatterns = [
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('timetable/', include('timetable.urls')),
+    path('contact/', include('contact.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

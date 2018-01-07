@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-05 01:55+0100\n"
+"POT-Creation-Date: 2018-01-07 15:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,39 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: contact/models.py:5
+msgid "Your email address"
+msgstr "Twój adres e-mail"
+
+#: contact/models.py:6
+msgid "Subject"
+msgstr "Temat"
+
+#: contact/models.py:7
+msgid "Content"
+msgstr "Treść"
+
+#: contact/templates/contact/message_form.html:5
+#: contact/templates/contact/message_form.html:9 templates/base.html:36
+msgid "Contact us"
+msgstr "Kontakt"
+
+#: contact/templates/contact/message_form.html:13
+msgid "Send"
+msgstr "Wyślij"
+
+#: contact/templates/contact/success.html:5
+msgid "Message sent succesfully"
+msgstr "Wiadomość wysłana pomyślnie"
+
+#: contact/templates/contact/success.html:9
+msgid "Success"
+msgstr "Sukces"
+
+#: contact/templates/contact/success.html:11
+msgid "Your message was sent succesfully."
+msgstr "Twoja wiadomość została wysłana pomyślnie."
 
 #: templates/base.html:15
 msgid "Visit the main page"
@@ -29,10 +62,6 @@ msgstr "Dokumenty"
 #: templates/base.html:34
 msgid "About"
 msgstr "O projekcie"
-
-#: templates/base.html:36
-msgid "Contact us"
-msgstr "Kontakt"
 
 #: timetable/models.py:85
 msgid "Lesson"
@@ -54,53 +83,53 @@ msgstr "Grupy"
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/timetable_base.html:13
+#: timetable/templates/timetable_base.html:19
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:21
+#: timetable/templates/timetable_base.html:26
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
-#: timetable/templates/timetable_base.html:22
+#: timetable/templates/timetable_base.html:27
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/templates/timetable_base.html:49
+#: timetable/templates/timetable_base.html:54
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:53
+#: timetable/templates/timetable_base.html:58
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:61
+#: timetable/templates/timetable_base.html:66
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:69
+#: timetable/templates/timetable_base.html:74
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: zorza/settings.py:134
+#: zorza/settings.py:135
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:135
+#: zorza/settings.py:136
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:136
+#: zorza/settings.py:137
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:137
+#: zorza/settings.py:138
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:138
+#: zorza/settings.py:139
 msgid "Friday"
 msgstr ""
 
