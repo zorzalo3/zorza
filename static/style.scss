@@ -146,6 +146,7 @@ h1.logo-wrapper {
 
 header {
 	background-image: url("aurora_header.jpg");
+	background-color: #23594a;
 	background-size: cover;
 	margin-bottom: 2rem;
 	box-shadow: $shadow-default;
@@ -153,7 +154,7 @@ header {
 
 a {
 	color: $link-color;
-	text-decoration:none;
+	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
 	}
