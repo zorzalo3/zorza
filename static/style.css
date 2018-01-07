@@ -218,6 +218,11 @@ footer {
   margin-bottom: 1rem;
 }
 
+footer a {
+  font-size: 1.1rem;
+  padding: 0.3rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 1rem;
