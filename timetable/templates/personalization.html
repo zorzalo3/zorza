@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>{% trans "Timetable personalization" %}</h2>
+
+<form class="group-checkboxes" method="post">
+	{% csrf_token %}
+	{% for group in groups %}
+	<label class="group-checkbox" for="group-checkbox-{{ group.id }}">
+		<input type="checkbox" name="group-checkbox" id="group-checkbox-{{ group.id }}" value="{{ group.id }}">
+		<span>
+			{{ group.name }}
+		</span>
+	</label>
+	{% endfor %}
+	<p>
+		<input type="submit" value="{% trans "Go to timetable" %}">
+	</p>
+</form>
+{% endblock %}

@@ -21,3 +21,11 @@
 </div>
 {% endblock %}
 
+{% block custom %}
+<h3 class="text-center">
+	<a href="{% url "personalize" class.id %}">
+		{% trans "Select groups to show" %}
+	</a>
+</h3>
+{% endblock %}
+

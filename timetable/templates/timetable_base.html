@@ -51,8 +51,9 @@
 		</tbody>
 	</table>
 </div>
+{% block custom %}{% endblock %}
 <h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
-<div class="text-center">
+<p class="text-center">
 	{% if class_list %}
 	<select onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a class" %}</option>
@@ -77,6 +78,6 @@
 		{% endfor %}
 	</select>
 	{% endif %}
-</div>
+</p>
 <script src="{% static "timetable.js" %}"></script>
 {% endblock %}

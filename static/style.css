@@ -282,3 +282,19 @@ input[type="submit"] {
   max-width: 25rem;
   margin: 0 auto;
 }
+
+label.group-checkbox {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  width: 10rem;
+}
+
+label.group-checkbox input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  bottom: 1px;
+  vertical-align: middle;
+}

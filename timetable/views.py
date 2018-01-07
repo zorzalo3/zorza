@@ -49,3 +49,17 @@ def show_teacher_timetable(request, teacher_id):
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
     return render(request, 'teacher_timetable.html', context)
+
+def personalize(request, class_id):
+    if request.POST:
+        groups = request.POST.getlist('group-checkbox')
+        print(','.join(groups))
+        url = reverse('groups_timetable', args=[','.join(groups)])
+        return HttpResponseRedirect(url)
+    klass = get_object_or_404(Class, pk=class_id)
+    groups = Group.objects.filter(classes=klass)
+    context = {
+        'class': klass,
+        'groups': groups,
+    }
+    return render(request, 'personalization.html', context)
