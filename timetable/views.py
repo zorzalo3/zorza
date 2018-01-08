@@ -2,6 +2,7 @@ from itertools import groupby
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 from django.urls import resolve, reverse
+from django.utils.translation import gettext as _
 from .models import *
 from .utils import get_timetable_context
 
@@ -51,15 +52,17 @@ def show_teacher_timetable(request, teacher_id):
     return render(request, 'teacher_timetable.html', context)
 
 def personalize(request, class_id):
+    #TODO: switch to a Django form?
+    context = dict()
     if request.POST:
         groups = request.POST.getlist('group-checkbox')
-        print(','.join(groups))
-        url = reverse('groups_timetable', args=[','.join(groups)])
-        return HttpResponseRedirect(url)
+        if not groups:
+            context['error'] = _('Select at least one group')
+        else:
+            url = reverse('groups_timetable', args=[','.join(groups)])
+            return HttpResponseRedirect(url)
     klass = get_object_or_404(Class, pk=class_id)
     groups = Group.objects.filter(classes=klass)
-    context = {
-        'class': klass,
-        'groups': groups,
-    }
+    context['class'] = klass
+    context['groups'] = groups
     return render(request, 'personalization.html', context)

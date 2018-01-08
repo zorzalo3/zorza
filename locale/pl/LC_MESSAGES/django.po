@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-07 19:47+0000\n"
+"POT-Creation-Date: 2018-01-08 22:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,8 +87,7 @@ msgstr "Grupy"
 msgid "Timetable personalization"
 msgstr "Personalizacja planu"
 
-#: timetable/templates/personalization.html:18
-#| msgid "Timetable"
+#: timetable/templates/personalization.html:19
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
@@ -125,6 +124,10 @@ msgstr "Wybierz nauczyciela"
 #: timetable/templates/timetable_base.html:75
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
+
+#: timetable/views.py:60
+msgid "Select at least one group"
+msgstr "Wybierz co najmniej jedną grupę"
 
 #: zorza/settings.py:135
 msgid "Monday"
