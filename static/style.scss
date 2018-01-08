@@ -260,9 +260,26 @@ input[type="submit"] {
 	display: block;
 	margin: 0 auto;
 	width: auto;
-	padding: 0.6rem 0.8rem;
 	font-size: 1.1rem;
-	background-color: white;
+}
+
+.button-primary {
+	$green1: #2f7457;
+	$green2: #235347;
+	padding: 0.6rem 0.8rem;
+	background: linear-gradient(150deg, $green1, $green2);
+	color: #fff;
+	border-top: rgba(255, 255, 255, 0.25) solid 1px;
+	border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
+	outline: none;
+	&:hover {
+		background: linear-gradient(150deg, lighten($green1, 5%), lighten($green2, 5%));
+	}
+	&:active {
+		background: linear-gradient(150deg, $green2, $green1);
+		border-top: $green2 solid 1px;
+		border-bottom: $green2 solid 1px;
+	}
 }
 
 .form-small {
