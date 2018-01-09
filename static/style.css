@@ -244,6 +244,7 @@ select {
 }
 
 #set-def-button {
+  display: inline;
   font-size: 1rem;
   background: none !important;
   border: none;
@@ -269,15 +270,19 @@ input, textarea {
   color: rgba(0, 0, 0, 0.9);
 }
 
-input[type="submit"] {
+button {
   display: block;
-  margin: 0 auto;
   width: auto;
+  padding: 0.6rem 0.8rem;
+  margin: 0 auto;
+  border: none;
+  border-radius: 2px;
   font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .button-primary {
-  padding: 0.6rem 0.8rem;
   background: linear-gradient(150deg, #2f7457, #235347);
   color: #fff;
   border-top: rgba(255, 255, 255, 0.25) solid 1px;
