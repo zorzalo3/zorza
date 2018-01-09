@@ -1,5 +1,6 @@
 from django.conf import settings
 from .models import *
+import locale
 
 days = settings.TIMETABLE_WEEKDAYS
 
@@ -24,8 +25,12 @@ def get_timetable_context(lessons):
         table[lesson['period__number']][1][lesson['weekday']].append(lesson)
 
     teachers = Teacher.objects.all().values()
-    # Temporary
-    teachers = sorted(teachers, key=lambda s: s['name'].split()[1])
+
+    # Reverse last name and first name
+    for teacher in teachers:
+        teacher['name'] = ' '.join(teacher['name'].split(' ', 1)[::-1])
+    teachers = sorted(teachers, key=lambda t: locale.strxfrm(t['name']))
+
     context = {
         'days': days,
         'table': table,
