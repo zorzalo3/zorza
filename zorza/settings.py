@@ -46,12 +46,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'zorza.urls'
@@ -142,6 +144,9 @@ TIMETABLE_WEEKDAYS = (
 )
 
 SITE_ID = 1
+
+CACHE_MIDDLEWARE_KEY_PREFIX = 'zorza'
+CACHE_MIDDLEWARE_SECONDS = 60*30
 
 try:
     from .localsettings import *
