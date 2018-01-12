@@ -15,4 +15,10 @@ function setDefaultTimetable() {
 	def_button.style.visibility = "hidden";
 }
 
+var clock = document.getElementById("current-time");
+function updateClock() {
+	clock.textContent = (new Date()).toLocaleTimeString();
+}
+setInterval(updateClock, 100);
+
 //TODO: fixed left column/table header
