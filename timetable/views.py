@@ -3,14 +3,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
+from django.views.decorators.vary import vary_on_cookie
 from .models import *
 from .utils import get_timetable_context
 
 
+@vary_on_cookie
 def show_default_timetable(request):
     default_url = request.COOKIES.get('timetable_default') # set in JS
-    print(request.COOKIES)
-    print(default_url)
     if default_url is None:
         return HttpResponseRedirect(reverse('class_timetable', args=[1]))
     view, args, kwargs = resolve(default_url)
