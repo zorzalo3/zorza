@@ -84,3 +84,26 @@ class Lesson(models.Model):
             (self.teacher.initials, self.subject.short_name,
              self.room.short_name, self.group.name, _('Lesson'),
              self.period.number, settings.TIMETABLE_WEEKDAYS[self.weekday][1])
+
+class Substitution(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    date = models.DateField()
+
+    # TODO: after Times is implemented, maybe use two numbers instead
+    # of a Period ForeignKey: begin_period and end_period?
+    period = models.ForeignKey(Period, on_delete=models.CASCADE)
+
+    # teacher is None <=> lesson is cancelled
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
+                                null=True, blank=True)
+    # room is None <=> room for the substitution is unspecified
+    room = models.ForeignKey(Room, on_delete=models.CASCADE,
+                             null=True, blank=True)
+
+    @property
+    def weekday(self):
+        return self.date.weekday()
+
+    def __str__(self):
+        return '%s %s %s -> %s %s' % (self.date, self.period, self.group, \
+                self.teacher, self.room)
