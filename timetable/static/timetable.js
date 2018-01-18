@@ -19,6 +19,7 @@ var clock = document.getElementById("current-time");
 function updateClock() {
 	clock.textContent = (new Date()).toLocaleTimeString();
 }
+updateClock();
 setInterval(updateClock, 100);
 
 //TODO: fixed left column/table header
