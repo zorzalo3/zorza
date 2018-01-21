@@ -75,6 +75,7 @@ class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    # TODO: change period to a number
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
     weekday = models.IntegerField(choices=settings.TIMETABLE_WEEKDAYS)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
@@ -85,14 +86,20 @@ class Lesson(models.Model):
              self.room.short_name, self.group.name, _('Lesson'),
              self.period.number, settings.TIMETABLE_WEEKDAYS[self.weekday][1])
 
-class Substitution(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+class Occasion(models.Model):
     date = models.DateField()
-
     # TODO: after Times is implemented, maybe use two numbers instead
     # of a Period ForeignKey: begin_period and end_period?
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
 
+    @property
+    def weekday(self):
+        return self.date.weekday()
+
+    class Meta:
+        abstract = True
+
+class Substitution(Occasion):
     # teacher is None <=> lesson is cancelled
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
                                 null=True, blank=True)
@@ -100,10 +107,9 @@ class Substitution(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE,
                              null=True, blank=True)
 
-    @property
-    def weekday(self):
-        return self.date.weekday()
-
     def __str__(self):
         return '%s %s %s -> %s %s' % (self.date, self.period, self.group, \
                 self.teacher, self.room)
+
+class Absence(Occasion):
+    groups = models.ManyToManyField(Group)
