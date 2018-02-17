@@ -114,3 +114,8 @@ class Substitution(Occasion):
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
     groups = models.ManyToManyField(Group)
+
+class Reservation(Occasion):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
+            null=True, blank=True)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
