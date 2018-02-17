@@ -112,4 +112,5 @@ class Substitution(Occasion):
                 self.teacher, self.room)
 
 class Absence(Occasion):
+    reason = models.CharField(max_length=40, blank=True);
     groups = models.ManyToManyField(Group)
