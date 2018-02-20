@@ -100,6 +100,7 @@ class Occasion(models.Model):
         abstract = True
 
 class Substitution(Occasion):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
     # teacher is None <=> lesson is cancelled
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
                                 null=True, blank=True)
