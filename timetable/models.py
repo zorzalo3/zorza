@@ -116,7 +116,15 @@ class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
     groups = models.ManyToManyField(Group)
 
+    def __str__(self):
+        return '%s %s %s (%s)' % (self.date, self.period, self.groups.all(), \
+                self.reason)
+
 class Reservation(Occasion):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
             null=True, blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s %s %s %s' % (self.date, self.period, self.room, \
+                self.teacher)
