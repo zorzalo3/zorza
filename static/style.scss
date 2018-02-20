@@ -73,9 +73,8 @@ h1.logo-wrapper {
 	overflow-x: auto;
 	margin-bottom: 2rem;
 }
-.table {
+table {
 	border-collapse: collapse !important;
-	width: 100%;
 	white-space: nowrap;
 	th, td {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -83,6 +82,7 @@ h1.logo-wrapper {
 	}
 }
 .timetable {
+	width: 100%;
 	tr td {
 		&:nth-child(1) {
 			// #

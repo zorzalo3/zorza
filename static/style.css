@@ -71,15 +71,18 @@ h1.logo-wrapper {
   margin-bottom: 2rem;
 }
 
-.table {
+table {
   border-collapse: collapse !important;
-  width: 100%;
   white-space: nowrap;
 }
 
-.table th, .table td {
+table th, table td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.3rem 0.5rem;
+}
+
+.timetable {
+  width: 100%;
 }
 
 .timetable tr td:nth-child(1) {
