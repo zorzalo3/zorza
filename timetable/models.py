@@ -100,17 +100,18 @@ class Occasion(models.Model):
         abstract = True
 
 class Substitution(Occasion):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    # teacher is None <=> lesson is cancelled
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
-                                null=True, blank=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, \
+            related_name='absences')
+    # substitute is None <=> lesson is cancelled
+    substitute = models.ForeignKey(Teacher, on_delete=models.CASCADE,
+            null=True, blank=True, related_name='substitutions')
     # room is None <=> room for the substitution is unspecified
     room = models.ForeignKey(Room, on_delete=models.CASCADE,
                              null=True, blank=True)
 
     def __str__(self):
-        return '%s %s %s -> %s %s' % (self.date, self.period, self.group, \
-                self.teacher, self.room)
+        return '%s %s %s -> %s %s' % (self.date, self.period, self.teacher, \
+                self.substitute, self.room)
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
