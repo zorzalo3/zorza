@@ -1,0 +1,88 @@
+{% load i18n %}
+
+{% if substitutions %}
+<h2 class="text-center">{% trans "Substitutions" %}</h3>
+
+{% regroup substitutions by date as substitutions_by_day %}
+{% for day in substitutions_by_day %}
+<h3 class="text-center">{{ day.grouper }}</h3>
+
+{% regroup day.list by teacher as substitutions_by_teacher %}
+{% for teacher in substitutions_by_teacher %}
+
+<table>
+	<caption>{{ teacher.grouper }}</caption>
+	<tr>
+		<th>{% trans "No." context "timetable header" %}</th>
+		<th>{% trans "Period" context "timetable header" %}</th>
+		<th>{% trans "Substitute" context "timetable header" %}</th>
+		<th>{% trans "Room" %}</th>
+	</tr>
+	{% for substitution in teacher.list %}
+	<tr>
+		<td>{{ substitution.period.number }}</td>
+		<td>{{ substitution.period }}</td>
+		<td>{{ substitution.substitute }}</td>
+		<td>{{ substitution.room }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+{% if absences %}
+<h2 class="text-center">{% trans "Absences" %}</h3>
+
+{% regroup absences by date as absences_by_day %}
+{% for day in absences_by_day %}
+<h3 class="text-center">{{ day.grouper }}</h3>
+
+{% regroup day.list by groups as absences_by_groups %}
+{% for groups in absences_by_groups %}
+<table>
+	<caption>{% for group in groups.grouper.all %}{{ group }}{% endfor %}</caption>
+	<tr>
+		<th>{% trans "No." context "timetable header" %}</th>
+		<th>{% trans "Period" context "timetable header" %}</th>
+		<th>{% trans "Reason" %}</th>
+	</tr>
+	{% for absence in groups.list %}
+	<tr>
+		<td>{{ absence.period.number }}</td>
+		<td>{{ absence.period }}</td>
+		<td>{{ absence.reason }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+{% if reservations %}
+<h2 class="text-center">{% trans "Reservations" %}</h3>
+
+{% regroup reservations by date as reservations_by_day %}
+{% for day in reservations_by_day %}
+<h3 class="text-center">{{ day.grouper }}</h3>
+
+<table>
+	<tr>
+		<th>{% trans "No." context "timetable header" %}</th>
+		<th>{% trans "Period" context "timetable header" %}</th>
+		<th>{% trans "Teacher" %}</th>
+		<th>{% trans "Room" %}</th>
+	</tr>
+	{% for reservation in day.list %}
+	<tr>
+		<td>{{ reservation.period.number }}</td>
+		<td>{{ reservation.period }}</td>
+		<td>{{ reservation.teacher }}</td>
+		<td>{{ reservation.room }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endfor %}
+{% endif %}

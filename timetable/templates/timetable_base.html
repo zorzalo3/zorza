@@ -80,32 +80,7 @@
 	{% endif %}
 </p>
 
-{% if substitutions %}
-<h3 class="text-center">{% trans "Substitutions" %}</h3>
-<p class="text-center">
-	{% for substitution in substitutions %}
-	{{ substitution }}
-	{% endfor %}
-</p>
-{% endif %}
-
-{% if absences %}
-<h3 class="text-center">{% trans "Absences" %}</h3>
-<p class="text-center">
-	{% for absence in absences %}
-	{{ absence }}
-	{% endfor %}
-</p>
-{% endif %}
-
-{% if reservations %}
-<h3 class="text-center">{% trans "Reservations" %}</h3>
-<p class="text-center">
-	{% for reservation in reservations %}
-	{{ reservation }}
-	{% endfor %}
-</p>
-{% endif %}
+{% include "event_list.html" %}
 
 <script src="{% static "timetable.js" %}"></script>
 {% endblock %}
