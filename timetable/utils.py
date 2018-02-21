@@ -53,9 +53,12 @@ def get_events(begin_date = date.today(), end_date = date.today()+EVENTS_SPAN):
     }
 
     events = {
-        'substitutions': Substitution.objects.filter(**filter_kwargs),
-        'absences': Absence.objects.filter(**filter_kwargs),
-        'reservations': Reservation.objects.filter(**filter_kwargs),
+        'substitutions': Substitution.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'teacher', 'period'),
+        'absences': Absence.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'groups', 'period'),
+        'reservations': Reservation.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'period'),
     }
 
     return events
