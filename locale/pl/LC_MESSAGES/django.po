@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-20 15:38+0100\n"
+"POT-Creation-Date: 2018-02-21 22:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,6 +75,52 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
+#: timetable/templates/event_list.html:4
+msgid "Substitutions"
+msgstr "Zastępstwa"
+
+#: timetable/templates/event_list.html:16
+#: timetable/templates/event_list.html:46
+#: timetable/templates/event_list.html:72
+#: timetable/templates/timetable_base.html:26
+msgctxt "timetable header"
+msgid "No."
+msgstr "Nr"
+
+#: timetable/templates/event_list.html:17
+#: timetable/templates/event_list.html:47
+#: timetable/templates/event_list.html:73
+#: timetable/templates/timetable_base.html:27
+msgctxt "timetable header"
+msgid "Period"
+msgstr "Godz."
+
+#: timetable/templates/event_list.html:18
+#| msgid "Substitutions"
+msgid "Substitute"
+msgstr "Zastępca"
+
+#: timetable/templates/event_list.html:19
+#: timetable/templates/event_list.html:75
+msgid "Room"
+msgstr "Sala"
+
+#: timetable/templates/event_list.html:35
+msgid "Absences"
+msgstr "Nieobecności grup"
+
+#: timetable/templates/event_list.html:48
+msgid "Reason"
+msgstr "Powód"
+
+#: timetable/templates/event_list.html:64
+msgid "Reservations"
+msgstr "Rezerwacje sal"
+
+#: timetable/templates/event_list.html:74
+msgid "Teacher"
+msgstr "Nauczyciel"
+
 #: timetable/templates/group_timetable.html:6
 msgid "Group"
 msgstr "Grupa"
@@ -99,16 +145,6 @@ msgstr "Sala"
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:26
-msgctxt "timetable header"
-msgid "No."
-msgstr "Nr"
-
-#: timetable/templates/timetable_base.html:27
-msgctxt "timetable header"
-msgid "Period"
-msgstr "Godz."
-
 #: timetable/templates/timetable_base.html:55
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
@@ -124,18 +160,6 @@ msgstr "Wybierz nauczyciela"
 #: timetable/templates/timetable_base.html:75
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
-
-#: timetable/templates/timetable_base.html:84
-msgid "Substitutions"
-msgstr "Zastępstwa"
-
-#: timetable/templates/timetable_base.html:93
-msgid "Absences"
-msgstr "Nieobecności grup"
-
-#: timetable/templates/timetable_base.html:102
-msgid "Reservations"
-msgstr "Rezerwacje sal"
 
 #: timetable/views.py:60
 msgid "Select at least one group"
