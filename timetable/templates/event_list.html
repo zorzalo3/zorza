@@ -10,7 +10,7 @@
 {% regroup day.list by teacher as substitutions_by_teacher %}
 {% for teacher in substitutions_by_teacher %}
 
-<table>
+<table class="block-center">
 	<caption>{{ teacher.grouper }}</caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
@@ -40,7 +40,7 @@
 
 {% regroup day.list by groups as absences_by_groups %}
 {% for groups in absences_by_groups %}
-<table>
+<table class="block-center">
 	<caption>{% for group in groups.grouper.all %}{{ group }}{% endfor %}</caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
@@ -67,7 +67,7 @@
 {% for day in reservations_by_day %}
 <h3 class="text-center">{{ day.grouper }}</h3>
 
-<table>
+<table class="block-center">
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
 		<th>{% trans "Period" context "timetable header" %}</th>

@@ -321,3 +321,8 @@ label.group-checkbox input[type="checkbox"] {
   bottom: 1px;
   vertical-align: middle;
 }
+
+.block-center {
+  margin-left: auto;
+  margin-right: auto;
+}
