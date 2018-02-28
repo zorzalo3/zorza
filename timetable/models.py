@@ -109,9 +109,17 @@ class Substitution(Occasion):
     room = models.ForeignKey(Room, on_delete=models.CASCADE,
                              null=True, blank=True)
 
+    @property
+    def display_substitute(self):
+        return self.substitute.name if self.substitute else _('cancelled')
+
+    @property
+    def display_room(self):
+        return self.room.short_name if self.room else '-'
+
     def __str__(self):
         return '%s %s %s -> %s %s' % (self.date, self.period, self.teacher, \
-                self.substitute, self.room)
+                self.display_substitute, self.display_room)
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
@@ -125,6 +133,10 @@ class Reservation(Occasion):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
             null=True, blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+    @property
+    def display_teacher(self):
+        return self.teacher.name if self.teacher else '-'
 
     def __str__(self):
         return '%s %s %s %s' % (self.date, self.period, self.room, \

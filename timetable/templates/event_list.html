@@ -22,8 +22,8 @@
 	<tr>
 		<td>{{ substitution.period.number }}</td>
 		<td>{{ substitution.period }}</td>
-		<td>{{ substitution.substitute }}</td>
-		<td>{{ substitution.room }}</td>
+		<td>{{ substitution.display_substitute }}</td>
+		<td>{{ substitution.display_room }}</td>
 	</tr>
 	{% endfor %}
 </table>
@@ -78,8 +78,8 @@
 	<tr>
 		<td>{{ reservation.period.number }}</td>
 		<td>{{ reservation.period }}</td>
-		<td>{{ reservation.teacher }}</td>
-		<td>{{ reservation.room }}</td>
+		<td>{{ reservation.display_teacher }}</td>
+		<td>{{ reservation.room.short_name }}</td>
 	</tr>
 	{% endfor %}
 </table>
