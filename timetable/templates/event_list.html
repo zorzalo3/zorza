@@ -38,16 +38,16 @@
 {% for day in absences_by_day %}
 <h3 class="text-center">{{ day.grouper }}</h3>
 
-{% regroup day.list by groups as absences_by_groups %}
-{% for groups in absences_by_groups %}
+{% regroup day.list by group as absences_by_group %}
+{% for group in absences_by_group %}
 <table class="block-center">
-	<caption>{% for group in groups.grouper.all %}{{ group }}{% endfor %}</caption>
+	<caption>{{ group.grouper }}</caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
 		<th>{% trans "Period" context "timetable header" %}</th>
 		<th>{% trans "Reason" %}</th>
 	</tr>
-	{% for absence in groups.list %}
+	{% for absence in group.list %}
 	<tr>
 		<td>{{ absence.period.number }}</td>
 		<td>{{ absence.period }}</td>

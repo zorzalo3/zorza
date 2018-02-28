@@ -123,10 +123,10 @@ class Substitution(Occasion):
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
-    groups = models.ManyToManyField(Group)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s %s %s (%s)' % (self.date, self.period, self.groups.all(), \
+        return '%s %s %s (%s)' % (self.date, self.period, self.group, \
                 self.reason)
 
 class Reservation(Occasion):
