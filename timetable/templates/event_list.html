@@ -11,7 +11,7 @@
 {% for teacher in substitutions_by_teacher %}
 
 <table class="block-center text-center">
-	<caption>{{ teacher.grouper }}</caption>
+	<caption>{{ teacher.grouper.full_name }}</caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
 		<th>{% trans "Period" context "timetable header" %}</th>

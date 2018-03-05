@@ -33,7 +33,8 @@ class Teacher(models.Model):
         return '%s %s' % (self.first_name, self.last_name)
 
     def __str__(self):
-        return self.full_name
+        return '%s %s' % (self.last_name, self.first_name)
+        # Reverse name order for better default ordering in lists
 
     class Meta:
         ordering = ['last_name', 'first_name']
