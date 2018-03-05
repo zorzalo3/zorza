@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-08 22:42+0000\n"
+"POT-Creation-Date: 2018-03-05 16:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Treść"
 msgid "Contact us"
 msgstr "Kontakt"
 
-#: contact/templates/contact/message_form.html:13
+#: contact/templates/contact/message_form.html:14
 msgid "Send"
 msgstr "Wyślij"
 
@@ -63,9 +63,13 @@ msgstr "Dokumenty"
 msgid "About"
 msgstr "O projekcie"
 
-#: timetable/models.py:85
+#: timetable/models.py:86
 msgid "Lesson"
 msgstr "Lekcja"
+
+#: timetable/models.py:114
+msgid "cancelled"
+msgstr "odwołane"
 
 #: timetable/templates/class_timetable.html:5
 msgid "Class"
@@ -75,9 +79,53 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
+#: timetable/templates/event_list.html:4
+msgid "Substitutions"
+msgstr "Zastępstwa"
+
+#: timetable/templates/event_list.html:16
+#: timetable/templates/event_list.html:69
+#: timetable/templates/timetable_base.html:26
+msgctxt "timetable header"
+msgid "No."
+msgstr "Nr"
+
+#: timetable/templates/event_list.html:17
+#: timetable/templates/event_list.html:70
+#: timetable/templates/timetable_base.html:27
+msgctxt "timetable header"
+msgid "Period"
+msgstr "Godz."
+
+#: timetable/templates/event_list.html:18
+msgid "Substitute"
+msgstr "Zastępca"
+
+#: timetable/templates/event_list.html:19
+#: timetable/templates/event_list.html:72
+msgid "Room"
+msgstr "Sala"
+
+#: timetable/templates/event_list.html:35
+msgid "Absences"
+msgstr "Nieobecności grup"
+
+#: timetable/templates/event_list.html:43
 #: timetable/templates/group_timetable.html:6
 msgid "Group"
 msgstr "Grupa"
+
+#: timetable/templates/event_list.html:44
+msgid "Periods"
+msgstr "Lekcje"
+
+#: timetable/templates/event_list.html:61
+msgid "Reservations"
+msgstr "Rezerwacje sal"
+
+#: timetable/templates/event_list.html:71
+msgid "Teacher"
+msgstr "Nauczyciel"
 
 #: timetable/templates/group_timetable.html:8
 msgid "Groups"
@@ -87,7 +135,7 @@ msgstr "Grupy"
 msgid "Timetable personalization"
 msgstr "Personalizacja planu"
 
-#: timetable/templates/personalization.html:19
+#: timetable/templates/personalization.html:20
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
@@ -98,16 +146,6 @@ msgstr "Sala"
 #: timetable/templates/timetable_base.html:19
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
-
-#: timetable/templates/timetable_base.html:26
-msgctxt "timetable header"
-msgid "No."
-msgstr "Nr"
-
-#: timetable/templates/timetable_base.html:27
-msgctxt "timetable header"
-msgid "Period"
-msgstr "Godz."
 
 #: timetable/templates/timetable_base.html:55
 msgid "Choose timetable to display"
@@ -129,25 +167,28 @@ msgstr "Wybierz salę"
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
-#: zorza/settings.py:135
+#: zorza/settings.py:137
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:136
+#: zorza/settings.py:138
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:137
+#: zorza/settings.py:139
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:138
+#: zorza/settings.py:140
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:139
+#: zorza/settings.py:141
 msgid "Friday"
 msgstr ""
+
+#~ msgid "Reason"
+#~ msgstr "Powód"
 
 #~ msgctxt "datetime"
 #~ msgid "It is"

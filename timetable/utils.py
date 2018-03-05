@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from django.conf import settings
 from .models import *
 import locale
@@ -31,6 +32,8 @@ def get_timetable_context(lessons):
         teacher['name'] = ' '.join(teacher['name'].split(' ', 1)[::-1])
     teachers = sorted(teachers, key=lambda t: locale.strxfrm(t['name']))
 
+    substitutions, absences, reservations = get_events()
+
     context = {
         'days': days,
         'table': table,
@@ -38,4 +41,24 @@ def get_timetable_context(lessons):
         'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
     }
+    context.update(get_events())
     return context
+
+EVENTS_SPAN = timedelta(days=3)
+
+def get_events(begin_date = date.today(), end_date = date.today()+EVENTS_SPAN):
+    filter_kwargs = {
+        'date__gte': begin_date,
+        'date__lt': end_date,
+    }
+
+    events = {
+        'substitutions': Substitution.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'teacher', 'period'),
+        'absences': Absence.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'group', 'period'),
+        'reservations': Reservation.objects.filter(**filter_kwargs) \
+                            .order_by('date', 'period'),
+    }
+
+    return events
