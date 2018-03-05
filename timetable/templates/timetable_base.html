@@ -66,7 +66,7 @@
 	<select onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a teacher" %}</option>
 		{% for teacher_item in teacher_list %}
-		<option value="{% url "teacher_timetable" teacher_item.id %}">{{ teacher_item.name }} </option>
+		<option value="{% url "teacher_timetable" teacher_item.id %}">{{ teacher_item.last_name }} {{ teacher_item.first_name }}</option>
 		{% endfor %}
 	</select>
 	{% endif %}

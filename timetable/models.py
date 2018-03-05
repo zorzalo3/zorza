@@ -24,11 +24,19 @@ class Subject(models.Model):
         return self.name
 
 class Teacher(models.Model):
-    name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     initials = models.CharField(max_length=3)
 
+    @property
+    def full_name(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
     def __str__(self):
-        return self.name
+        return self.full_name
+
+    class Meta:
+        ordering = ['last_name', 'first_name']
 
 class Room(models.Model):
     name = models.CharField(max_length=40)
@@ -111,7 +119,7 @@ class Substitution(Occasion):
 
     @property
     def display_substitute(self):
-        return self.substitute.name if self.substitute else _('cancelled')
+        return self.substitute.full_name if self.substitute else _('cancelled')
 
     @property
     def display_room(self):
@@ -136,7 +144,7 @@ class Reservation(Occasion):
 
     @property
     def display_teacher(self):
-        return self.teacher.name if self.teacher else '-'
+        return self.teacher.full_name if self.teacher else '-'
 
     def __str__(self):
         return '%s %s %s %s' % (self.date, self.period, self.room, \

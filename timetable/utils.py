@@ -9,13 +9,22 @@ days = settings.TIMETABLE_WEEKDAYS
 # Move to views.py with values for each view?
 lesson_values = [
     'id', 'group_id', 'group__name', 'subject_id', 'subject__name',
-    'subject__short_name', 'teacher_id', 'teacher__name', 'teacher__initials',
-    'period__number', 'weekday', 'room_id', 'room__name', 'room__short_name',
+    'subject__short_name', 'teacher_id', 'teacher__first_name',
+    'teacher__last_name', 'teacher__initials', 'period__number', 'weekday',
+    'room_id', 'room__name', 'room__short_name',
 ]
+
+def add_full_name(lesson_values):
+    d = lesson_values
+    full_name = d['teacher__first_name'] + ' ' + d['teacher__last_name']
+    d.update({'teacher__name': full_name})
 
 def get_timetable_context(lessons):
     lessons = lessons.values(*lesson_values)
+    for lesson in lessons:
+        add_full_name(lesson)
     periods = Period.objects.all()
+
     # TODO: implement DayPlan
 
     # TODO: a cleaner way to pass str(period) to the template while using period.number as key?
@@ -25,20 +34,13 @@ def get_timetable_context(lessons):
         # Will throw exception if lesson.weekday not in days
         table[lesson['period__number']][1][lesson['weekday']].append(lesson)
 
-    teachers = Teacher.objects.all().values()
-
-    # Reverse last name and first name
-    for teacher in teachers:
-        teacher['name'] = ' '.join(teacher['name'].split(' ', 1)[::-1])
-    teachers = sorted(teachers, key=lambda t: locale.strxfrm(t['name']))
-
     substitutions, absences, reservations = get_events()
 
     context = {
         'days': days,
         'table': table,
         'class_list': Class.objects.all().values(),
-        'teacher_list': teachers,
+        'teacher_list': Teacher.objects.all().values(),
         'room_list': Room.objects.all().values(),
     }
     context.update(get_events())
