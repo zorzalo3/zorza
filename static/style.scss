@@ -71,7 +71,6 @@ h1.logo-wrapper {
 
 #table-wrapper {
 	overflow-x: auto;
-	margin-bottom: 2rem;
 }
 table {
 	border-collapse: collapse !important;
@@ -80,6 +79,7 @@ table {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		padding: 0.3rem 0.5rem;
 	}
+	margin-bottom: 1rem;
 }
 .timetable {
 	width: 100%;

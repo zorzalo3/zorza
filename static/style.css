@@ -68,12 +68,12 @@ h1.logo-wrapper {
 
 #table-wrapper {
   overflow-x: auto;
-  margin-bottom: 2rem;
 }
 
 table {
   border-collapse: collapse !important;
   white-space: nowrap;
+  margin-bottom: 1rem;
 }
 
 table th, table td {
