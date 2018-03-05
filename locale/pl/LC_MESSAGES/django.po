@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-28 19:26+0000\n"
+"POT-Creation-Date: 2018-03-05 16:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,16 +84,14 @@ msgid "Substitutions"
 msgstr "Zastępstwa"
 
 #: timetable/templates/event_list.html:16
-#: timetable/templates/event_list.html:46
-#: timetable/templates/event_list.html:72
+#: timetable/templates/event_list.html:69
 #: timetable/templates/timetable_base.html:26
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
 #: timetable/templates/event_list.html:17
-#: timetable/templates/event_list.html:47
-#: timetable/templates/event_list.html:73
+#: timetable/templates/event_list.html:70
 #: timetable/templates/timetable_base.html:27
 msgctxt "timetable header"
 msgid "Period"
@@ -104,7 +102,7 @@ msgid "Substitute"
 msgstr "Zastępca"
 
 #: timetable/templates/event_list.html:19
-#: timetable/templates/event_list.html:75
+#: timetable/templates/event_list.html:72
 msgid "Room"
 msgstr "Sala"
 
@@ -112,21 +110,22 @@ msgstr "Sala"
 msgid "Absences"
 msgstr "Nieobecności grup"
 
-#: timetable/templates/event_list.html:48
-msgid "Reason"
-msgstr "Powód"
-
-#: timetable/templates/event_list.html:64
-msgid "Reservations"
-msgstr "Rezerwacje sal"
-
-#: timetable/templates/event_list.html:74
-msgid "Teacher"
-msgstr "Nauczyciel"
-
+#: timetable/templates/event_list.html:43
 #: timetable/templates/group_timetable.html:6
 msgid "Group"
 msgstr "Grupa"
+
+#: timetable/templates/event_list.html:44
+msgid "Periods"
+msgstr "Lekcje"
+
+#: timetable/templates/event_list.html:61
+msgid "Reservations"
+msgstr "Rezerwacje sal"
+
+#: timetable/templates/event_list.html:71
+msgid "Teacher"
+msgstr "Nauczyciel"
 
 #: timetable/templates/group_timetable.html:8
 msgid "Groups"
@@ -187,6 +186,9 @@ msgstr ""
 #: zorza/settings.py:141
 msgid "Friday"
 msgstr ""
+
+#~ msgid "Reason"
+#~ msgstr "Powód"
 
 #~ msgctxt "datetime"
 #~ msgid "It is"
