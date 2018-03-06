@@ -4,16 +4,32 @@
 {% block content %}
 <h2>{% trans "Documents" %}{% if parent %} - {{ parent }}{% endif %}</h2>
 
+<p class="subcategories">
+{% trans "Subcategories:" %}
 {% for category in categories %}
-<div class="category">
+<a class="category" href="#">
 	{{ category.name }}
-</div>
+</a>
 {% endfor %}
+</p>
 
 {% for item in items %}
-<div class="item">
-	{{ item.title }}
-</div>
+<a class="item">
+	<div class="title" href="#">
+		{{ item.title }}
+	</div>
+	<span class="created-date" title="{% trans "Created on" %} {{ item.created_date }}, {% trans "modified on" %} {{ item.modified_date }}">
+		{{ item.created_date|date:"SHORT_DATE_FORMAT" }}
+	</span>
+	<span class="author">
+		{{ item.author }}
+	</span>
+	{% if item.file %}
+	<span class="file-description">
+		{{ item.file.data.size }}
+	</span>
+	{% endif %}
+</a>
 {% endfor %}
 
 {% if not categories and not items %}

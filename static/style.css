@@ -325,3 +325,42 @@ label.group-checkbox input[type="checkbox"] {
 caption {
   font-weight: bold;
 }
+
+.item {
+  display: block;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
+}
+
+.item .title {
+  font-weight: bold;
+  color: #79b6da;
+}
+
+.item .author, .item .file-description {
+  font-size: 80%;
+}
+
+.item .created-date {
+  font-size: 80%;
+}
+
+.item:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item:hover .title {
+  text-decoration: underline;
+}
+
+.subcategories {
+  font-size: 1.1rem;
+}
+
+.subcategories .category {
+  font-weight: bold;
+}
