@@ -12,9 +12,8 @@
 </a>
 {% endfor %}
 </p>
-
 {% for item in items %}
-<a class="item">
+<a class="item" href="{% if item.file %}{{ item.file.data.url }}{% endif %}">
 	<div class="title" href="#">
 		{{ item.title }}
 	</div>

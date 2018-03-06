@@ -130,6 +130,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'), # Put global static files here
 ]
+MEDIA_URL = '/media/'
 
 # Where collectstatic collects static (for production)
 STATIC_ROOT = 'staticfiles/'
