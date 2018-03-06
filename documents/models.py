@@ -11,13 +11,13 @@ class Item(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, null=True, blank=True, 
+    category = models.ForeignKey(Category, null=True, blank=True,
                                  on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
 class File(Item):
-    _file = models.FileField(upload_to='documents/')
+    data = models.FileField(upload_to='documents/')
 
 class Document(Item):
     content = HTMLField()
