@@ -133,6 +133,7 @@ STATICFILES_DIRS = [
 
 # Where collectstatic collects static (for production)
 STATIC_ROOT = 'staticfiles/'
+MEDIA_ROOT = 'mediafiles/'
 
 # Weekdays rendered on pages and allowed as choices in timetable.models.Lesson
 TIMETABLE_WEEKDAYS = (

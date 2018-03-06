@@ -12,4 +12,5 @@ localsettings.py
 
 /venv
 staticfiles
+mediafiles
 media
