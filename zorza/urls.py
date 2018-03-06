@@ -26,4 +26,6 @@ urlpatterns = [
     path('timetable/', include('timetable.urls')),
     path('contact/', include('contact.urls')),
     path('admin/', admin.site.urls),
+    path('documents/', include('documents.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

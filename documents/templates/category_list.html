@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>{% trans "Documents" %}{% if parent %} - {{ parent }}{% endif %}</h2>
+
+{% for category in categories %}
+<div class="category">
+	{{ category.name }}
+</div>
+{% endfor %}
+
+{% for item in items %}
+<div class="item">
+	{{ item.title }}
+</div>
+{% endfor %}
+
+{% if not categories and not items %}
+{% trans "Nothing here!" %}
+{% endif %}
+
+{% endblock %}
