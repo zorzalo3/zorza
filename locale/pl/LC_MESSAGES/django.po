@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 16:47+0100\n"
+"POT-Creation-Date: 2018-03-06 20:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,26 @@ msgstr "Sukces"
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
+#: documents/templates/category_list.html:5 templates/base.html:24
+msgid "Documents"
+msgstr "Dokumenty"
+
+#: documents/templates/category_list.html:8
+msgid "Subcategories:"
+msgstr "Podkategorie:"
+
+#: documents/templates/category_list.html:21
+msgid "Created on"
+msgstr "Utworzono"
+
+#: documents/templates/category_list.html:21
+msgid "modified on"
+msgstr "zmodyfikowano"
+
+#: documents/templates/category_list.html:36
+msgid "Nothing here!"
+msgstr "Nic tu nie ma!"
+
 #: templates/base.html:15
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
@@ -55,19 +75,15 @@ msgstr "Odwiedź stronę główną"
 msgid "Timetable"
 msgstr "Plan lekcji"
 
-#: templates/base.html:24
-msgid "Documents"
-msgstr "Dokumenty"
-
 #: templates/base.html:34
 msgid "About"
 msgstr "O projekcie"
 
-#: timetable/models.py:86
+#: timetable/models.py:95
 msgid "Lesson"
 msgstr "Lekcja"
 
-#: timetable/models.py:114
+#: timetable/models.py:123
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -167,23 +183,23 @@ msgstr "Wybierz salę"
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
-#: zorza/settings.py:137
+#: zorza/settings.py:140
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:138
+#: zorza/settings.py:141
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:139
+#: zorza/settings.py:142
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:140
+#: zorza/settings.py:143
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:141
+#: zorza/settings.py:144
 msgid "Friday"
 msgstr ""
 
