@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>{{ document.title }}</h2>
+<article>
+	{% autoescape off %}
+	{{ document.content }}
+	{% endautoescape %}
+
+</article>
+
+
+{% endblock %}

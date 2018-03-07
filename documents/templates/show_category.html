@@ -7,13 +7,13 @@
 <p class="subcategories">
 {% trans "Subcategories:" %}
 {% for category in categories %}
-<a class="category" href="#">
+<a class="category" href="{% url 'category' category.id %}">
 	{{ category.name }}
 </a>
 {% endfor %}
 </p>
 {% for item in items %}
-<a class="item" href="{% if item.file %}{{ item.file.data.url }}{% endif %}">
+<a class="item" href="{% if item.file %}{{ item.file.data.url }}{% else %}{% url 'document' item.id %}{% endif %}">
 	<div class="title" href="#">
 		{{ item.title }}
 	</div>

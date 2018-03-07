@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
-def show_categories(request, parent_id = None):
+def show_category(request, parent_id = None):
     try:
         parent = Category.objects.get(pk=parent_id)
     except:
@@ -13,4 +13,11 @@ def show_categories(request, parent_id = None):
         'categories': categories,
         'items': Item.objects.filter(category=parent)
     }
-    return render(request, 'category_list.html', context)
+    return render(request, 'show_category.html', context)
+
+def show_document(request, document_id):
+    document = get_object_or_404(Document, pk=document_id)
+    context = {
+        'document': document,
+    }
+    return render(request, 'show_document.html', context)
