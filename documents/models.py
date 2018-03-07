@@ -7,6 +7,9 @@ class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True,
                                on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 class Item(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
@@ -16,9 +19,11 @@ class Item(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
 class File(Item):
     data = models.FileField(upload_to='documents/')
 
 class Document(Item):
     content = HTMLField()
-
