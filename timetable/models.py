@@ -78,7 +78,7 @@ class DayPlan(models.Model):
     # None if no timetable (eg. lessons cancelled)
 
     def __str__(self):
-        return str(day)
+        return '%s %s' % (str(self.day), self.timetable)
 
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
