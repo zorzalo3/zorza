@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
-def show_category(request, parent_id = None):
+def show_category(request, parent_id=None):
     try:
         parent = Category.objects.get(pk=parent_id)
     except:
