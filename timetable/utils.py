@@ -48,7 +48,11 @@ def get_timetable_context(lessons):
 
 EVENTS_SPAN = timedelta(days=3)
 
-def get_events(begin_date = date.today(), end_date = date.today()+EVENTS_SPAN):
+def get_events(begin_date=None, end_date=None):
+    if begin_date is None:
+        begin_date = date.today()
+    if end_date is None:
+        end_date = date.today()+EVENTS_SPAN
     filter_kwargs = {
         'date__gte': begin_date,
         'date__lt': end_date,
