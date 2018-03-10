@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 from django.conf import settings
 from django.db.models import Min, Max
+from django.http import Http404
 from .models import *
 import locale
 
@@ -20,7 +21,10 @@ def add_full_name(lesson_values):
     full_name = d['teacher__first_name'] + ' ' + d['teacher__last_name']
     d.update({'teacher__name': full_name})
 
-period_minmax = Period.objects.aggregate(Min('number'), Max('number'))
+def get_period_range():
+    """Returns period numbers for iteration"""
+    result = Period.objects.aggregate(Min('number'), Max('number'))
+    return range(result['number__min'], result['number__max']+1)
 
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
@@ -31,9 +35,12 @@ def get_timetable_context(lessons):
     for lesson in lessons:
         add_full_name(lesson)
 
-    periods = range(period_minmax['number__min'], period_minmax['number__max']+1)
+    default_periods = Period.objects.filter(timetable__is_default=True)
+    if not default_periods:
+        raise Http404('No default timetable or periods')
 
-    period_strs = get_period_strings(Period.objects.filter(timetable__is_default=True))
+    periods = get_period_range()
+    period_strs = get_period_strings(default_periods)
 
     # TODO: a cleaner way to pass str(period) to the template while using period.number as key?
     table = {period: [period_strs[period], {day[0]: [] for day in days}] for period in periods}
