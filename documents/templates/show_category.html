@@ -29,7 +29,7 @@
 	{% endif %}
 	{% if item.file %}
 	<span class="file-description">
-		{{ item.file.data.size }}
+		{{ item.file.data.size|filesizeformat }}
 	</span>
 	{% endif %}
 </a>
