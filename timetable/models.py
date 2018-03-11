@@ -1,6 +1,9 @@
+from datetime import date
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
+from django.utils.formats import date_format
 
 class Class(models.Model):
     """A collection of groups to which students of a class can belong"""
@@ -48,13 +51,20 @@ class Room(models.Model):
 
 class Times(models.Model):
     """A collection of periods (by foreign keys in Period). AKA timetable.
-
-    By default, the timetable with the lowest pk is used.
+    Only one object has is_default == True. It will be shown on the timetable
+    by default.
     """
+
     name = models.CharField(max_length=40)
+    is_default = models.NullBooleanField(default=None, unique=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.is_default is False:
+            self.is_default = None
+        super().save(*args, **kwargs)
 
 class Period(models.Model):
     number = models.PositiveIntegerField()
@@ -73,19 +83,23 @@ class Period(models.Model):
 
 class DayPlan(models.Model):
     """A DayPlan says which timetable (or none) to use on a given day"""
-    day = models.DateField(unique=True)
-    timetable = models.ForeignKey(Times, on_delete=models.CASCADE, null=True)
+    date = models.DateField(unique=True)
+    timetable = models.ForeignKey(Times, on_delete=models.CASCADE,
+                                  null=True, blank=True)
     # None if no timetable (eg. lessons cancelled)
 
     def __str__(self):
-        return '%s %s' % (str(self.day), self.timetable)
+        return str(self.date)
+
+    @property
+    def is_today(self):
+        return date.today() == self.date
 
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    # TODO: change period to a number
-    period = models.ForeignKey(Period, on_delete=models.CASCADE)
+    period = models.IntegerField()
     weekday = models.IntegerField(choices=settings.TIMETABLE_WEEKDAYS)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
@@ -93,13 +107,13 @@ class Lesson(models.Model):
         return '%s %s %s, %s, %s %d %s' % \
             (self.teacher.initials, self.subject.short_name,
              self.room.short_name, self.group.name, _('Lesson'),
-             self.period.number, settings.TIMETABLE_WEEKDAYS[self.weekday][1])
+             self.period, settings.TIMETABLE_WEEKDAYS[self.weekday][1])
 
 class Occasion(models.Model):
     date = models.DateField()
     # TODO: after Times is implemented, maybe use two numbers instead
     # of a Period ForeignKey: begin_period and end_period?
-    period = models.ForeignKey(Period, on_delete=models.CASCADE)
+    period = models.IntegerField()
 
     @property
     def weekday(self):

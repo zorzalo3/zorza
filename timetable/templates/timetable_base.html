@@ -8,6 +8,9 @@
 <p>
 	{% now "l" %}, {% now "DATE_FORMAT" %}, <span id="current-time"></span>.
 </p>
+
+{% include "dayplans.html" %}
+
 <h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
 <div class="text-right">
 	<button id="set-def-button" onclick="setDefaultTimetable()"
