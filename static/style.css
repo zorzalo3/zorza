@@ -154,6 +154,10 @@ table th, table td {
   padding-left: 0.4rem;
 }
 
+.timetable .highlight {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
 header {
   background-image: url("aurora_header.jpg");
   background-color: #23594a;

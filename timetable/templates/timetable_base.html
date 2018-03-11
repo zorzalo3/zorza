@@ -24,6 +24,13 @@
 </div>
 <div id="table-wrapper">
 	<table class="table timetable">
+		<colgroup>
+			<col id="period-number-col">
+			<col id="period-col">
+			{% for day_id, _ in days %}
+			<col id="day-{{ day_id }}-col">
+			{% endfor %}
+		</colgroup>
 		<thead>
 			<tr>
 				<th>{% trans "No." context "timetable header" %}</th>

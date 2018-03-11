@@ -9,6 +9,10 @@ var th_today = document.getElementById("day-"+weekday);
 if (th_today) {
 	th_today.scrollIntoView(false);
 }
+var col_today = document.getElementById("day-"+weekday+"-col");
+if (col_today) {
+	col_today.className += " highlight"
+}
 
 // Constants for the default timetable cookie
 var def_cookie = "timetable_default";
