@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
@@ -87,6 +89,10 @@ class DayPlan(models.Model):
 
     def __str__(self):
         return str(self.date)
+
+    @property
+    def is_today(self):
+        return date.today() == self.date
 
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)

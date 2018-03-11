@@ -11,7 +11,13 @@
 {% if dayplans %}
 <p>
 	{% for dayplan in dayplans %}
-	{% blocktrans with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}On {{ date }} the {{ timetable }} will be in function.{% endblocktrans %}
+	{% with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}
+	{% if dayplan.is_today %}
+	{% blocktrans %}Today the {{ timetable }} is in function.{% endblocktrans %}
+	{% else %}
+	{% blocktrans %}On {{ date }} the {{ timetable }} will be in function.{% endblocktrans %}
+	{% endif %}
+	{% endwith %}
 	{% endfor %}
 </p>
 {% endif %}

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 13:36+0000\n"
+"POT-Creation-Date: 2018-03-11 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,11 +79,11 @@ msgstr "Plan lekcji"
 msgid "About"
 msgstr "O projekcie"
 
-#: timetable/models.py:102
+#: timetable/models.py:108
 msgid "Lesson"
 msgstr "Lekcja"
 
-#: timetable/models.py:130
+#: timetable/models.py:136
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -101,14 +101,14 @@ msgstr "Zastępstwa"
 
 #: timetable/templates/event_list.html:16
 #: timetable/templates/event_list.html:69
-#: timetable/templates/timetable_base.html:33
+#: timetable/templates/timetable_base.html:39
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
 #: timetable/templates/event_list.html:17
 #: timetable/templates/event_list.html:70
-#: timetable/templates/timetable_base.html:34
+#: timetable/templates/timetable_base.html:40
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
@@ -159,28 +159,32 @@ msgstr "Przejdź do planu"
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/timetable_base.html:14
+#: timetable/templates/timetable_base.html:16
+msgid "Today the %(timetable)s is in function."
+msgstr "Dzisiaj obowiązują %(timetable)s."
+
+#: timetable/templates/timetable_base.html:18
 #, python-format
 msgid "On %(date)s the %(timetable)s will be in function."
 msgstr "%(date)s będą obowiązywać %(timetable)s."
 
-#: timetable/templates/timetable_base.html:26
+#: timetable/templates/timetable_base.html:32
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:62
+#: timetable/templates/timetable_base.html:68
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:66
+#: timetable/templates/timetable_base.html:72
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:74
+#: timetable/templates/timetable_base.html:80
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:82
+#: timetable/templates/timetable_base.html:88
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
