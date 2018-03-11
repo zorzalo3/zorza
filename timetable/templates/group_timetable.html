@@ -8,7 +8,7 @@
 {% trans "Groups" %}
 {% endif %}
 {% for group in groups %}
-{{ group.name }}
+{{ group.name }}{% if not forloop.last %},{% endif %}
 {% endfor %}
 {% endblock %}
 
