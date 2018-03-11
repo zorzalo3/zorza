@@ -84,7 +84,8 @@ class Period(models.Model):
 class DayPlan(models.Model):
     """A DayPlan says which timetable (or none) to use on a given day"""
     date = models.DateField(unique=True)
-    timetable = models.ForeignKey(Times, on_delete=models.CASCADE, null=True)
+    timetable = models.ForeignKey(Times, on_delete=models.CASCADE,
+                                  null=True, blank=True)
     # None if no timetable (eg. lessons cancelled)
 
     def __str__(self):
