@@ -33,3 +33,37 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 100);
+
+var periods = todays_periods;
+for (var i = 0; i < periods.length; i++) {
+	periods[i] = periods[i]['fields'];
+	periods[i]['begin_time'] = parseTime(periods[i]['begin_time']);
+	periods[i]['end_time'] = parseTime(periods[i]['end_time']);
+}
+
+function parseTime(string) {
+	var date = new Date(),
+		parts = string.split(':');
+	date.setHours(+parts[0]);
+	date.setMinutes(+parts[1]);
+	date.setSeconds(0);
+	return date;
+}
+
+var prev_highlight;
+function updateLesson() {
+	var now = new Date();
+	if (prev_highlight)
+		prev_highlight.classList.remove("highlight");
+	for (var i = 0; i < periods.length; i++) {
+		if (periods[i]['begin_time'] < now && now < periods[i]['end_time']) {
+			var row = document.getElementById("period-"+periods[i]['number']).parentElement;
+			row.className += " highlight";
+			prev_highlight = row;
+			break;
+		}
+	}
+}
+
+updateLesson();
+setInterval(updateLesson, 500);
