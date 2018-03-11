@@ -8,19 +8,9 @@
 <p>
 	{% now "l" %}, {% now "DATE_FORMAT" %}, <span id="current-time"></span>.
 </p>
-{% if dayplans %}
-<p>
-	{% for dayplan in dayplans %}
-	{% with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}
-	{% if dayplan.is_today %}
-	{% blocktrans %}Today the {{ timetable }} is in function.{% endblocktrans %}
-	{% else %}
-	{% blocktrans %}On {{ date }} the {{ timetable }} will be in function.{% endblocktrans %}
-	{% endif %}
-	{% endwith %}
-	{% endfor %}
-</p>
-{% endif %}
+
+{% include "dayplans.html" %}
+
 <h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
 <div class="text-right">
 	<button id="set-def-button" onclick="setDefaultTimetable()"

@@ -1,0 +1,28 @@
+{% load i18n %}
+{% if dayplans %}
+<p>
+	{% for dayplan in dayplans %}
+	{% with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}
+
+	{% if dayplan.timetable %}
+
+	{% if dayplan.is_today %}
+	{% blocktrans %}Today the {{ timetable }} is in function.{% endblocktrans %}
+	{% else %}
+	{% blocktrans %}On {{ date }} the {{ timetable }} will be in function.{% endblocktrans %}
+	{% endif %}
+
+	{% else %} {# if timetable == None, so lessons are cancelled #}
+
+	{% if dayplan.is_today %}
+	{% blocktrans %}Today classes are cancelled.{% endblocktrans %}
+	{% else %}
+	{% blocktrans %}On {{ date }} there will be no classes.{% endblocktrans %}
+	{% endif %}
+
+	{% endif %}
+
+	{% endwith %}
+	{% endfor %}
+</p>
+{% endif %}
