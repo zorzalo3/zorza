@@ -92,5 +92,8 @@
 
 {% include "event_list.html" %}
 
+<script id="todays-periods">
+	todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
+</script>
 <script src="{% static "timetable.js" %}"></script>
 {% endblock %}
