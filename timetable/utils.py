@@ -79,6 +79,7 @@ def get_events(begin_date=None, end_date=None):
                             .order_by('date', 'group', 'period'),
         'reservations': Reservation.objects.filter(**filter_kwargs) \
                             .order_by('date', 'period'),
+        'dayplans': DayPlan.objects.filter(**filter_kwargs),
     }
 
     return events
