@@ -61,6 +61,15 @@ def get_timetable_context(lessons):
         'todays_periods_json': serialize('json', get_todays_periods())
     }
     context.update(get_events())
+
+    # stupid and wrong fix for missing period strings
+    for substitution in context['substitutions']:
+        substitution.period_str = period_strs[substitution.period]
+    for absence in context['absences']:
+        absence.period_str = period_strs[absence.period]
+    for reservation in context['reservations']:
+        reservation.period_str = period_strs[reservation.period]
+
     return context
 
 EVENTS_SPAN = timedelta(days=3)

@@ -20,8 +20,8 @@
 	</tr>
 	{% for substitution in teacher.list %}
 	<tr>
-		<td>{{ substitution.period.number }}</td>
 		<td>{{ substitution.period }}</td>
+		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ substitution.display_room }}</td>
 	</tr>
@@ -48,7 +48,7 @@
 		<td>{{ group.grouper }}</td>
 		<td>
 			{% for absence in group.list %}
-			{{ absence.period.number }}{% if not forloop.last %}, {% endif %}
+			{{ absence.period }}{% if not forloop.last %}, {% endif %}
 			{% endfor %}
 		</td>
 	</tr>
@@ -73,8 +73,8 @@
 	</tr>
 	{% for reservation in day.list %}
 	<tr>
-		<td>{{ reservation.period.number }}</td>
 		<td>{{ reservation.period }}</td>
+		<td>{{ reservation.period_str }}</td>
 		<td>{{ reservation.display_teacher }}</td>
 		<td>{{ reservation.room.short_name }}</td>
 	</tr>
