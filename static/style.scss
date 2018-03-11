@@ -56,11 +56,12 @@ body {
 }
 
 .site-logo {
-	padding: 0.8rem; // more clickable area
-	margin-left: -0.8rem; // but still left-aligned to container's edge
+	padding: 0.8rem 1rem; // more clickable area
+	margin-left: -1rem; // but still left-aligned to container's edge
 	&>img {
 		height: 1.1rem;
 	}
+	display: inline-block;
 }
 
 h1.logo-wrapper {
