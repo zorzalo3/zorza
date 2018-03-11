@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
+from django.utils.formats import date_format
 
 class Class(models.Model):
     """A collection of groups to which students of a class can belong"""
@@ -85,7 +86,7 @@ class DayPlan(models.Model):
     # None if no timetable (eg. lessons cancelled)
 
     def __str__(self):
-        return '%s %s' % (str(self.date), self.timetable)
+        return str(self.date)
 
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)

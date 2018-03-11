@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-06 20:11+0100\n"
+"POT-Creation-Date: 2018-03-11 13:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: contact/models.py:5
+#: contact/models.py:6
 msgid "Your email address"
 msgstr "Twój adres e-mail"
 
-#: contact/models.py:6
+#: contact/models.py:7
 msgid "Subject"
 msgstr "Temat"
 
-#: contact/models.py:7
+#: contact/models.py:8
 msgid "Content"
 msgstr "Treść"
 
@@ -39,31 +39,31 @@ msgstr "Wyślij"
 msgid "Message sent succesfully"
 msgstr "Wiadomość wysłana pomyślnie"
 
-#: contact/templates/contact/success.html:9
+#: contact/templates/contact/success.html:10
 msgid "Success"
 msgstr "Sukces"
 
-#: contact/templates/contact/success.html:11
+#: contact/templates/contact/success.html:12
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
-#: documents/templates/category_list.html:5 templates/base.html:24
+#: documents/templates/show_category.html:5 templates/base.html:24
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: documents/templates/category_list.html:8
+#: documents/templates/show_category.html:9
 msgid "Subcategories:"
 msgstr "Podkategorie:"
 
-#: documents/templates/category_list.html:21
+#: documents/templates/show_category.html:22
 msgid "Created on"
 msgstr "Utworzono"
 
-#: documents/templates/category_list.html:21
+#: documents/templates/show_category.html:22
 msgid "modified on"
 msgstr "zmodyfikowano"
 
-#: documents/templates/category_list.html:36
+#: documents/templates/show_category.html:39
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
@@ -79,11 +79,11 @@ msgstr "Plan lekcji"
 msgid "About"
 msgstr "O projekcie"
 
-#: timetable/models.py:95
+#: timetable/models.py:102
 msgid "Lesson"
 msgstr "Lekcja"
 
-#: timetable/models.py:123
+#: timetable/models.py:130
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -101,14 +101,14 @@ msgstr "Zastępstwa"
 
 #: timetable/templates/event_list.html:16
 #: timetable/templates/event_list.html:69
-#: timetable/templates/timetable_base.html:26
+#: timetable/templates/timetable_base.html:33
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
 #: timetable/templates/event_list.html:17
 #: timetable/templates/event_list.html:70
-#: timetable/templates/timetable_base.html:27
+#: timetable/templates/timetable_base.html:34
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
@@ -159,23 +159,28 @@ msgstr "Przejdź do planu"
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/timetable_base.html:19
+#: timetable/templates/timetable_base.html:14
+#, python-format
+msgid "On %(date)s the %(timetable)s will be in function."
+msgstr "%(date)s będą obowiązywać %(timetable)s."
+
+#: timetable/templates/timetable_base.html:26
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:55
+#: timetable/templates/timetable_base.html:62
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:59
+#: timetable/templates/timetable_base.html:66
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:67
+#: timetable/templates/timetable_base.html:74
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:75
+#: timetable/templates/timetable_base.html:82
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
@@ -183,23 +188,23 @@ msgstr "Wybierz salę"
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
-#: zorza/settings.py:140
+#: zorza/settings.py:141
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:141
+#: zorza/settings.py:142
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:142
+#: zorza/settings.py:143
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:143
+#: zorza/settings.py:144
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:144
+#: zorza/settings.py:145
 msgid "Friday"
 msgstr ""
 
