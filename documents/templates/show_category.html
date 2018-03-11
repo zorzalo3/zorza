@@ -22,9 +22,11 @@
 	<span class="created-date" title="{% trans "Created on" %} {{ item.created_date }}, {% trans "modified on" %} {{ item.modified_date }}">
 		{{ item.created_date|date:"SHORT_DATE_FORMAT" }}
 	</span>
+	{% if item.author %}
 	<span class="author">
 		{{ item.author }}
 	</span>
+	{% endif %}
 	{% if item.file %}
 	<span class="file-description">
 		{{ item.file.data.size }}
