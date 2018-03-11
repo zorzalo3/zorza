@@ -1,9 +1,12 @@
+import locale
 from datetime import date, timedelta
+
 from django.conf import settings
 from django.db.models import Min, Max
 from django.http import Http404
+from django.core.serializers import serialize
+
 from .models import *
-import locale
 
 days = settings.TIMETABLE_WEEKDAYS
 
@@ -55,6 +58,7 @@ def get_timetable_context(lessons):
         'class_list': Class.objects.all().values(),
         'teacher_list': Teacher.objects.all().values(),
         'room_list': Room.objects.all().values(),
+        'todays_periods_json': serialize('json', get_todays_periods())
     }
     context.update(get_events())
     return context
@@ -83,3 +87,10 @@ def get_events(begin_date=None, end_date=None):
     }
 
     return events
+
+def get_todays_periods():
+    try:
+        times = DayPlan.objects.get(date=date.today()).timetable
+    except:
+        times = Times.objects.get(is_default=True)
+    return times.period_set.all()

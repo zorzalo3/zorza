@@ -26,3 +26,9 @@
 	{% endfor %}
 </p>
 {% endif %}
+
+<script id="todays-periods-json">
+	{% autoescape off %}
+	todays_periods = {{ todays_periods_json }};
+	{% endautoescape %}
+</script>
