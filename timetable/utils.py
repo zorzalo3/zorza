@@ -1,5 +1,6 @@
 import locale
 from datetime import date, timedelta
+from collections import OrderedDict
 
 from django.conf import settings
 from django.db.models import Min, Max
@@ -45,8 +46,13 @@ def get_timetable_context(lessons):
     periods = get_period_range()
     period_strs = get_period_strings(default_periods)
 
-    # TODO: a cleaner way to pass str(period) to the template while using period.number as key?
-    table = {period: [period_strs[period], {day[0]: [] for day in days}] for period in periods}
+    # TODO: a cleaner way to pass period str to the template while using
+    #       period number as key?
+    table = OrderedDict()
+    for period in periods:
+        table[period] = (period_strs[period], OrderedDict())
+        for day_number, day_string in days:
+            table[period][1][day_number] = []
 
     for lesson in lessons:
         # Will throw exception if lesson.weekday not in days
