@@ -105,7 +105,17 @@ def get_events(begin_date=None, end_date=None):
 
 def get_todays_periods():
     try:
-        times = DayPlan.objects.get(date=date.today()).timetable
+        dayplan = DayPlan.objects.get(date=date.today())
+        # If lessons are cancelled today, return an empty list
+        if dayplan.timetable is None:
+            return []
+        else:
+            times = dayplan.timetable
     except:
-        times = Times.objects.get(is_default=True)
+        weekday = date.today().weekday()
+        # if no dayplan for today and it's a working day
+        if any(weekday == day_number for day_number, day_string in days):
+            times = Times.objects.get(is_default=True)
+        else:
+            return []
     return times.period_set.all()
