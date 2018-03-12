@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 14:36+0000\n"
+"POT-Creation-Date: 2018-03-12 19:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,20 +95,39 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
+#: timetable/templates/dayplans.html:9
+#, python-format
+msgid "Today the %(timetable)s is in function."
+msgstr "Dzisiaj obowiązują %(timetable)s."
+
+#: timetable/templates/dayplans.html:11
+#, python-format
+msgid "On %(date)s the %(timetable)s will be in function."
+msgstr "%(date)s będą obowiązywać %(timetable)s."
+
+#: timetable/templates/dayplans.html:17
+msgid "Today classes are cancelled."
+msgstr "Dzisiaj lekcje są odwołane."
+
+#: timetable/templates/dayplans.html:19
+#, python-format
+msgid "On %(date)s there will be no classes."
+msgstr "Lekcje %(date)s są odwołane."
+
 #: timetable/templates/event_list.html:4
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
 #: timetable/templates/event_list.html:16
 #: timetable/templates/event_list.html:69
-#: timetable/templates/timetable_base.html:53
+#: timetable/templates/timetable_base.html:48
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
 #: timetable/templates/event_list.html:17
 #: timetable/templates/event_list.html:70
-#: timetable/templates/timetable_base.html:54
+#: timetable/templates/timetable_base.html:49
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
@@ -159,41 +178,39 @@ msgstr "Przejdź do planu"
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/timetable_base.html:19
-#, python-format
-msgid "Today the %(timetable)s is in function."
-msgstr "Dzisiaj obowiązują %(timetable)s."
+#: timetable/templates/timetable_base.html:11
+msgid "<time></time> until the first lesson today."
+msgstr "Do pierwszej lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:21
-#, python-format
-msgid "On %(date)s the %(timetable)s will be in function."
-msgstr "%(date)s będą obowiązywać %(timetable)s."
+#: timetable/templates/timetable_base.html:14
+msgid "<time></time> until the end of the lesson."
+msgstr "Do końca lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:27
-msgid "Today classes are cancelled."
-msgstr "Dzisiaj lekcje są odwołane."
+#: timetable/templates/timetable_base.html:17
+msgid "<time></time> until the next lesson."
+msgstr "Do następnej lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:29
-msgid "On %(date)s there will be no classes."
-msgstr "Lekcje %(date)s są odwołane."
+#: timetable/templates/timetable_base.html:20
+msgid "Lessons have already finished today."
+msgstr "Lekcje się już skończyły."
 
-#: timetable/templates/timetable_base.html:46
+#: timetable/templates/timetable_base.html:34
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:82
+#: timetable/templates/timetable_base.html:77
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:86
+#: timetable/templates/timetable_base.html:81
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:94
+#: timetable/templates/timetable_base.html:89
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:102
+#: timetable/templates/timetable_base.html:97
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 

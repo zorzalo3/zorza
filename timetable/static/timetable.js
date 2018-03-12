@@ -26,14 +26,6 @@ function setDefaultTimetable() {
 	def_button.style.visibility = "hidden";
 }
 
-// Show the correct time
-var clock = document.getElementById("current-time");
-function updateClock() {
-	clock.textContent = (new Date()).toLocaleTimeString();
-}
-updateClock();
-setInterval(updateClock, 100);
-
 var periods = todays_periods;
 for (var i = 0; i < periods.length; i++) {
 	periods[i] = periods[i]['fields'];
@@ -50,20 +42,50 @@ function parseTime(string) {
 	return date;
 }
 
-var prev_highlight;
+var prev_highlight, prev_timer;
 function updateLesson() {
 	var now = new Date();
 	if (prev_highlight)
 		prev_highlight.classList.remove("highlight");
-	for (var i = 0; i < periods.length; i++) {
+	var timer, until;
+	if (now < periods[0]['begin_time']) {
+		timer = document.getElementById("before-lessons");
+		until = periods[0]['begin_time'];
+	} else if (now > periods[periods.length-1]['end_time']) {
+		timer = document.getElementById("after-lessons");
+	} else for (var i = 0; i < periods.length; i++) {
 		if (periods[i]['begin_time'] < now && now < periods[i]['end_time']) {
+			// If a lesson is ongoing
 			var row = document.getElementById("period-"+periods[i]['number']).parentElement;
 			row.className += " highlight";
 			prev_highlight = row;
+			timer = document.getElementById("during-lesson");
+			until = periods[i]['end_time'];
 			break;
 		}
+		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
+			timer = document.getElementById("between-lessons");
+			until = periods[i]['begin_time'];
+		}
+	}
+	if (prev_timer)
+		prev_timer.setAttribute("hidden", "true");
+	prev_timer = timer;
+	timer.removeAttribute("hidden");
+	if (until) {
+		timer.getElementsByTagName("time")[0].textContent = toDisplay(until-now);
 	}
 }
 
-updateLesson();
-setInterval(updateLesson, 500);
+function toDisplay(deltaMilliSeconds) {
+	var d = deltaMilliSeconds / 1000;
+	var minutes = Math.floor(d/60);
+	var seconds = Math.floor(d%60);
+	if (seconds < 10) seconds = '0'+seconds;
+	return minutes + ':' + seconds;
+}
+
+if (periods.length) {
+	updateLesson();
+	setInterval(updateLesson, 500);
+}
