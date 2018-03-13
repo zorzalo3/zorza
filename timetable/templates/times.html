@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<h2 class="text-center">{% trans "Schedules" %}</h2>
+
+<table class="block-center">
+	<thead>
+		<tr>
+			<th>{% trans "No." context "timetable header" %}</th>
+			{% for timetable in times %}
+			<th>
+				{{ timetable.name }}
+			</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for period_number, times in table.items %}
+		<tr>
+			<td>{{ period_number }}</td>
+			{% for _, time in times.items %}
+			<td>{{ time }}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

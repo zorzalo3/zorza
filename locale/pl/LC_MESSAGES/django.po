@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-12 19:38+0000\n"
+"POT-Creation-Date: 2018-03-13 20:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,7 +119,7 @@ msgid "Substitutions"
 msgstr "Zastępstwa"
 
 #: timetable/templates/event_list.html:16
-#: timetable/templates/event_list.html:69
+#: timetable/templates/event_list.html:69 timetable/templates/times.html:11
 #: timetable/templates/timetable_base.html:48
 msgctxt "timetable header"
 msgid "No."
@@ -178,6 +178,10 @@ msgstr "Przejdź do planu"
 msgid "Classroom"
 msgstr "Sala"
 
+#: timetable/templates/times.html:6
+msgid "Schedules"
+msgstr "Typy dzwonków"
+
 #: timetable/templates/timetable_base.html:11
 msgid "<time></time> until the first lesson today."
 msgstr "Do pierwszej lekcji pozostało <time></time>."
@@ -214,7 +218,7 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/views.py:60
+#: timetable/views.py:64
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 

@@ -1,11 +1,13 @@
 from itertools import groupby
+
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.vary import vary_on_cookie
+
 from .models import *
-from .utils import get_timetable_context
+from .utils import get_timetable_context, get_schedules_table
 
 
 @vary_on_cookie
@@ -66,3 +68,7 @@ def personalize(request, class_id):
     context['class'] = klass
     context['groups'] = groups
     return render(request, 'personalization.html', context)
+
+def show_times(request):
+    context = get_schedules_table()
+    return render(request, 'times.html', context)

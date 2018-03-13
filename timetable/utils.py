@@ -119,3 +119,23 @@ def get_todays_periods():
         else:
             return []
     return times.period_set.all()
+
+def get_schedules_table():
+    all_periods = Period.objects.all().prefetch_related('timetable')
+    min_max = all_periods.aggregate(Min('number'), Max('number'))
+    period_range = range(min_max['number__min'], min_max['number__max']+1)
+    timetables = {period.timetable for period in all_periods}
+
+    table = OrderedDict()
+    for period in period_range:
+        table[period] = OrderedDict()
+        for timetable in timetables:
+            table[period][timetable] = ''
+
+    for period in all_periods:
+        table[period.number][period.timetable] = str(period)
+
+    return {
+        'times': timetables,
+        'table': table,
+    }
