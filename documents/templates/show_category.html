@@ -4,16 +4,17 @@
 {% block content %}
 <h2>{% trans "Documents" %}{% if parent %} - {{ parent }}{% endif %}</h2>
 
-<p class="subcategories">
 {% if categories %}
-{% trans "Subcategories:" %}
-{% for category in categories %}
-<a class="category" href="{% url 'category' category.id %}">
-	{{ category.name }}
-</a>
-{% endfor %}
-{% endif %}
+<p class="subcategories">
+	{% trans "Subcategories:" %}
+	{% for category in categories %}
+	<a class="category" href="{% url 'category' category.id %}">
+		{{ category.name }}
+	</a>
+	{% endfor %}
 </p>
+{% endif %}
+
 {% for item in items %}
 <a class="item" href="{% if item.file %}{{ item.file.data.url }}{% else %}{% url 'document' item.id %}{% endif %}">
 	<div class="title" href="#">
