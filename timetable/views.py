@@ -1,13 +1,16 @@
 from itertools import groupby
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.vary import vary_on_cookie
+from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import *
 from .utils import get_timetable_context, get_schedules_table
+from .forms import SelectTeacherAndDateForm
 
 
 @vary_on_cookie
@@ -72,3 +75,21 @@ def personalize(request, class_id):
 def show_times(request):
     context = get_schedules_table()
     return render(request, 'times.html', context)
+
+class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
+    """The first step to adding a substitution
+
+    selects a teacher and a date to be passed into the second step
+    """
+    permission_required = 'timetable.add_substitution'
+    template_name = 'teacher_and_date_select.html'
+    form_class = SelectTeacherAndDateForm
+
+    def form_valid(self, form):
+        print("hello")
+        teacher = form.cleaned_data['teacher']
+        date = form.cleaned_data['date']
+        return redirect('add_substitutions2', teacher.pk, str(date))
+
+def add_substitutions2(request, teacher_id, date):
+    pass

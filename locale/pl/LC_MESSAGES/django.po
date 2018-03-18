@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-13 20:09+0000\n"
+"POT-Creation-Date: 2018-03-18 18:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,17 +55,21 @@ msgstr "Dokumenty"
 msgid "Subcategories:"
 msgstr "Podkategorie:"
 
-#: documents/templates/show_category.html:22
+#: documents/templates/show_category.html:23
 msgid "Created on"
 msgstr "Utworzono"
 
-#: documents/templates/show_category.html:22
+#: documents/templates/show_category.html:23
 msgid "modified on"
 msgstr "zmodyfikowano"
 
-#: documents/templates/show_category.html:39
+#: documents/templates/show_category.html:40
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
+
+#: templates/404.html:8
+msgid "Page not found"
+msgstr ""
 
 #: templates/base.html:15
 msgid "Visit the main page"
@@ -78,6 +82,14 @@ msgstr "Plan lekcji"
 #: templates/base.html:34
 msgid "About"
 msgstr "O projekcie"
+
+#: timetable/forms.py:9 timetable/templates/event_list.html:71
+msgid "Teacher"
+msgstr "Nauczyciel"
+
+#: timetable/forms.py:10
+msgid "Date"
+msgstr "Data"
 
 #: timetable/models.py:109
 msgid "Lesson"
@@ -158,10 +170,6 @@ msgstr "Lekcje"
 msgid "Reservations"
 msgstr "Rezerwacje sal"
 
-#: timetable/templates/event_list.html:71
-msgid "Teacher"
-msgstr "Nauczyciel"
-
 #: timetable/templates/group_timetable.html:8
 msgid "Groups"
 msgstr "Grupy"
@@ -177,6 +185,14 @@ msgstr "Przejdź do planu"
 #: timetable/templates/room_timetable.html:5
 msgid "Classroom"
 msgstr "Sala"
+
+#: timetable/templates/teacher_and_date_select.html:6
+msgid "Adding substitutions - step 1"
+msgstr "Dodawanie zastępstw - krok 1"
+
+#: timetable/templates/teacher_and_date_select.html:12
+msgid "Go to the next step"
+msgstr "Przejdź do następnego kroku"
 
 #: timetable/templates/times.html:6
 msgid "Schedules"
@@ -218,7 +234,7 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/views.py:64
+#: timetable/views.py:65
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 

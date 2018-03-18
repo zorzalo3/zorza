@@ -307,6 +307,11 @@ button {
   margin: 0 auto;
 }
 
+.form-small select {
+  display: block;
+  width: 100%;
+}
+
 label.group-checkbox {
   display: inline-block;
   margin-bottom: 0.5rem;

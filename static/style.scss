@@ -292,6 +292,10 @@ button {
 .form-small {
 	max-width: 25rem;
 	margin: 0 auto;
+	select {
+		display: block;
+		width: 100%;
+	}
 }
 label.group-checkbox {
 	display: inline-block;
