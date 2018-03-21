@@ -103,22 +103,25 @@ def get_events(begin_date=None, end_date=None):
 
     return events
 
-def get_todays_periods():
+def get_days_periods(date):
     try:
-        dayplan = DayPlan.objects.get(date=date.today())
-        # If lessons are cancelled today, return an empty list
+        dayplan = DayPlan.objects.get(date=date)
+        # If lessons are cancelled that day, return an empty list
         if dayplan.timetable is None:
             return []
         else:
             times = dayplan.timetable
     except:
-        weekday = date.today().weekday()
-        # if no dayplan for today and it's a working day
+        weekday = date.weekday()
+        # if no dayplan for that day and it's a working day
         if any(weekday == day_number for day_number, day_string in days):
             times = Times.objects.get(is_default=True)
         else:
             return []
     return times.period_set.all()
+
+def get_todays_periods():
+    return get_days_periods(date.today())
 
 def get_schedules_table():
     all_periods = Period.objects.all().prefetch_related('timetable')
