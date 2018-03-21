@@ -3,7 +3,7 @@
 
 {% block content %}
 <form class="form-small" class="add-substitutions1" method="post">
-	<h2>{% trans "Adding substitutions - step 1" %}</h2>
+	<h2>{% trans "Adding substitutions — step 1" %}</h2>
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 	{{ form.as_p }}

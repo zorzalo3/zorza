@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-18 18:49+0000\n"
+"POT-Creation-Date: 2018-03-21 19:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,8 +187,8 @@ msgid "Classroom"
 msgstr "Sala"
 
 #: timetable/templates/teacher_and_date_select.html:6
-msgid "Adding substitutions - step 1"
-msgstr "Dodawanie zastępstw - krok 1"
+msgid "Adding substitutions — step 1"
+msgstr "Dodawanie zastępstw — krok 1"
 
 #: timetable/templates/teacher_and_date_select.html:12
 msgid "Go to the next step"
