@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<form class="add-substitutions2" method="post">
+	<h2>{% trans "Adding substitutions — step 2" %}</h2>
+	<p>
+		{% blocktrans %}Substitutions for {{ teacher }} on {{ date }}. {% endblocktrans %}
+	</p>
+	{% csrf_token %}
+	{{ formset.non_field_errors }}
+	{{ formset.management_form }}
+	<table>
+		{% for form in formset.forms %}
+		{% if forloop.first %}
+		<tr>
+			<th>{% trans "No." context "timetable header" %}</th>
+			<th>{% trans "Substitute" %}</th>
+			<th>{% trans "Room" %}</th>
+		</tr>
+		{% endif %}
+		<tr>
+			{% for field in form.visible_fields %}
+			<td>
+				{% if forloop.first %}
+				{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+				{% endfor %}
+				{% endif %}
+				{{ field }} {{ field.errors }}
+			</td>
+			{% endfor %}
+		</tr>
+
+		{% endfor %}
+	</table>
+	<p>
+		<button type="submit" class="button-primary">
+			{% trans "Save" %}
+		</button>
+	</p>
+</form>
+{% endblock %}

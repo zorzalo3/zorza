@@ -1,16 +1,19 @@
 from itertools import groupby
+from collections import OrderedDict
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
+from django.utils.dateparse import parse_date
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 
 from .models import *
-from .utils import get_timetable_context, get_schedules_table
-from .forms import SelectTeacherAndDateForm
+from .utils import get_timetable_context, get_schedules_table, get_days_periods
+from .forms import SelectTeacherAndDateForm, SubstitutionFormSet
 
 
 @vary_on_cookie
@@ -91,5 +94,26 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
         date = form.cleaned_data['date']
         return redirect('add_substitutions2', teacher.pk, str(date))
 
+@permission_required('timetable.add_substitution')
 def add_substitutions2(request, teacher_id, date):
-    pass
+    date = parse_date(date)
+    teacher = get_object_or_404(Teacher, pk=teacher_id)
+    qs = Substitution.objects.filter(teacher=teacher, date=date)
+
+    if request.method == 'POST':
+        formset = SubstitutionFormSet(request.POST, queryset=qs)
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.date = date
+                instance.teacher = teacher
+                instance.save()
+    else:
+        formset = SubstitutionFormSet(queryset=qs)
+
+    context = {
+        'teacher': teacher,
+        'formset': formset,
+        'date': date,
+    }
+    return render(request, 'add_substitutions.html', context)
