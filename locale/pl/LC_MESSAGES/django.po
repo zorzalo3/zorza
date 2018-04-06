@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-21 19:59+0000\n"
+"POT-Creation-Date: 2018-04-06 19:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "Content"
 msgstr "Treść"
 
 #: contact/templates/contact/message_form.html:5
-#: contact/templates/contact/message_form.html:10 templates/base.html:36
+#: contact/templates/contact/message_form.html:10 templates/base.html:38
 msgid "Contact us"
 msgstr "Kontakt"
 
@@ -71,7 +71,7 @@ msgstr "Nic tu nie ma!"
 msgid "Page not found"
 msgstr ""
 
-#: templates/base.html:15
+#: templates/base.html:15 templates/registration/logged_out.html:9
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
@@ -82,6 +82,33 @@ msgstr "Plan lekcji"
 #: templates/base.html:34
 msgid "About"
 msgstr "O projekcie"
+
+#: templates/base.html:36 templates/registration/login.html:6
+#: templates/registration/login.html:29
+msgid "Log in"
+msgstr ""
+
+#: templates/registration/logged_out.html:6
+msgid "Logged out"
+msgstr ""
+
+#: templates/registration/logged_out.html:11
+msgid "or"
+msgstr ""
+
+#: templates/registration/logged_out.html:13
+msgid "Log in again"
+msgstr ""
+
+#: templates/registration/login.html:9
+msgid "Your username and password didn't match. Please try again."
+msgstr "Podana nazwa użytkownika i hasła nie pasują do siebie. Prosimy spróbować ponownie."
+
+#: templates/registration/login.html:16
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na konto z odpowiednimi uprawnieniami."
 
 #: timetable/forms.py:9 timetable/templates/event_list.html:71
 msgid "Teacher"
@@ -99,6 +126,38 @@ msgstr "Lekcja"
 msgid "cancelled"
 msgstr "odwołane"
 
+#: timetable/templates/add_substitutions.html:6
+msgid "Adding substitutions — step 2"
+msgstr "Dodawanie zastępstw — krok 2"
+
+#: timetable/templates/add_substitutions.html:8
+#, python-format
+msgid "Substitutions for %(teacher)s on %(date)s. "
+msgstr ""
+
+#: timetable/templates/add_substitutions.html:17
+#: timetable/templates/event_list.html:16
+#: timetable/templates/event_list.html:69 timetable/templates/times.html:11
+#: timetable/templates/timetable_base.html:48
+msgctxt "timetable header"
+msgid "No."
+msgstr "Nr"
+
+#: timetable/templates/add_substitutions.html:18
+#: timetable/templates/event_list.html:18
+msgid "Substitute"
+msgstr "Zastępca"
+
+#: timetable/templates/add_substitutions.html:19
+#: timetable/templates/event_list.html:19
+#: timetable/templates/event_list.html:72
+msgid "Room"
+msgstr "Sala"
+
+#: timetable/templates/add_substitutions.html:39
+msgid "Save"
+msgstr ""
+
 #: timetable/templates/class_timetable.html:5
 msgid "Class"
 msgstr "Klasa"
@@ -107,21 +166,25 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
-#: timetable/templates/dayplans.html:9
+#: timetable/templates/dayplans.html:3 timetable/templates/times.html:6
+msgid "Schedules"
+msgstr "Typy dzwonków"
+
+#: timetable/templates/dayplans.html:10
 #, python-format
 msgid "Today the %(timetable)s is in function."
 msgstr "Dzisiaj obowiązują %(timetable)s."
 
-#: timetable/templates/dayplans.html:11
+#: timetable/templates/dayplans.html:12
 #, python-format
 msgid "On %(date)s the %(timetable)s will be in function."
 msgstr "%(date)s będą obowiązywać %(timetable)s."
 
-#: timetable/templates/dayplans.html:17
+#: timetable/templates/dayplans.html:18
 msgid "Today classes are cancelled."
 msgstr "Dzisiaj lekcje są odwołane."
 
-#: timetable/templates/dayplans.html:19
+#: timetable/templates/dayplans.html:20
 #, python-format
 msgid "On %(date)s there will be no classes."
 msgstr "Lekcje %(date)s są odwołane."
@@ -130,28 +193,12 @@ msgstr "Lekcje %(date)s są odwołane."
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
-#: timetable/templates/event_list.html:16
-#: timetable/templates/event_list.html:69 timetable/templates/times.html:11
-#: timetable/templates/timetable_base.html:48
-msgctxt "timetable header"
-msgid "No."
-msgstr "Nr"
-
 #: timetable/templates/event_list.html:17
 #: timetable/templates/event_list.html:70
 #: timetable/templates/timetable_base.html:49
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
-
-#: timetable/templates/event_list.html:18
-msgid "Substitute"
-msgstr "Zastępca"
-
-#: timetable/templates/event_list.html:19
-#: timetable/templates/event_list.html:72
-msgid "Room"
-msgstr "Sala"
 
 #: timetable/templates/event_list.html:35
 msgid "Absences"
@@ -194,10 +241,6 @@ msgstr "Dodawanie zastępstw — krok 1"
 msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
-#: timetable/templates/times.html:6
-msgid "Schedules"
-msgstr "Typy dzwonków"
-
 #: timetable/templates/timetable_base.html:11
 msgid "<time></time> until the first lesson today."
 msgstr "Do pierwszej lekcji pozostało <time></time>."
@@ -234,7 +277,7 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/views.py:65
+#: timetable/views.py:68
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 

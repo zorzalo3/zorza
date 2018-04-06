@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="form-small">
+	<h2>{% trans "Logged out" %}</h2>
+	<p>
+		<a href="{% url "home" %}">
+			{% trans "Visit the main page" %}
+		</a>
+		{% trans "or" %}
+		<a href="{% url "login" %}">
+			{% trans "Log in again" %}.
+		</a>
+	</p>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<form class="form-small" method="post">
+	<h2>{% trans "Log in" %}</h2>
+	{% if form.errors %}
+	<p>
+		{% trans "Your username and password didn't match. Please try again." %}
+	</p>
+	{% endif %}
+
+	{% if next %}
+	{% if user.is_authenticated %}
+	<p>
+		{% blocktrans trimmed %}
+		Your account doesn't have access to this page. To proceed,
+		please login with an account that has access.
+		{% endblocktrans %}
+	</p>
+	{% endif %}
+	{% endif %}
+
+
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p>
+		<button class="button-primary" type="submit">
+			{% trans "Log in" %}
+		</button>
+	</p>
+</form>
+
+{% endblock %}
