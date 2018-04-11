@@ -51,11 +51,18 @@ function setDefaultTimetable() {
 	def_button.style.visibility = "hidden";
 }
 
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
+
 var periods = todays_periods;
+var offset = server_utc_offset - (new Date()).getTimezoneOffset();
 for (var i = 0; i < periods.length; i++) {
 	periods[i] = periods[i]['fields'];
 	periods[i]['begin_time'] = parseTime(periods[i]['begin_time']);
+	periods[i]['begin_time'] = addMinutes(periods[i]['begin_time'], offset);
 	periods[i]['end_time'] = parseTime(periods[i]['end_time']);
+	periods[i]['end_time'] = addMinutes(periods[i]['end_time'], offset);
 }
 
 function parseTime(string) {

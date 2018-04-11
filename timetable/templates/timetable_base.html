@@ -106,6 +106,7 @@
 
 <script id="todays-periods">
 	todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
+	server_utc_offset = {{ utc_offset }};
 </script>
 <script src="{% static "timetable.js" %}"></script>
 {% endblock %}

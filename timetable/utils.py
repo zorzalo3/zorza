@@ -1,11 +1,12 @@
 import locale
-from datetime import date, timedelta
+from datetime import datetime, date, timedelta
 from collections import OrderedDict
 
 from django.conf import settings
 from django.db.models import Min, Max
 from django.http import Http404
 from django.core.serializers import serialize
+from django.utils import timezone
 
 from .models import *
 
@@ -64,7 +65,8 @@ def get_timetable_context(lessons):
         'class_list': Class.objects.all().values(),
         'teacher_list': Teacher.objects.all().values(),
         'room_list': Room.objects.all().values(),
-        'todays_periods_json': serialize('json', get_todays_periods())
+        'todays_periods_json': serialize('json', get_todays_periods()),
+        'utc_offset': get_utc_offset(),
     }
     context.update(get_events())
 
@@ -142,3 +144,10 @@ def get_schedules_table():
         'times': timetables,
         'table': table,
     }
+
+def get_utc_offset():
+    """Returns difference from UTC in minutes.
+    Compatible with JS Date.getTimezoneOffset"""
+    tz = timezone.get_default_timezone()
+    now = timezone.make_aware(datetime.now(), tz)
+    return -int(now.utcoffset().seconds / 60)
