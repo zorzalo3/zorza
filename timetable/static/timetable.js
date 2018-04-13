@@ -75,29 +75,38 @@ function parseTime(string) {
 }
 
 var prev_highlight, prev_timer;
+// Previously shown elements for easy resetting
+
 function updateLesson() {
 	var now = new Date();
-	if (prev_highlight)
-		prev_highlight.classList.remove("highlight");
+	if (prev_highlight) {
+		prev_highlight.classList.remove("highlight", "break-highlight");
+	}
 	var timer, until;
+	// timer - the <span> element which should be shown
+	// until - time to which it is count down
+
 	if (now < periods[0]['begin_time']) {
+		// If it's before all lessons
 		timer = document.getElementById("before-lessons");
 		until = periods[0]['begin_time'];
 	} else if (now > periods[periods.length-1]['end_time']) {
+		// If it's after all lessons
 		timer = document.getElementById("after-lessons");
 	} else for (var i = 0; i < periods.length; i++) {
 		if (periods[i]['begin_time'] < now && now < periods[i]['end_time']) {
 			// If a lesson is ongoing
 			var row = document.getElementById("period-"+periods[i]['number']).parentElement;
-			row.className += " highlight";
+			row.classList.add("highlight");
 			prev_highlight = row;
 			timer = document.getElementById("during-lesson");
 			until = periods[i]['end_time'];
 			break;
 		}
 		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
+			// If it's a break between lessons
 			var row = document.getElementById("period-"+periods[i-1]['number']).parentElement;
-			row.className += " break-highlight";
+			row.classList.add("break-highlight");
 			prev_highlight = row;
 			timer = document.getElementById("between-lessons");
 			until = periods[i]['begin_time'];
@@ -114,6 +123,7 @@ function updateLesson() {
 }
 
 function toDisplay(deltaMilliSeconds) {
+	// Takes milliseconds and returns a string like minutes:seconds
 	var d = deltaMilliSeconds / 1000;
 	var minutes = Math.floor(d/60);
 	var seconds = Math.floor(d%60);
