@@ -96,8 +96,12 @@ function updateLesson() {
 			break;
 		}
 		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
+			var row = document.getElementById("period-"+periods[i-1]['number']).parentElement;
+			row.className += " break-highlight";
+			prev_highlight = row;
 			timer = document.getElementById("between-lessons");
 			until = periods[i]['begin_time'];
+			break;
 		}
 	}
 	if (prev_timer)

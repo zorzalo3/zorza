@@ -83,6 +83,12 @@ table {
 	margin-bottom: 1rem;
 }
 .timetable {
+	.highlight {
+		background-color: rgba(255, 255, 255, 0.02);
+	}
+	.break-highlight td{
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
 	width: 100%;
 	tr td {
 		&:nth-child(1) {
@@ -147,9 +153,6 @@ table {
 				padding-left: 0.4rem;
 			}
 		}
-	}
-	.highlight {
-		background-color: rgba(255, 255, 255, 0.02);
 	}
 }
 

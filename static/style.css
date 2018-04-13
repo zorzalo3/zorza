@@ -86,6 +86,14 @@ table th, table td {
   width: 100%;
 }
 
+.timetable .highlight {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.timetable .break-highlight td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .timetable tr td:nth-child(1) {
   text-align: center;
   padding-right: 0;
@@ -153,10 +161,6 @@ table th, table td {
 
 .timetable .lesson-table .table-row .group + .room {
   padding-left: 0.4rem;
-}
-
-.timetable .highlight {
-  background-color: rgba(255, 255, 255, 0.02);
 }
 
 header {
