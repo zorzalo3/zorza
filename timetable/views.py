@@ -89,7 +89,6 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     form_class = SelectTeacherAndDateForm
 
     def form_valid(self, form):
-        print("hello")
         teacher = form.cleaned_data['teacher']
         date = form.cleaned_data['date']
         return redirect('add_substitutions2', teacher.pk, str(date))
@@ -114,7 +113,6 @@ def add_substitutions2(request, teacher_id, date):
         periods = get_days_periods(date)
         periods = [period.number for period in periods]
         initial = [{'period': i} for i in periods if i not in used_periods]
-        print(initial)
         formset = SubstitutionFormSet(queryset=qs, initial=initial)
 
     context = {
