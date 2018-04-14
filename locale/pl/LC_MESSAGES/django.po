@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 19:48+0000\n"
+"POT-Creation-Date: 2018-04-14 20:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,13 +102,17 @@ msgstr ""
 
 #: templates/registration/login.html:9
 msgid "Your username and password didn't match. Please try again."
-msgstr "Podana nazwa użytkownika i hasła nie pasują do siebie. Prosimy spróbować ponownie."
+msgstr ""
+"Podana nazwa użytkownika i hasła nie pasują do siebie. Prosimy spróbować "
+"ponownie."
 
 #: templates/registration/login.html:16
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
-msgstr "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na konto z odpowiednimi uprawnieniami."
+msgstr ""
+"Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
+"konto z odpowiednimi uprawnieniami."
 
 #: timetable/forms.py:9 timetable/templates/event_list.html:71
 msgid "Teacher"
@@ -133,7 +137,7 @@ msgstr "Dodawanie zastępstw — krok 2"
 #: timetable/templates/add_substitutions.html:8
 #, python-format
 msgid "Substitutions for %(teacher)s on %(date)s. "
-msgstr ""
+msgstr "Zastępstwa za %(teacher)s w dniu %(date)s."
 
 #: timetable/templates/add_substitutions.html:17
 #: timetable/templates/event_list.html:16
