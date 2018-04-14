@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-14 20:16+0200\n"
+"POT-Creation-Date: 2018-04-14 20:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,10 +83,9 @@ msgstr "Plan lekcji"
 msgid "About"
 msgstr "O projekcie"
 
-#: templates/base.html:36 templates/registration/login.html:6
-#: templates/registration/login.html:29
-msgid "Log in"
-msgstr ""
+#: templates/base.html:36 timetable/templates/management.html:6
+msgid "Management"
+msgstr "Zarządzanie"
 
 #: templates/registration/logged_out.html:6
 msgid "Logged out"
@@ -98,6 +97,10 @@ msgstr ""
 
 #: templates/registration/logged_out.html:13
 msgid "Log in again"
+msgstr ""
+
+#: templates/registration/login.html:6 templates/registration/login.html:29
+msgid "Log in"
 msgstr ""
 
 #: templates/registration/login.html:9
@@ -193,7 +196,7 @@ msgstr "Dzisiaj lekcje są odwołane."
 msgid "On %(date)s there will be no classes."
 msgstr "Lekcje %(date)s są odwołane."
 
-#: timetable/templates/event_list.html:4
+#: timetable/templates/event_list.html:4 timetable/templates/management.html:12
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
@@ -224,6 +227,15 @@ msgstr "Rezerwacje sal"
 #: timetable/templates/group_timetable.html:8
 msgid "Groups"
 msgstr "Grupy"
+
+#: timetable/templates/management.html:8
+#, python-format
+msgid "Logged in as %(user)s."
+msgstr "Zalogowano jako %(user)s."
+
+#: timetable/templates/management.html:9
+msgid "Log out"
+msgstr ""
 
 #: timetable/templates/personalization.html:5
 msgid "Timetable personalization"
@@ -281,7 +293,7 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/views.py:68
+#: timetable/views.py:69
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 

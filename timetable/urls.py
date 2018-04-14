@@ -12,4 +12,5 @@ urlpatterns = [
     path('times/', show_times, name='times'),
     path('substitutions/add/', AddSubstitutionsView1.as_view(), name='add_substitutions1'),
     path('substitutions/add/<int:teacher_id>/<date>/', add_substitutions2, name='add_substitutions2'),
+    path('manage/', manage, name='manage'),
 ]

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="form-small">
+	<h2>{% trans "Management" %}</h2>
+	<p>
+		{% blocktrans trimmed %}Logged in as {{ user }}.{% endblocktrans %}
+		<a href="{% url "logout" %}">{% trans "Log out" %}</a>
+	</p>
+	<p>
+		<a href="{% url "add_substitutions1" %}">{% trans "Substitutions" %}</a>
+	</p>
+
+</div>
+{% endblock %}

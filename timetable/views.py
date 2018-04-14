@@ -7,9 +7,10 @@ from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date
 from django.views.decorators.vary import vary_on_cookie
+from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import *
 from .utils import get_timetable_context, get_schedules_table, get_days_periods
@@ -121,3 +122,8 @@ def add_substitutions2(request, teacher_id, date):
         'date': date,
     }
     return render(request, 'add_substitutions.html', context)
+
+@never_cache
+@login_required
+def manage(request):
+    return render(request, 'management.html')
