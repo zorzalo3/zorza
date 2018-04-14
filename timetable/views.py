@@ -98,7 +98,8 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
 def add_substitutions2(request, teacher_id, date):
     date = parse_date(date)
     teacher = get_object_or_404(Teacher, pk=teacher_id)
-    qs = Substitution.objects.filter(teacher=teacher, date=date)
+    qs = Substitution.objects.filter(teacher=teacher, date=date) \
+                             .order_by('period')
 
     if request.method == 'POST':
         formset = SubstitutionFormSet(request.POST, queryset=qs)
@@ -109,7 +110,12 @@ def add_substitutions2(request, teacher_id, date):
                 instance.teacher = teacher
                 instance.save()
     else:
-        formset = SubstitutionFormSet(queryset=qs)
+        used_periods = [obj.period for obj in qs]
+        periods = get_days_periods(date)
+        periods = [period.number for period in periods]
+        initial = [{'period': i} for i in periods if i not in used_periods]
+        print(initial)
+        formset = SubstitutionFormSet(queryset=qs, initial=initial)
 
     context = {
         'teacher': teacher,
