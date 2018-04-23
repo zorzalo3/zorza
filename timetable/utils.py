@@ -70,14 +70,6 @@ def get_timetable_context(lessons):
     }
     context.update(get_events())
 
-    # stupid and wrong fix for missing period strings
-    for substitution in context['substitutions']:
-        substitution.period_str = period_strs[substitution.period]
-    for absence in context['absences']:
-        absence.period_str = period_strs[absence.period]
-    for reservation in context['reservations']:
-        reservation.period_str = period_strs[reservation.period]
-
     return context
 
 EVENTS_SPAN = timedelta(days=3)
@@ -151,3 +143,10 @@ def get_utc_offset():
     tz = timezone.get_default_timezone()
     now = timezone.make_aware(datetime.now(), tz)
     return -int(now.utcoffset().seconds / 60)
+
+def get_period_str(period, date):
+    periods = get_days_periods(date)
+    try:
+        return periods.get(number=period)
+    except:
+        return ''

@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from django.utils.formats import date_format
 
+
 class Class(models.Model):
     """A collection of groups to which students of a class can belong"""
     name = models.CharField(max_length=20)
@@ -118,6 +119,11 @@ class Occasion(models.Model):
     @property
     def weekday(self):
         return self.date.weekday()
+
+    @property
+    def period_str(self):
+        from .utils import get_period_str
+        return get_period_str(self.period, self.date)
 
     class Meta:
         abstract = True
