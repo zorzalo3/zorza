@@ -128,21 +128,14 @@ class Substitution(Occasion):
     # substitute is None <=> lesson is cancelled
     substitute = models.ForeignKey(Teacher, on_delete=models.CASCADE,
             null=True, blank=True, related_name='substitutions')
-    # room is None <=> room for the substitution is unspecified
-    room = models.ForeignKey(Room, on_delete=models.CASCADE,
-                             null=True, blank=True)
 
     @property
     def display_substitute(self):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
-    @property
-    def display_room(self):
-        return self.room.short_name if self.room else '-'
-
     def __str__(self):
         return '%s %s %s -> %s %s' % (self.date, self.period, self.teacher, \
-                self.display_substitute, self.display_room)
+                self.display_substitute)
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
