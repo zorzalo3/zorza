@@ -109,12 +109,10 @@ def add_substitutions2(request, teacher_id, date):
                 instance.date = date
                 instance.teacher = teacher
                 instance.save()
+            # Refresh the formset by refreshing the page
+            return HttpResponseRedirect('')
     else:
-        used_periods = [obj.period for obj in qs]
-        periods = get_days_periods(date)
-        periods = [period.number for period in periods]
-        initial = [{'period': i} for i in periods if i not in used_periods]
-        formset = SubstitutionFormSet(queryset=qs, initial=initial)
+        formset = SubstitutionFormSet(queryset=qs)
 
     context = {
         'teacher': teacher,
