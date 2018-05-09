@@ -16,12 +16,14 @@
 		<th>{% trans "No." context "timetable header" %}</th>
 		<th>{% trans "Period" context "timetable header" %}</th>
 		<th>{% trans "Substitute" %}</th>
+		<th>{% trans "Group" %}</th>
 	</tr>
 	{% for substitution in teacher.list %}
 	<tr>
 		<td>{{ substitution.period }}</td>
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
+		<td>{{ substitution.group }}</td>
 	</tr>
 	{% endfor %}
 </table>

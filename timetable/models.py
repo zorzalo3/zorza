@@ -139,6 +139,12 @@ class Substitution(Occasion):
     def display_substitute(self):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
+    @property
+    def group(self):
+        lesson = Lesson.objects.get(period=self.period, weekday=self.weekday,
+                                    teacher=self.teacher)
+        return lesson.group
+
     def __str__(self):
         return '%s %s %s -> %s %s' % (self.date, self.period, self.teacher, \
                 self.display_substitute)
