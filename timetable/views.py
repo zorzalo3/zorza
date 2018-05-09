@@ -32,6 +32,7 @@ def show_class_timetable(request, class_id):
     lessons = Lesson.objects.filter(group__in=groups)
     context = get_timetable_context(lessons)
     context['class'] = klass
+    context['groups'] = groups
     return render(request, 'class_timetable.html', context)
 
 def show_groups_timetable(request, group_ids):
