@@ -40,7 +40,7 @@ def get_timetable_context(lessons):
     for lesson in lessons:
         add_full_name(lesson)
 
-    default_periods = Period.objects.filter(timetable__is_default=True)
+    default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
         raise Http404('No default timetable or periods')
 
@@ -101,39 +101,39 @@ def get_days_periods(date):
     try:
         dayplan = DayPlan.objects.get(date=date)
         # If lessons are cancelled that day, return an empty list
-        if dayplan.timetable is None:
+        if dayplan.schedule is None:
             return []
         else:
-            times = dayplan.timetable
+            schedule = dayplan.schedule
     except:
         weekday = date.weekday()
         # if no dayplan for that day and it's a working day
         if any(weekday == day_number for day_number, day_string in days):
-            times = Times.objects.get(is_default=True)
+            schedule = Schedule.objects.get(is_default=True)
         else:
             return []
-    return times.period_set.all()
+    return schedule.period_set.all()
 
 def get_todays_periods():
     return get_days_periods(date.today())
 
 def get_schedules_table():
-    all_periods = Period.objects.all().prefetch_related('timetable')
+    all_periods = Period.objects.all().prefetch_related('schedule')
     min_max = all_periods.aggregate(Min('number'), Max('number'))
     period_range = range(min_max['number__min'], min_max['number__max']+1)
-    timetables = {period.timetable for period in all_periods}
+    schedules = {period.schedule for period in all_periods}
 
     table = OrderedDict()
     for period in period_range:
         table[period] = OrderedDict()
-        for timetable in timetables:
-            table[period][timetable] = ''
+        for schedule in schedules:
+            table[period][schedule] = ''
 
     for period in all_periods:
-        table[period.number][period.timetable] = str(period)
+        table[period.number][period.schedule] = str(period)
 
     return {
-        'times': timetables,
+        'schedules': schedules,
         'table': table,
     }
 

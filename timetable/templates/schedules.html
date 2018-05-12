@@ -9,19 +9,19 @@
 	<thead>
 		<tr>
 			<th>{% trans "No." context "timetable header" %}</th>
-			{% for timetable in times %}
+			{% for schedule in schedules %}
 			<th>
-				{{ timetable.name }}
+				{{ schedule.name }}
 			</th>
 			{% endfor %}
 		</tr>
 	</thead>
 	<tbody>
-		{% for period_number, times in table.items %}
+		{% for period_number, schedule in table.items %}
 		<tr>
 			<td>{{ period_number }}</td>
-			{% for _, time in times.items %}
-			<td>{{ time }}</td>
+			{% for _, schedule in schedule.items %}
+			<td>{{ schedule }}</td>
 			{% endfor %}
 		</tr>
 		{% endfor %}

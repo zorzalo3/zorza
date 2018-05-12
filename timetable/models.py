@@ -50,8 +50,8 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
-class Times(models.Model):
-    """A collection of periods (by foreign keys in Period). AKA timetable.
+class Schedule(models.Model):
+    """A collection of periods (by foreign keys in Period).
     Only one object has is_default == True. It will be shown on the timetable
     by default.
     """
@@ -71,7 +71,7 @@ class Period(models.Model):
     number = models.PositiveIntegerField()
     begin_time = models.TimeField()
     end_time = models.TimeField()
-    timetable = models.ForeignKey(Times, on_delete=models.CASCADE)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
     def __str__(self): # Display time range
         return '%d:%.2d–%d:%.2d' % \
@@ -79,13 +79,13 @@ class Period(models.Model):
              self.end_time.hour,   self.end_time.minute)
 
     class Meta:
-        unique_together = (('number', 'timetable'),)
-        ordering = ['timetable', 'number']
+        unique_together = (('number', 'schedule'),)
+        ordering = ['schedule', 'number']
 
 class DayPlan(models.Model):
-    """A DayPlan says which timetable (or none) to use on a given day"""
+    """A DayPlan says which schedule (or none) to use on a given day"""
     date = models.DateField(unique=True)
-    timetable = models.ForeignKey(Times, on_delete=models.CASCADE,
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE,
                                   null=True, blank=True)
     # None if no timetable (eg. lessons cancelled)
 
@@ -112,8 +112,6 @@ class Lesson(models.Model):
 
 class Occasion(models.Model):
     date = models.DateField()
-    # TODO: after Times is implemented, maybe use two numbers instead
-    # of a Period ForeignKey: begin_period and end_period?
     period = models.IntegerField()
 
     @property

@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if dayplans %}
-<a href="{% url "times" %}" title="{% trans "Schedules" %}">
+<a href="{% url "schedules" %}" title="{% trans "Schedules" %}">
 {% for dayplan in dayplans %}
 {% with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}
 

@@ -77,9 +77,9 @@ def personalize(request, class_id):
     context['groups'] = groups
     return render(request, 'personalization.html', context)
 
-def show_times(request):
+def show_schedules(request):
     context = get_schedules_table()
-    return render(request, 'times.html', context)
+    return render(request, 'schedules.html', context)
 
 class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     """The first step to adding a substitution

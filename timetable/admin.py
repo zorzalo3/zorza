@@ -27,7 +27,7 @@ class TeacherAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
 
-class TimesAdmin(admin.ModelAdmin):
+class ScheduleAdmin(admin.ModelAdmin):
     inlines = [PeriodInline]
 
 admin.site.register(Class, ClassAdmin)
@@ -35,7 +35,7 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Room, RoomAdmin)
-admin.site.register(Times, TimesAdmin)
+admin.site.register(Schedule, ScheduleAdmin)
 admin.site.register(Period)
 admin.site.register(DayPlan)
 admin.site.register(Lesson)
