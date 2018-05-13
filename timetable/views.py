@@ -1,5 +1,6 @@
 from itertools import groupby
 from collections import OrderedDict
+from datetime import date
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
@@ -14,7 +15,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import *
 from .utils import get_timetable_context, get_schedules_table, get_days_periods
-from .forms import SelectTeacherAndDateForm, SubstitutionFormSet
+from .forms import SelectTeacherAndDateForm, SubstitutionFormSet, DayPlanFormSet
 
 
 @vary_on_cookie
@@ -126,3 +127,15 @@ def add_substitutions2(request, teacher_id, date):
 @login_required
 def manage(request):
     return render(request, 'management.html')
+
+@permission_required('timetable.add_dayplan')
+def edit_calendar(request):
+    qs = DayPlan.objects.filter(date__gte=date.today())
+    if request.method == 'POST':
+        formset = DayPlanFormSet(request.POST, queryset=qs)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = DayPlanFormSet(queryset=qs)
+    context = {'formset': formset}
+    return render(request, 'edit_calendar.html', context)

@@ -11,3 +11,6 @@ class SelectTeacherAndDateForm(Form):
 
 SubstitutionFormSet = modelformset_factory(
     Substitution, fields=('period', 'substitute'), extra=8)
+
+DayPlanFormSet = modelformset_factory(
+    DayPlan, fields='__all__', extra=8)

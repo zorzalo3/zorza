@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<form class="form-small" method="post">
+	<h2>{% trans "Calendar" %}</h2>
+	<p>
+		{% blocktrans %}Add or change schedules for future dates.{% endblocktrans %}
+	</p>
+	{% csrf_token %}
+	{{ formset.non_field_errors }}
+	{{ formset.management_form }}
+	<table>
+		{% for form in formset.forms %}
+		{% if forloop.first %}
+		<tr>
+			<th>{% trans "Date" %}</th>
+			<th>{% trans "Schedule" %}</th>
+		</tr>
+		{% endif %}
+		<tr>
+			{% for field in form.visible_fields %}
+			<td>
+				{% if forloop.first %}
+				{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+				{% endfor %}
+				{% endif %}
+				{{ field }} {{ field.errors }}
+			</td>
+			{% endfor %}
+		</tr>
+
+		{% endfor %}
+	</table>
+	<p>
+		<button type="submit" class="button-primary">
+			{% trans "Save" %}
+		</button>
+	</p>
+</form>
+{% endblock %}

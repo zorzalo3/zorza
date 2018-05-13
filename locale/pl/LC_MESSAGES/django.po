@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-14 20:37+0200\n"
+"POT-Creation-Date: 2018-05-13 13:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,15 +121,15 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:10
+#: timetable/forms.py:10 timetable/templates/edit_calendar.html:17
 msgid "Date"
 msgstr "Data"
 
-#: timetable/models.py:109
+#: timetable/models.py:110
 msgid "Lesson"
 msgstr "Lekcja"
 
-#: timetable/models.py:137
+#: timetable/models.py:138
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -144,7 +144,7 @@ msgstr "Zastępstwa za %(teacher)s w dniu %(date)s."
 
 #: timetable/templates/add_substitutions.html:17
 #: timetable/templates/event_list.html:16
-#: timetable/templates/event_list.html:69 timetable/templates/times.html:11
+#: timetable/templates/event_list.html:69 timetable/templates/schedules.html:11
 #: timetable/templates/timetable_base.html:48
 msgctxt "timetable header"
 msgid "No."
@@ -155,13 +155,8 @@ msgstr "Nr"
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:19
-#: timetable/templates/event_list.html:19
-#: timetable/templates/event_list.html:72
-msgid "Room"
-msgstr "Sala"
-
-#: timetable/templates/add_substitutions.html:39
+#: timetable/templates/add_substitutions.html:38
+#: timetable/templates/edit_calendar.html:38
 msgid "Save"
 msgstr ""
 
@@ -173,7 +168,7 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
-#: timetable/templates/dayplans.html:3 timetable/templates/times.html:6
+#: timetable/templates/dayplans.html:3 timetable/templates/schedules.html:6
 msgid "Schedules"
 msgstr "Typy dzwonków"
 
@@ -196,6 +191,19 @@ msgstr "Dzisiaj lekcje są odwołane."
 msgid "On %(date)s there will be no classes."
 msgstr "Lekcje %(date)s są odwołane."
 
+#: timetable/templates/edit_calendar.html:6
+#: timetable/templates/management.html:18
+msgid "Calendar"
+msgstr "Kalendarz"
+
+#: timetable/templates/edit_calendar.html:8
+msgid "Add or change schedules for future dates."
+msgstr "Zmień rozkład dzwonków w przyszłe daty."
+
+#: timetable/templates/edit_calendar.html:18
+msgid "Schedule"
+msgstr "Typ dzwonków"
+
 #: timetable/templates/event_list.html:4 timetable/templates/management.html:12
 msgid "Substitutions"
 msgstr "Zastępstwa"
@@ -207,14 +215,15 @@ msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/templates/event_list.html:35
-msgid "Absences"
-msgstr "Nieobecności grup"
-
+#: timetable/templates/event_list.html:19
 #: timetable/templates/event_list.html:43
 #: timetable/templates/group_timetable.html:6
 msgid "Group"
 msgstr "Grupa"
+
+#: timetable/templates/event_list.html:35
+msgid "Absences"
+msgstr "Nieobecności grup"
 
 #: timetable/templates/event_list.html:44
 msgid "Periods"
@@ -223,6 +232,10 @@ msgstr "Lekcje"
 #: timetable/templates/event_list.html:61
 msgid "Reservations"
 msgstr "Rezerwacje sal"
+
+#: timetable/templates/event_list.html:72
+msgid "Room"
+msgstr "Sala"
 
 #: timetable/templates/group_timetable.html:8
 msgid "Groups"
@@ -235,6 +248,10 @@ msgstr "Zalogowano jako %(user)s."
 
 #: timetable/templates/management.html:9
 msgid "Log out"
+msgstr ""
+
+#: timetable/templates/management.html:15
+msgid "Administration"
 msgstr ""
 
 #: timetable/templates/personalization.html:5
@@ -293,7 +310,7 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/views.py:69
+#: timetable/views.py:71
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
