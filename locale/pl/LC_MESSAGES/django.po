@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-13 13:46+0200\n"
+"POT-Creation-Date: 2018-05-15 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Treść"
 msgid "Contact us"
 msgstr "Kontakt"
 
-#: contact/templates/contact/message_form.html:14
+#: contact/templates/contact/message_form.html:15
 msgid "Send"
 msgstr "Wyślij"
 
@@ -155,7 +155,11 @@ msgstr "Nr"
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:38
+#: timetable/templates/add_substitutions.html:37
+msgid "Back"
+msgstr "Powrót"
+
+#: timetable/templates/add_substitutions.html:39
 #: timetable/templates/edit_calendar.html:38
 msgid "Save"
 msgstr ""
