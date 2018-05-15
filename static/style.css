@@ -275,16 +275,18 @@ input, textarea {
   resize: vertical;
 }
 
-button {
-  display: block;
+button, .button {
+  text-align: center;
+  display: inline-block;
   width: auto;
   padding: 0.6rem 0.8rem;
-  margin: 0 auto;
   border: none;
   border-radius: 2px;
   font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.9);
-  background-color: rgba(255, 255, 255, 0.9);
+  /*
+	color: $dark-color;
+	background-color: $font-color-primary;
+	*/
 }
 
 .button-primary {

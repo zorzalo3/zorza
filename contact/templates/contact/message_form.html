@@ -10,9 +10,11 @@
 	<h2>{% trans "Contact us" %}</h2>
 	{% csrf_token %}
 	{{ form.as_p }}
-	<button class="button-primary" type="submit">
-		{% trans "Send" %}
-	</button>
+	<p class="text-center">
+		<button class="button-primary" type="submit">
+			{% trans "Send" %}
+		</button>
+	</p>
 </form>
 {% endblock %}
 
