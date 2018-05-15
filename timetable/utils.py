@@ -59,11 +59,16 @@ def get_timetable_context(lessons):
         # Will throw exception if lesson.weekday not in days
         table[lesson['period']][1][lesson['weekday']].append(lesson)
 
+    teachers = Teacher.objects.all().values()
+    teachers = sorted(teachers, key=lambda t:
+        locale.strxfrm(t['last_name']+t['first_name']))
+        # Sort considering system locale
+
     context = {
         'days': days,
         'table': table,
         'class_list': Class.objects.all().values(),
-        'teacher_list': Teacher.objects.all().values(),
+        'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
         'todays_periods_json': serialize('json', get_todays_periods()),
         'utc_offset': get_utc_offset(),
