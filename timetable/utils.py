@@ -11,6 +11,7 @@ from django.utils import timezone
 from .models import *
 
 days = settings.TIMETABLE_WEEKDAYS
+day_ids = [x[0] for x in days]
 
 # Not always all those values are needed.
 # Move to views.py with values for each view?
@@ -77,7 +78,8 @@ def get_timetable_context(lessons):
 
     return context
 
-EVENTS_SPAN = timedelta(days=3)
+EVENTS_SPAN_DAYS = 3
+EVENTS_SPAN = timedelta(days=EVENTS_SPAN_DAYS)
 
 def get_events(begin_date=None, end_date=None):
     if begin_date is None:
@@ -155,3 +157,18 @@ def get_period_str(period, date):
         return periods.get(number=period)
     except:
         return ''
+
+def get_next_schoolday():
+    """Returns the date of the closest lesson, for convienent defaults.
+    Currently very basic."""
+    today = date.today()
+    # Generate considered dates
+    dates = [(today + timedelta(days=n)) for n in range(EVENTS_SPAN_DAYS)]
+
+    for day in dates:
+        periods = get_days_periods(day)
+        if not periods:
+            continue
+        if day > today or datetime.now().time() < periods.last().begin_time:
+            return day
+    return today
