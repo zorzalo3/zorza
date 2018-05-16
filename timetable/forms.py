@@ -10,7 +10,7 @@ class SelectTeacherAndDateForm(Form):
     date = DateField(label=_('Date'), initial=date.today)
 
 SubstitutionFormSet = modelformset_factory(
-    Substitution, fields=('period', 'substitute'), extra=8)
+    Substitution, fields=('period', 'substitute'), extra=8, can_delete=True)
 
 DayPlanFormSet = modelformset_factory(
     DayPlan, fields='__all__', extra=8)

@@ -111,6 +111,10 @@ def add_substitutions2(request, teacher_id, date):
                 instance.date = date
                 instance.teacher = teacher
                 instance.save()
+
+            for obj in formset.deleted_objects:
+                obj.delete()
+
             # Refresh the formset by refreshing the page
             return HttpResponseRedirect('')
     else:
