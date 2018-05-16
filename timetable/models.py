@@ -144,7 +144,7 @@ class Substitution(Occasion):
         return lesson.group
 
     def __str__(self):
-        return '%s %s %s -> %s %s' % (self.date, self.period, self.teacher, \
+        return '%s %s %s -> %s' % (self.date, self.period, self.teacher, \
                 self.display_substitute)
 
 class Absence(Occasion):
