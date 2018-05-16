@@ -5,7 +5,7 @@
 
 {% regroup substitutions by date as substitutions_by_day %}
 {% for day in substitutions_by_day %}
-<h3 class="text-center">{{ day.grouper }}</h3>
+<h3 class="text-center">{{ day.grouper }} ({{ day.grouper|date:"l" }})</h3>
 
 {% regroup day.list by teacher as substitutions_by_teacher %}
 {% for teacher in substitutions_by_teacher %}
@@ -38,7 +38,7 @@
 {% for day in absences_by_day %}
 {% regroup day.list by group as absences_by_group %}
 <table class="block-center text-center">
-	<caption>{{ day.grouper }}</caption>
+	<caption>{{ day.grouper }} ({{ day.grouper|date:"l" }})</caption>
 	<tr>
 		<th>{% trans "Group" %}</th>
 		<th>{% trans "Periods" %}</th>
@@ -62,7 +62,7 @@
 
 {% regroup reservations by date as reservations_by_day %}
 {% for day in reservations_by_day %}
-<h3 class="text-center">{{ day.grouper }}</h3>
+<h3 class="text-center">{{ day.grouper }} ({{ day.grouper|date:"l" }})</h3>
 
 <table class="block-center text-center">
 	<tr>
