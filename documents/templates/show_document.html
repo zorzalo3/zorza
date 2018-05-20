@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+{{ document.title }} - Zorza
+{% endblock %}
+
 {% block content %}
 <h2>{{ document.title }}</h2>
 <article>

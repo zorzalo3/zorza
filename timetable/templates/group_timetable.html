@@ -1,6 +1,18 @@
 {% extends "timetable_base.html" %}
 {% load i18n %}
 
+{% block title %}
+{% trans "Timetable" %} - 
+{% if groups|length == 1 %}
+{% trans "Group" %}
+{% else %}
+{% trans "Groups" %}
+{% endif %}
+{% for group in groups %}
+{{ group.name }}{% if not forloop.last %},{% endif %}
+{% endfor %} - Zorza
+{% endblock %}
+
 {% block caption %}
 {% if groups|length == 1 %}
 {% trans "Group" %}

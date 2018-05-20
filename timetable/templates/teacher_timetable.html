@@ -1,4 +1,9 @@
 {% extends "timetable_base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Timetable" %} - {{ teacher.full_name }} - Zorza
+{% endblock %}
 
 {% block caption %}
 {{ teacher.full_name }}

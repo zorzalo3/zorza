@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+{% blocktrans trimmed %}
+Adding substitutions for {{ teacher }} on {{ date }}
+{% endblocktrans %}
+- Zorza
+{% endblock %}
+
 {% block content %}
 <form class="add-substitutions2 form-small" method="post">
 	<h2>{% trans "Adding substitutions — step 2" %}</h2>

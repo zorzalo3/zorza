@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+{% trans "Documents" %}{% if parent %} - {{ parent }}{% endif %} - Zorza
+{% endblock %}
+
 {% block content %}
 <h2>{% trans "Documents" %}{% if parent %} - {{ parent }}{% endif %}</h2>
 

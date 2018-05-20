@@ -1,6 +1,10 @@
 {% extends "timetable_base.html" %}
 {% load i18n %}
 
+{% block title %}
+{% trans "Timetable" %} - {% trans "Class" %} {{ class.name }} - Zorza
+{% endblock %}
+
 {% block caption %}
 {% trans "Class" %} {{ class.name }}
 {% endblock %}

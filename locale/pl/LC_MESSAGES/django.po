@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-15 15:02+0200\n"
+"POT-Creation-Date: 2018-05-20 20:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,35 +47,40 @@ msgstr "Sukces"
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
-#: documents/templates/show_category.html:5 templates/base.html:24
+#: documents/templates/show_category.html:5
+#: documents/templates/show_category.html:9 templates/base.html:24
 msgid "Documents"
 msgstr "Dokumenty"
 
-#: documents/templates/show_category.html:9
+#: documents/templates/show_category.html:13
 msgid "Subcategories:"
 msgstr "Podkategorie:"
 
-#: documents/templates/show_category.html:23
+#: documents/templates/show_category.html:27
 msgid "Created on"
 msgstr "Utworzono"
 
-#: documents/templates/show_category.html:23
+#: documents/templates/show_category.html:27
 msgid "modified on"
 msgstr "zmodyfikowano"
 
-#: documents/templates/show_category.html:40
+#: documents/templates/show_category.html:44
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
-#: templates/404.html:8
+#: templates/404.html:12
 msgid "Page not found"
 msgstr ""
 
-#: templates/base.html:15 templates/registration/logged_out.html:9
+#: templates/base.html:15 templates/registration/logged_out.html:13
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
-#: templates/base.html:21 timetable/templates/timetable_base.html:7
+#: templates/base.html:21 timetable/templates/class_timetable.html:5
+#: timetable/templates/group_timetable.html:5
+#: timetable/templates/room_timetable.html:5
+#: timetable/templates/teacher_timetable.html:5
+#: timetable/templates/timetable_base.html:7
 msgid "Timetable"
 msgstr "Plan lekcji"
 
@@ -83,33 +88,36 @@ msgstr "Plan lekcji"
 msgid "About"
 msgstr "O projekcie"
 
-#: templates/base.html:36 timetable/templates/management.html:6
+#: templates/base.html:36 timetable/templates/management.html:5
+#: timetable/templates/management.html:11
 msgid "Management"
 msgstr "Zarządzanie"
 
-#: templates/registration/logged_out.html:6
+#: templates/registration/logged_out.html:5
+#: templates/registration/logged_out.html:10
 msgid "Logged out"
 msgstr ""
 
-#: templates/registration/logged_out.html:11
+#: templates/registration/logged_out.html:15
 msgid "or"
 msgstr ""
 
-#: templates/registration/logged_out.html:13
+#: templates/registration/logged_out.html:17
 msgid "Log in again"
 msgstr ""
 
-#: templates/registration/login.html:6 templates/registration/login.html:29
+#: templates/registration/login.html:5 templates/registration/login.html:10
+#: templates/registration/login.html:33
 msgid "Log in"
 msgstr ""
 
-#: templates/registration/login.html:9
+#: templates/registration/login.html:13
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Podana nazwa użytkownika i hasła nie pasują do siebie. Prosimy spróbować "
 "ponownie."
 
-#: templates/registration/login.html:16
+#: templates/registration/login.html:20
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
@@ -117,62 +125,72 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:9 timetable/templates/event_list.html:71
+#: timetable/forms.py:10 timetable/templates/event_list.html:71
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:10 timetable/templates/edit_calendar.html:17
+#: timetable/forms.py:11 timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
+
+#: timetable/forms.py:19 timetable/models.py:138
+msgid "cancelled"
+msgstr "odwołane"
 
 #: timetable/models.py:110
 msgid "Lesson"
 msgstr "Lekcja"
 
-#: timetable/models.py:138
-msgid "cancelled"
-msgstr "odwołane"
+#: timetable/templates/add_substitutions.html:5
+msgid "Adding substitutions for %(teacher)s on %(date)s"
+msgstr "Dodawanie zastępstw za %(teacher)s w dniu %(date)s."
 
-#: timetable/templates/add_substitutions.html:6
+#: timetable/templates/add_substitutions.html:13
 msgid "Adding substitutions — step 2"
 msgstr "Dodawanie zastępstw — krok 2"
 
-#: timetable/templates/add_substitutions.html:8
+#: timetable/templates/add_substitutions.html:15
 #, python-format
 msgid "Substitutions for %(teacher)s on %(date)s. "
 msgstr "Zastępstwa za %(teacher)s w dniu %(date)s."
 
-#: timetable/templates/add_substitutions.html:17
+#: timetable/templates/add_substitutions.html:24
 #: timetable/templates/event_list.html:16
-#: timetable/templates/event_list.html:69 timetable/templates/schedules.html:11
+#: timetable/templates/event_list.html:69 timetable/templates/schedules.html:15
 #: timetable/templates/timetable_base.html:48
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
-#: timetable/templates/add_substitutions.html:18
+#: timetable/templates/add_substitutions.html:25
 #: timetable/templates/event_list.html:18
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:37
+#: timetable/templates/add_substitutions.html:26
+msgid "Delete?"
+msgstr ""
+
+#: timetable/templates/add_substitutions.html:45
 msgid "Back"
 msgstr "Powrót"
 
-#: timetable/templates/add_substitutions.html:39
-#: timetable/templates/edit_calendar.html:38
+#: timetable/templates/add_substitutions.html:47
+#: timetable/templates/edit_calendar.html:42
 msgid "Save"
 msgstr ""
 
 #: timetable/templates/class_timetable.html:5
+#: timetable/templates/class_timetable.html:9
 msgid "Class"
 msgstr "Klasa"
 
-#: timetable/templates/class_timetable.html:27
+#: timetable/templates/class_timetable.html:31
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
-#: timetable/templates/dayplans.html:3 timetable/templates/schedules.html:6
+#: timetable/templates/dayplans.html:3 timetable/templates/schedules.html:5
+#: timetable/templates/schedules.html:10
 msgid "Schedules"
 msgstr "Typy dzwonków"
 
@@ -195,20 +213,21 @@ msgstr "Dzisiaj lekcje są odwołane."
 msgid "On %(date)s there will be no classes."
 msgstr "Lekcje %(date)s są odwołane."
 
-#: timetable/templates/edit_calendar.html:6
-#: timetable/templates/management.html:18
+#: timetable/templates/edit_calendar.html:5
+#: timetable/templates/edit_calendar.html:10
+#: timetable/templates/management.html:23
 msgid "Calendar"
 msgstr "Kalendarz"
 
-#: timetable/templates/edit_calendar.html:8
+#: timetable/templates/edit_calendar.html:12
 msgid "Add or change schedules for future dates."
 msgstr "Zmień rozkład dzwonków w przyszłe daty."
 
-#: timetable/templates/edit_calendar.html:18
+#: timetable/templates/edit_calendar.html:22
 msgid "Schedule"
 msgstr "Typ dzwonków"
 
-#: timetable/templates/event_list.html:4 timetable/templates/management.html:12
+#: timetable/templates/event_list.html:4 timetable/templates/management.html:17
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
@@ -221,7 +240,8 @@ msgstr "Godz."
 
 #: timetable/templates/event_list.html:19
 #: timetable/templates/event_list.html:43
-#: timetable/templates/group_timetable.html:6
+#: timetable/templates/group_timetable.html:7
+#: timetable/templates/group_timetable.html:18
 msgid "Group"
 msgstr "Grupa"
 
@@ -238,43 +258,47 @@ msgid "Reservations"
 msgstr "Rezerwacje sal"
 
 #: timetable/templates/event_list.html:72
+#: timetable/templates/room_timetable.html:5
 msgid "Room"
 msgstr "Sala"
 
-#: timetable/templates/group_timetable.html:8
+#: timetable/templates/group_timetable.html:9
+#: timetable/templates/group_timetable.html:20
 msgid "Groups"
 msgstr "Grupy"
 
-#: timetable/templates/management.html:8
+#: timetable/templates/management.html:13
 #, python-format
 msgid "Logged in as %(user)s."
 msgstr "Zalogowano jako %(user)s."
 
-#: timetable/templates/management.html:9
+#: timetable/templates/management.html:14
 msgid "Log out"
 msgstr ""
 
-#: timetable/templates/management.html:15
+#: timetable/templates/management.html:20
 msgid "Administration"
 msgstr ""
 
 #: timetable/templates/personalization.html:5
+#: timetable/templates/personalization.html:9
 msgid "Timetable personalization"
 msgstr "Personalizacja planu"
 
-#: timetable/templates/personalization.html:20
+#: timetable/templates/personalization.html:24
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
-#: timetable/templates/room_timetable.html:5
+#: timetable/templates/room_timetable.html:9
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/teacher_and_date_select.html:6
+#: timetable/templates/teacher_and_date_select.html:5
+#: timetable/templates/teacher_and_date_select.html:10
 msgid "Adding substitutions — step 1"
 msgstr "Dodawanie zastępstw — krok 1"
 
-#: timetable/templates/teacher_and_date_select.html:12
+#: timetable/templates/teacher_and_date_select.html:16
 msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
