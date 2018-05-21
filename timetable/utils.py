@@ -78,7 +78,7 @@ def get_timetable_context(lessons):
 
     return context
 
-EVENTS_SPAN_DAYS = 3
+EVENTS_SPAN_DAYS = settings.TIMETABLE_EVENTS_SPAN_DAYS
 EVENTS_SPAN = timedelta(days=EVENTS_SPAN_DAYS)
 
 def get_events(begin_date=None, end_date=None):
