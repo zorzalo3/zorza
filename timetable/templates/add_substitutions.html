@@ -12,7 +12,9 @@ Adding substitutions for {{ teacher }} on {{ date }}
 <form class="add-substitutions2 form-small" method="post">
 	<h2>{% trans "Adding substitutions — step 2" %}</h2>
 	<p>
-		{% blocktrans %}Substitutions for {{ teacher }} on {{ date }}. {% endblocktrans %}
+		{% with weekday=date|date:"l" %}
+		{% blocktrans %}Substitutions for {{ teacher }} on {{ date }} ({{ weekday }}). {% endblocktrans %}
+		{% endwith %}
 	</p>
 	{% csrf_token %}
 	{{ formset.non_field_errors }}
