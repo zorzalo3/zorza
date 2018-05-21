@@ -96,6 +96,7 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
         date = form.cleaned_data['date']
         return redirect('add_substitutions2', teacher.pk, str(date))
 
+@never_cache
 @permission_required('timetable.add_substitution')
 def add_substitutions2(request, teacher_id, date):
     date = parse_date(date)
@@ -132,6 +133,7 @@ def add_substitutions2(request, teacher_id, date):
 def manage(request):
     return render(request, 'management.html')
 
+@never_cache
 @permission_required('timetable.add_dayplan')
 def edit_calendar(request):
     qs = DayPlan.objects.filter(date__gte=date.today())
