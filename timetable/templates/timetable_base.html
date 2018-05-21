@@ -77,7 +77,7 @@
 <h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
 <p class="text-center">
 	{% if class_list %}
-	<select onchange="location = this.value">
+	<select class="timetable-select" onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a class" %}</option>
 		{% for class_item in class_list %}
 		<option value="{% url "class_timetable" class_item.id %}">{{ class_item.name }} </option>
@@ -85,7 +85,7 @@
 	</select>
 	{% endif %}
 	{% if teacher_list %}
-	<select onchange="location = this.value">
+	<select class="timetable-select" onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a teacher" %}</option>
 		{% for teacher_item in teacher_list %}
 		<option value="{% url "teacher_timetable" teacher_item.id %}">{{ teacher_item.last_name }} {{ teacher_item.first_name }}</option>
@@ -93,7 +93,7 @@
 	</select>
 	{% endif %}
 	{% if room_list %}
-	<select onchange="location = this.value">
+	<select class="timetable-select" onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a classroom" %}</option>
 		{% for room_item in room_list %}
 		<option value="{% url "room_timetable" room_item.id %}">{{ room_item.short_name }}</option>
