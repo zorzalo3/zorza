@@ -21,6 +21,13 @@ class SubstitutionForm(ModelForm):
 SubstitutionFormSet = modelformset_factory(
     Substitution, form=SubstitutionForm, extra=8, can_delete=True)
 
+class DayPlanForm(ModelForm):
+    class Meta:
+        model = DayPlan
+        fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['schedule'].empty_label = _('cancelled')
 
-DayPlanFormSet = modelformset_factory(
-    DayPlan, fields='__all__', extra=8)
+
+DayPlanFormSet = modelformset_factory(DayPlan, form=DayPlanForm, extra=8)
