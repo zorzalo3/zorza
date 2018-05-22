@@ -1,0 +1,28 @@
+{% load i18n %}
+
+{% if reservations %}
+<h2 class="text-center">{% trans "Reservations" %}</h3>
+
+{% regroup reservations by date as reservations_by_day %}
+{% for day in reservations_by_day %}
+<h3 class="text-center">{{ day.grouper }} ({{ day.grouper|date:"l" }})</h3>
+
+<table class="block-center text-center">
+	<tr>
+		<th>{% trans "No." context "timetable header" %}</th>
+		<th>{% trans "Period" context "timetable header" %}</th>
+		<th>{% trans "Teacher" %}</th>
+		<th>{% trans "Room" %}</th>
+	</tr>
+	{% for reservation in day.list %}
+	<tr>
+		<td>{{ reservation.period }}</td>
+		<td>{{ reservation.period_str }}</td>
+		<td>{{ reservation.display_teacher }}</td>
+		<td>{{ reservation.room.short_name }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endfor %}
+{% endif %}

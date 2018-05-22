@@ -1,0 +1,27 @@
+{% load i18n %}
+
+{% if absences %}
+<h2 class="text-center">{% trans "Absences" %}</h3>
+
+{% regroup absences by date as absences_by_day %}
+{% for day in absences_by_day %}
+{% regroup day.list by group as absences_by_group %}
+<table class="block-center text-center">
+	<caption>{{ day.grouper }} ({{ day.grouper|date:"l" }})</caption>
+	<tr>
+		<th>{% trans "Group" %}</th>
+		<th>{% trans "Periods" %}</th>
+	</tr>
+	{% for group in absences_by_group %}
+	<tr>
+		<td>{{ group.grouper }}</td>
+		<td>
+			{% for absence in group.list %}
+			{{ absence.period }}{% if not forloop.last %}, {% endif %}
+			{% endfor %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endfor %}
+{% endif %}

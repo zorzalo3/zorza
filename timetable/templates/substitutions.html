@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% if substitutions %}
+<h2 class="text-center">{% trans "Substitutions" %}</h3>
+
+{% regroup substitutions by date as substitutions_by_day %}
+{% for day in substitutions_by_day %}
+<h3 class="text-center">{{ day.grouper }} ({{ day.grouper|date:"l" }})</h3>
+
+{% regroup day.list by teacher as substitutions_by_teacher %}
+{% for teacher in substitutions_by_teacher %}
+
+<table class="block-center text-center">
+	<caption>{{ teacher.grouper.full_name }}</caption>
+	<tr>
+		<th>{% trans "No." context "timetable header" %}</th>
+		<th>{% trans "Period" context "timetable header" %}</th>
+		<th>{% trans "Substitute" %}</th>
+		<th>{% trans "Group" %}</th>
+	</tr>
+	{% for substitution in teacher.list %}
+	<tr {% if substitution.group in groups %}class="relevant"{% endif %}>
+		<td>{{ substitution.period }}</td>
+		<td>{{ substitution.period_str }}</td>
+		<td>{{ substitution.display_substitute }}</td>
+		<td>{{ substitution.group }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endfor %}
+{% endfor %}
+{% endif %}
