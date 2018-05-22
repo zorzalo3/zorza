@@ -14,7 +14,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import *
-from .utils import get_timetable_context, get_schedules_table, get_days_periods
+from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
+    get_substitutions)
 from .forms import SelectTeacherAndDateForm, SubstitutionFormSet, DayPlanFormSet
 
 
@@ -95,6 +96,11 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
         teacher = form.cleaned_data['teacher']
         date = form.cleaned_data['date']
         return redirect('add_substitutions2', teacher.pk, str(date))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['substitutions'] = get_substitutions()
+        return context
 
 @never_cache
 @permission_required('timetable.add_substitution')
