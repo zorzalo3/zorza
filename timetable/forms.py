@@ -6,9 +6,16 @@ from django.utils.translation import gettext_lazy as _
 from .models import *
 from .utils import get_next_schoolday
 
+class Html5DateInput(DateInput):
+    input_type = 'date'
+
+def get_next_schoolday_iso():
+    return get_next_schoolday().isoformat()
+
 class SelectTeacherAndDateForm(Form):
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
-    date = DateField(label=_('Date'), initial=get_next_schoolday)
+    date = DateField(label=_('Date'), initial=get_next_schoolday_iso,
+        widget=Html5DateInput)
 
 class SubstitutionForm(ModelForm):
     class Meta:
