@@ -2,17 +2,19 @@
 {% if dayplans %}
 <a href="{% url "schedules" %}" title="{% trans "Schedules" %}">
 {% for dayplan in dayplans %}
-{% with timetable=dayplan.timetable date=dayplan.date|date:"d E" %}
+{% with schedule=dayplan.schedule date=dayplan.date|date:"d E" %}
 
-{% if dayplan.timetable %}
+{% if dayplan.schedule.is_default %} {# Don't show anything #}
+
+{% elif dayplan.schedule %}
 
 {% if dayplan.is_today %}
-{% blocktrans %}Today the {{ timetable }} is in function.{% endblocktrans %}
+{% blocktrans %}Today the {{ schedule }} is in function.{% endblocktrans %}
 {% else %}
-{% blocktrans %}On {{ date }} the {{ timetable }} will be in function.{% endblocktrans %}
+{% blocktrans %}On {{ date }} the {{ schedule }} will be in function.{% endblocktrans %}
 {% endif %}
 
-{% else %} {# if timetable == None, so lessons are cancelled #}
+{% else %} {# if schedule == None, so lessons are cancelled #}
 
 {% if dayplan.is_today %}
 {% blocktrans %}Today classes are cancelled.{% endblocktrans %}
