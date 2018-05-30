@@ -123,7 +123,7 @@ def add_substitutions2(request, teacher_id, date):
                 obj.delete()
 
             # Refresh the formset by refreshing the page
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(request.path)
     else:
         formset = SubstitutionFormSet(queryset=qs)
 
