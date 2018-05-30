@@ -9,6 +9,14 @@ html {
   font-size: 13px;
 }
 
+/* Stupid hack to style Chromium */
+@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  select {
+    background-color: white;
+    border-radius: 2px;
+  }
+}
+
 @media (min-width: 576px) {
   html {
     font-size: 14px;
