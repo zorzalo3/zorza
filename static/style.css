@@ -290,6 +290,10 @@ input {
   height: 2.7rem;
 }
 
+input[type="checkbox"] {
+  height: auto;
+}
+
 textarea {
   resize: vertical;
 }
