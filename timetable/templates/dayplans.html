@@ -2,7 +2,7 @@
 {% if dayplans %}
 <a href="{% url "schedules" %}" title="{% trans "Schedules" %}">
 {% for dayplan in dayplans %}
-{% with schedule=dayplan.schedule date=dayplan.date|date:"d E" %}
+{% with schedule=dayplan.schedule date=dayplan.date|date:"j E" %}
 
 {% if dayplan.schedule.is_default %} {# Don't show anything #}
 
