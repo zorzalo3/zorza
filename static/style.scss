@@ -273,6 +273,10 @@ input, textarea {
 	color: $dark-color;
 }
 
+input {
+	height: 2.7rem;
+}
+
 textarea {
 	resize: vertical;
 }

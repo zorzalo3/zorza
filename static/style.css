@@ -286,6 +286,10 @@ input, textarea {
   color: rgba(0, 0, 0, 0.9);
 }
 
+input {
+  height: 2.7rem;
+}
+
 textarea {
   resize: vertical;
 }
