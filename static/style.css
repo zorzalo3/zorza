@@ -237,7 +237,7 @@ footer a {
 
 select {
   font-size: 1.1rem;
-  height: 2.5rem;
+  height: 2.7rem;
   padding: 0 0.3rem;
   color: rgba(0, 0, 0, 0.9);
 }
@@ -266,7 +266,7 @@ select {
 }
 
 input, textarea {
-  font-size: 1rem;
+  font-size: 1.1rem;
   width: 100%;
   padding: 0.6rem;
   border: none;
