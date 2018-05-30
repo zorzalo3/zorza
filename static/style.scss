@@ -271,6 +271,9 @@ input, textarea {
 	border: none;
 	border-radius: 2px;
 	color: $dark-color;
+}
+
+textarea {
 	resize: vertical;
 }
 
