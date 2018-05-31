@@ -98,10 +98,12 @@ def get_events(begin_date=None, end_date=None):
 
     events = {
         'substitutions': Substitution.objects.filter(**filter_kwargs) \
+                            .select_related('teacher', 'substitute') \
                             .order_by('date', 'teacher', 'period'),
         'absences': Absence.objects.filter(**filter_kwargs) \
                             .order_by('date', 'group', 'period'),
         'reservations': Reservation.objects.filter(**filter_kwargs) \
+                            .select_related('teacher', 'room') \
                             .order_by('date', 'period'),
         'dayplans': DayPlan.objects.filter(**filter_kwargs),
     }
@@ -111,6 +113,7 @@ def get_events(begin_date=None, end_date=None):
 def get_substitutions(begin_date=None, end_date=None):
     filter_kwargs = get_date_filter_kwargs(begin_date, end_date)
     substitutions = Substitution.objects.filter(**filter_kwargs) \
+                        .select_related('teacher', 'substitute') \
                         .order_by('date', 'teacher', 'period')
     return substitutions
 
