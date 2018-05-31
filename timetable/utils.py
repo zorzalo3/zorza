@@ -81,7 +81,7 @@ def get_timetable_context(lessons):
 EVENTS_SPAN_DAYS = settings.TIMETABLE_EVENTS_SPAN_DAYS
 EVENTS_SPAN = timedelta(days=EVENTS_SPAN_DAYS)
 
-def get_filter_kwargs(begin_date=None, end_date=None):
+def get_date_filter_kwargs(begin_date=None, end_date=None):
     if begin_date is None:
         begin_date = date.today()
     if end_date is None:
@@ -94,7 +94,7 @@ def get_filter_kwargs(begin_date=None, end_date=None):
 
 
 def get_events(begin_date=None, end_date=None):
-    filter_kwargs = get_filter_kwargs(begin_date, end_date)
+    filter_kwargs = get_date_filter_kwargs(begin_date, end_date)
 
     events = {
         'substitutions': Substitution.objects.filter(**filter_kwargs) \
@@ -109,7 +109,7 @@ def get_events(begin_date=None, end_date=None):
     return events
 
 def get_substitutions(begin_date=None, end_date=None):
-    filter_kwargs = get_filter_kwargs(begin_date, end_date)
+    filter_kwargs = get_date_filter_kwargs(begin_date, end_date)
     substitutions = Substitution.objects.filter(**filter_kwargs) \
                         .order_by('date', 'teacher', 'period')
     return substitutions
