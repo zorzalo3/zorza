@@ -19,12 +19,14 @@
 		<th>{% trans "Group" %}</th>
 	</tr>
 	{% for substitution in teacher.list %}
-	<tr {% if substitution.group in groups %}class="relevant"{% endif %}>
+	{% with group=substitution.group %}
+	<tr {% if group in groups %}class="relevant"{% endif %}>
 		<td>{{ substitution.period }}</td>
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
-		<td>{{ substitution.group }}</td>
+		<td>{{ group }}</td>
 	</tr>
+	{% endwith %}
 	{% endfor %}
 </table>
 {% endfor %}

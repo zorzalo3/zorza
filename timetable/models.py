@@ -139,9 +139,11 @@ class Substitution(Occasion):
 
     @property
     def group(self):
-        lesson = Lesson.objects.get(period=self.period, weekday=self.weekday,
-                                    teacher=self.teacher)
-        return lesson.group
+        query = Lesson.objects \
+            .select_related('group') \
+            .only('group__name') \
+            .get(period=self.period, weekday=self.weekday, teacher=self.teacher)
+        return str(query.group.name)
 
     def __str__(self):
         return '%s %s %s -> %s' % (self.date, self.period, self.teacher, \
