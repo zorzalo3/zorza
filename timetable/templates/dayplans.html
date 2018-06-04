@@ -1,6 +1,5 @@
 {% load i18n %}
 {% if dayplans %}
-<a href="{% url "schedules" %}" title="{% trans "Schedules" %}">
 {% for dayplan in dayplans %}
 {% with schedule=dayplan.schedule date=dayplan.date|date:"j E" %}
 
@@ -26,5 +25,4 @@
 
 {% endwith %}
 {% endfor %}
-</a>
 {% endif %}
