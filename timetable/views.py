@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from .models import *
 from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
     get_substitutions)
-from .forms import SelectTeacherAndDateForm, SubstitutionFormSet, DayPlanFormSet
+from .forms import *
 
 
 @vary_on_cookie
@@ -169,3 +169,14 @@ def show_rooms(request, date, period):
         'rooms': rooms,
     }
     return render(request, 'rooms.html', context)
+
+class RoomsDatePeriodSelectView(FormView):
+    """A form with date and period to be passed to show_rooms."""
+    template_name = 'rooms_date_period_select.html'
+    form_class = SelectDateAndPeriodForm
+
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        period = form.cleaned_data['period']
+        return redirect('rooms', date, period)
+

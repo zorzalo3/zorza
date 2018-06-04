@@ -42,3 +42,7 @@ class DayPlanForm(ModelForm):
         self.fields['schedule'].empty_label = _('cancelled')
 
 DayPlanFormSet = modelformset_factory(DayPlan, form=DayPlanForm, extra=8)
+
+class SelectDateAndPeriodForm(Form):
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
+    period = IntegerField(label=_('Period'))
