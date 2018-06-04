@@ -3,12 +3,13 @@
 {% load i18n %}
 
 {% block title %}
-{% trans "Rooms - Select date and period" %} - Zorza
+{% trans "Rooms" %} - {% trans "Select date and period" %} - Zorza
 {% endblock %}
 
 {% block content %}
 <form class="form-small" method="post">
-	<h2>{% trans "Rooms - Select date and period" %}</h2>
+	<h2>{% trans "Select date and period" %}</h2>
+	<p>{% trans "Select the time for which to show lessons by room" %}</p>
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 	{{ form.as_p }}

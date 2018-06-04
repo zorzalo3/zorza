@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-30 18:36+0200\n"
+"POT-Creation-Date: 2018-06-04 18:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Your email address"
 msgstr "Twój adres e-mail"
 
-#: contact/models.py:7
+#: contact/models.py:7 timetable/templates/rooms.html:20
 msgid "Subject"
 msgstr "Temat"
 
@@ -125,17 +125,23 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:16 timetable/templates/reservations.html:14
+#: timetable/forms.py:18 timetable/templates/reservations.html:14
+#: timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:17 timetable/templates/edit_calendar.html:21
+#: timetable/forms.py:20 timetable/forms.py:47
+#: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:26 timetable/forms.py:37 timetable/models.py:138
+#: timetable/forms.py:28 timetable/forms.py:42 timetable/models.py:138
 msgid "cancelled"
 msgstr "odwołane"
+
+#: timetable/forms.py:48
+msgid "Period"
+msgstr "Godz."
 
 #: timetable/models.py:110
 msgid "Lesson"
@@ -148,7 +154,7 @@ msgstr "Nieobecności grup"
 #: timetable/templates/absences.html:12
 #: timetable/templates/group_timetable.html:7
 #: timetable/templates/group_timetable.html:18
-#: timetable/templates/substitutions.html:19
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:19
 msgid "Group"
 msgstr "Grupa"
 
@@ -206,24 +212,21 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
-#: timetable/templates/dayplans.html:3 timetable/templates/schedules.html:5
-#: timetable/templates/schedules.html:10
-msgid "Schedules"
-msgstr "Typy dzwonków"
-
-#: timetable/templates/dayplans.html:12
+#: timetable/templates/dayplans.html:11
+#, python-format
 msgid "Today the %(schedule)s is in function."
 msgstr "Dzisiaj obowiązują %(schedule)s."
 
-#: timetable/templates/dayplans.html:14
+#: timetable/templates/dayplans.html:13
+#, python-format
 msgid "On %(date)s the %(schedule)s will be in function."
 msgstr "%(date)s będą obowiązywać %(schedule)s."
 
-#: timetable/templates/dayplans.html:20
+#: timetable/templates/dayplans.html:19
 msgid "Today classes are cancelled."
 msgstr "Dzisiaj lekcje są odwołane."
 
-#: timetable/templates/dayplans.html:22
+#: timetable/templates/dayplans.html:21
 #, python-format
 msgid "On %(date)s there will be no classes."
 msgstr "Lekcje %(date)s są odwołane."
@@ -286,13 +289,41 @@ msgid "Period"
 msgstr "Godz."
 
 #: timetable/templates/reservations.html:15
-#: timetable/templates/room_timetable.html:5
+#: timetable/templates/room_timetable.html:5 timetable/templates/rooms.html:18
 msgid "Room"
 msgstr "Sala"
 
 #: timetable/templates/room_timetable.html:9
 msgid "Classroom"
 msgstr "Sala"
+
+#: timetable/templates/rooms.html:5 timetable/templates/rooms.html:9
+#: timetable/templates/rooms_date_period_select.html:6
+msgid "Rooms"
+msgstr "Sale"
+
+#: timetable/templates/rooms.html:11
+#, python-format
+msgid "Showing lessons by room on %(date)s, period number %(period)s."
+msgstr "Lekcje w salach %(date)s, lekcja numer %(period)s."
+
+#: timetable/templates/rooms_date_period_select.html:6
+#: timetable/templates/rooms_date_period_select.html:11
+msgid "Select date and period"
+msgstr "Wybierz datę i numer lekcji"
+
+#: timetable/templates/rooms_date_period_select.html:12
+msgid "Select the time for which to show lessons by room"
+msgstr "Wybierz moment, dla którego pokazać lekcje w każdej sali"
+
+#: timetable/templates/rooms_date_period_select.html:18
+msgid "Show lessons in rooms"
+msgstr "Pokaż lekcje w salach"
+
+#: timetable/templates/schedules.html:5 timetable/templates/schedules.html:10
+#: timetable/templates/timetable_base.html:112
+msgid "Schedules"
+msgstr "Typy dzwonków"
 
 #: timetable/templates/teacher_and_date_select.html:5
 #: timetable/templates/teacher_and_date_select.html:10
