@@ -6,12 +6,19 @@
 {% endblock %}
 
 {% block content %}
-<h2>{% trans "Rooms" %}</h2>
+<h2 class="text-center">{% trans "Rooms" %}</h2>
+<p class="text-center">
+{% blocktrans trimmed %}
+Showing lessons by room on {{ date }}, period number {{ period }}.
+{% endblocktrans %}
+</p>
 
-<table>
+<table class="block-center text-center">
 	<thead>
 		<th>{% trans "Room" %}</th>
-		<th>{% trans "Lesson" %}</th>
+		<th>{% trans "Teacher" %}</th>
+		<th>{% trans "Subject" %}</th>
+		<th>{% trans "Group" %}</th>
 	</thead>
 	<tbody>
 		{% for room, lesson in rooms.items %}
@@ -21,20 +28,28 @@
 					{{ room.short_name }}
 				</a>
 			</td>
+			{% if lesson %}
 			<td>
-				{% if lesson %}
-				<a href="{% url "teacher_timetable" lesson.teacher_id %}">
+				<a href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">
 					{{ lesson.teacher.initials }}
 				</a>
-				{{ lesson.subject.short_name }}
+			</td>
+			<td>
+				<span title="{{ lesson.subject.name }}">
+					{{ lesson.subject.short_name }}
+				</span>
+			</td>
 
+			<td>
 				<a href="{% url "groups_timetable" lesson.group_id|slugify %}">
 					{{ lesson.group }}
 				</a>
-				{% else %}
-				{% endif %}
-				
 			</td>
+			{% else %}
+			<td></td>
+			<td></td>
+			<td></td>
+			{% endif %}
 		</tr>
 		{% endfor %}
 	</tbody>
