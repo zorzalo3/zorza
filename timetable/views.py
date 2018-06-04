@@ -151,3 +151,21 @@ def edit_calendar(request):
         formset = DayPlanFormSet(queryset=qs)
     context = {'formset': formset}
     return render(request, 'edit_calendar.html', context)
+
+def show_rooms(request, date, period):
+    date = parse_date(date)
+    weekday = date.weekday()
+    period = int(period)
+
+    rooms = {room: None for room in Room.objects.all()}
+    lessons = Lesson.objects.filter(weekday=weekday, period=period) \
+        .select_related('room', 'teacher', 'group', 'subject')
+    for lesson in lessons:
+        rooms[lesson.room] = lesson
+
+    context = {
+        'date': date,
+        'period': period,
+        'rooms': rooms,
+    }
+    return render(request, 'rooms.html', context)

@@ -15,4 +15,5 @@ urlpatterns = [
     path('substitutions/add/<int:teacher_id>/<date>/', add_substitutions2, name='add_substitutions2'),
     path('manage/', manage, name='manage'),
     path('calendar/edit/', edit_calendar, name='edit_calendar'),
+    path('rooms/<date>/<period>/', show_rooms, name='rooms'),
 ]

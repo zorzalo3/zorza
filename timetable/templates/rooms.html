@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Rooms" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "Rooms" %}</h2>
+
+<table>
+	<thead>
+		<th>{% trans "Room" %}</th>
+		<th>{% trans "Lesson" %}</th>
+	</thead>
+	<tbody>
+		{% for room, lesson in rooms.items %}
+		<tr>
+			<td>
+				<a href="{% url "room_timetable" room.id %}">
+					{{ room.short_name }}
+				</a>
+			</td>
+			<td>
+				{% if lesson %}
+				<a href="{% url "teacher_timetable" lesson.teacher_id %}">
+					{{ lesson.teacher.initials }}
+				</a>
+				{{ lesson.subject.short_name }}
+
+				<a href="{% url "groups_timetable" lesson.group_id|slugify %}">
+					{{ lesson.group }}
+				</a>
+				{% else %}
+				{% endif %}
+				
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
