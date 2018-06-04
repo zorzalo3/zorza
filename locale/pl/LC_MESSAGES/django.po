@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 18:47+0200\n"
+"POT-Creation-Date: 2018-06-04 18:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,6 +369,10 @@ msgstr "Wybierz nauczyciela"
 #: timetable/templates/timetable_base.html:97
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
+
+#: timetable/templates/timetable_base.html:113
+msgid "Show the lesson in each room"
+msgstr "Pokaż lekcję dla każdej sali"
 
 #: timetable/views.py:72
 msgid "Select at least one group"
