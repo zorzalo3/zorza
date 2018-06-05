@@ -29,8 +29,11 @@
 {% endif %}
 
 <p class="text-center">
-	<a class="button button-primary">
-		{% trans "Create new" %}
+	<a class="button" href="{% url "create_file" %}">
+		{% trans "Add a file" %}
+	</a>
+	<a class="button" href="{% url "create_document" %}">
+		{% trans "Add a document" %}
 	</a>
 </p>
 

@@ -6,7 +6,7 @@ todo
 {% endblock %}
 
 {% block content %}
-<form class="form-small" method="post">
+<form enctype="multipart/form-data" class="form-small" method="post">
 	{% if object %}
 	<h2>{% trans "Update file" %}</h2>
 	{% else %}
@@ -16,6 +16,7 @@ todo
 	{{ form.non_field_errors }}
 	{{ form.as_p }}
 	<p class="text-center">
+		<a class="button" href="{% url "my_documents" %}">{% trans "Back" %}</a>
 		<button type="submit" class="button-primary">
 			{% trans "Save" %}
 		</button>
