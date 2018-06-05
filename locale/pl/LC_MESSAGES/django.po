@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 14:15+0200\n"
+"POT-Creation-Date: 2018-06-05 20:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,37 @@ msgstr "Sukces"
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
+#: documents/templates/edit_document.html:6
+#: documents/templates/edit_document.html:15
+msgid "Edit document"
+msgstr "Edytuj dokument"
+
+#: documents/templates/edit_document.html:8
+#: documents/templates/edit_document.html:17
+msgid "Create a document"
+msgstr "Utwórz dokument"
+
+#: documents/templates/edit_document.html:23
+#: documents/templates/edit_file.html:24
+#: timetable/templates/add_substitutions.html:47
+msgid "Back"
+msgstr "Powrót"
+
+#: documents/templates/edit_document.html:25
+#: documents/templates/edit_file.html:26
+#: timetable/templates/add_substitutions.html:49
+#: timetable/templates/edit_calendar.html:42
+msgid "Save"
+msgstr "Zapisz"
+
+#: documents/templates/edit_file.html:6 documents/templates/edit_file.html:16
+msgid "Update file"
+msgstr "Zmień plik"
+
+#: documents/templates/edit_file.html:8 documents/templates/edit_file.html:18
+msgid "Create a file"
+msgstr "Utwórz plik"
+
 #: documents/templates/show_category.html:5
 #: documents/templates/show_category.html:9 templates/base.html:24
 msgid "Documents"
@@ -75,6 +106,14 @@ msgstr "Nic tu nie ma!"
 #: timetable/templates/management.html:26
 msgid "My documents"
 msgstr "Moje dokumenty"
+
+#: documents/templates/show_mine.html:33
+msgid "Add a file"
+msgstr "Dodaj plik"
+
+#: documents/templates/show_mine.html:36
+msgid "Add a document"
+msgstr "Dodaj dokument"
 
 #: templates/404.html:12
 msgid "Page not found"
@@ -200,15 +239,6 @@ msgstr "Zastępca"
 
 #: timetable/templates/add_substitutions.html:28
 msgid "Delete?"
-msgstr ""
-
-#: timetable/templates/add_substitutions.html:47
-msgid "Back"
-msgstr "Powrót"
-
-#: timetable/templates/add_substitutions.html:49
-#: timetable/templates/edit_calendar.html:42
-msgid "Save"
 msgstr ""
 
 #: timetable/templates/class_timetable.html:5
