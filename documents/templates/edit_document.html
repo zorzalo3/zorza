@@ -2,13 +2,17 @@
 {% load i18n %}
 
 {% block title %}
-todo
+{% if object %}
+{% trans "Edit document" %}
+{% else %}
+{% trans "Create a document" %}
+{% endif %}
 {% endblock %}
 
 {% block content %}
 <form class="form-small" method="post">
 	{% if object %}
-	<h2>{% trans "Update document" %}</h2>
+	<h2>{% trans "Edit document" %}</h2>
 	{% else %}
 	<h2>{% trans "Create a document" %}</h2>
 	{% endif %}

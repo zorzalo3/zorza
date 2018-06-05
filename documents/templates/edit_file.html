@@ -2,7 +2,12 @@
 {% load i18n %}
 
 {% block title %}
-todo
+{% if object %}
+{% trans "Update file" %}
+{% else %}
+{% trans "Create a file" %}
+{% endif %}
+- Zorza
 {% endblock %}
 
 {% block content %}
