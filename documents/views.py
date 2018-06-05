@@ -62,3 +62,35 @@ def create_document(request):
     context = {'form': form}
 
     return render(request, 'edit_document.html', context)
+
+@login_required
+def edit_file(request, file_id):
+    _file = get_object_or_404(File, pk=file_id)
+    if _file.author != request.user:
+        return HttpResponseForbidden()
+    form = FileForm(instance=_file)
+    if request.POST:
+        form = FileForm(request.POST, request.FILES, instance=_file)
+        if form.is_valid():
+            form.save()
+            return redirect('my_documents')
+
+    context = {'object': _file, 'form': form}
+
+    return render(request, 'edit_file.html', context)
+
+@login_required
+def edit_document(request, document_id):
+    document = get_object_or_404(Document, pk=document_id)
+    if document.author != request.user:
+        return HttpResponseForbidden()
+    form = DocumentForm(instance=document)
+    if request.POST:
+        form = DocumentForm(request.POST, instance=document)
+        if form.is_valid():
+            form.save()
+            return redirect('my_documents')
+
+    context = {'object': document, 'form': form}
+
+    return render(request, 'edit_document.html', context)

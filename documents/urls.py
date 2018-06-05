@@ -8,7 +8,7 @@ urlpatterns = [
     path('<int:document_id>/', show_document, name='document'),
     path('mine/', show_mine, name='my_documents'),
     path('create-file/', create_file, name='create_file'),
-    #path('edit-file/<int:pk>/', FileUpdate.as_view(), name='edit_file'),
+    path('edit-file/<int:file_id>/', edit_file, name='edit_file'),
     path('create-document/', create_document, name='create_document'),
-    #path('edit-document/<int:pk>/', DocumentUpdate.as_view(), name='edit_file'),
+    path('edit-document/<int:document_id>/', edit_document, name='edit_document'),
 ]
