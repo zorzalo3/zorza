@@ -37,7 +37,7 @@ def show_mine(request):
 def create_file(request):
     form = FileForm()
     if request.POST:
-        form = FileForm(request.POST)
+        form = FileForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author = request.user
