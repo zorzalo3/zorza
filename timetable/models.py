@@ -138,12 +138,23 @@ class Substitution(Occasion):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
     @property
+    def lesson(self):
+        return Lesson.objects.get(
+            period=self.period, weekday=self.weekday, teacher=self.teacher)
+
+    @property
     def group(self):
         query = Lesson.objects \
             .select_related('group') \
-            .only('group__name') \
             .get(period=self.period, weekday=self.weekday, teacher=self.teacher)
-        return str(query.group.name)
+        return query.group
+
+    @property
+    def room(self):
+        query = Lesson.objects.select_related('room') \
+            .get(period=self.period, weekday=self.weekday, teacher=self.teacher)
+        return query.room
+
 
     def __str__(self):
         return '%s %s %s -> %s' % (self.date, self.period, self.teacher, \
@@ -152,6 +163,17 @@ class Substitution(Occasion):
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+    @property
+    def lesson(self):
+        return Lesson.objects.get(
+            period=self.period, weekday=self.weekday, group=self.group)
+
+    @property
+    def room(self):
+        query = Lesson.objects.select_related('room') \
+            .get(period=self.period, weekday=self.weekday, group=self.group)
+        return query.room
 
     def __str__(self):
         return '%s %s %s (%s)' % (self.date, self.period, self.group, \
