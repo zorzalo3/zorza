@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+todo
+{% endblock %}
+
+{% block content %}
+<form class="form-small" method="post">
+	{% if object %}
+	<h2>{% trans "Update document" %}</h2>
+	{% else %}
+	<h2>{% trans "Create a document" %}</h2>
+	{% endif %}
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+	{{ form.as_p }}
+	<p class="text-center">
+		<button type="submit" class="button-primary">
+			{% trans "Save" %}
+		</button>
+	</p>
+</form>
+
+{% endblock %}
