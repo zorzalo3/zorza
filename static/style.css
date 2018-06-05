@@ -294,6 +294,11 @@ input[type="checkbox"] {
   height: auto;
 }
 
+input[type="file"] {
+  padding: 0;
+  color: white;
+}
+
 textarea {
   resize: vertical;
 }
