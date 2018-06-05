@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import *
 
 def show_category(request, parent_id=None):
@@ -21,3 +22,11 @@ def show_document(request, document_id):
         'document': document,
     }
     return render(request, 'show_document.html', context)
+
+@login_required
+def show_mine(request):
+    items = Item.objects.filter(author=request.user).select_related('category')
+    context = {
+        'items': items,
+    }
+    return render(request, 'show_mine.html', context)

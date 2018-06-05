@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "My documents" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "My documents" %}</h2>
+
+{% for item in items %}
+<a class="item" href="{% if item.file %}{{ item.file.data.url }}{% else %}{% url 'document' item.id %}{% endif %}">
+	<div class="title" href="#">
+		{{ item.title }}
+	</div>
+	<span class="created-date" title="{% trans "Created on" %} {{ item.created_date }}, {% trans "modified on" %} {{ item.modified_date }}">
+		{{ item.created_date|date:"SHORT_DATE_FORMAT" }}
+	</span>
+	{% if item.file %}
+	<span class="file-description">
+		{{ item.file.data.size|filesizeformat }}
+	</span>
+	{% endif %}
+</a>
+{% endfor %}
+
+{% if not categories and not items %}
+{% trans "Nothing here!" %}
+{% endif %}
+
+{% endblock %}

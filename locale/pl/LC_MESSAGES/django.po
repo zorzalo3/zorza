@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 18:50+0200\n"
+"POT-Creation-Date: 2018-06-05 14:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,16 +57,24 @@ msgid "Subcategories:"
 msgstr "Podkategorie:"
 
 #: documents/templates/show_category.html:27
+#: documents/templates/show_mine.html:16
 msgid "Created on"
 msgstr "Utworzono"
 
 #: documents/templates/show_category.html:27
+#: documents/templates/show_mine.html:16
 msgid "modified on"
 msgstr "zmodyfikowano"
 
 #: documents/templates/show_category.html:44
+#: documents/templates/show_mine.html:28
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
+
+#: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
+#: timetable/templates/management.html:26
+msgid "My documents"
+msgstr "Moje dokumenty"
 
 #: templates/404.html:12
 msgid "Page not found"
