@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Delete item" %}
+- Zorza
+{% endblock %}
+
+{% block content %}
+<form class="form-small" method="post">
+	<h2>{% trans "Delete item" %}</h2>
+	<p>
+	{% blocktrans %}Are you sure you want to delete "{{ object }}"?{% endblocktrans %}
+	</p>
+	{% csrf_token %}
+	<p class="text-center">
+		<a class="button" href="{% url "my_documents" %}">{% trans "Back" %}</a>
+		<button type="submit" class="button-primary">
+			{% trans "Delete" %}
+		</button>
+	</p>
+</form>
+
+{% endblock %}

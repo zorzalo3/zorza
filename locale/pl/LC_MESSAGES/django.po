@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-06 08:23+0200\n"
+"POT-Creation-Date: 2018-06-06 08:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,28 @@ msgstr "Tytuł"
 msgid "File"
 msgstr "Plik"
 
+#: documents/templates/delete_item.html:5
+#: documents/templates/delete_item.html:11
+msgid "Delete item"
+msgstr "Usuń obiekt"
+
+#: documents/templates/delete_item.html:13
+#, python-format
+msgid "Are you sure you want to delete \"%(object)s\"?"
+msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
+
+#: documents/templates/delete_item.html:17
+#: documents/templates/edit_document.html:23
+#: documents/templates/edit_file.html:24
+#: timetable/templates/add_substitutions.html:47
+msgid "Back"
+msgstr "Powrót"
+
+#: documents/templates/delete_item.html:19
+#: documents/templates/show_mine.html:29
+msgid "Delete"
+msgstr ""
+
 #: documents/templates/edit_document.html:6
 #: documents/templates/edit_document.html:15
 msgid "Edit document"
@@ -68,12 +90,6 @@ msgstr "Edytuj dokument"
 #: documents/templates/edit_document.html:17
 msgid "Create a document"
 msgstr "Utwórz dokument"
-
-#: documents/templates/edit_document.html:23
-#: documents/templates/edit_file.html:24
-#: timetable/templates/add_substitutions.html:47
-msgid "Back"
-msgstr "Powrót"
 
 #: documents/templates/edit_document.html:25
 #: documents/templates/edit_file.html:26
@@ -110,7 +126,7 @@ msgid "modified on"
 msgstr "zmodyfikowano"
 
 #: documents/templates/show_category.html:44
-#: documents/templates/show_mine.html:32
+#: documents/templates/show_mine.html:35
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
@@ -123,11 +139,11 @@ msgstr "Moje dokumenty"
 msgid "Edit"
 msgstr "Edytuj"
 
-#: documents/templates/show_mine.html:37
+#: documents/templates/show_mine.html:40
 msgid "Add a file"
 msgstr "Dodaj plik"
 
-#: documents/templates/show_mine.html:40
+#: documents/templates/show_mine.html:43
 msgid "Add a document"
 msgstr "Dodaj dokument"
 

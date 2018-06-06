@@ -11,4 +11,5 @@ urlpatterns = [
     path('edit-file/<int:file_id>/', edit_file, name='edit_file'),
     path('create-document/', create_document, name='create_document'),
     path('edit-document/<int:document_id>/', edit_document, name='edit_document'),
+    path('delete-item/<int:pk>/', DeleteItem.as_view(), name='delete_item'),
 ]

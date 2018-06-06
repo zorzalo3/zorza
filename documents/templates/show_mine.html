@@ -25,6 +25,9 @@
 	<a href="{% if item.file %}{% url "edit_file" item.id %}{% else %}{% url "edit_document" item.id %}{% endif %}">
 		{% trans "Edit" %}
 	</a>
+	<a href="{% url "delete_item" item.id %}">
+		{% trans "Delete" %}
+	</a>
 </p>
 {% endfor %}
 

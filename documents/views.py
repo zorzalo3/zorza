@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
@@ -94,3 +95,8 @@ def edit_document(request, document_id):
     context = {'object': document, 'form': form}
 
     return render(request, 'edit_document.html', context)
+
+class DeleteItem(DeleteView):
+    model = Item
+    success_url = reverse_lazy('my_documents')
+    template_name = 'delete_item.html'
