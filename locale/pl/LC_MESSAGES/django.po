@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-06 08:09+0200\n"
+"POT-Creation-Date: 2018-06-06 08:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "Twój adres e-mail"
 msgid "Subject"
 msgstr "Temat"
 
-#: contact/models.py:8 documents/forms.py:25
+#: contact/models.py:8 documents/forms.py:23
 msgid "Content"
 msgstr "Treść"
 
@@ -47,15 +47,15 @@ msgstr "Sukces"
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
-#: documents/forms.py:12 documents/forms.py:23
-msgid "Title"
-msgstr "Tytuł"
-
-#: documents/forms.py:13 documents/forms.py:24
+#: documents/forms.py:7 documents/forms.py:17
 msgid "Category"
 msgstr "Kategoria"
 
-#: documents/forms.py:14
+#: documents/forms.py:12 documents/forms.py:22
+msgid "Title"
+msgstr "Tytuł"
+
+#: documents/forms.py:13
 msgid "File"
 msgstr "Plik"
 
@@ -100,17 +100,17 @@ msgid "Subcategories:"
 msgstr "Podkategorie:"
 
 #: documents/templates/show_category.html:27
-#: documents/templates/show_mine.html:16
+#: documents/templates/show_mine.html:17
 msgid "Created on"
 msgstr "Utworzono"
 
 #: documents/templates/show_category.html:27
-#: documents/templates/show_mine.html:16
+#: documents/templates/show_mine.html:17
 msgid "modified on"
 msgstr "zmodyfikowano"
 
 #: documents/templates/show_category.html:44
-#: documents/templates/show_mine.html:28
+#: documents/templates/show_mine.html:32
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
@@ -119,11 +119,15 @@ msgstr "Nic tu nie ma!"
 msgid "My documents"
 msgstr "Moje dokumenty"
 
-#: documents/templates/show_mine.html:33
+#: documents/templates/show_mine.html:26
+msgid "Edit"
+msgstr "Edytuj"
+
+#: documents/templates/show_mine.html:37
 msgid "Add a file"
 msgstr "Dodaj plik"
 
-#: documents/templates/show_mine.html:36
+#: documents/templates/show_mine.html:40
 msgid "Add a document"
 msgstr "Dodaj dokument"
 
