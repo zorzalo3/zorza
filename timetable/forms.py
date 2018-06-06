@@ -28,7 +28,7 @@ class SubstitutionForm(ModelForm):
         self.fields['substitute'].empty_label = _('cancelled')
 
 SubstitutionFormSet = modelformset_factory(
-    Substitution, form=SubstitutionForm, extra=8, can_delete=True)
+    Substitution, form=SubstitutionForm, extra=8, can_delete=True, max_num=10)
 
 class DayPlanForm(ModelForm):
     class Meta:
