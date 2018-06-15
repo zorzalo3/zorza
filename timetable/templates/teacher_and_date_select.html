@@ -8,6 +8,12 @@
 {% block content %}
 <form class="form-small" class="add-substitutions1" method="post">
 	<h2>{% trans "Adding substitutions — step 1" %}</h2>
+	<p>
+		{% now "SHORT_DATE_FORMAT" as today %}
+		{% blocktrans trimmed %}
+		Today's date is {{ today }}.
+		{% endblocktrans %}
+	</p>
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 	{{ form.as_p }}

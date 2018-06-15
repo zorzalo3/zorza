@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-06 08:32+0200\n"
+"POT-Creation-Date: 2018-06-15 18:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "Are you sure you want to delete \"%(object)s\"?"
 msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 
 #: documents/templates/delete_item.html:17
-#: documents/templates/edit_document.html:23
+#: documents/templates/edit_document.html:24
 #: documents/templates/edit_file.html:24
 #: timetable/templates/add_substitutions.html:47
 msgid "Back"
@@ -82,16 +82,16 @@ msgid "Delete"
 msgstr ""
 
 #: documents/templates/edit_document.html:6
-#: documents/templates/edit_document.html:15
+#: documents/templates/edit_document.html:16
 msgid "Edit document"
 msgstr "Edytuj dokument"
 
 #: documents/templates/edit_document.html:8
-#: documents/templates/edit_document.html:17
+#: documents/templates/edit_document.html:18
 msgid "Create a document"
 msgstr "Utwórz dokument"
 
-#: documents/templates/edit_document.html:25
+#: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
 #: timetable/templates/add_substitutions.html:49
 #: timetable/templates/edit_calendar.html:42
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:20 timetable/forms.py:47
+#: timetable/forms.py:20 timetable/forms.py:47 timetable/forms.py:51
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
@@ -222,6 +222,13 @@ msgstr "odwołane"
 msgid "Period"
 msgstr "Godz."
 
+#: timetable/forms.py:52 timetable/templates/absences.html:12
+#: timetable/templates/group_timetable.html:7
+#: timetable/templates/group_timetable.html:18
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:19
+msgid "Group"
+msgstr "Grupa"
+
 #: timetable/models.py:110
 msgid "Lesson"
 msgstr "Lekcja"
@@ -229,13 +236,6 @@ msgstr "Lekcja"
 #: timetable/templates/absences.html:4
 msgid "Absences"
 msgstr "Nieobecności grup"
-
-#: timetable/templates/absences.html:12
-#: timetable/templates/group_timetable.html:7
-#: timetable/templates/group_timetable.html:18
-#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:19
-msgid "Group"
-msgstr "Grupa"
 
 #: timetable/templates/absences.html:13
 msgid "Periods"
@@ -400,7 +400,12 @@ msgstr "Typy dzwonków"
 msgid "Adding substitutions — step 1"
 msgstr "Dodawanie zastępstw — krok 1"
 
-#: timetable/templates/teacher_and_date_select.html:16
+#: timetable/templates/teacher_and_date_select.html:13
+#, python-format
+msgid "Today's date is %(today)s."
+msgstr "Dzisiejsza data to %(today)s."
+
+#: timetable/templates/teacher_and_date_select.html:22
 msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
