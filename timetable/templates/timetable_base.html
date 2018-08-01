@@ -6,20 +6,7 @@
 {% block content %}
 <h2>{% trans "Timetable" %}</h2>
 <p>
-	{% now "l" %}, {% now "DATE_FORMAT" %}.
-	<span class="lesson-timer" id="before-lessons" hidden>
-		{% blocktrans %}<time></time> until the first lesson today.{% endblocktrans %}
-	</span>
-	<span class="lesson-timer" id="during-lesson" hidden>
-		{% blocktrans %}<time></time> until the end of the lesson.{% endblocktrans %}
-	</span>
-	<span class="lesson-timer" id="between-lessons" hidden>
-		{% blocktrans %}<time></time> until the next lesson.{% endblocktrans %}
-	</span>
-	<span class="lesson-timer" id="after-lessons" hidden>
-		{% blocktrans %}Lessons have already finished today.{% endblocktrans %}
-	</span>
-	<br>
+	{% include "timer.html" %}
 	{% include "dayplans.html" %}
 </p>
 

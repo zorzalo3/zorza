@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Display</title>
+		<link rel="stylesheet" href="{% static "style.css" %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	</head>
+	<body>
+		<header>
+			<nav class="navbar container">
+				<h1 class="logo-wrapper">
+					<a class="site-logo" href="{% url "home" %}" title="{% trans "Visit the main page" %}">
+						<img src="{% static "zorza_text.svg" %}" alt="Zorza">
+					</a>
+				</h1>
+			</nav>
+		</header>
+		<main class="container">
+			{% include "timer.html" %}
+			{% include "substitutions.html" %}
+			{% include "absences.html" %}
+			{% include "reservations.html" %}
+		</main>
+		<script id="todays-periods">
+			todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
+			server_utc_offset = {{ utc_offset }};
+		</script>
+		<script src="{% static "timetable.js" %}"></script>
+	</body>
+</html>

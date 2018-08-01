@@ -96,19 +96,25 @@ function updateLesson() {
 	} else for (var i = 0; i < periods.length; i++) {
 		if (periods[i]['begin_time'] < now && now < periods[i]['end_time']) {
 			// If a lesson is ongoing
-			var row = document.getElementById("period-"+periods[i]['number']).parentElement;
-			row.classList.add("highlight");
-			prev_highlight = row;
 			timer = document.getElementById("during-lesson");
+			var tmp = document.getElementById("period-"+periods[i]['number']);
+			if (tmp) {
+				var row = tmp.parentElement;
+				row.classList.add("highlight");
+				prev_highlight = row;
+			}
 			until = periods[i]['end_time'];
 			break;
 		}
 		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
 			// If it's a break between lessons
-			var row = document.getElementById("period-"+periods[i-1]['number']).parentElement;
-			row.classList.add("break-highlight");
-			prev_highlight = row;
 			timer = document.getElementById("between-lessons");
+			var tmp = document.getElementById("period-"+periods[i-1]['number']);
+			if (tmp) {
+				var row = tmp.parentElement;
+				row.classList.add("break-highlight");
+				prev_highlight = row;
+			}
 			until = periods[i]['begin_time'];
 			break;
 		}

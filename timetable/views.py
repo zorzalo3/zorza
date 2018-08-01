@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import *
 from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
-    get_substitutions)
+    get_substitutions, get_display_context)
 from .forms import *
 
 
@@ -180,3 +180,7 @@ class RoomsDatePeriodSelectView(FormView):
         period = form.cleaned_data['period']
         return redirect('rooms', date, period)
 
+def display(request):
+    context = get_display_context()
+
+    return render(request, 'display.html', context)

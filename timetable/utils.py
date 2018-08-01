@@ -35,6 +35,15 @@ def get_period_range():
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
 
+def get_display_context():
+    context = {
+        'days': days,
+        'todays_periods_json': serialize('json', get_todays_periods()),
+        'utc_offset': get_utc_offset(),
+    }
+    context.update(get_events())
+    return context
+
 def get_timetable_context(lessons):
 
     lessons = lessons.values(*lesson_values)
@@ -66,15 +75,12 @@ def get_timetable_context(lessons):
         # Sort considering system locale
 
     context = {
-        'days': days,
         'table': table,
         'class_list': Class.objects.all().values(),
         'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
-        'todays_periods_json': serialize('json', get_todays_periods()),
-        'utc_offset': get_utc_offset(),
     }
-    context.update(get_events())
+    context.update(get_display_context())
 
     return context
 

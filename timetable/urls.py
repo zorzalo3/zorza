@@ -17,4 +17,5 @@ urlpatterns = [
     path('calendar/edit/', edit_calendar, name='edit_calendar'),
     path('rooms/<date>/<period>/', show_rooms, name='rooms'),
     path('rooms/', RoomsDatePeriodSelectView.as_view(), name='rooms'),
+    path('display/', display, name='display'),
 ]
