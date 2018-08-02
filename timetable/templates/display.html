@@ -16,6 +16,13 @@
 						<img src="{% static "zorza_text.svg" %}" alt="Zorza">
 					</a>
 				</h1>
+				<div class="display-datetime">
+					<span id="display-time">
+						12:12:12
+					</span>
+					{% now "l" %}, {% now "DATE_FORMAT" %}.
+				</div>
+				{% include "timer.html" %}
 			</nav>
 		</header>
 		<main class="container">
@@ -29,5 +36,13 @@
 			server_utc_offset = {{ utc_offset }};
 		</script>
 		<script src="{% static "timetable.js" %}"></script>
+		<script>
+			setInterval(function () {
+				var clock = document.getElementById("display-time");
+				// TODO: show server time
+				var time = new Date();
+				clock.textContent = time.toLocaleTimeString();
+			}, 100);
+		</script>
 	</body>
 </html>

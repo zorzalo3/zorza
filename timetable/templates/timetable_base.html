@@ -6,6 +6,7 @@
 {% block content %}
 <h2>{% trans "Timetable" %}</h2>
 <p>
+	{% now "l" %}, {% now "DATE_FORMAT" %}.
 	{% include "timer.html" %}
 	{% include "dayplans.html" %}
 </p>
