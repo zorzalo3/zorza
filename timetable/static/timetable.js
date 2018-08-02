@@ -25,11 +25,12 @@
  *
  */
 
-// Show today's column (for smaller screens)
 var date = new Date();
 var weekday = date.getDay();
 // Javascript counts from Sunday, Python (Django) from Monday
 weekday = (weekday+6)%7;
+
+// Show today's column (for smaller screens)
 var th_today = document.getElementById("day-"+weekday);
 if (th_today) {
 	th_today.scrollIntoView(false);
