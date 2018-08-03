@@ -2,6 +2,7 @@
 
 {% if substitutions %}
 <h2 class="text-center">{% trans "Substitutions" %}</h3>
+<div class="text-center">
 <div class="substitutions">
 
 {% regroup substitutions by date as substitutions_by_day %}
@@ -31,5 +32,6 @@
 </table>
 {% endfor %}
 {% endfor %}
+</div>
 </div>
 {% endif %}
