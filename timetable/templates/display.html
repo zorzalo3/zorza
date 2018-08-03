@@ -16,17 +16,18 @@
 						<img src="{% static "zorza_text.svg" %}" alt="Zorza">
 					</a>
 				</h1>
+				<div class="display-timer">
+					{% include "timer.html" %}
+				</div>
 				<div class="display-datetime">
+					{% now "l" %}, {% now "DATE_FORMAT" %}
 					<span id="display-time">
 						12:12:12
 					</span>
-					{% now "l" %}, {% now "DATE_FORMAT" %}.
 				</div>
-				{% include "timer.html" %}
 			</nav>
 		</header>
 		<main class="container">
-			{% include "timer.html" %}
 			{% include "substitutions.html" %}
 			{% include "absences.html" %}
 			{% include "reservations.html" %}
