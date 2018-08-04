@@ -147,6 +147,8 @@ def edit_calendar(request):
         formset = DayPlanFormSet(request.POST, queryset=qs)
         if formset.is_valid():
             formset.save()
+            # Refresh the formset by refreshing the page
+            return HttpResponseRedirect(request.path)
     else:
         formset = DayPlanFormSet(queryset=qs)
     context = {'formset': formset}
