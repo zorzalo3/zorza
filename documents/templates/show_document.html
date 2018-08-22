@@ -6,8 +6,18 @@
 {% endblock %}
 
 {% block content %}
-<h2>{{ document.title }}</h2>
 <article>
+	<span class="created-date" title="{% trans "Created on" %} {{ document.created_date }}, {% trans "modified on" %} {{ document.modified_date }}">
+		{{ document.created_date|date:"SHORT_DATE_FORMAT" }}
+	</span>
+	{% if document.author %}
+	<span class="author">
+		{{ document.author }}
+	</span>
+<h2>{{ document.title }}</h2>
+<p>
+	{% endif %}
+</p>
 	{% autoescape off %}
 	{{ document.content }}
 	{% endautoescape %}
