@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from tinymce.models import HTMLField
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -29,4 +28,4 @@ class File(Item):
     data = models.FileField(upload_to='documents/')
 
 class Document(Item):
-    content = HTMLField()
+    content = models.TextField()

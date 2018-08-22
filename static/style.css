@@ -280,13 +280,14 @@ select {
   visibility: hidden;
 }
 
-input, textarea {
+input, textarea, .medium-editor-element {
   font-size: 1.1rem;
   width: 100%;
   padding: 0.6rem;
   border: none;
   border-radius: 2px;
   color: rgba(0, 0, 0, 0.9);
+  background: white;
 }
 
 input {

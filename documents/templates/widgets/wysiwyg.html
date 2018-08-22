@@ -1,0 +1,9 @@
+{% include "django/forms/widgets/textarea.html" %}
+<script>
+	var editor = new MediumEditor("#id_content", {
+		toolbar: {
+			buttons: [ 'bold', 'italic', 'underline', 'orderedlist', 'h1', 'h2', 'h3', 'removeFormat' ]
+		}
+	 });
+</script>
+
