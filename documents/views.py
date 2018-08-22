@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.decorators.cache import never_cache
 from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
+@never_cache
 def show_category(request, parent_id=None):
     try:
         parent = Category.objects.get(pk=parent_id)
@@ -18,7 +20,7 @@ def show_category(request, parent_id=None):
         'items': Item.objects.filter(category=parent)
     }
     return render(request, 'show_category.html', context)
-
+@never_cache
 def show_document(request, document_id):
     document = get_object_or_404(Document, pk=document_id)
     context = {
@@ -26,6 +28,7 @@ def show_document(request, document_id):
     }
     return render(request, 'show_document.html', context)
 
+@never_cache
 @login_required
 def show_mine(request):
     items = Item.objects.filter(author=request.user).select_related('category')
