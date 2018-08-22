@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 18:11+0200\n"
+"POT-Creation-Date: 2018-08-22 19:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,12 @@ msgstr "Twój adres e-mail"
 msgid "Subject"
 msgstr "Temat"
 
-#: contact/models.py:8 documents/forms.py:23
+#: contact/models.py:8 documents/forms.py:31
 msgid "Content"
 msgstr "Treść"
 
 #: contact/templates/contact/message_form.html:5
-#: contact/templates/contact/message_form.html:10 templates/base.html:38
+#: contact/templates/contact/message_form.html:10 templates/base.html:39
 msgid "Contact us"
 msgstr "Kontakt"
 
@@ -47,15 +47,15 @@ msgstr "Sukces"
 msgid "Your message was sent succesfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
-#: documents/forms.py:7 documents/forms.py:17
+#: documents/forms.py:15 documents/forms.py:25
 msgid "Category"
 msgstr "Kategoria"
 
-#: documents/forms.py:12 documents/forms.py:22
+#: documents/forms.py:20 documents/forms.py:30
 msgid "Title"
 msgstr "Tytuł"
 
-#: documents/forms.py:13
+#: documents/forms.py:21
 msgid "File"
 msgstr "Plik"
 
@@ -107,7 +107,7 @@ msgid "Create a file"
 msgstr "Utwórz plik"
 
 #: documents/templates/show_category.html:5
-#: documents/templates/show_category.html:9 templates/base.html:24
+#: documents/templates/show_category.html:9 templates/base.html:25
 msgid "Documents"
 msgstr "Dokumenty"
 
@@ -130,6 +130,19 @@ msgstr "zmodyfikowano"
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
+#: documents/templates/show_document.html:12
+msgid "Author: "
+msgstr "Autor: "
+
+#: documents/templates/show_document.html:16
+msgid "Created on %(created)s."
+msgstr "Utworzono %(created)s."
+
+#: documents/templates/show_document.html:21
+#, python-format
+msgid "Modified on %(modified)s."
+msgstr "Zmodyfikowano %(modified)s"
+
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
 #: timetable/templates/management.html:26
 msgid "My documents"
@@ -151,11 +164,12 @@ msgstr "Dodaj dokument"
 msgid "Page not found"
 msgstr ""
 
-#: templates/base.html:15 templates/registration/logged_out.html:13
+#: templates/base.html:16 templates/registration/logged_out.html:13
+#: timetable/templates/display.html:15
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
-#: templates/base.html:21 timetable/templates/class_timetable.html:5
+#: templates/base.html:22 timetable/templates/class_timetable.html:5
 #: timetable/templates/group_timetable.html:5
 #: timetable/templates/room_timetable.html:5
 #: timetable/templates/teacher_timetable.html:5
@@ -163,11 +177,11 @@ msgstr "Odwiedź stronę główną"
 msgid "Timetable"
 msgstr "Plan lekcji"
 
-#: templates/base.html:34
+#: templates/base.html:35
 msgid "About"
 msgstr "O projekcie"
 
-#: templates/base.html:36 timetable/templates/management.html:5
+#: templates/base.html:37 timetable/templates/management.html:5
 #: timetable/templates/management.html:11
 msgid "Management"
 msgstr "Zarządzanie"
@@ -209,12 +223,12 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:20 timetable/forms.py:47 timetable/forms.py:51
+#: timetable/forms.py:20 timetable/forms.py:47
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:28 timetable/forms.py:42 timetable/models.py:138
+#: timetable/forms.py:28 timetable/forms.py:42 timetable/models.py:141
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -222,20 +236,20 @@ msgstr "odwołane"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/forms.py:52 timetable/templates/absences.html:12
-#: timetable/templates/group_timetable.html:7
-#: timetable/templates/group_timetable.html:18
-#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:19
-msgid "Group"
-msgstr "Grupa"
-
-#: timetable/models.py:110
+#: timetable/models.py:113
 msgid "Lesson"
 msgstr "Lekcja"
 
 #: timetable/templates/absences.html:4
 msgid "Absences"
 msgstr "Nieobecności grup"
+
+#: timetable/templates/absences.html:12
+#: timetable/templates/group_timetable.html:7
+#: timetable/templates/group_timetable.html:18
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
+msgid "Group"
+msgstr "Grupa"
 
 #: timetable/templates/absences.html:13
 msgid "Periods"
@@ -258,14 +272,14 @@ msgstr "Zastępstwa za %(teacher)s w dniu %(date)s (%(weekday)s)."
 #: timetable/templates/add_substitutions.html:26
 #: timetable/templates/reservations.html:12
 #: timetable/templates/schedules.html:15
-#: timetable/templates/substitutions.html:16
-#: timetable/templates/timetable_base.html:48
+#: timetable/templates/substitutions.html:17
+#: timetable/templates/timetable_base.html:36
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
 #: timetable/templates/add_substitutions.html:27
-#: timetable/templates/substitutions.html:18
+#: timetable/templates/substitutions.html:19
 msgid "Substitute"
 msgstr "Zastępca"
 
@@ -352,8 +366,8 @@ msgid "Reservations"
 msgstr "Rezerwacje sal"
 
 #: timetable/templates/reservations.html:13
-#: timetable/templates/substitutions.html:17
-#: timetable/templates/timetable_base.html:49
+#: timetable/templates/substitutions.html:18
+#: timetable/templates/timetable_base.html:37
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
@@ -391,7 +405,7 @@ msgid "Show lessons in rooms"
 msgstr "Pokaż lekcje w salach"
 
 #: timetable/templates/schedules.html:5 timetable/templates/schedules.html:10
-#: timetable/templates/timetable_base.html:112
+#: timetable/templates/timetable_base.html:100
 msgid "Schedules"
 msgstr "Typy dzwonków"
 
@@ -409,43 +423,43 @@ msgstr "Dzisiejsza data to %(today)s."
 msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
-#: timetable/templates/timetable_base.html:11
+#: timetable/templates/timer.html:3
 msgid "<time></time> until the first lesson today."
 msgstr "Do pierwszej lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:14
+#: timetable/templates/timer.html:6
 msgid "<time></time> until the end of the lesson."
 msgstr "Do końca lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:17
+#: timetable/templates/timer.html:9
 msgid "<time></time> until the next lesson."
 msgstr "Do następnej lekcji pozostało <time></time>."
 
-#: timetable/templates/timetable_base.html:20
+#: timetable/templates/timer.html:12
 msgid "Lessons have already finished today."
 msgstr "Lekcje się już skończyły."
 
-#: timetable/templates/timetable_base.html:34
+#: timetable/templates/timetable_base.html:22
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:77
+#: timetable/templates/timetable_base.html:65
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:81
+#: timetable/templates/timetable_base.html:69
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:89
+#: timetable/templates/timetable_base.html:77
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:97
+#: timetable/templates/timetable_base.html:85
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/templates/timetable_base.html:113
+#: timetable/templates/timetable_base.html:101
 msgid "Show the lesson in each room"
 msgstr "Pokaż lekcję dla każdej sali"
 

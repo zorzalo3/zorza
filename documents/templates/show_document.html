@@ -7,17 +7,26 @@
 
 {% block content %}
 <article>
-	<span class="created-date" title="{% trans "Created on" %} {{ document.created_date }}, {% trans "modified on" %} {{ document.modified_date }}">
-		{{ document.created_date|date:"SHORT_DATE_FORMAT" }}
-	</span>
+
 	{% if document.author %}
-	<span class="author">
-		{{ document.author }}
-	</span>
-<h2>{{ document.title }}</h2>
-<p>
+	{% trans "Author: " %} <strong>{{ document.author}}</strong><br>
 	{% endif %}
-</p>
+
+	{% with created=document.created_date modified=document.modified_date %}
+	{% blocktrans trimmed %}
+	Created on {{ created }}.
+	{% endblocktrans %}
+
+	{% if created != modified %}
+	{% blocktrans trimmed %}
+	Modified on {{ modified }}.
+	{% endblocktrans %}
+	{% endif %}
+	{% endwith %}
+
+
+	<h2>{{ document.title }}</h2>
+
 	{% autoescape off %}
 	{{ document.content }}
 	{% endautoescape %}
