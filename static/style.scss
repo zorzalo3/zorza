@@ -359,7 +359,6 @@ caption {
 }
 
 .item {
-	display: block;
 	font-size: 1.1rem;
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
@@ -367,20 +366,12 @@ caption {
 	line-height: 1;
 	.title {
 		font-weight: bold;
-		color: $link-color;
 	}
 	.author, .file-description {
 		font-size: 80%;
 	}
 	.created-date {
 		font-size: 80%;
-	}
-	&:hover {
-		text-decoration: none;
-		.title {
-			text-decoration: underline;
-		}
-		cursor: pointer;
 	}
 }
 .subcategories {

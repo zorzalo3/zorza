@@ -20,10 +20,11 @@
 {% endif %}
 
 {% for item in items %}
-<a class="item" href="{% if item.file %}{{ item.file.data.url }}{% else %}{% url 'document' item.id %}{% endif %}">
-	<div class="title" href="#">
+<div class="item">
+	<a class="title" href="{% if item.file %}{{ item.file.data.url }}{% else %}{% url 'document' item.id %}{% endif %}">
 		{{ item.title }}
-	</div>
+	</a>
+	<br>
 	<span class="created-date" title="{% trans "Created on" %} {{ item.created_date }}, {% trans "modified on" %} {{ item.modified_date }}">
 		{{ item.created_date|date:"SHORT_DATE_FORMAT" }}
 	</span>
@@ -37,7 +38,7 @@
 		{{ item.file.data.size|filesizeformat }}
 	</span>
 	{% endif %}
-</a>
+</div>
 {% endfor %}
 
 {% if not categories and not items %}

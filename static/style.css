@@ -375,7 +375,6 @@ caption {
 }
 
 .item {
-  display: block;
   font-size: 1.1rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -385,7 +384,6 @@ caption {
 
 .item .title {
   font-weight: bold;
-  color: #79b6da;
 }
 
 .item .author, .item .file-description {
@@ -394,15 +392,6 @@ caption {
 
 .item .created-date {
   font-size: 80%;
-}
-
-.item:hover {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.item:hover .title {
-  text-decoration: underline;
 }
 
 .subcategories {
