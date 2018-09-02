@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-22 19:41+0200\n"
+"POT-Creation-Date: 2018-09-02 18:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 #: documents/templates/delete_item.html:17
 #: documents/templates/edit_document.html:24
 #: documents/templates/edit_file.html:24
-#: timetable/templates/add_substitutions.html:47
+#: timetable/templates/add_substitutions.html:48
 msgid "Back"
 msgstr "Powrót"
 
@@ -93,7 +93,7 @@ msgstr "Utwórz dokument"
 
 #: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
-#: timetable/templates/add_substitutions.html:49
+#: timetable/templates/add_substitutions.html:50
 #: timetable/templates/edit_calendar.html:42
 msgid "Save"
 msgstr "Zapisz"
@@ -135,6 +135,7 @@ msgid "Author: "
 msgstr "Autor: "
 
 #: documents/templates/show_document.html:16
+#, python-format
 msgid "Created on %(created)s."
 msgstr "Utworzono %(created)s."
 
@@ -264,12 +265,13 @@ msgstr "Dodawanie zastępstw za %(teacher)s w dniu %(date)s."
 msgid "Adding substitutions — step 2"
 msgstr "Dodawanie zastępstw — krok 2"
 
-#: timetable/templates/add_substitutions.html:16
-#, python-format
-msgid "Substitutions for %(teacher)s on %(date)s (%(weekday)s). "
-msgstr "Zastępstwa za %(teacher)s w dniu %(date)s (%(weekday)s)."
+#: timetable/templates/add_substitutions.html:17
+msgid ""
+"Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
+"(%(weekday)s). "
+msgstr "Zastępstwa za <a href=\"%(url)s\">%(teacher)s</a> w dniu %(date)s (%(weekday)s)."
 
-#: timetable/templates/add_substitutions.html:26
+#: timetable/templates/add_substitutions.html:27
 #: timetable/templates/reservations.html:12
 #: timetable/templates/schedules.html:15
 #: timetable/templates/substitutions.html:17
@@ -278,12 +280,12 @@ msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
-#: timetable/templates/add_substitutions.html:27
+#: timetable/templates/add_substitutions.html:28
 #: timetable/templates/substitutions.html:19
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:28
+#: timetable/templates/add_substitutions.html:29
 msgid "Delete?"
 msgstr ""
 

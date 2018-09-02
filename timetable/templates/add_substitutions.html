@@ -13,7 +13,8 @@ Adding substitutions for {{ teacher }} on {{ date }}
 	<h2>{% trans "Adding substitutions — step 2" %}</h2>
 	<p>
 		{% with weekday=date|date:"l" %}
-		{% blocktrans %}Substitutions for {{ teacher }} on {{ date }} ({{ weekday }}). {% endblocktrans %}
+		{% url "teacher_timetable" teacher.id as url %}
+		{% blocktrans %}Substitutions for <a href="{{ url }}">{{ teacher }}</a> on {{ date }} ({{ weekday }}). {% endblocktrans %}
 		{% endwith %}
 	</p>
 	{% csrf_token %}
