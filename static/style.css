@@ -38,10 +38,9 @@ html {
   .substitutions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
   }
   table.substitution {
-    width: 47%;
+    width: 30rem;
   }
 }
 
