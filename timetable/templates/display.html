@@ -7,10 +7,16 @@
 		<title>Display</title>
 		<link rel="stylesheet" href="{% static "style.css" %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<style>
+		body, html {
+			height: 100%;
+			overflow: hidden;
+		}
+		</style>
 	</head>
 	<body>
 		<header>
-			<nav class="navbar container">
+			<nav class="navbar">
 				<h1 class="logo-wrapper">
 					<a class="site-logo" href="{% url "home" %}" title="{% trans "Visit the main page" %}">
 						<img src="{% static "zorza_text.svg" %}" alt="Zorza">
@@ -27,7 +33,7 @@
 				</div>
 			</nav>
 		</header>
-		<main class="container">
+		<main>
 			{% include "dayplans.html" %}
 			{% include "substitutions.html" %}
 			{% include "absences.html" %}
