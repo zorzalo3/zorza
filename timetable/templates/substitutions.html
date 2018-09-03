@@ -11,7 +11,7 @@
 {% regroup day.list by teacher as substitutions_by_teacher %}
 {% for teacher in substitutions_by_teacher %}
 
-<table class="block-center text-center">
+<table class="substitution">
 	<caption>{{ day.grouper|date:"l, j E" }} – {{ teacher.grouper.full_name }}</caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>

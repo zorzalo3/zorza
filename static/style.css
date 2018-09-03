@@ -36,7 +36,12 @@ html {
     padding-bottom: 2rem;
   }
   .substitutions {
-    column-count: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  table.substitution {
+    width: 47%;
   }
 }
 
@@ -418,14 +423,15 @@ caption {
   font-size: 1.4rem;
 }
 
-.substitutions {
-  display: inline-block;
-}
-
 article {
   max-width: 44rem;
   background: white;
   color: black;
   padding: 4rem;
   margin: 2rem auto;
+}
+
+table.substitution {
+  text-align: center;
+  margin: 0 auto 1rem auto;
 }
