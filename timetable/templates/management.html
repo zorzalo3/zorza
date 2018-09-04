@@ -13,15 +13,21 @@
 		{% blocktrans trimmed %}Logged in as {{ user }}.{% endblocktrans %}
 		<a href="{% url "logout" %}">{% trans "Log out" %}</a>
 	</p>
+	{% if perms.timetable.add_substitution %}
 	<p>
 		<a href="{% url "add_substitutions1" %}">{% trans "Substitutions" %}</a>
 	</p>
+	{% endif %}
+	{% if user.is_staff %}
 	<p>
 		<a href="{% url "admin:index" %}">{% trans "Administration" %}</a>
 	</p>
+	{% endif %}
+	{% if perms.timetable.add_dayplan %}
 	<p>
 		<a href="{% url "edit_calendar" %}">{% trans "Calendar" %}</a>
 	</p>
+	{% endif %}
 	<p>
 		<a href="{% url "my_documents" %}">{% trans "My documents" %}</a>
 	</p>
