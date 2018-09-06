@@ -31,6 +31,13 @@
 	<p>
 		<a href="{% url "my_documents" %}">{% trans "My documents" %}</a>
 	</p>
+	{% if cache_time != 0 %}
+	<p>
+		{% blocktrans trimmed %}
+		Due to efficiency reasons up to {{ cache_time }} minutes may be needed to see changes on other pages.
+		{% endblocktrans %}
+	</p>
+	{% endif %}
 
 </div>
 {% endblock %}

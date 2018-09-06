@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-02 18:14+0200\n"
+"POT-Creation-Date: 2018-09-06 23:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,17 +115,17 @@ msgstr "Dokumenty"
 msgid "Subcategories:"
 msgstr "Podkategorie:"
 
-#: documents/templates/show_category.html:27
+#: documents/templates/show_category.html:28
 #: documents/templates/show_mine.html:17
 msgid "Created on"
 msgstr "Utworzono"
 
-#: documents/templates/show_category.html:27
+#: documents/templates/show_category.html:28
 #: documents/templates/show_mine.html:17
 msgid "modified on"
 msgstr "zmodyfikowano"
 
-#: documents/templates/show_category.html:44
+#: documents/templates/show_category.html:45
 #: documents/templates/show_mine.html:35
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
@@ -145,7 +145,7 @@ msgid "Modified on %(modified)s."
 msgstr "Zmodyfikowano %(modified)s"
 
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
-#: timetable/templates/management.html:26
+#: timetable/templates/management.html:32
 msgid "My documents"
 msgstr "Moje dokumenty"
 
@@ -166,7 +166,7 @@ msgid "Page not found"
 msgstr ""
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
-#: timetable/templates/display.html:15
+#: timetable/templates/display.html:21
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
@@ -266,10 +266,13 @@ msgid "Adding substitutions — step 2"
 msgstr "Dodawanie zastępstw — krok 2"
 
 #: timetable/templates/add_substitutions.html:17
+#, python-format
 msgid ""
 "Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
 "(%(weekday)s). "
-msgstr "Zastępstwa za <a href=\"%(url)s\">%(teacher)s</a> w dniu %(date)s (%(weekday)s)."
+msgstr ""
+"Zastępstwa za <a href=\"%(url)s\">%(teacher)s</a> w dniu %(date)s "
+"(%(weekday)s)."
 
 #: timetable/templates/add_substitutions.html:27
 #: timetable/templates/reservations.html:12
@@ -319,7 +322,7 @@ msgstr "Lekcje %(date)s są odwołane."
 
 #: timetable/templates/edit_calendar.html:5
 #: timetable/templates/edit_calendar.html:10
-#: timetable/templates/management.html:23
+#: timetable/templates/management.html:28
 msgid "Calendar"
 msgstr "Kalendarz"
 
@@ -345,14 +348,21 @@ msgstr "Zalogowano jako %(user)s."
 msgid "Log out"
 msgstr ""
 
-#: timetable/templates/management.html:17
+#: timetable/templates/management.html:18
 #: timetable/templates/substitutions.html:4
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
-#: timetable/templates/management.html:20
+#: timetable/templates/management.html:23
 msgid "Administration"
 msgstr ""
+
+#: timetable/templates/management.html:36
+msgid ""
+"Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
+"changes on other pages."
+msgstr "Z powodów wydajnościowych może być potrzebne do %(cache_time)s minut, aby "
+"zobaczyć zmiany na innych podstronach."
 
 #: timetable/templates/personalization.html:5
 #: timetable/templates/personalization.html:9
@@ -465,7 +475,7 @@ msgstr "Wybierz salę"
 msgid "Show the lesson in each room"
 msgstr "Pokaż lekcję dla każdej sali"
 
-#: timetable/views.py:72
+#: timetable/views.py:73
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 

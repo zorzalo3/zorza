@@ -12,6 +12,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
+from django.conf import settings
 
 from .models import *
 from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
@@ -137,7 +138,10 @@ def add_substitutions2(request, teacher_id, date):
 @never_cache
 @login_required
 def manage(request):
-    return render(request, 'management.html')
+    context = {
+        'cache_time': int(settings.CACHE_MIDDLEWARE_SECONDS/60)
+    }
+    return render(request, 'management.html', context)
 
 @never_cache
 @permission_required('timetable.add_dayplan')
