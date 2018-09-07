@@ -153,6 +153,8 @@ SITE_ID = 1
 CACHE_MIDDLEWARE_KEY_PREFIX = 'zorza'
 CACHE_MIDDLEWARE_SECONDS = 0 # 60*30
 
+LOGIN_REDIRECT_URL = '/timetable/manage/'
+
 try:
     from .localsettings import *
 except ImportError:
