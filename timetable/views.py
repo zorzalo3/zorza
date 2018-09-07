@@ -169,6 +169,10 @@ def show_rooms(request, date, period):
     for lesson in lessons:
         rooms[lesson.room] = lesson
 
+    substitutions = Substitution.objects.filter(date=date, period=period)
+    for sub in substitutions:
+        rooms[sub.room].substitute = sub.substitute
+
     context = {
         'date': date,
         'period': period,

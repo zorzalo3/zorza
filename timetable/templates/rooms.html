@@ -30,9 +30,18 @@ Showing lessons by room on {{ date }}, period number {{ period }}.
 			</td>
 			{% if lesson %}
 			<td>
+				{% if lesson.substitute %}
+				<a href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">
+					<del>{{ lesson.teacher.initials }}</del>
+				</a>
+				<a href="{% url "teacher_timetable" lesson.substitute.id %}" title="{{ lesson.substitute.full_name }}">
+					{{ lesson.substitute.initials }}
+				</a>
+				{% else %}
 				<a href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">
 					{{ lesson.teacher.initials }}
 				</a>
+				{% endif %}
 			</td>
 			<td>
 				<span title="{{ lesson.subject.name }}">
