@@ -11,7 +11,8 @@
 	<h2>{% trans "Management" %}</h2>
 	<p>
 		{% blocktrans trimmed %}Logged in as {{ user }}.{% endblocktrans %}
-		<a href="{% url "logout" %}">{% trans "Log out" %}</a>
+		<a href="{% url "logout" %}">{% trans "Log out" %}</a><br>
+		<a href="{% url "password_change" %}">{% trans "Change password" %}</a>
 	</p>
 	{% if perms.timetable.add_substitution %}
 	<p>
