@@ -89,6 +89,12 @@ function updateLesson() {
 
 	if (now < periods[0]['begin_time']) {
 		// If it's before all lessons
+
+		// Don't show the clock too early
+		if (addMinutes(now, 60) < periods[0]['begin_time']) {
+			return;
+		}
+
 		timer = document.getElementById("before-lessons");
 		until = periods[0]['begin_time'];
 	} else if (now > periods[periods.length-1]['end_time']) {
