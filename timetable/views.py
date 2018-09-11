@@ -101,6 +101,7 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['substitutions'] = get_substitutions()
+        context['show_substitution_delete'] = True
         return context
 
 @never_cache
@@ -186,3 +187,10 @@ def display(request):
     context = get_display_context()
 
     return render(request, 'display.html', context)
+
+@permission_required('timetable.add_substitution')
+def delete_substitution(request, substitution_id):
+    if request.POST:
+        obj = get_object_or_404(Substitution, pk=substitution_id)
+        obj.delete()
+        return HttpResponseRedirect(reverse('add_substitutions1'))

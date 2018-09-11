@@ -18,6 +18,9 @@
 		<th>{% trans "Period" context "timetable header" %}</th>
 		<th>{% trans "Substitute" %}</th>
 		<th>{% trans "Group" %}</th>
+		{% if show_substitution_delete %}
+		<th>{% trans "Delete?" %}</th>
+		{% endif %}
 	</tr>
 	{% for substitution in teacher.list %}
 	{% with group=substitution.group %}
@@ -26,6 +29,14 @@
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
+		{% if show_substitution_delete %}
+		<td>
+			<form method="post" action="{% url "delete_substitution" substitution.id %}">
+				{% csrf_token %}
+				<button>{% trans "Delete" %}</button>
+			</form>
+		</td>
+		{% endif %}
 	</tr>
 	{% endwith %}
 	{% endfor %}

@@ -17,4 +17,5 @@ urlpatterns = [
     path('rooms/<date>/<period>/', show_rooms, name='rooms'),
     path('rooms/', RoomsDatePeriodSelectView.as_view(), name='rooms'),
     path('display/', display, name='display'),
+    path('substitutions/delete/<int:substitution_id>/', delete_substitution, name='delete_substitution'),
 ]
