@@ -136,14 +136,6 @@ def add_substitutions2(request, teacher_id, date):
     return render(request, 'add_substitutions.html', context)
 
 @never_cache
-@login_required
-def manage(request):
-    context = {
-        'cache_time': int(settings.CACHE_MIDDLEWARE_SECONDS/60)
-    }
-    return render(request, 'management.html', context)
-
-@never_cache
 @permission_required('timetable.add_dayplan')
 def edit_calendar(request):
     qs = DayPlan.objects.filter(date__gte=date.today())

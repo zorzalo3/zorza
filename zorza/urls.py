@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.contrib.flatpages import views
 from django.conf.urls.static import static
+from .views import *
 
 urlpatterns = [
     path('', views.flatpage, {'url': '/home/'}, name='home'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('admin/', admin.site.urls),
     path('documents/', include('documents.urls')),
+    path('manage/', manage, name='manage'),
     path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
