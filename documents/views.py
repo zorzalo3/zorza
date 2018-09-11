@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.decorators.cache import never_cache
 from django.urls import reverse_lazy
@@ -99,7 +100,10 @@ def edit_document(request, document_id):
 
     return render(request, 'edit_document.html', context)
 
-class DeleteItem(DeleteView):
+class DeleteItem(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('my_documents')
     template_name = 'delete_item.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
