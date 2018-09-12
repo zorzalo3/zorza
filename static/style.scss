@@ -306,8 +306,11 @@ button, .button {
 	border: none;
 	border-radius: 2px;
 	font-size: 1.1rem;
-	color: $dark-color;
-	background-color: $font-color-primary;
+	background: transparent;
+	color: $link-color;
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 
