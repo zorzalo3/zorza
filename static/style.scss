@@ -413,3 +413,16 @@ table.substitution {
 	text-align: center;
 	margin: 0 auto 1rem auto;
 }
+
+.display {
+	height: 500px;
+	overflow-y: hidden;
+}
+/*
+.display-header {
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+*/
