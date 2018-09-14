@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-06 23:37+0200\n"
+"POT-Creation-Date: 2018-09-14 13:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,6 +78,7 @@ msgstr "Powrót"
 
 #: documents/templates/delete_item.html:19
 #: documents/templates/show_mine.html:29
+#: timetable/templates/substitutions.html:36
 msgid "Delete"
 msgstr ""
 
@@ -145,7 +146,7 @@ msgid "Modified on %(modified)s."
 msgstr "Zmodyfikowano %(modified)s"
 
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
-#: timetable/templates/management.html:32
+#: timetable/templates/management.html:33
 msgid "My documents"
 msgstr "Moje dokumenty"
 
@@ -224,7 +225,7 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:20 timetable/forms.py:47
+#: timetable/forms.py:20 timetable/forms.py:47 timetable/forms.py:51
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
@@ -237,6 +238,13 @@ msgstr "odwołane"
 msgid "Period"
 msgstr "Godz."
 
+#: timetable/forms.py:52 timetable/templates/absences.html:12
+#: timetable/templates/group_timetable.html:7
+#: timetable/templates/group_timetable.html:18
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
+msgid "Group"
+msgstr "Grupa"
+
 #: timetable/models.py:113
 msgid "Lesson"
 msgstr "Lekcja"
@@ -244,13 +252,6 @@ msgstr "Lekcja"
 #: timetable/templates/absences.html:4
 msgid "Absences"
 msgstr "Nieobecności grup"
-
-#: timetable/templates/absences.html:12
-#: timetable/templates/group_timetable.html:7
-#: timetable/templates/group_timetable.html:18
-#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
-msgid "Group"
-msgstr "Grupa"
 
 #: timetable/templates/absences.html:13
 msgid "Periods"
@@ -289,6 +290,7 @@ msgid "Substitute"
 msgstr "Zastępca"
 
 #: timetable/templates/add_substitutions.html:29
+#: timetable/templates/substitutions.html:22
 msgid "Delete?"
 msgstr ""
 
@@ -322,7 +324,7 @@ msgstr "Lekcje %(date)s są odwołane."
 
 #: timetable/templates/edit_calendar.html:5
 #: timetable/templates/edit_calendar.html:10
-#: timetable/templates/management.html:28
+#: timetable/templates/management.html:29
 msgid "Calendar"
 msgstr "Kalendarz"
 
@@ -348,20 +350,26 @@ msgstr "Zalogowano jako %(user)s."
 msgid "Log out"
 msgstr ""
 
-#: timetable/templates/management.html:18
+#: timetable/templates/management.html:15
+msgid "Change password"
+msgstr ""
+
+#: timetable/templates/management.html:19
 #: timetable/templates/substitutions.html:4
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
-#: timetable/templates/management.html:23
+#: timetable/templates/management.html:24
 msgid "Administration"
 msgstr ""
 
-#: timetable/templates/management.html:36
+#: timetable/templates/management.html:37
+#, python-format
 msgid ""
 "Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
 "changes on other pages."
-msgstr "Z powodów wydajnościowych może być potrzebne do %(cache_time)s minut, aby "
+msgstr ""
+"Z powodów wydajnościowych może być potrzebne do %(cache_time)s minut, aby "
 "zobaczyć zmiany na innych podstronach."
 
 #: timetable/templates/personalization.html:5
@@ -436,16 +444,17 @@ msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
 #: timetable/templates/timer.html:3
-msgid "<time></time> until the first lesson today."
+msgid "<time></time> until the first period today."
 msgstr "Do pierwszej lekcji pozostało <time></time>."
 
 #: timetable/templates/timer.html:6
-msgid "<time></time> until the end of the lesson."
-msgstr "Do końca lekcji pozostało <time></time>."
+msgid ""
+"<time></time> until the end of period no. <span class=\"period-no\"></span>."
+msgstr "Do końca <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
 
 #: timetable/templates/timer.html:9
-msgid "<time></time> until the next lesson."
-msgstr "Do następnej lekcji pozostało <time></time>."
+msgid "<time></time> until period no. <span class=\"period-no\"></span>."
+msgstr "Do <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
 
 #: timetable/templates/timer.html:12
 msgid "Lessons have already finished today."
@@ -479,25 +488,28 @@ msgstr "Pokaż lekcję dla każdej sali"
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
-#: zorza/settings.py:141
+#: zorza/settings.py:140
 msgid "Monday"
 msgstr ""
 
-#: zorza/settings.py:142
+#: zorza/settings.py:141
 msgid "Tuesday"
 msgstr ""
 
-#: zorza/settings.py:143
+#: zorza/settings.py:142
 msgid "Wednesday"
 msgstr ""
 
-#: zorza/settings.py:144
+#: zorza/settings.py:143
 msgid "Thursday"
 msgstr ""
 
-#: zorza/settings.py:145
+#: zorza/settings.py:144
 msgid "Friday"
 msgstr ""
+
+#~ msgid "<time></time> until the next lesson."
+#~ msgstr "Do następnej lekcji pozostało <time></time>."
 
 #, fuzzy
 #~| msgid "Subcategories:"

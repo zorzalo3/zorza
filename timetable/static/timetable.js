@@ -111,6 +111,7 @@ function updateLesson() {
 				prev_highlight = row;
 			}
 			until = periods[i]['end_time'];
+			timer.getElementsByClassName("period-no")[0].textContent = i;
 			break;
 		}
 		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
@@ -123,6 +124,7 @@ function updateLesson() {
 				prev_highlight = row;
 			}
 			until = periods[i]['begin_time'];
+			timer.getElementsByClassName("period-no")[0].textContent = i;
 			break;
 		}
 	}

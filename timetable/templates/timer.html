@@ -1,12 +1,12 @@
 {% load i18n %}
 <span class="lesson-timer" id="before-lessons" hidden>
-	{% blocktrans %}<time></time> until the first lesson today.{% endblocktrans %}
+	{% blocktrans %}<time></time> until the first period today.{% endblocktrans %}
 </span>
 <span class="lesson-timer" id="during-lesson" hidden>
-	{% blocktrans %}<time></time> until the end of the lesson.{% endblocktrans %}
+	{% blocktrans %}<time></time> until the end of period no. <span class="period-no"></span>.{% endblocktrans %}
 </span>
 <span class="lesson-timer" id="between-lessons" hidden>
-	{% blocktrans %}<time></time> until the next lesson.{% endblocktrans %}
+	{% blocktrans %}<time></time> until period no. <span class="period-no"></span>.{% endblocktrans %}
 </span>
 <span class="lesson-timer" id="after-lessons" hidden>
 	{% blocktrans %}Lessons have already finished today.{% endblocktrans %}
