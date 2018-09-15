@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-14 13:16+0200\n"
+"POT-Creation-Date: 2018-09-15 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgid "Back"
 msgstr "Powrót"
 
 #: documents/templates/delete_item.html:19
-#: documents/templates/show_mine.html:29
+#: documents/templates/show_mine.html:31
 #: timetable/templates/substitutions.html:36
 msgid "Delete"
 msgstr ""
@@ -116,18 +116,22 @@ msgstr "Dokumenty"
 msgid "Subcategories:"
 msgstr "Podkategorie:"
 
-#: documents/templates/show_category.html:28
-#: documents/templates/show_mine.html:17
-msgid "Created on"
-msgstr "Utworzono"
+#: documents/templates/show_category.html:29
+#: documents/templates/show_document.html:16
+#: documents/templates/show_mine.html:18
+#, python-format
+msgid "Created on %(created)s."
+msgstr "Utworzono %(created)s."
 
-#: documents/templates/show_category.html:28
-#: documents/templates/show_mine.html:17
-msgid "modified on"
-msgstr "zmodyfikowano"
+#: documents/templates/show_category.html:29
+#: documents/templates/show_document.html:21
+#: documents/templates/show_mine.html:18
+#, python-format
+msgid "Modified on %(modified)s."
+msgstr "Zmodyfikowano %(modified)s."
 
-#: documents/templates/show_category.html:45
-#: documents/templates/show_mine.html:35
+#: documents/templates/show_category.html:47
+#: documents/templates/show_mine.html:37
 msgid "Nothing here!"
 msgstr "Nic tu nie ma!"
 
@@ -135,30 +139,20 @@ msgstr "Nic tu nie ma!"
 msgid "Author: "
 msgstr "Autor: "
 
-#: documents/templates/show_document.html:16
-#, python-format
-msgid "Created on %(created)s."
-msgstr "Utworzono %(created)s."
-
-#: documents/templates/show_document.html:21
-#, python-format
-msgid "Modified on %(modified)s."
-msgstr "Zmodyfikowano %(modified)s"
-
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
 #: timetable/templates/management.html:33
 msgid "My documents"
 msgstr "Moje dokumenty"
 
-#: documents/templates/show_mine.html:26
+#: documents/templates/show_mine.html:28
 msgid "Edit"
 msgstr "Edytuj"
 
-#: documents/templates/show_mine.html:40
+#: documents/templates/show_mine.html:42
 msgid "Add a file"
 msgstr "Dodaj plik"
 
-#: documents/templates/show_mine.html:43
+#: documents/templates/show_mine.html:45
 msgid "Add a document"
 msgstr "Dodaj dokument"
 
@@ -450,7 +444,8 @@ msgstr "Do pierwszej lekcji pozostało <time></time>."
 #: timetable/templates/timer.html:6
 msgid ""
 "<time></time> until the end of period no. <span class=\"period-no\"></span>."
-msgstr "Do końca <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
+msgstr ""
+"Do końca <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
 
 #: timetable/templates/timer.html:9
 msgid "<time></time> until period no. <span class=\"period-no\"></span>."
@@ -507,6 +502,12 @@ msgstr ""
 #: zorza/settings.py:144
 msgid "Friday"
 msgstr ""
+
+#~ msgid "Created on"
+#~ msgstr "Utworzono"
+
+#~ msgid "modified on"
+#~ msgstr "zmodyfikowano"
 
 #~ msgid "<time></time> until the next lesson."
 #~ msgstr "Do następnej lekcji pozostało <time></time>."

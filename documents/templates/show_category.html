@@ -25,9 +25,11 @@
 		{{ item.title }}
 	</a>
 	<br>
-	<span class="created-date" title="{% trans "Created on" %} {{ item.created_date }}, {% trans "modified on" %} {{ item.modified_date }}">
+	{% with created=item.created_date modified=item.modified_date %}
+	<span class="created-date" title="{% blocktrans trimmed %}Created on {{ created }}.{% endblocktrans %} {% blocktrans trimmed %}Modified on {{ modified }}.{% endblocktrans %}">
 		{{ item.created_date|date:"SHORT_DATE_FORMAT" }}
 	</span>
+	{% endwith %}
 	{% if item.author %}
 	<span class="author">
 		{{ item.author }}
