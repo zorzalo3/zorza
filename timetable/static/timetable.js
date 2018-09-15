@@ -150,3 +150,16 @@ if (periods.length) {
 	updateLesson();
 	setInterval(updateLesson, 500);
 }
+
+// Refresh page at server midnight
+var tmp = new Date();
+tmp.setDate(tmp.getDate() + 1);
+tmp.setHours(0);
+tmp.setMinutes(0);
+tmp.setSeconds(3); // some slack for client-server desync
+var midnight = addMinutes(tmp, offset);
+setTimeout(
+	function() { location.reload(true); },
+	midnight.getTime() - (new Date()).getTime()
+);
+
