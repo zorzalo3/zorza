@@ -6,6 +6,13 @@ class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True,
                                on_delete=models.CASCADE)
 
+    @property
+    def ancestors(self):
+        current = self
+        while current.parent:
+            yield current.parent
+            current = current.parent
+
     def __str__(self):
         return self.name
 

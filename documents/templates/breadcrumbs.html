@@ -1,0 +1,12 @@
+{% load i18n %}
+{% trans "Documents" %}
+
+{% for ancestor in parent.ancestors reversed %}
+-
+<a href="{% url 'category' ancestor.pk %}">{{ ancestor }}</a>
+{% endfor %}
+
+{% if parent %}
+- {{ parent }}
+{% endif %}
+
