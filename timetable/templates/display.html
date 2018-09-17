@@ -9,12 +9,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<style>
 		body, html {
-			height: 100%;
 			overflow: hidden;
 		}
 		</style>
 	</head>
-	<body style="overflow-y: hidden;">
+	<body>
 		<header class="display-header">
 			<nav class="navbar">
 				<h1 class="logo-wrapper">
@@ -56,17 +55,22 @@
 
 			//scroll
 			var substitutions = document.getElementsByClassName("substitutions")[0];
-			var main = document.getElementsByTagName("header")[0];
 			var i = 0;
 			var n = substitutions.children.length;
-			scrollOptions = { behavior: 'smooth', block: 'start' };
+			function smoothScroll(top) {
+				window.scroll({ behavior: 'smooth', top: top})
+			}
+			// breaks when rem changes
+			var rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
 			function scrollNext() {
 				if (i < n) {
-					substitutions.children[i].scrollIntoView(scrollOptions)
+					var rect = substitutions.children[i].getBoundingClientRect();
+					// 5rem - header offset
+					smoothScroll(rect.top + window.scrollY - 5*rem);
 					i++;
 				} else {
 					// show top of main
-					main.scrollIntoView(scrollOptions);
+					smoothScroll(0);
 					i = 0;
 				}
 				setTimeout(scrollNext, 2500);

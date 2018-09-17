@@ -73,6 +73,7 @@ body {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
+	height: 4rem;
 }
 
 .site-logo {
@@ -415,14 +416,12 @@ table.substitution {
 }
 
 .display {
-	height: 500px;
-	overflow-y: hidden;
+	margin-top: 5rem;
 }
-/*
+
 .display-header {
-	z-index: 10;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	width: 100%;
 }
-*/
+
