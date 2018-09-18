@@ -54,19 +54,18 @@
 			}, 100);
 
 			//scroll
+			var main = document.getElementsByTagName("main")[0];
 			var substitutions = document.getElementsByClassName("substitutions")[0];
 			var i = 0;
 			var n = substitutions.children.length;
 			function smoothScroll(top) {
 				window.scroll({ behavior: 'smooth', top: top})
 			}
-			// breaks when rem changes
-			var rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
 			function scrollNext() {
 				if (i < n) {
 					var rect = substitutions.children[i].getBoundingClientRect();
-					// 5rem - header offset
-					smoothScroll(rect.top + window.scrollY - 5*rem);
+					// offset so as not to obstruct with the fixed header
+					smoothScroll(rect.top - main.getBoundingClientRect().top);
 					i++;
 				} else {
 					// show top of main
