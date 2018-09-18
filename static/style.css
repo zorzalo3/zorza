@@ -106,7 +106,7 @@ table th, table td {
 }
 
 .timetable .highlight {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .timetable .break-highlight td {
