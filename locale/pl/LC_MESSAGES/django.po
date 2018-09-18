@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-15 13:00+0200\n"
+"POT-Creation-Date: 2018-09-18 17:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Your email address"
 msgstr "Twój adres e-mail"
 
-#: contact/models.py:7 timetable/templates/rooms.html:20
+#: contact/models.py:7
 msgid "Subject"
 msgstr "Temat"
 
@@ -58,6 +58,11 @@ msgstr "Tytuł"
 #: documents/forms.py:21
 msgid "File"
 msgstr "Plik"
+
+#: documents/templates/breadcrumbs.html:2
+#: documents/templates/show_category.html:5 templates/base.html:25
+msgid "Documents"
+msgstr "Dokumenty"
 
 #: documents/templates/delete_item.html:5
 #: documents/templates/delete_item.html:11
@@ -106,11 +111,6 @@ msgstr "Zmień plik"
 #: documents/templates/edit_file.html:8 documents/templates/edit_file.html:18
 msgid "Create a file"
 msgstr "Utwórz plik"
-
-#: documents/templates/show_category.html:5
-#: documents/templates/show_category.html:9 templates/base.html:25
-msgid "Documents"
-msgstr "Dokumenty"
 
 #: documents/templates/show_category.html:13
 msgid "Subcategories:"
@@ -161,7 +161,7 @@ msgid "Page not found"
 msgstr ""
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
-#: timetable/templates/display.html:21
+#: timetable/templates/display.html:20
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:20 timetable/forms.py:47 timetable/forms.py:51
+#: timetable/forms.py:20 timetable/forms.py:47
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
@@ -232,13 +232,6 @@ msgstr "odwołane"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/forms.py:52 timetable/templates/absences.html:12
-#: timetable/templates/group_timetable.html:7
-#: timetable/templates/group_timetable.html:18
-#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
-msgid "Group"
-msgstr "Grupa"
-
 #: timetable/models.py:113
 msgid "Lesson"
 msgstr "Lekcja"
@@ -246,6 +239,13 @@ msgstr "Lekcja"
 #: timetable/templates/absences.html:4
 msgid "Absences"
 msgstr "Nieobecności grup"
+
+#: timetable/templates/absences.html:12
+#: timetable/templates/group_timetable.html:7
+#: timetable/templates/group_timetable.html:18
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
+msgid "Group"
+msgstr "Grupa"
 
 #: timetable/templates/absences.html:13
 msgid "Periods"
@@ -404,6 +404,11 @@ msgstr "Sale"
 #, python-format
 msgid "Showing lessons by room on %(date)s, period number %(period)s."
 msgstr "Lekcje w salach %(date)s, lekcja numer %(period)s."
+
+#: timetable/templates/rooms.html:20
+msgctxt "school subject"
+msgid "Subject"
+msgstr "Przedmiot"
 
 #: timetable/templates/rooms_date_period_select.html:6
 #: timetable/templates/rooms_date_period_select.html:11
