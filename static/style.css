@@ -101,12 +101,16 @@ table th, table td {
   padding: 0.3rem 0.5rem;
 }
 
-.timetable {
-  width: 100%;
+col.highlight {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-.timetable .highlight {
-  background-color: rgba(255, 255, 255, 0.03);
+tr.highlight {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.timetable {
+  width: 100%;
 }
 
 .timetable .break-highlight td {
