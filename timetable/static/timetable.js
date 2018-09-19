@@ -72,6 +72,7 @@ function parseTime(string) {
 	date.setHours(+parts[0]);
 	date.setMinutes(+parts[1]);
 	date.setSeconds(0);
+	date.setMilliseconds(0);
 	return date;
 }
 
@@ -148,7 +149,7 @@ function toDisplay(deltaMilliSeconds) {
 
 if (periods.length) {
 	updateLesson();
-	setInterval(updateLesson, 500);
+	setInterval(updateLesson, 100);
 }
 
 // Refresh page at server midnight
