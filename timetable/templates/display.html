@@ -12,6 +12,15 @@
 		body, html {
 			overflow: hidden;
 		}
+		{% if request.GET.light %}
+		body {
+			background-image: none !important;
+		}
+		header {
+			background-image: none !important;
+			box-shadow: none !important;
+		}
+		{% endif %}
 		</style>
 	</head>
 	<body>
