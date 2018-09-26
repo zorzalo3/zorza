@@ -41,7 +41,7 @@ The directories `mediafiles`, `staticfiles`, and favicons have to be served dire
 
 This software is designed with response caching in mind because the content is mostly static and by nature not requiring urgent updates. Set `CACHE_MIDDLEWARE_SECONDS` in `localsettings.py` and configure your web server for response caching.
 
-The page `/timetable/display/` displays remaining break/period time and teacher substitutions. It's intented to be run fullscreen in a browser on a public big screen.
+The page `/timetable/display/` displays remaining break/period time and teacher substitutions. It's intended to be run fullscreen in a browser on a public big screen.
 
 ## License
 This project is licensed under GPLv3.
