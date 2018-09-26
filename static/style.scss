@@ -15,6 +15,9 @@ html {
 }
 
 @media print {
+	* {
+		color: black;
+	}
 	header, footer, .no-print {
 		display: none !important;
 	}
