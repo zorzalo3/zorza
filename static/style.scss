@@ -18,6 +18,10 @@ html {
 	header, footer, .no-print {
 		display: none !important;
 	}
+
+	.substitutions {
+		display: inline !important;
+	}
 }
 
 /* Stupid hack to style Chromium */
