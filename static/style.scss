@@ -15,7 +15,7 @@ html {
 }
 
 @media print {
-	header, footer {
+	header, footer, .no-print {
 		display: none !important;
 	}
 }

@@ -19,7 +19,7 @@
 		<th>{% trans "Substitute" %}</th>
 		<th>{% trans "Group" %}</th>
 		{% if show_substitution_delete %}
-		<th>{% trans "Delete?" %}</th>
+		<th class="no-print">{% trans "Delete?" %}</th>
 		{% endif %}
 	</tr>
 	{% for substitution in teacher.list %}
@@ -30,7 +30,7 @@
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
 		{% if show_substitution_delete %}
-		<td>
+		<td class="no-print">
 			<form method="post" action="{% url "delete_substitution" substitution.id %}">
 				{% csrf_token %}
 				<button>{% trans "Delete" %}</button>
