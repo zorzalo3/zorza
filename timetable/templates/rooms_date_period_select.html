@@ -9,7 +9,7 @@
 {% block content %}
 <form class="form-small" method="post">
 	<h2>{% trans "Select date and period" %}</h2>
-	<p>{% trans "Select the time for which to show lessons by room" %}</p>
+	<p>{% trans "Select the time for which to show lessons by room." %}</p>
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 	{{ form.as_p }}

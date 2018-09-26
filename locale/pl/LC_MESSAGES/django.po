@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 17:54+0200\n"
+"POT-Creation-Date: 2018-09-22 12:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgid "Page not found"
 msgstr ""
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
-#: timetable/templates/display.html:20
+#: timetable/templates/display.html:30
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
@@ -416,8 +416,8 @@ msgid "Select date and period"
 msgstr "Wybierz datę i numer lekcji"
 
 #: timetable/templates/rooms_date_period_select.html:12
-msgid "Select the time for which to show lessons by room"
-msgstr "Wybierz moment, dla którego pokazać lekcje w każdej sali"
+msgid "Select the time for which to show lessons by room."
+msgstr "Wybierz moment, dla którego pokazać lekcje w każdej sali."
 
 #: timetable/templates/rooms_date_period_select.html:18
 msgid "Show lessons in rooms"
@@ -481,8 +481,8 @@ msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
 #: timetable/templates/timetable_base.html:101
-msgid "Show the lesson in each room"
-msgstr "Pokaż lekcję dla każdej sali"
+msgid "Show lessons at a given time"
+msgstr "Pokaż lekcje o danej porze"
 
 #: timetable/views.py:73
 msgid "Select at least one group"
@@ -507,6 +507,9 @@ msgstr ""
 #: zorza/settings.py:144
 msgid "Friday"
 msgstr ""
+
+#~ msgid "Show the lesson in each room"
+#~ msgstr "Pokaż lekcję dla każdej sali"
 
 #~ msgid "Created on"
 #~ msgstr "Utworzono"
