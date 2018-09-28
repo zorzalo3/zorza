@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-22 12:45+0200\n"
+"POT-Creation-Date: 2018-09-28 13:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,13 +77,14 @@ msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 #: documents/templates/delete_item.html:17
 #: documents/templates/edit_document.html:24
 #: documents/templates/edit_file.html:24
-#: timetable/templates/add_substitutions.html:48
+#: timetable/templates/add_substitutions.html:59
+#: timetable/templates/add_substitutions.html:71
 msgid "Back"
 msgstr "Powrót"
 
 #: documents/templates/delete_item.html:19
 #: documents/templates/show_mine.html:31
-#: timetable/templates/substitutions.html:36
+#: timetable/templates/substitutions.html:35
 msgid "Delete"
 msgstr ""
 
@@ -99,7 +100,7 @@ msgstr "Utwórz dokument"
 
 #: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
-#: timetable/templates/add_substitutions.html:50
+#: timetable/templates/add_substitutions.html:61
 #: timetable/templates/edit_calendar.html:42
 msgid "Save"
 msgstr "Zapisz"
@@ -214,25 +215,29 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:18 timetable/templates/reservations.html:14
+#: timetable/forms.py:19 timetable/templates/reservations.html:14
 #: timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:20 timetable/forms.py:47
+#: timetable/forms.py:21 timetable/forms.py:109
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:28 timetable/forms.py:42 timetable/models.py:141
+#: timetable/forms.py:26
+msgid "-----"
+msgstr ""
+
+#: timetable/forms.py:26 timetable/forms.py:104 timetable/models.py:141
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:48
+#: timetable/forms.py:110
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/models.py:113
+#: timetable/models.py:113 timetable/templates/add_substitutions.html:29
 msgid "Lesson"
 msgstr "Lekcja"
 
@@ -243,7 +248,7 @@ msgstr "Nieobecności grup"
 #: timetable/templates/absences.html:12
 #: timetable/templates/group_timetable.html:7
 #: timetable/templates/group_timetable.html:18
-#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:20
+#: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:19
 msgid "Group"
 msgstr "Grupa"
 
@@ -260,7 +265,7 @@ msgstr "Dodawanie zastępstw za %(teacher)s w dniu %(date)s."
 msgid "Adding substitutions — step 2"
 msgstr "Dodawanie zastępstw — krok 2"
 
-#: timetable/templates/add_substitutions.html:17
+#: timetable/templates/add_substitutions.html:18
 #, python-format
 msgid ""
 "Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
@@ -269,24 +274,23 @@ msgstr ""
 "Zastępstwa za <a href=\"%(url)s\">%(teacher)s</a> w dniu %(date)s "
 "(%(weekday)s)."
 
-#: timetable/templates/add_substitutions.html:27
+#: timetable/templates/add_substitutions.html:28
 #: timetable/templates/reservations.html:12
 #: timetable/templates/schedules.html:15
-#: timetable/templates/substitutions.html:17
+#: timetable/templates/substitutions.html:16
 #: timetable/templates/timetable_base.html:36
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
 
-#: timetable/templates/add_substitutions.html:28
-#: timetable/templates/substitutions.html:19
+#: timetable/templates/add_substitutions.html:30
+#: timetable/templates/substitutions.html:18
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:29
-#: timetable/templates/substitutions.html:22
-msgid "Delete?"
-msgstr ""
+#: timetable/templates/add_substitutions.html:66
+msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
+msgstr "%(name)s nie ma planowych lekcji tego dnia (%(weekday)s)."
 
 #: timetable/templates/class_timetable.html:5
 #: timetable/templates/class_timetable.html:9
@@ -350,6 +354,7 @@ msgstr ""
 
 #: timetable/templates/management.html:19
 #: timetable/templates/substitutions.html:4
+#: timetable/templates/teacher_and_date_select.html:5
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
@@ -380,7 +385,7 @@ msgid "Reservations"
 msgstr "Rezerwacje sal"
 
 #: timetable/templates/reservations.html:13
-#: timetable/templates/substitutions.html:18
+#: timetable/templates/substitutions.html:17
 #: timetable/templates/timetable_base.html:37
 msgctxt "timetable header"
 msgid "Period"
@@ -428,7 +433,10 @@ msgstr "Pokaż lekcje w salach"
 msgid "Schedules"
 msgstr "Typy dzwonków"
 
-#: timetable/templates/teacher_and_date_select.html:5
+#: timetable/templates/substitutions.html:21
+msgid "Delete?"
+msgstr ""
+
 #: timetable/templates/teacher_and_date_select.html:10
 msgid "Adding substitutions — step 1"
 msgstr "Dodawanie zastępstw — krok 1"

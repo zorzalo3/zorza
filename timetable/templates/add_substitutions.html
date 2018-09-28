@@ -11,6 +11,7 @@ Adding substitutions for {{ teacher }} on {{ date }}
 {% block content %}
 <form class="add-substitutions2 form-small" method="post">
 	<h2>{% trans "Adding substitutions — step 2" %}</h2>
+	{% if formset.forms %}
 	<p>
 		{% with weekday=date|date:"l" %}
 		{% url "teacher_timetable" teacher.id as url %}
@@ -60,5 +61,15 @@ Adding substitutions for {{ teacher }} on {{ date }}
 			{% trans "Save" %}
 		</button>
 	</p>
+	{% else %}
+	<p>
+		{% blocktrans trimmed with name=teacher.full_name weekday=date|date:"l" %}
+		{{ name }} has no planned lessons on that day ({{ weekday }}).
+		{% endblocktrans %}
+	</p>
+	<p class="text-center">
+		<a class="button" href="{% url "add_substitutions1" %}">{% trans "Back" %}</a>
+	</p>
+	{% endif %}
 </form>
 {% endblock %}
