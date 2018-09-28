@@ -25,21 +25,19 @@ Adding substitutions for {{ teacher }} on {{ date }}
 		{% if forloop.first %}
 		<tr>
 			<th>{% trans "No." context "timetable header" %}</th>
+			<th colspan="3">{% trans "Lesson" %}</th>
 			<th>{% trans "Substitute" %}</th>
-			<th>{% trans "Delete?" %}</th>
 		</tr>
 		{% endif %}
 		<tr>
-			{% for field in form.visible_fields %}
-			<td>
-				{% if forloop.first %}
-				{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-				{% endfor %}
-				{% endif %}
-				{{ field }} {{ field.errors }}
-			</td>
+			{% for hidden in form.hidden_fields %}
+			{{ hidden }}
 			{% endfor %}
+			<td> {{ form.lesson.period }} </td>
+			<td> {{ form.lesson.subject.short_name }} </td>
+			<td> {{ form.lesson.group }} </td>
+			<td> {{ form.lesson.room.short_name }} </td>
+			<td> {{ form.substitute }} </td>
 		</tr>
 
 		{% endfor %}

@@ -1,5 +1,6 @@
 from django.forms  import *
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import *
 from .utils import get_next_schoolday
@@ -20,15 +21,76 @@ class SelectTeacherAndDateForm(Form):
         label=_('Date'), initial=get_next_schoolday, widget=Html5DateInput)
 
 class SubstitutionForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SubstitutionForm, self).__init__(*args, **kwargs)
+        self.choices = [('', _('-----')), ('null', _('cancelled'))]
+        self.choices += [(str(t.pk), t.full_name) for t in Teacher.objects.all()]
+        self.fields['substitute'] = ChoiceField(choices=self.choices, required=False)
+        if self.instance.substitute == None \
+                and Substitution.objects.filter(pk=self.instance.pk).exists():
+            self.initial['substitute'] = 'null'
+
+    def clean_substitute(self):
+        data = self.cleaned_data.get('substitute')
+        choices = [i[0] for i in self.choices]
+        self.to_delete = False
+        if data in choices:
+            if data == '':
+                self.to_delete = True
+                return None
+            if data == 'null':
+                return None
+            else:
+                return Teacher.objects.get(pk=data)
+        else:
+            raise ValidationError('Invalid choice')
+
+    def save(self, commit=True):
+        if self.to_delete:
+            self.instance.delete()
+        else:
+            super().save(commit)
+
     class Meta:
         model = Substitution
-        fields = ('period', 'substitute',)
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['substitute'].empty_label = _('cancelled')
+        fields = ['substitute']
 
-SubstitutionFormSet = modelformset_factory(
-    Substitution, form=SubstitutionForm, extra=8, can_delete=True, max_num=10)
+class BaseSubstitutionFormSet(BaseModelFormSet):
+    model = Substitution
+    def __init__(self, teacher, date, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.queryset = Substitution.objects \
+            .filter(teacher=teacher, date=date) \
+            .order_by('period')
+        self.teacher = teacher
+        self.date = date
+        self.lessons = Lesson.objects \
+            .filter(teacher=teacher, weekday=date.weekday()) \
+            .order_by('period')
+
+    def total_form_count(self):
+        return len(self.lessons)
+
+    def _construct_form(self, i, **kwargs):
+        defaults = {
+            'auto_id': self.auto_id,
+            'prefix': self.add_prefix(i),
+            'error_class': self.error_class,
+            'use_required_attribute': False,
+        }
+        if self.is_bound:
+            defaults['data'] = self.data
+        period = self.lessons[i].period
+        try:
+            obj = self.queryset.get(period=period)
+        except ObjectDoesNotExist:
+            obj = Substitution(teacher=self.teacher, period=period, date=self.date)
+        form = SubstitutionForm(instance=obj, **defaults)
+        form.lesson = self.lessons[i]
+        return form
+
+SubstitutionFormSet = formset_factory(Substitution, BaseSubstitutionFormSet, extra=0)
+
 
 class DayPlanForm(ModelForm):
     class Meta:
