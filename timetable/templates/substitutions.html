@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load hyphen_break %}
 
 {% if substitutions %}
 <h2 class="text-center">{% trans "Substitutions" %}</h3>
@@ -26,9 +25,7 @@
 	{% with group=substitution.group %}
 	<tr {% if group in groups %}class="relevant"{% endif %}>
 		<td>{{ substitution.period }}</td>
-		{% autoescape off %}
-		<td>{{ substitution.period_str|hyphen_break }}</td>
-		{% endautoescape %}
+		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
 		{% if show_substitution_delete %}
