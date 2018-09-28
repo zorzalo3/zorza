@@ -34,9 +34,21 @@ Adding substitutions for {{ teacher }} on {{ date }}
 			{{ hidden }}
 			{% endfor %}
 			<td> {{ form.lesson.period }} </td>
-			<td> {{ form.lesson.subject.short_name }} </td>
-			<td> {{ form.lesson.group }} </td>
-			<td> {{ form.lesson.room.short_name }} </td>
+			<td colspan="3">
+				<div class="lesson-table">
+					<div class="table-row">
+						<a class="group" href="{% url "groups_timetable" form.lesson.group_id %}">
+							{{ form.lesson.group }}
+						</a>
+						<a class="room" href="{% url "room_timetable" form.lesson.room_id %}" title="{{ lesson.room__name }}">
+							{{ form.lesson.room.short_name }}
+						</a>
+					</div>
+				</div>
+				<div class="subject" title="{{ form.lesson.subject.name }}">
+					{{ form.lesson.subject.short_name }}
+				</div>
+			</td>
 			<td> {{ form.substitute }} </td>
 		</tr>
 
