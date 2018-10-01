@@ -114,9 +114,7 @@ def add_substitutions2(request, teacher_id, date):
         formset = SubstitutionFormSet(teacher, date, request.POST)
         if formset.is_valid():
             formset.save()
-
-            # Refresh the formset by refreshing the page
-            return HttpResponseRedirect(request.path)
+            return HttpResponseRedirect(reverse('add_substitutions1'))
     else:
         formset = SubstitutionFormSet(teacher, date)
 
