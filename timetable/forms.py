@@ -20,6 +20,15 @@ class SelectTeacherAndDateForm(Form):
     date = DateField(
         label=_('Date'), initial=get_next_schoolday, widget=Html5DateInput)
 
+    def clean(self):
+        cleaned_data = super().clean()
+        teacher = cleaned_data.get('teacher')
+        date = cleaned_data.get('date')
+        if not Lesson.objects.filter(teacher=teacher, weekday=date.weekday()):
+            raise ValidationError(_('{} has no planned lessons on the given day.')
+                    .format(teacher))
+        return cleaned_data
+
 class SubstitutionForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(SubstitutionForm, self).__init__(*args, **kwargs)

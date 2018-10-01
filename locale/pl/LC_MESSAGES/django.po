@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-28 13:21+0200\n"
+"POT-Creation-Date: 2018-10-01 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -220,20 +220,24 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:21 timetable/forms.py:109
+#: timetable/forms.py:21 timetable/forms.py:118
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:26
+#: timetable/forms.py:28
+msgid "{} has no planned lessons on the given day."
+msgstr "{} nie ma planowych lekcji podanego dnia."
+
+#: timetable/forms.py:35
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:26 timetable/forms.py:104 timetable/models.py:141
+#: timetable/forms.py:35 timetable/forms.py:113 timetable/models.py:141
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:110
+#: timetable/forms.py:119
 msgid "Period"
 msgstr "Godz."
 
@@ -289,6 +293,7 @@ msgid "Substitute"
 msgstr "Zastępca"
 
 #: timetable/templates/add_substitutions.html:66
+#, python-format
 msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
 msgstr "%(name)s nie ma planowych lekcji tego dnia (%(weekday)s)."
 
@@ -446,7 +451,7 @@ msgstr "Dodawanie zastępstw — krok 1"
 msgid "Today's date is %(today)s."
 msgstr "Dzisiejsza data to %(today)s."
 
-#: timetable/templates/teacher_and_date_select.html:22
+#: timetable/templates/teacher_and_date_select.html:21
 msgid "Go to the next step"
 msgstr "Przejdź do następnego kroku"
 
