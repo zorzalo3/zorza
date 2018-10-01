@@ -24,7 +24,7 @@ class SubstitutionForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(SubstitutionForm, self).__init__(*args, **kwargs)
         self.choices = [('', _('-----')), ('null', _('cancelled'))]
-        self.choices += [(str(t.pk), t.full_name) for t in Teacher.objects.all()]
+        self.choices += [(str(t.pk), str(t)) for t in Teacher.objects.all()]
         self.fields['substitute'] = ChoiceField(choices=self.choices, required=False)
         if self.instance.substitute == None \
                 and Substitution.objects.filter(pk=self.instance.pk).exists():
