@@ -56,7 +56,8 @@ class SubstitutionForm(ModelForm):
 
     def save(self, commit=True):
         if self.to_delete:
-            self.instance.delete()
+            if self.instance.pk:
+                self.instance.delete()
         else:
             super().save(commit)
 
@@ -79,6 +80,10 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
 
     def total_form_count(self):
         return len(self.lessons)
+
+    def save(self):
+        for form in self.forms:
+            form.save()
 
     def _construct_form(self, i, **kwargs):
         defaults = {
