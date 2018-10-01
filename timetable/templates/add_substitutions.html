@@ -26,7 +26,7 @@ Adding substitutions for {{ teacher }} on {{ date }}
 		{% if forloop.first %}
 		<tr>
 			<th>{% trans "No." context "timetable header" %}</th>
-			<th colspan="3">{% trans "Lesson" %}</th>
+			<th>{% trans "Lesson" %}</th>
 			<th>{% trans "Substitute" %}</th>
 		</tr>
 		{% endif %}
@@ -35,7 +35,7 @@ Adding substitutions for {{ teacher }} on {{ date }}
 			{{ hidden }}
 			{% endfor %}
 			<td> {{ form.lesson.period }} </td>
-			<td colspan="3">
+			<td>
 				<div class="lesson-table">
 					<div class="table-row">
 						<a class="group" href="{% url "groups_timetable" form.lesson.group_id %}">
