@@ -38,6 +38,13 @@
 
 			<a href="{% url "contact" %}">{% trans "Contact us" %}</a>
 
+			{% load flatpages %}
+			{% get_flatpages "/footer/" as footer_html %}
+
+			{% for flatpage in footer_html %}
+			{{ flatpage.content|safe }}
+			{% endfor %}
+
 		</footer>
 	</body>
 </html>
