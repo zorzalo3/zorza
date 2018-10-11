@@ -121,4 +121,4 @@ DayPlanFormSet = modelformset_factory(DayPlan, form=DayPlanForm, extra=8)
 
 class SelectDateAndPeriodForm(Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
-    period = IntegerField(label=_('Period'))
+    period = IntegerField(label=_('Period number'))

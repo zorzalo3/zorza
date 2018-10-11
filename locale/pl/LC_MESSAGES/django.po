@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-01 16:07+0200\n"
+"POT-Creation-Date: 2018-10-11 20:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -220,7 +220,7 @@ msgstr ""
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:21 timetable/forms.py:118
+#: timetable/forms.py:21 timetable/forms.py:123
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
@@ -233,13 +233,13 @@ msgstr "{} nie ma planowych lekcji podanego dnia."
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:35 timetable/forms.py:113 timetable/models.py:141
+#: timetable/forms.py:35 timetable/forms.py:118 timetable/models.py:141
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:119
-msgid "Period"
-msgstr "Godz."
+#: timetable/forms.py:124
+msgid "Period number"
+msgstr "Numer lekcji"
 
 #: timetable/models.py:113 timetable/templates/add_substitutions.html:29
 msgid "Lesson"
@@ -282,7 +282,7 @@ msgstr ""
 #: timetable/templates/reservations.html:12
 #: timetable/templates/schedules.html:15
 #: timetable/templates/substitutions.html:16
-#: timetable/templates/timetable_base.html:36
+#: timetable/templates/timetable_base.html:31
 msgctxt "timetable header"
 msgid "No."
 msgstr "Nr"
@@ -391,7 +391,7 @@ msgstr "Rezerwacje sal"
 
 #: timetable/templates/reservations.html:13
 #: timetable/templates/substitutions.html:17
-#: timetable/templates/timetable_base.html:37
+#: timetable/templates/timetable_base.html:32
 msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
@@ -434,7 +434,7 @@ msgid "Show lessons in rooms"
 msgstr "Pokaż lekcje w salach"
 
 #: timetable/templates/schedules.html:5 timetable/templates/schedules.html:10
-#: timetable/templates/timetable_base.html:100
+#: timetable/templates/timetable_base.html:95
 msgid "Schedules"
 msgstr "Typy dzwonków"
 
@@ -473,27 +473,27 @@ msgstr "Do <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
 msgid "Lessons have already finished today."
 msgstr "Lekcje się już skończyły."
 
-#: timetable/templates/timetable_base.html:22
+#: timetable/templates/timetable_base.html:17
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:65
+#: timetable/templates/timetable_base.html:60
 msgid "Choose timetable to display"
 msgstr "Wybierz plan lekcji"
 
-#: timetable/templates/timetable_base.html:69
+#: timetable/templates/timetable_base.html:64
 msgid "Choose a class"
 msgstr "Wybierz klasę"
 
-#: timetable/templates/timetable_base.html:77
+#: timetable/templates/timetable_base.html:72
 msgid "Choose a teacher"
 msgstr "Wybierz nauczyciela"
 
-#: timetable/templates/timetable_base.html:85
+#: timetable/templates/timetable_base.html:80
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/templates/timetable_base.html:101
+#: timetable/templates/timetable_base.html:96
 msgid "Show lessons at a given time"
 msgstr "Pokaż lekcje o danej porze"
 
