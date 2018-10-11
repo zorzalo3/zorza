@@ -44,10 +44,17 @@ if (col_today) {
 var def_cookie = "timetable_default";
 var attributes = "; path=/timetable/; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 var def_button = document.getElementById("set-def-button");
+var path = window.location.pathname;
+
+// Unhide button if current page isn't default
+if (!document.cookie.split(';').filter(function(item) {
+	return item.indexOf(def_cookie+"="+path) >= 0
+}).length) {
+	def_button.style.visibility = "visible";
+}
 
 // Sets the client's cookie and hides the button
 function setDefaultTimetable() {
-	var path = window.location.pathname;
 	document.cookie = def_cookie+"="+path+attributes;
 	def_button.style.visibility = "hidden";
 }
