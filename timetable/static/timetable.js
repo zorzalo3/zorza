@@ -47,10 +47,12 @@ var def_button = document.getElementById("set-def-button");
 var path = window.location.pathname;
 
 // Unhide button if current page isn't default
-if (!document.cookie.split(';').filter(function(item) {
-	return item.indexOf(def_cookie+"="+path) >= 0
-}).length) {
-	def_button.style.visibility = "visible";
+if (def_button) {
+	if (!document.cookie.split(';').filter(function(item) {
+		return item.indexOf(def_cookie+"="+path) >= 0
+	}).length) {
+		def_button.style.visibility = "visible";
+	}
 }
 
 // Sets the client's cookie and hides the button
