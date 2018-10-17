@@ -1,9 +1,10 @@
 from django.forms  import *
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from .models import *
-from .utils import get_next_schoolday
+from .utils import get_next_schoolday, get_min_period, get_max_period
 
 class Html5DateInput(DateInput):
     input_type = 'date'
@@ -121,4 +122,11 @@ DayPlanFormSet = modelformset_factory(DayPlan, form=DayPlanForm, extra=8)
 
 class SelectDateAndPeriodForm(Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
-    period = IntegerField(label=_('Period number'))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Generate min and max value dynamically because Period objects may
+        # change after server launch
+        self.fields['period'] = IntegerField(label=_('Period number'),
+            min_value=get_min_period(), max_value=get_max_period())
+

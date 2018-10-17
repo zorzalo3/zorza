@@ -27,10 +27,15 @@ def add_full_name(lesson_values):
     full_name = d['teacher__first_name'] + ' ' + d['teacher__last_name']
     d.update({'teacher__name': full_name})
 
+def get_max_period():
+    return Period.objects.aggregate(Max('number'))['number__max']
+
+def get_min_period():
+    return Period.objects.aggregate(Min('number'))['number__min']
+
 def get_period_range():
     """Returns period numbers for iteration"""
-    result = Period.objects.aggregate(Min('number'), Max('number'))
-    return range(result['number__min'], result['number__max']+1)
+    return range(get_min_period(), get_max_period()+1)
 
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
