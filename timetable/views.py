@@ -62,6 +62,7 @@ def show_teacher_timetable(request, teacher_id):
     lessons = Lesson.objects.filter(teacher=teacher)
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
+    context['timetable_teacher'] = teacher
     return render(request, 'teacher_timetable.html', context)
 
 def personalize(request, class_id):
