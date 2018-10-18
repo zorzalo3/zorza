@@ -11,7 +11,7 @@
 {% for teacher in substitutions_by_teacher %}
 
 <table class="substitution">
-	<caption>{{ day.grouper|date:"l, j E" }} – {{ teacher.grouper.full_name }}</caption>
+	<caption>{{ day.grouper|date:"l, j E" }} – <a href="{% url "teacher_timetable" teacher.grouper.pk %}">{{ teacher.grouper.full_name }}</a></caption>
 	<tr>
 		<th>{% trans "No." context "timetable header" %}</th>
 		<th>{% trans "Period" context "timetable header" %}</th>
