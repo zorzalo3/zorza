@@ -183,8 +183,8 @@ def get_period_str(period, date):
         return ''
 
 def get_next_schoolday():
-    """Returns the date of the closest lesson, for convienent defaults.
-    Currently very basic."""
+    """Returns the date of the next schoolday.
+    Returns today if no such day in the upcoming EVENTS_SPAN_DAYS days"""
     today = date.today()
     # Generate considered dates
     dates = [(today + timedelta(days=n)) for n in range(EVENTS_SPAN_DAYS)]
@@ -193,6 +193,6 @@ def get_next_schoolday():
         periods = get_days_periods(day)
         if not periods:
             continue
-        if day > today or datetime.now().time() < periods.last().begin_time:
+        if day > today or datetime.now().time() < periods.first().begin_time:
             return day
     return today
