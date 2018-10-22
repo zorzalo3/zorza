@@ -7,7 +7,6 @@
 		<title>Display</title>
 		<link rel="stylesheet" href="{% static "style.css" %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta http-equiv="refresh" content="300">
 		<style>
 		body, html {
 			overflow: hidden;
@@ -59,35 +58,48 @@
 		</script>
 		<script src="{% static "timetable.js" %}"></script>
 		<script>
-			setInterval(function () {
-				var clock = document.getElementById("display-time");
-				// TODO: show server time
-				var time = new Date();
-				clock.textContent = time.toLocaleTimeString();
-			}, 100);
+setInterval(function () {
+	var clock = document.getElementById("display-time");
+	// TODO: show server time
+	var time = new Date();
+	clock.textContent = time.toLocaleTimeString();
+}, 100);
 
-			//scroll
-			var main = document.getElementsByTagName("main")[0];
-			var substitutions = document.getElementsByClassName("substitutions")[0];
-			var i = 0;
-			var n = substitutions.children.length;
-			function smoothScroll(top) {
-				window.scroll({ behavior: 'smooth', top: top})
-			}
-			function scrollNext() {
-				if (i < n) {
-					var rect = substitutions.children[i].getBoundingClientRect();
-					// offset so as not to obstruct with the fixed header
-					smoothScroll(rect.top - main.getBoundingClientRect().top);
-					i++;
-				} else {
-					// show top of main
-					smoothScroll(0);
-					i = 0;
-				}
-				setTimeout(scrollNext, 4500);
-			}
-			scrollNext();
+//scroll
+var main = document.getElementsByTagName("main")[0];
+var substitutions = document.getElementsByClassName("substitutions")[0];
+var i = 0;
+var n = substitutions.children.length;
+function smoothScroll(top) {
+	window.scroll({ behavior: 'smooth', top: top})
+}
+function scrollNext() {
+	if (i < n) {
+		var rect = substitutions.children[i].getBoundingClientRect();
+		// offset so as not to obstruct with the fixed header
+		smoothScroll(rect.top - main.getBoundingClientRect().top);
+		i++;
+	} else {
+		// show top of main
+		smoothScroll(0);
+		i = 0;
+	}
+	setTimeout(scrollNext, 4500);
+}
+scrollNext();
+
+function reload() {
+	// Reloading will persist even through longer periods of no connection
+	setTimeout(reload, 300000)
+	fetch(new Request(window.location))
+		.then(response => response.text())
+		.then(obj => {
+			// 🤷
+			var new_body = obj.match(/<body[^>]*>[\s\S]*<\/body>/gi);
+			document.body.innerHTML = new_body;
+		});
+}
+setTimeout(reload, 300000)
 		</script>
 	</body>
 </html>
