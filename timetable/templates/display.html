@@ -96,7 +96,7 @@ function reload() {
 		.then(obj => {
 			// 🤷
 			var new_main = obj.match(/<main[^>]*>[\s\S]*<\/main>/gi);
-			main.innerHTML = new_main;
+			main.outerHTML = new_main;
 		});
 }
 setTimeout(reload, 300000)
