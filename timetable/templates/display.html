@@ -67,13 +67,13 @@ setInterval(function () {
 
 //scroll
 var main = document.getElementsByTagName("main")[0];
-var substitutions = document.getElementsByClassName("substitutions")[0];
 var i = 0;
-var n = substitutions.children.length;
 function smoothScroll(top) {
 	window.scroll({ behavior: 'smooth', top: top})
 }
 function scrollNext() {
+	var substitutions = document.getElementsByClassName("substitutions")[0];
+	var n = substitutions.children.length;
 	if (i < n) {
 		var rect = substitutions.children[i].getBoundingClientRect();
 		// offset so as not to obstruct with the fixed header
@@ -95,8 +95,8 @@ function reload() {
 		.then(response => response.text())
 		.then(obj => {
 			// 🤷
-			var new_body = obj.match(/<body[^>]*>[\s\S]*<\/body>/gi);
-			document.body.innerHTML = new_body;
+			var new_main = obj.match(/<main[^>]*>[\s\S]*<\/main>/gi);
+			main.innerHTML = new_main;
 		});
 }
 setTimeout(reload, 300000)
