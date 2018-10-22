@@ -397,7 +397,7 @@ table.substitution {
 
 @media print {
 	* {
-		color: black;
+		color: black !important;
 	}
 	header, footer, .no-print {
 		display: none !important;
