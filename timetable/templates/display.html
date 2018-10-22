@@ -95,8 +95,8 @@ function reload() {
 		.then(response => response.text())
 		.then(obj => {
 			// 🤷
-			var new_main = obj.match(/<main[^>]*>[\s\S]*<\/main>/gi);
-			main.outerHTML = new_main;
+			var new_body = obj.match(/<body[^>]*>[\s\S]*<\/body>/gi);
+			document.body.outerHTML = new_body;
 		});
 }
 setTimeout(reload, 300000)
