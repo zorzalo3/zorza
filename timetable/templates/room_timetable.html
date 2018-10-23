@@ -12,16 +12,32 @@
 {% block lesson %}
 <div class="lesson-table">
 	<div class="table-row">
+		{% if lesson.group.link_to_class %}
+		{% with class=lesson.group.classes.all.0 %}
+		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">
+			{{ lesson.teacher.initials }}
+		</a>
+		<div class="subject" title="{{ lesson.subject.name }}">
+			{{ lesson.subject.short_name }}
+		</div>
+		<a class="class" href="{% url "class_timetable" class.id %}">
+			{{ class.name }}
+		</a>
+		{% endwith %}
+		{% else %}
 		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">
 			{{ lesson.teacher.initials }}
 		</a>
 		<a class="group" href="{% url "groups_timetable" lesson.group_id %}">
 			{{ lesson.group.name }}
 		</a>
+		{% endif %}
 	</div>
 </div>
+{% if not lesson.group.link_to_class %}
 <div class="subject" title="{{ lesson.subject.name }}">
 	{{ lesson.subject.short_name }}
 </div>
+{% endif %
 {% endblock %}
 

@@ -131,6 +131,11 @@ tr.highlight {
   font-family: monospace;
 }
 
+.lesson-table .table-row .class {
+  display: table-cell;
+  font-family: monospace;
+}
+
 .lesson-table .table-row .subject {
   display: table-cell;
   padding-left: 0.4rem;

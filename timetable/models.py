@@ -19,6 +19,8 @@ class Class(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=15)
     classes = models.ManyToManyField(Class, blank=True)
+    # Link directly to class timetable instead of group timetable
+    link_to_class = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
