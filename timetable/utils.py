@@ -13,15 +13,6 @@ from .models import *
 days = settings.TIMETABLE_WEEKDAYS
 day_ids = [x[0] for x in days]
 
-# Not always all those values are needed.
-# Move to views.py with values for each view?
-lesson_values = [
-    'id', 'group_id', 'group__name', 'subject_id', 'subject__name',
-    'subject__short_name', 'teacher_id', 'teacher__first_name',
-    'teacher__last_name', 'teacher__initials', 'period', 'weekday',
-    'room_id', 'room__name', 'room__short_name',
-]
-
 def add_full_name(lesson_values):
     d = lesson_values
     full_name = d['teacher__first_name'] + ' ' + d['teacher__last_name']
@@ -50,14 +41,11 @@ def get_display_context():
     return context
 
 def get_timetable_context(lessons):
-
-    lessons = lessons.values(*lesson_values)
-    for lesson in lessons:
-        add_full_name(lesson)
-
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
         raise Http404('No default timetable or periods')
+
+    lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
 
     periods = get_period_range()
     period_strs = get_period_strings(default_periods)
@@ -72,11 +60,11 @@ def get_timetable_context(lessons):
 
     for lesson in lessons:
         # Will throw exception if lesson.weekday not in days
-        table[lesson['period']][1][lesson['weekday']].append(lesson)
+        table[lesson.period][1][lesson.weekday].append(lesson)
 
     teachers = Teacher.objects.all().values()
     teachers = sorted(teachers, key=lambda t:
-        locale.strxfrm(t['last_name']+t['first_name']))
+        locale.strxfrm(str(t)))
         # Sort considering system locale
 
     context = {

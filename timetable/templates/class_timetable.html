@@ -12,14 +12,14 @@
 {% block lesson %}
 <div class="lesson-table">
 	<div class="table-row">
-		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher__name }}">
-			{{ lesson.teacher__initials }}
+		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">
+			{{ lesson.teacher.initials }}
 		</a>
-		<div class="subject" title="{{ lesson.subject__name }}">
-			{{ lesson.subject__short_name }}
+		<div class="subject" title="{{ lesson.subject.name }}">
+			{{ lesson.subject.short_name }}
 		</div>
-		<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room__name }}">
-			{{ lesson.room__short_name }}
+		<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
+			{{ lesson.room.short_name }}
 		</a>
 	</div>
 </div>

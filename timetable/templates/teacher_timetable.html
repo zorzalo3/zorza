@@ -13,15 +13,15 @@
 <div class="lesson-table">
 	<div class="table-row">
 		<a class="group" href="{% url "groups_timetable" lesson.group_id %}">
-			{{ lesson.group__name }}
+			{{ lesson.group.name }}
 		</a>
-		<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room__name }}">
-			{{ lesson.room__short_name }}
+		<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
+			{{ lesson.room.short_name }}
 		</a>
 	</div>
 </div>
-<div class="subject" title="{{ lesson.subject__name }}">
-	{{ lesson.subject__short_name }}
+<div class="subject" title="{{ lesson.subject.name }}">
+	{{ lesson.subject.short_name }}
 </div>
 {% endblock %}
 
