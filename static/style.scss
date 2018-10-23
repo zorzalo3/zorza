@@ -79,7 +79,7 @@ tr.highlight {
 		border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 	}
 	width: 100%;
-	tr td {
+	td {
 		&:nth-child(1) {
 			// #
 			text-align: center;
@@ -94,8 +94,11 @@ tr.highlight {
 			white-space: normal;
 			padding-left: 0;
 		}
+		&:nth-child(n+3) {
+			width: 10rem;
+		}
 	}
-	tr th {
+	th {
 		&:nth-child(1) {
 			padding-left: 0.2rem;
 			padding-right: 0.2rem;
@@ -105,49 +108,27 @@ tr.highlight {
 		}
 	}
 }
-.subject {
-	margin: 0 auto;
-	width: 100%;
-	text-align: center;
-}
-.lesson-table {
+.lesson-onerow {
 	white-space: nowrap;
-	display: table;
-	min-width: 5rem;
-	margin: 0 auto;
-	.table-row {
-		display: table-row;
-		.teacher {
-			display: table-cell;
-			font-family: monospace;
-		}
-		.room {
-			text-align: right;
-			display: table-cell;
-			font-family: monospace;
-		}
-		.class {
-			display: table-cell;
-			font-family: monospace;
-		}
-		.subject {
-			display: table-cell;
-			padding-left: 0.4rem;
-			padding-right: 0.4rem;
-			width: 99%; // so cells on both sides are shrunk
-			text-align: left;
-		}
-		.group {
-			display: table-cell;
-		}
-		.teacher + .group {
-			text-align: right;
-			padding-left: 0.4rem;
-		}
-		.group + .room {
-			padding-left: 0.4rem;
-		}
+	* {
+		display: table-cell;
 	}
+	:nth-child(2) {
+		width: 100%;
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+	}
+}
+.lesson-tworows {
+	white-space: nowrap;
+	text-align: center;
+	:nth-child(3)::before {
+		content: ' ';
+		display: block;
+	}
+}
+.teacher, .room, .class {
+	font-family: monospace;
 }
 
 

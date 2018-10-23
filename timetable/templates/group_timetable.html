@@ -25,18 +25,16 @@
 {% endblock %}
 
 {% block lesson %}
-<div class="lesson-table">
-	<div class="table-row">
-		<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">
-			{{ lesson.teacher.initials }}
-		</a>
-		<div class="subject" title="{{ lesson.subject.name }}">
-			{{ lesson.subject.short_name }}
-		</div>
-		<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
-			{{ lesson.room.short_name }}
-		</a>
-	</div>
+<div class="lesson-onerow">
+	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">
+		{{ lesson.teacher.initials }}
+	</a>
+	<span class="subject" title="{{ lesson.subject.name }}">
+		{{ lesson.subject.short_name }}
+	</span>
+	<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
+		{{ lesson.room.short_name }}
+	</a>
 </div>
 {% endblock %}
 
