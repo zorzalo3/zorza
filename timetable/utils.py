@@ -64,7 +64,7 @@ def get_timetable_context(lessons):
 
     teachers = Teacher.objects.all().values()
     teachers = sorted(teachers, key=lambda t:
-        locale.strxfrm(str(t)))
+        locale.strxfrm(t['last_name']+t['first_name']))
         # Sort considering system locale
 
     context = {
