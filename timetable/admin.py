@@ -12,8 +12,13 @@ class GroupsInline(admin.TabularInline):
 class PeriodInline(admin.TabularInline):
     model = Period
 
+def set_link_to_class(modeladmin, request, queryset):
+    queryset.update(link_to_class=True)
+set_link_to_class.short_description = "Set 'link to class'"
+
 class GroupAdmin(admin.ModelAdmin):
     inlines = [LessonInline, GroupsInline]
+    actions = [set_link_to_class]
 
 class ClassAdmin(admin.ModelAdmin):
     inlines = [GroupsInline]
