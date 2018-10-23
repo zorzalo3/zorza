@@ -13,11 +13,6 @@ from .models import *
 days = settings.TIMETABLE_WEEKDAYS
 day_ids = [x[0] for x in days]
 
-def add_full_name(lesson_values):
-    d = lesson_values
-    full_name = d['teacher__first_name'] + ' ' + d['teacher__last_name']
-    d.update({'teacher__name': full_name})
-
 def get_max_period():
     return Period.objects.aggregate(Max('number'))['number__max']
 
