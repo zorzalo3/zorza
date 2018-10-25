@@ -20,6 +20,20 @@
 {% trans "Groups" %}
 {% endif %}
 {{ groups|join:", " }}
+
+{% if groups|length == 1 %}
+{% with classes=groups.0.classes.all %}
+{% if classes|length == 1 %}
+({% trans "Class" %}
+{% else %}
+({% trans "Classes" %}
+{% endif %}
+{% for class in classes %}
+<a href="{% url "class_timetable" class.id %}">{{ class }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})
+{% endwith %}
+{% endif %}
+
+
 {% endblock %}
 
 {% block lesson %}

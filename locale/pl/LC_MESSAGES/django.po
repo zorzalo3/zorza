@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-11 20:54+0200\n"
+"POT-Creation-Date: 2018-10-25 18:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,8 +77,8 @@ msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 #: documents/templates/delete_item.html:17
 #: documents/templates/edit_document.html:24
 #: documents/templates/edit_file.html:24
-#: timetable/templates/add_substitutions.html:59
-#: timetable/templates/add_substitutions.html:71
+#: timetable/templates/add_substitutions.html:57
+#: timetable/templates/add_substitutions.html:69
 msgid "Back"
 msgstr "Powrót"
 
@@ -100,7 +100,7 @@ msgstr "Utwórz dokument"
 
 #: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
-#: timetable/templates/add_substitutions.html:61
+#: timetable/templates/add_substitutions.html:59
 #: timetable/templates/edit_calendar.html:42
 msgid "Save"
 msgstr "Zapisz"
@@ -162,7 +162,7 @@ msgid "Page not found"
 msgstr ""
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
-#: timetable/templates/display.html:30
+#: timetable/templates/display.html:32
 msgid "Visit the main page"
 msgstr "Odwiedź stronę główną"
 
@@ -215,33 +215,33 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:19 timetable/templates/reservations.html:14
+#: timetable/forms.py:20 timetable/templates/reservations.html:14
 #: timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:21 timetable/forms.py:123
+#: timetable/forms.py:22 timetable/forms.py:124
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:28
+#: timetable/forms.py:29
 msgid "{} has no planned lessons on the given day."
 msgstr "{} nie ma planowych lekcji podanego dnia."
 
-#: timetable/forms.py:35
+#: timetable/forms.py:36
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:35 timetable/forms.py:118 timetable/models.py:141
+#: timetable/forms.py:36 timetable/forms.py:119 timetable/models.py:143
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:124
+#: timetable/forms.py:130
 msgid "Period number"
 msgstr "Numer lekcji"
 
-#: timetable/models.py:113 timetable/templates/add_substitutions.html:29
+#: timetable/models.py:115 timetable/templates/add_substitutions.html:29
 msgid "Lesson"
 msgstr "Lekcja"
 
@@ -292,17 +292,18 @@ msgstr "Nr"
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:66
+#: timetable/templates/add_substitutions.html:64
 #, python-format
 msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
 msgstr "%(name)s nie ma planowych lekcji tego dnia (%(weekday)s)."
 
 #: timetable/templates/class_timetable.html:5
 #: timetable/templates/class_timetable.html:9
+#: timetable/templates/group_timetable.html:27
 msgid "Class"
 msgstr "Klasa"
 
-#: timetable/templates/class_timetable.html:31
+#: timetable/templates/class_timetable.html:25
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
@@ -343,6 +344,10 @@ msgstr "Typ dzwonków"
 #: timetable/templates/group_timetable.html:20
 msgid "Groups"
 msgstr "Grupy"
+
+#: timetable/templates/group_timetable.html:29
+msgid "Classes"
+msgstr "Klasy"
 
 #: timetable/templates/management.html:13
 #, python-format
@@ -497,7 +502,7 @@ msgstr "Wybierz salę"
 msgid "Show lessons at a given time"
 msgstr "Pokaż lekcje o danej porze"
 
-#: timetable/views.py:73
+#: timetable/views.py:74
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
 
