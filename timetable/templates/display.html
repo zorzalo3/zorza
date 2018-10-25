@@ -94,9 +94,11 @@ function reload() {
 	fetch(new Request(window.location))
 		.then(response => response.text())
 		.then(obj => {
-			// 🤷
-			var new_body = obj.match(/<body[^>]*>[\s\S]*<\/body>/gi);
-			document.body.outerHTML = new_body;
+			var parser = new DOMParser();
+			var doc = parser.parseFromString(obj, "text/html");
+			var new_body = doc.body.innerHTML;
+			document.body.innerHTML = new_body;
+			// <script> tags inserted with innerHTML don't execute.
 		});
 }
 setTimeout(reload, 300000)
