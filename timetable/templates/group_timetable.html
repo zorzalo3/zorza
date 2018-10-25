@@ -19,9 +19,7 @@
 {% else %}
 {% trans "Groups" %}
 {% endif %}
-{% for group in groups %}
-{{ group.name }}{% if not forloop.last %},{% endif %}
-{% endfor %}
+{{ groups|join:", " }}
 {% endblock %}
 
 {% block lesson %}
