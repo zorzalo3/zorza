@@ -89,8 +89,6 @@ function scrollNext() {
 scrollNext();
 
 function reload() {
-	// Reloading will persist even through longer periods of no connection
-	setTimeout(reload, 300000)
 	fetch(new Request(window.location))
 		.then(response => response.text())
 		.then(obj => {
@@ -101,7 +99,8 @@ function reload() {
 			// <script> tags inserted with innerHTML don't execute.
 		});
 }
-setTimeout(reload, 300000)
+// Reloading will persist even through longer periods of no connection
+setInterval(reload, 300000)
 		</script>
 	</body>
 </html>
