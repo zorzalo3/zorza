@@ -11,7 +11,7 @@
 
 {% block lesson %}
 <div class="lesson-onerow">
-	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.name }}">{{ lesson.teacher.initials }}</a>
+	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a>
 	<span class="subject" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
