@@ -1,3 +1,5 @@
+import datetime
+
 from django.forms  import *
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ObjectDoesNotExist
@@ -25,6 +27,12 @@ class SelectTeacherAndDateForm(Form):
         cleaned_data = super().clean()
         teacher = cleaned_data.get('teacher')
         date = cleaned_data.get('date')
+
+        today = datetime.date.today()
+        if date < today:
+            raise ValidationError(_('The given date cannot be in the past'))
+        if date >= datetime.date(today.year + 1, today.month, today.day):
+            raise ValidationError(_('The given date must be within a year from now'))
         if not Lesson.objects.filter(teacher=teacher, weekday=date.weekday()):
             raise ValidationError(_('{} has no planned lessons on the given day.')
                     .format(teacher))

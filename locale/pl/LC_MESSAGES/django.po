@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 18:51+0200\n"
+"POT-Creation-Date: 2018-10-27 08:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,29 +215,37 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:20 timetable/templates/reservations.html:14
+#: timetable/forms.py:22 timetable/templates/reservations.html:14
 #: timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:22 timetable/forms.py:124
+#: timetable/forms.py:24 timetable/forms.py:132
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:29
+#: timetable/forms.py:33
+msgid "The given date cannot be in the past"
+msgstr "Podana data nie może być w przeszłości"
+
+#: timetable/forms.py:35
+msgid "The given date must be within a year from now"
+msgstr "Do podanej daty musi być mniej niż jeden rok"
+
+#: timetable/forms.py:37
 msgid "{} has no planned lessons on the given day."
 msgstr "{} nie ma planowych lekcji podanego dnia."
 
-#: timetable/forms.py:36
+#: timetable/forms.py:44
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:36 timetable/forms.py:119 timetable/models.py:143
+#: timetable/forms.py:44 timetable/forms.py:127 timetable/models.py:143
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:130
+#: timetable/forms.py:138
 msgid "Period number"
 msgstr "Numer lekcji"
 
