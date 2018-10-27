@@ -101,7 +101,9 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['substitutions'] = get_substitutions()
+        today = date.today()
+        end_date = date(today.year + 1, today.month, today.day)
+        context['substitutions'] = get_substitutions(end_date=end_date)
         context['show_substitution_delete'] = True
         return context
 
