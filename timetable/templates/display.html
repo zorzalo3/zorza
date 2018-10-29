@@ -73,6 +73,7 @@ function smoothScroll(top) {
 }
 function scrollNext() {
 	var substitutions = document.getElementsByClassName("substitutions")[0];
+	if (!substitutions) return;
 	var n = substitutions.children.length;
 	if (i < n) {
 		var rect = substitutions.children[i].getBoundingClientRect();
