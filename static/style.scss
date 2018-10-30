@@ -4,14 +4,17 @@ $link-color: #79b6da;
 $font-default: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 $shadow-default: 0 1px 8px rgba(0, 0, 0, 0.3);
 $dark-color: rgba(0, 0, 0, 0.9);
+
 *, *::before, *::after {
 	box-sizing: border-box;
 	font-family: $font-default;
 }
+
 html {
 	font-family: "Roboto" !important;
 	line-height: 1.5;
 	font-size: 13px;
+	-webkit-text-size-adjust: 100%;
 }
 
 
