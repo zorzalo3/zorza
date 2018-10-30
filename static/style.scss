@@ -11,7 +11,6 @@ $dark-color: rgba(0, 0, 0, 0.9);
 }
 
 html {
-	font-family: "Roboto" !important;
 	line-height: 1.5;
 	font-size: 13px;
 	-webkit-text-size-adjust: 100%;
@@ -78,7 +77,7 @@ tr.highlight {
 	background-color: rgba(255, 255, 255, 0.04);
 }
 .timetable {
-	.break-highlight td{
+	.break-highlight td {
 		border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 	}
 	width: 100%;
