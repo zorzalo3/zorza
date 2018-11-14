@@ -12,9 +12,7 @@
 <p class="subcategories">
 	{% trans "Subcategories:" %}
 	{% for category in categories %}
-	<a class="category" href="{% url 'category' category.id %}">
-		{{ category.name }}
-	</a>
+	<a class="category" href="{% url 'category' category.id %}">{{ category.name }}</a>{% if not forloop.last %},{% endif %}
 	{% endfor %}
 </p>
 {% endif %}
