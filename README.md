@@ -44,7 +44,7 @@ This software is designed with response caching in mind because the content is m
 The page `/timetable/display/` displays remaining break/period time and teacher substitutions. It's intended to be run fullscreen in a browser on a public big screen.
 
 ## License
-This project is licensed under GPLv3.
+This project is licensed under AGPLv3.
 
 ## Contributing
 See CONTRIBUTING.md
