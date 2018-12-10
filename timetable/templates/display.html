@@ -102,6 +102,12 @@ function scrollNext() {
 scrollNext();
 
 const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+function updateLastReloadTime() {
+	const now = new Date();
+	let time = document.getElementById("last-reload-time");
+	time.textContent = now.toLocaleDateString(undefined, options);
+}
+updateLastReloadTime();
 function reload() {
 	fetch(new Request(window.location))
 		.then(response => response.text())
@@ -113,9 +119,7 @@ function reload() {
 			// <script> tags inserted with innerHTML don't execute.
 			let reload_error = document.getElementById("reload-error");
 			reload_error.style.visibility = "hidden";
-			const now = new Date();
-			let time = document.getElementById("last-reload-time");
-			time.textContent = now.toLocaleDateString(undefined, options);
+			updateLastReloadTime();
 		})
 		.catch((error) => {
 			let reload_error = document.getElementById("reload-error");
