@@ -175,9 +175,9 @@ class RoomsDatePeriodSelectView(FormView):
         period = form.cleaned_data['period']
         return redirect('rooms', date, period)
 
+@never_cache
 def display(request):
     context = get_display_context()
-
     return render(request, 'display.html', context)
 
 @permission_required('timetable.add_substitution')
