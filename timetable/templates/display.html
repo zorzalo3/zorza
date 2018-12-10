@@ -105,9 +105,9 @@ function reload() {
 	fetch(new Request(window.location))
 		.then(response => response.text())
 		.then(obj => {
-			var parser = new DOMParser();
-			var doc = parser.parseFromString(obj, "text/html");
-			var new_body = doc.body.innerHTML;
+			let parser = new DOMParser();
+			const doc = parser.parseFromString(obj, "text/html");
+			const new_body = doc.body.innerHTML;
 			document.body.innerHTML = new_body;
 			// <script> tags inserted with innerHTML don't execute.
 			let reload_error = document.getElementById("reload-error");
@@ -119,7 +119,7 @@ function reload() {
 			const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 			const now = new Date();
 			let time = document.getElementById("last-reload-time");
-			time.innerHTML = now.toLocaleDateString(undefined, options);
+			time.textContent = now.toLocaleDateString(undefined, options);
 		});
 }
 // Reloading will persist even through longer periods of no connection
