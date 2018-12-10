@@ -78,17 +78,17 @@ setInterval(function () {
 }, 100);
 
 //scroll
-var main = document.getElementsByTagName("main")[0];
 var i = 0;
 function smoothScroll(top) {
 	window.scroll({ behavior: 'smooth', top: top})
 }
 function scrollNext() {
-	var substitutions = document.getElementsByClassName("substitutions")[0];
+	let main = document.getElementsByTagName("main")[0];
+	let substitutions = document.getElementsByClassName("substitutions")[0];
 	if (!substitutions) return;
-	var n = substitutions.children.length;
+	const n = substitutions.children.length;
 	if (i < n) {
-		var rect = substitutions.children[i].getBoundingClientRect();
+		let rect = substitutions.children[i].getBoundingClientRect();
 		// offset so as not to obstruct with the fixed header
 		smoothScroll(rect.top - main.getBoundingClientRect().top);
 		i++;
@@ -97,9 +97,9 @@ function scrollNext() {
 		smoothScroll(0);
 		i = 0;
 	}
-	setTimeout(scrollNext, 4500);
 }
-scrollNext();
+smoothScroll(0); // Scroll to top after refresh
+setInterval(scrollNext, 4500);
 
 const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 function updateLastReloadTime() {
