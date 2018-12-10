@@ -112,14 +112,14 @@ function reload() {
 			// <script> tags inserted with innerHTML don't execute.
 			let reload_error = document.getElementById("reload-error");
 			reload_error.style.visibility = "hidden";
+			const now = new Date();
+			const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+			let time = document.getElementById("last-reload-time");
+			time.textContent = now.toLocaleDateString(undefined, options);
 		})
 		.catch((error) => {
 			let reload_error = document.getElementById("reload-error");
 			reload_error.style.visibility = "visible";
-			const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-			const now = new Date();
-			let time = document.getElementById("last-reload-time");
-			time.textContent = now.toLocaleDateString(undefined, options);
 		});
 }
 // Reloading will persist even through longer periods of no connection
