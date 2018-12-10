@@ -58,7 +58,7 @@
 </div>
 {% block custom %}{% endblock %}
 <h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
-<p class="text-center">
+<form class="text-center" autocomplete="off">
 	{% if class_list %}
 	<select class="timetable-select" onchange="location = this.value">
 		<option disabled selected value>{% trans "Choose a class" %}</option>
@@ -83,7 +83,7 @@
 		{% endfor %}
 	</select>
 	{% endif %}
-</p>
+</form>
 
 {% include "event_list.html" %}
 
