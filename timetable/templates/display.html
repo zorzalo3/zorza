@@ -101,6 +101,7 @@ function scrollNext() {
 }
 scrollNext();
 
+const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 function reload() {
 	fetch(new Request(window.location))
 		.then(response => response.text())
@@ -113,7 +114,6 @@ function reload() {
 			let reload_error = document.getElementById("reload-error");
 			reload_error.style.visibility = "hidden";
 			const now = new Date();
-			const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 			let time = document.getElementById("last-reload-time");
 			time.textContent = now.toLocaleDateString(undefined, options);
 		})
@@ -123,7 +123,7 @@ function reload() {
 		});
 }
 // Reloading will persist even through longer periods of no connection
-setInterval(reload, 300000)
+setInterval(reload, 300000);
 		</script>
 	</body>
 </html>
