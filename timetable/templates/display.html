@@ -23,6 +23,14 @@
 		a {
 			color: rgba(255, 255, 255, 0.9) !important;
 		}
+		#reload-error {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			padding: 0.1rem 0.2rem;
+			background: black;
+			color: white;
+		}
 		</style>
 	</head>
 	<body>
@@ -57,6 +65,10 @@
 			server_utc_offset = {{ utc_offset }};
 		</script>
 		<script src="{% static "timetable.js" %}"></script>
+		<div id="reload-error" style="visibility: hidden;">
+			{% trans "Last connection:" %}
+			<time id="last-reload-time"></time>
+		</div>
 		<script>
 setInterval(function () {
 	var clock = document.getElementById("display-time");
@@ -98,6 +110,16 @@ function reload() {
 			var new_body = doc.body.innerHTML;
 			document.body.innerHTML = new_body;
 			// <script> tags inserted with innerHTML don't execute.
+			let reload_error = document.getElementById("reload-error");
+			reload_error.style.visibility = "hidden";
+		})
+		.catch((error) => {
+			let reload_error = document.getElementById("reload-error");
+			reload_error.style.visibility = "visible";
+			const options = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+			const now = new Date();
+			let time = document.getElementById("last-reload-time");
+			time.innerHTML = now.toLocaleDateString(undefined, options);
 		});
 }
 // Reloading will persist even through longer periods of no connection
