@@ -46,5 +46,7 @@ The page `/timetable/display/` displays remaining break/period time and teacher 
 ## License
 This project is licensed under AGPLv3.
 
+The header image is a modified photograph by [Simo "Ximonic" Räsänen](https://commons.wikimedia.org/wiki/File:Aurora_borealis_above_Lyngenfjorden,_2012_March.jpg) and is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
+
 ## Contributing
 See CONTRIBUTING.md
