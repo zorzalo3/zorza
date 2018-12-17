@@ -1,4 +1,5 @@
 # Zorza
+/'zɔʐa/ ZAW-zha - Polish for *aurora*
 
 ## About
 An informational website for schools with an advanced timetable interface.
