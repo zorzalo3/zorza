@@ -6,6 +6,12 @@ Designed to look nice on many screens, be fast, comfortable to use, and solid.
 Supports teacher substitutions, group absences, occasional schedule changes.
 Includes a page for public displays and a tree of downloadable files/rich text.
 
+<p style="float: left">
+<img src="https://user-images.githubusercontent.com/35867657/50116506-4a59b180-0242-11e9-8762-03b7207a20dc.png" height="390px">
+<img src="https://user-images.githubusercontent.com/35867657/50116513-4e85cf00-0242-11e9-8049-800552640229.png" height="390px">
+<img src="https://user-images.githubusercontent.com/35867657/50116521-52b1ec80-0242-11e9-99a8-c2e8de836226.png" height="390px">
+</p>
+
 ## Setup
 Install Django 2.0 or later and Python 3.4 or later.
 For that, using Python virtual environments is recommended.
