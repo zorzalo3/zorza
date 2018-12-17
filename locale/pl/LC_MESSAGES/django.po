@@ -453,7 +453,7 @@ msgstr "Pokaż lekcje w salach"
 #: timetable/templates/schedules.html:5 timetable/templates/schedules.html:10
 #: timetable/templates/timetable_base.html:95
 msgid "Schedules"
-msgstr "Typy dzwonków"
+msgstr "Rozkłady dzwonków"
 
 #: timetable/templates/substitutions.html:21
 msgid "Delete?"
