@@ -43,10 +43,12 @@ This software is designed with response caching in mind because the content is m
 
 The page `/timetable/display/` displays remaining break/period time and teacher substitutions. It's intended to be run fullscreen in a browser on a public big screen.
 
-## License
+## License and credits
 This project is licensed under AGPLv3.
 
 The header image is a modified photograph by [Simo "Ximonic" Räsänen](https://commons.wikimedia.org/wiki/File:Aurora_borealis_above_Lyngenfjorden,_2012_March.jpg) and is available under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
+
+The logo font is [Raleway](https://github.com/impallari/Raleway/).
 
 ## Contributing
 See CONTRIBUTING.md
