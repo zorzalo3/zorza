@@ -57,5 +57,7 @@ The header image is a modified photograph by [Simo "Ximonic" Räsänen](https://
 
 The logo font is [Raleway](https://github.com/impallari/Raleway/).
 
+This project includes [medium-editor](https://github.com/yabwe/medium-editor/) by Davi Ferreira (http://www.daviferreira.com) licensed under the MIT license.
+
 ## Contributing
 See CONTRIBUTING.md
