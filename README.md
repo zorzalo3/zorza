@@ -1,7 +1,7 @@
 # Zorza
 
 ## About
-An information service for schools with an advanced timetable interface.
+An informational website for schools with an advanced timetable interface.
 Designed to look nice on many screens, be fast, comfortable to use, and solid.
 Supports teacher substitutions, group absences, occasional schedule changes.
 Includes a page for public displays and a tree of downloadable files/rich text.
