@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if dayplans %}
 {% for dayplan in dayplans %}
-{% with schedule=dayplan.schedule date=dayplan.date|date:"j E" %}
+{% with schedule=dayplan.schedule date=dayplan.date|date:"MONTH_DAY_FORMAT" %}
 
 {% if dayplan.schedule.is_default %} {# Don't show anything #}
 
