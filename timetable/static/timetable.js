@@ -94,6 +94,7 @@ function updateLesson() {
 	if (clock) {
 		clock.textContent = now.toLocaleTimeString();
 	}
+	if (!periods) return;
 	if (prev_highlight) {
 		prev_highlight.classList.remove("highlight", "break-highlight");
 	}
@@ -160,7 +161,5 @@ function toDisplay(deltaMilliSeconds) {
 	return minutes + ':' + seconds;
 }
 
-if (periods.length) {
-	updateLesson();
-	setInterval(updateLesson, 100);
-}
+updateLesson();
+setInterval(updateLesson, 1000);
