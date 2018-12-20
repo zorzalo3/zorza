@@ -1,9 +1,9 @@
 # Zorza
 (/'zɔʐa/ ZAW-zha - Polish for *aurora*)  
 An informational website for schools with an advanced timetable interface.
-Designed to look nice on many screens, be fast, comfortable to use, and solid.
-Supports teacher substitutions, group absences, occasional schedule changes.
-Includes a page for public displays and a tree of downloadable files/rich text.
+It strives to be light, comfortable to use, and look good on many devices.
+Supports teacher substitutions and occasional schedule changes.
+Includes a public information display and documents - a tree of downloadable files/rich text.
 
 <p style="float: left">
 <img src="https://user-images.githubusercontent.com/35867657/50306538-c6940500-048d-11e9-92c7-30e17ef75930.png" height="390px">
