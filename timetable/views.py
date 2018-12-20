@@ -135,7 +135,10 @@ def edit_calendar(request):
     if request.method == 'POST':
         formset = DayPlanFormSet(request.POST, queryset=qs)
         if formset.is_valid():
-            formset.save()
+            for instance in formset.save(commit=False):
+                instance.save()
+                if instance.schedule and instance.schedule.is_default:
+                    instance.delete()
             # Refresh the formset by refreshing the page
             return HttpResponseRedirect(request.path)
     else:
