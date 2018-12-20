@@ -6,9 +6,9 @@ Supports teacher substitutions, group absences, occasional schedule changes.
 Includes a page for public displays and a tree of downloadable files/rich text.
 
 <p style="float: left">
+<img src="https://user-images.githubusercontent.com/35867657/50306538-c6940500-048d-11e9-92c7-30e17ef75930.png" height="390px">
 <img src="https://user-images.githubusercontent.com/35867657/50116506-4a59b180-0242-11e9-8762-03b7207a20dc.png" height="390px">
 <img src="https://user-images.githubusercontent.com/35867657/50116513-4e85cf00-0242-11e9-8049-800552640229.png" height="390px">
-<img src="https://user-images.githubusercontent.com/35867657/50116521-52b1ec80-0242-11e9-99a8-c2e8de836226.png" height="390px">
 </p>
 
 ## Setup
