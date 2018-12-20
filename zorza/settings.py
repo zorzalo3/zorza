@@ -157,6 +157,10 @@ LOGIN_REDIRECT_URL = '/manage/'
 
 FORMAT_MODULE_PATH = [ 'zorza.formats' ]
 
+# Change this unique identifier if timetable ids change (eg. new semester)
+# We want to prevent having outdated urls set in the default timetable cookie
+TIMETABLE_VERSION = None
+
 try:
     from .localsettings import *
 except ImportError:

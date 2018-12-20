@@ -67,6 +67,7 @@ def get_timetable_context(lessons):
         'class_list': Class.objects.all().values(),
         'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
+        'timetable_version': settings.TIMETABLE_VERSION,
     }
     context.update(get_display_context())
 

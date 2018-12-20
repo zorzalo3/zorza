@@ -23,11 +23,13 @@ from .forms import *
 @vary_on_cookie
 def show_default_timetable(request):
     default_url = request.COOKIES.get('timetable_default') # set in JS
-    if default_url is None:
-        return HttpResponseRedirect(reverse('class_timetable', args=[1]))
-    view, args, kwargs = resolve(default_url)
-    if view:
-        return HttpResponseRedirect(default_url)
+    version = request.COOKIES.get('timetable_version')
+    if default_url is None or version != settings.TIMETABLE_VERSION:
+        response = HttpResponseRedirect(reverse('class_timetable', args=[1]))
+        response.delete_cookie('timetable_default', path='/timetable/')
+        response.delete_cookie('timetable_version', path='/timetable/')
+        return response
+    return HttpResponseRedirect(default_url)
 
 def show_class_timetable(request, class_id):
     klass = get_object_or_404(Class, pk=class_id)

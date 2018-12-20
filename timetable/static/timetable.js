@@ -42,6 +42,7 @@ if (col_today) {
 
 // Constants for the default timetable cookie
 var def_cookie = "timetable_default";
+var ver_cookie = "timetable_version";
 var attributes = "; path=/timetable/; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 var def_button = document.getElementById("set-def-button");
 var path = window.location.pathname;
@@ -58,6 +59,9 @@ if (def_button) {
 // Sets the client's cookie and hides the button
 function setDefaultTimetable() {
 	document.cookie = def_cookie+"="+path+attributes;
+	if (timetable_version) {
+		document.cookie = ver_cookie+"="+timetable_version+attributes;
+	}
 	def_button.style.visibility = "hidden";
 }
 
