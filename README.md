@@ -56,6 +56,9 @@ Custom admin commands (see `./manage.py COMMAND --help`):
 * `uploaddir` - uploads a directory of files to a category
 * `cleanup` - removes old substitutions etc.
 
+To access substitution editing forms or the calendar (DayPlan formset) the user needs the `add_substitution` or `add_dayplan` permission respectively.
+To access Django Admin `is_staff` is needed, as is normal with Django.
+
 ## License and credits
 This project is licensed under AGPLv3.
 
