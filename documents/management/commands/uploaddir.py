@@ -10,8 +10,12 @@ class Command(BaseCommand):
         parser.add_argument('directory', type=str)
         parser.add_argument('category_id')
 
-        parser.add_argument('-p', dest='prefix', type=int, default=0)
-        parser.add_argument('-s', dest='suffix', type=int, default=0)
+        parser.add_argument('-p', '--prefix', metavar='N', dest='prefix',
+            type=int, default=0, help=\
+'Discard N characters from the beginning of the filename for the Item name')
+        parser.add_argument('-s', '--suffix', metavar='N', dest='suffix',
+            type=int, default=0, help=\
+'Discard N characters from the end of the filename for the Item name')
 
     def handle(self, *args, **options):
         directory = options['directory']
