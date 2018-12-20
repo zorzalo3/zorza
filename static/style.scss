@@ -352,12 +352,6 @@ caption {
 	margin-bottom: 0.3rem;
 }
 
-#display-time {
-	font-weight: bold;
-}
-.display-datetime, .display-timer {
-	font-size: 1.4rem;
-}
 
 article {
 	max-width: 44rem;
@@ -372,15 +366,6 @@ table.substitution {
 	margin: 0 auto 1rem auto;
 }
 
-.display {
-	margin-top: 5rem;
-}
-
-.display-header {
-	position: fixed;
-	top: 0;
-	width: 100%;
-}
 
 @media print {
 	* {
