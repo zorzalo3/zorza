@@ -51,6 +51,11 @@ This software is designed with response caching in mind because the content is m
 The page `/timetable/display/` displays remaining break/period time and teacher substitutions. It's intended to be run fullscreen in a browser on a public big screen.
 Use browser zoom to make it look right.
 
+## Administration
+Custom admin commands (see `./manage.py COMMAND --help`):
+* `uploaddir` - uploads a directory of files to a category
+* `cleanup` - removes old substitutions etc.
+
 ## License and credits
 This project is licensed under AGPLv3.
 
