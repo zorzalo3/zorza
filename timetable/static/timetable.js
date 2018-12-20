@@ -127,7 +127,8 @@ function updateLesson() {
 				prev_highlight = row;
 			}
 			until = periods[i]['end_time'];
-			timer.getElementsByClassName("period-no")[0].textContent = i;
+			let period_no = timer.getElementsByClassName("period-no")[0];
+			period_no.textContent = periods[i].number;
 			break;
 		}
 		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
@@ -140,7 +141,8 @@ function updateLesson() {
 				prev_highlight = row;
 			}
 			until = periods[i]['begin_time'];
-			timer.getElementsByClassName("period-no")[0].textContent = i;
+			let period_no = timer.getElementsByClassName("period-no")[0];
+			period_no.textContent = periods[i].number;
 			break;
 		}
 	}
