@@ -155,6 +155,8 @@ CACHE_MIDDLEWARE_SECONDS = 0 # 60*30
 
 LOGIN_REDIRECT_URL = '/manage/'
 
+FORMAT_MODULE_PATH = [ 'zorza.formats' ]
+
 try:
     from .localsettings import *
 except ImportError:
