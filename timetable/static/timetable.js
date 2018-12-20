@@ -67,6 +67,7 @@ function addMinutes(date, minutes) {
 
 var periods = todays_periods;
 var offset = server_utc_offset - (new Date()).getTimezoneOffset();
+// FIXME: adjust for timezone difference in a smarter way?
 for (var i = 0; i < periods.length; i++) {
 	periods[i] = periods[i]['fields'];
 	periods[i]['begin_time'] = parseTime(periods[i]['begin_time']);
@@ -163,3 +164,4 @@ function toDisplay(deltaMilliSeconds) {
 
 updateLesson();
 setInterval(updateLesson, 1000);
+// FIXME: setInterval can drift and we can skip seconds as a result
