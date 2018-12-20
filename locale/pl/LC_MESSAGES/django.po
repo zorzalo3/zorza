@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 16:19+0100\n"
+"POT-Creation-Date: 2018-12-20 13:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Treść"
 
 #: contact/templates/contact/message_form.html:5
 #: contact/templates/contact/message_form.html:10 templates/base.html:39
-msgid "Contact us"
+msgid "Contact"
 msgstr "Kontakt"
 
 #: contact/templates/contact/message_form.html:15
@@ -77,8 +77,8 @@ msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 #: documents/templates/delete_item.html:17
 #: documents/templates/edit_document.html:24
 #: documents/templates/edit_file.html:24
-#: timetable/templates/add_substitutions.html:57
-#: timetable/templates/add_substitutions.html:69
+#: timetable/templates/add_substitutions.html:47
+#: timetable/templates/add_substitutions.html:59
 msgid "Back"
 msgstr "Powrót"
 
@@ -100,7 +100,7 @@ msgstr "Utwórz dokument"
 
 #: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
-#: timetable/templates/add_substitutions.html:59
+#: timetable/templates/add_substitutions.html:49
 #: timetable/templates/edit_calendar.html:42
 msgid "Save"
 msgstr "Zapisz"
@@ -300,7 +300,7 @@ msgstr "Nr"
 msgid "Substitute"
 msgstr "Zastępca"
 
-#: timetable/templates/add_substitutions.html:64
+#: timetable/templates/add_substitutions.html:54
 #, python-format
 msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
 msgstr "%(name)s nie ma planowych lekcji tego dnia (%(weekday)s)."
@@ -537,6 +537,11 @@ msgstr ""
 #: zorza/settings.py:144
 msgid "Friday"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Contact"
+#~ msgid "Contact us"
+#~ msgstr "Kontakt"
 
 #~ msgid "Show the lesson in each room"
 #~ msgstr "Pokaż lekcję dla każdej sali"

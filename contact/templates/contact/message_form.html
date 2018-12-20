@@ -2,12 +2,12 @@
 {% load i18n %}
 
 {% block title %}
-{% trans "Contact us" %} - Zorza
+{% trans "Contact" %} - Zorza
 {% endblock %}
 
 {% block content %}
 <form method="post" class="form-small">
-	<h2>{% trans "Contact us" %}</h2>
+	<h2>{% trans "Contact" %}</h2>
 	{% csrf_token %}
 	{{ form.as_p }}
 	<p class="text-center">
