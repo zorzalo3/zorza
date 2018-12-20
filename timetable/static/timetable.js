@@ -90,6 +90,10 @@ var prev_highlight, prev_timer;
 
 function updateLesson() {
 	var now = new Date();
+	let clock = document.getElementById("display-time");
+	if (clock) {
+		clock.textContent = now.toLocaleTimeString();
+	}
 	if (prev_highlight) {
 		prev_highlight.classList.remove("highlight", "break-highlight");
 	}
