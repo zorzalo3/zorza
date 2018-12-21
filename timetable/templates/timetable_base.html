@@ -86,12 +86,8 @@
 </form>
 
 {% include "event_list.html" %}
+{% include "timetable_data.html" %}
 
-<script id="todays-periods">
-	todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
-	server_utc_offset = {{ utc_offset }};
-	timetable_version = {{ timetable_version|default:"undefined" }};
-</script>
 <script src="{% static "timetable.js" %}"></script>
 <h2 class="text-center"><a href="{% url "schedules" %}">{% trans "Schedules" %}</a></h2>
 <h2 class="text-center"><a href="{% url "rooms" %}">{% trans "Show lessons at a given time" %}</a></h2>

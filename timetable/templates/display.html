@@ -74,10 +74,7 @@
 			{% include "absences.html" %}
 			{% include "reservations.html" %}
 		</main>
-		<script id="todays-periods">
-			todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
-			server_utc_offset = {{ utc_offset }};
-		</script>
+		{% include "timetable_data.html" %}
 		<script src="{% static "timetable.js" %}"></script>
 		<div id="reload-error" style="visibility: hidden;">
 			{% trans "Last connection:" %}
