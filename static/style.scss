@@ -76,10 +76,10 @@ col.highlight {
 tr.highlight {
 	background-color: rgba(255, 255, 255, 0.04);
 }
+tr.break-highlight {
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
 .timetable {
-	.break-highlight td {
-		border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-	}
 	width: 100%;
 	td {
 		&:nth-child(1) {

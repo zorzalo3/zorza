@@ -74,12 +74,12 @@ tr.highlight {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
-.timetable {
-  width: 100%;
+tr.break-highlight {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.timetable .break-highlight td {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+.timetable {
+  width: 100%;
 }
 
 .timetable td:nth-child(1) {
