@@ -74,10 +74,10 @@ var offset = server_utc_offset - (new Date()).getTimezoneOffset();
 // FIXME: adjust for timezone difference in a smarter way?
 for (var i = 0; i < periods.length; i++) {
 	periods[i] = periods[i]['fields'];
-	periods[i]['begin_time'] = parseTime(periods[i]['begin_time']);
-	periods[i]['begin_time'] = addMinutes(periods[i]['begin_time'], offset);
-	periods[i]['end_time'] = parseTime(periods[i]['end_time']);
-	periods[i]['end_time'] = addMinutes(periods[i]['end_time'], offset);
+	periods[i].begin_time = parseTime(periods[i].begin_time);
+	periods[i].begin_time = addMinutes(periods[i].begin_time, offset);
+	periods[i].end_time = parseTime(periods[i].end_time);
+	periods[i].end_time = addMinutes(periods[i].end_time, offset);
 }
 
 function parseTime(string) {
@@ -107,21 +107,21 @@ function updateLesson() {
 	// timer - the <span> element which should be shown
 	// until - time to which it is count down
 
-	if (now < periods[0]['begin_time']) {
+	if (now < periods[0].begin_time) {
 		// If it's before all lessons
 
 		// Don't show the clock too early
-		if (addMinutes(now, 60) < periods[0]['begin_time']) {
+		if (addMinutes(now, 60) < periods[0].begin_time) {
 			return;
 		}
 
 		timer = document.getElementById("before-lessons");
-		until = periods[0]['begin_time'];
-	} else if (now > periods[periods.length-1]['end_time']) {
+		until = periods[0].begin_time;
+	} else if (now > periods[periods.length-1].end_time) {
 		// If it's after all lessons
 		timer = document.getElementById("after-lessons");
 	} else for (var i = 0; i < periods.length; i++) {
-		if (periods[i]['begin_time'] < now && now < periods[i]['end_time']) {
+		if (periods[i].begin_time < now && now < periods[i].end_time) {
 			// If a lesson is ongoing
 			timer = document.getElementById("during-lesson");
 			var tmp = document.getElementById("period-"+periods[i]['number']);
@@ -130,12 +130,12 @@ function updateLesson() {
 				row.classList.add("highlight");
 				prev_highlight = row;
 			}
-			until = periods[i]['end_time'];
+			until = periods[i].end_time;
 			let period_no = timer.getElementsByClassName("period-no")[0];
 			period_no.textContent = periods[i].number;
 			break;
 		}
-		if (i > 0 && periods[i-1]['end_time'] < now && now < periods[i]['begin_time']) {
+		if (i > 0 && periods[i-1].end_time < now && now < periods[i].begin_time) {
 			// If it's a break between lessons
 			timer = document.getElementById("between-lessons");
 			var tmp = document.getElementById("period-"+periods[i-1]['number']);
@@ -144,7 +144,7 @@ function updateLesson() {
 				row.classList.add("break-highlight");
 				prev_highlight = row;
 			}
-			until = periods[i]['begin_time'];
+			until = periods[i].begin_time;
 			let period_no = timer.getElementsByClassName("period-no")[0];
 			period_no.textContent = periods[i].number;
 			break;
