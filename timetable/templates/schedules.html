@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}
 {% trans "Schedules" %} - Zorza
@@ -8,6 +9,10 @@
 {% block content %}
 
 <h2 class="text-center">{% trans "Schedules" %}</h2>
+<p class="text-center">
+	{% now "l" %}, {% now "DATE_FORMAT" %}.
+	{% include "timer.html" %}
+</p>
 
 <table class="block-center">
 	<thead>
@@ -23,7 +28,7 @@
 	<tbody>
 		{% for period_number, schedule in table.items %}
 		<tr>
-			<td>{{ period_number }}</td>
+			<td id="period-{{ period_number }}">{{ period_number }}</td>
 			{% for _, schedule in schedule.items %}
 			<td>{{ schedule }}</td>
 			{% endfor %}
@@ -31,5 +36,8 @@
 		{% endfor %}
 	</tbody>
 </table>
+
+{% include "timetable_data.html" %}
+<script src="{% static "timetable.js" %}"></script>
 
 {% endblock %}

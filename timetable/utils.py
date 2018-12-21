@@ -147,10 +147,12 @@ def get_schedules_table():
     for period in all_periods:
         table[period.number][period.schedule] = str(period)
 
-    return {
+    context = {
         'schedules': schedules,
         'table': table,
     }
+    context.update(get_display_context())
+    return context;
 
 def get_utc_offset():
     """Returns difference from UTC in minutes.
