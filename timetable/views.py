@@ -16,7 +16,7 @@ from django.conf import settings
 
 from .models import *
 from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
-    get_substitutions, get_display_context)
+    get_events, get_display_context)
 from .forms import *
 
 
@@ -106,7 +106,8 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
         context = super().get_context_data(**kwargs)
         today = date.today()
         end_date = date(today.year + 1, today.month, today.day)
-        context['substitutions'] = get_substitutions(end_date=end_date)
+        events = get_events(end_date=end_date)
+        context['substitutions'] = events['substitutions']
         context['show_substitution_delete'] = True
         return context
 

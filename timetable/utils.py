@@ -101,13 +101,6 @@ def get_events(begin_date=None, end_date=None):
 
     return events
 
-def get_substitutions(begin_date=None, end_date=None):
-    filter_kwargs = get_date_filter_kwargs(begin_date, end_date)
-    substitutions = Substitution.objects.filter(**filter_kwargs) \
-                        .select_related('teacher', 'substitute') \
-                        .order_by('date', 'teacher', 'period')
-    return substitutions
-
 def get_days_periods(date):
     try:
         dayplan = DayPlan.objects.get(date=date)
