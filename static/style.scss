@@ -4,6 +4,8 @@ $link-color: #79b6da;
 $font-default: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 $shadow-default: 0 1px 8px rgba(0, 0, 0, 0.3);
 $dark-color: rgba(0, 0, 0, 0.9);
+$primary-color: #23594a;
+$primary-accent-color: #2f7457; // for gradient
 
 *, *::before, *::after {
 	box-sizing: border-box;
@@ -136,7 +138,7 @@ tr.break-highlight {
 
 header {
 	background-image: url("aurora_header.jpg");
-	background-color: #23594a;
+	background-color: $primary-color;
 	background-size: cover;
 	margin-bottom: 1rem;
 	box-shadow: $shadow-default;
@@ -273,20 +275,18 @@ button, .button {
 
 
 .button-primary {
-	$green1: #2f7457;
-	$green2: #235347;
-	background: linear-gradient(150deg, $green1, $green2);
+	background: linear-gradient(150deg, $primary-accent-color, $primary-color);
 	color: #fff;
 	border-top: rgba(255, 255, 255, 0.25) solid 1px;
 	border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
 	outline: none;
 	&:hover {
-		background: linear-gradient(150deg, lighten($green1, 5%), lighten($green2, 5%));
+		background: linear-gradient(150deg, lighten($primary-accent-color, 5%), lighten($primary-color, 5%));
 	}
 	&:active {
-		background: linear-gradient(150deg, $green2, $green1);
-		border-top: $green2 solid 1px;
-		border-bottom: $green2 solid 1px;
+		background: linear-gradient(150deg, $primary-color, $primary-accent-color);
+		border-top: $primary-color solid 1px;
+		border-bottom: $primary-color solid 1px;
 	}
 }
 
