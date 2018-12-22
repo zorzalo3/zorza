@@ -42,11 +42,12 @@ def show_class_timetable(request, class_id):
 
 def show_groups_timetable(request, group_ids):
     try:
-        group_ids = {int(n) for n in group_ids.split(',')} # convert to set
+        group_ids = [int(n) for n in group_ids.split(',')]
     except:
         raise Http404
-
-    groups = [get_object_or_404(Group, pk=n) for n in group_ids]
+    groups = Group.objects.filter(pk__in=group_ids)
+    if len(groups) != len(group_ids):
+        raise Http404
     lessons = Lesson.objects.filter(group__in=group_ids)
     context = get_timetable_context(lessons)
     context['groups'] = groups
