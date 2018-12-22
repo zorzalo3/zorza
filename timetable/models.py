@@ -88,6 +88,17 @@ class Period(models.Model):
             (self.begin_time.hour, self.begin_time.minute, \
              self.end_time.hour,   self.end_time.minute)
 
+    def clean(self):
+        # Ensure Period numbers of non-default Schedule are a subset of Period
+        # numbers of the default Schedule
+        if self.schedule.is_default:
+            return
+        qs = Period.objects.filter(number=self.number,
+                                   schedule__is_default=True)
+        if not qs.exists():
+            raise ValidationError("Period numbers must be a subset of default\
+                schedule's period numbers")
+
     class Meta:
         unique_together = (('number', 'schedule'),)
         ordering = ['schedule', 'number']
