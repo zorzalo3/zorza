@@ -17,11 +17,12 @@
 <table class="block-center">
 	<colgroup>
 		<col>
+		{% now "w" as weekday %}
 		{% if dayplans.0.is_today %}
 		{% for schedule in schedules %}
 		<col {% if dayplans.0.schedule == schedule %}class="highlight"{% endif %}>
 		{% endfor %}
-		{% else %}
+		{% elif weekday|add:0 in day_ids %}
 		{% for schedule in schedules %}
 		<col {% if schedule.is_default %}class="highlight"{% endif %}>
 		{% endfor %}

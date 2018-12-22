@@ -25,6 +25,7 @@ def get_period_strings(periods):
 def get_display_context():
     context = {
         'days': days,
+        'day_ids': day_ids,
         'todays_periods_json': serialize('json', get_todays_periods()),
         'utc_offset': get_utc_offset(),
     }
