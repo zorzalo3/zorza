@@ -55,14 +55,14 @@ def show_groups_timetable(request, group_ids):
 
 def show_room_timetable(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
-    lessons = Lesson.objects.filter(room=room)
+    lessons = Lesson.objects.filter(room=room).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['room'] = room
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):
     teacher = get_object_or_404(Teacher, pk=teacher_id)
-    lessons = Lesson.objects.filter(teacher=teacher)
+    lessons = Lesson.objects.filter(teacher=teacher).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
     context['timetable_teacher'] = teacher
