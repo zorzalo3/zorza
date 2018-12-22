@@ -9,10 +9,7 @@
 <form class="form-small" method="post">
 	<h2>{% trans "Calendar" %}</h2>
 	<p>
-		{% blocktrans trimmed %}
-		Add or change schedules for future dates.
-		Set schedule to the default schedule to delete row.
-		{% endblocktrans %}
+		{% blocktrans %}Add or change schedules for future dates.{% endblocktrans %}
 	</p>
 	{% csrf_token %}
 	{{ formset.non_field_errors }}
