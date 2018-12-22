@@ -281,7 +281,7 @@ button:hover, .button:hover {
 }
 
 .button-primary {
-  background: linear-gradient(150deg, #2f7457, #235347);
+  background: linear-gradient(150deg, #2f7457, #23594a);
   color: #fff;
   border-top: rgba(255, 255, 255, 0.25) solid 1px;
   border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
@@ -289,13 +289,13 @@ button:hover, .button:hover {
 }
 
 .button-primary:hover {
-  background: linear-gradient(150deg, #368665, #2b6556);
+  background: linear-gradient(150deg, #368665, #2a6b59);
 }
 
 .button-primary:active {
-  background: linear-gradient(150deg, #235347, #2f7457);
-  border-top: #235347 solid 1px;
-  border-bottom: #235347 solid 1px;
+  background: linear-gradient(150deg, #23594a, #2f7457);
+  border-top: #23594a solid 1px;
+  border-bottom: #23594a solid 1px;
 }
 
 .form-small {
