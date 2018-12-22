@@ -17,7 +17,7 @@ def set_link_to_class(modeladmin, request, queryset):
 set_link_to_class.short_description = "Set 'link to class'"
 
 class GroupAdmin(admin.ModelAdmin):
-    inlines = [LessonInline, GroupsInline]
+    inlines = [LessonInline]
     actions = [set_link_to_class]
 
 class ClassAdmin(admin.ModelAdmin):
