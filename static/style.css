@@ -4,12 +4,14 @@
 }
 
 html {
+  scroll-behavior: smooth;
   line-height: 1.5;
   font-size: 13px;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  position: relative;
   margin: 0;
   background-color: #1d2124;
   background-image: url("bg_noise.png");
@@ -427,4 +429,36 @@ table.substitution {
     margin: 2rem auto;
     padding: 4rem;
   }
+}
+
+.scroll-to-top-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 1rem;
+}
+
+.scroll-to-top {
+  position: sticky;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  top: -3rem;
+  transform: translateY(100vh);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  background-color: #2f7457;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 1rem;
+}
+
+.scroll-to-top:hover {
+  background-color: #368665;
+}
+
+.up-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid white;
+  display: inline-block;
 }
