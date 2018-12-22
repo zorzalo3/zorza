@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext as _
 from django.utils.formats import date_format
@@ -21,6 +22,10 @@ class Group(models.Model):
     classes = models.ManyToManyField(Class, blank=True)
     # Link directly to class timetable instead of group timetable
     link_to_class = models.BooleanField(default=False)
+
+    def clean(self):
+        if (self.link_to_class == True and self.classes.count() != 1):
+            raise ValidationError(_('link_to_class needs exactly one class'))
 
     def __str__(self):
         return self.name

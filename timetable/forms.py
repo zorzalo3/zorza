@@ -138,3 +138,14 @@ class SelectDateAndPeriodForm(Form):
         self.fields['period'] = IntegerField(label=_('Period number'),
             min_value=get_min_period(), max_value=get_max_period())
 
+class GroupForm(ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'
+
+    def clean(self):
+        link_to_class = self.cleaned_data.get('link_to_class')
+        classes = self.cleaned_data.get('classes')
+        if link_to_class and classes.count() != 1:
+            raise ValidationError('link_to_class required exactly one class')
+        return self.cleaned_data

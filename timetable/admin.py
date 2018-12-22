@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from . import forms
 
 # Register your models here.
 
@@ -17,6 +18,7 @@ def set_link_to_class(modeladmin, request, queryset):
 set_link_to_class.short_description = "Set 'link to class'"
 
 class GroupAdmin(admin.ModelAdmin):
+    form = forms.GroupForm
     inlines = [LessonInline]
     actions = [set_link_to_class]
 
