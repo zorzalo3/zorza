@@ -19,10 +19,6 @@ def get_max_period():
 def get_min_period():
     return Period.objects.aggregate(Min('number'))['number__min']
 
-def get_period_range():
-    """Returns period numbers for iteration"""
-    return range(get_min_period(), get_max_period()+1)
-
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
 
@@ -42,7 +38,7 @@ def get_timetable_context(lessons):
 
     lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
 
-    periods = get_period_range()
+    periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
 
     # TODO: a cleaner way to pass period str to the template while using
