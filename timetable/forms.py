@@ -80,7 +80,7 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
         super().__init__(*args, **kwargs)
         self.queryset = Substitution.objects \
             .filter(teacher=teacher, date=date) \
-            .order_by('period')
+            .order_by('period_number')
         self.teacher = teacher
         self.teachers = Teacher.objects.all() # So as not to repeat queries
         self.date = date
@@ -108,9 +108,9 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
             defaults['data'] = self.data
         period = self.lessons[i].period
         try:
-            obj = self.queryset.get(period=period)
+            obj = self.queryset.get(period_number=period)
         except ObjectDoesNotExist:
-            obj = Substitution(teacher=self.teacher, period=period, date=self.date)
+            obj = Substitution(teacher=self.teacher, period_number=period, date=self.date)
         form = SubstitutionForm(self.teachers, instance=obj, **defaults)
         form.lesson = self.lessons[i]
         return form

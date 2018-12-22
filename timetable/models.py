@@ -133,7 +133,7 @@ class Lesson(models.Model):
 
 class Occasion(models.Model):
     date = models.DateField()
-    period = models.IntegerField()
+    period_number = models.IntegerField()
 
     @property
     def weekday(self):
@@ -142,7 +142,7 @@ class Occasion(models.Model):
     @property
     def period_str(self):
         from .utils import get_period_str
-        return get_period_str(self.period, self.date)
+        return get_period_str(self.period_number, self.date)
 
     class Meta:
         abstract = True
@@ -161,24 +161,24 @@ class Substitution(Occasion):
     @property
     def lesson(self):
         return Lesson.objects.get(
-            period=self.period, weekday=self.weekday, teacher=self.teacher)
+            period=self.period_number, weekday=self.weekday, teacher=self.teacher)
 
     @property
     def group(self):
         query = Lesson.objects \
             .select_related('group') \
-            .get(period=self.period, weekday=self.weekday, teacher=self.teacher)
+            .get(period=self.period_number, weekday=self.weekday, teacher=self.teacher)
         return query.group
 
     @property
     def room(self):
         query = Lesson.objects.select_related('room') \
-            .get(period=self.period, weekday=self.weekday, teacher=self.teacher)
+            .get(period=self.period_number, weekday=self.weekday, teacher=self.teacher)
         return query.room
 
 
     def __str__(self):
-        return '%s %s %s -> %s' % (self.date, self.period, self.teacher, \
+        return '%s %s %s -> %s' % (self.date, self.period_number, self.teacher, \
                 self.display_substitute)
 
 class Absence(Occasion):
@@ -188,16 +188,16 @@ class Absence(Occasion):
     @property
     def lesson(self):
         return Lesson.objects.get(
-            period=self.period, weekday=self.weekday, group=self.group)
+            period=self.period_number, weekday=self.weekday, group=self.group)
 
     @property
     def room(self):
         query = Lesson.objects.select_related('room') \
-            .get(period=self.period, weekday=self.weekday, group=self.group)
+            .get(period=self.period_number, weekday=self.weekday, group=self.group)
         return query.room
 
     def __str__(self):
-        return '%s %s %s (%s)' % (self.date, self.period, self.group, \
+        return '%s %s %s (%s)' % (self.date, self.period_number, self.group, \
                 self.reason)
 
 class Reservation(Occasion):
@@ -210,5 +210,5 @@ class Reservation(Occasion):
         return self.teacher.full_name if self.teacher else '-'
 
     def __str__(self):
-        return '%s %s %s %s' % (self.date, self.period, self.room, \
+        return '%s %s %s %s' % (self.date, self.period_number, self.room, \
                 self.teacher)

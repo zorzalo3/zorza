@@ -27,7 +27,7 @@
 	{% for substitution in teacher.list %}
 	{% with group=substitution.group %}
 	<tr {% if group in groups or timetable_teacher != None and timetable_teacher == substitution.substitute %}class="relevant"{% endif %}>
-		<td>{{ substitution.period }}</td>
+		<td>{{ substitution.period_number }}</td>
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>

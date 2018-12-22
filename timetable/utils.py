@@ -91,12 +91,12 @@ def get_events(begin_date=None, end_date=None):
     events = {
         'substitutions': Substitution.objects.filter(**filter_kwargs) \
                             .select_related('teacher', 'substitute') \
-                            .order_by('date', 'teacher', 'period'),
+                            .order_by('date', 'teacher', 'period_number'),
         'absences': Absence.objects.filter(**filter_kwargs) \
-                            .order_by('date', 'group', 'period'),
+                            .order_by('date', 'group', 'period_number'),
         'reservations': Reservation.objects.filter(**filter_kwargs) \
                             .select_related('teacher', 'room') \
-                            .order_by('date', 'period'),
+                            .order_by('date', 'period_number'),
         'dayplans': DayPlan.objects.filter(**filter_kwargs),
     }
 
