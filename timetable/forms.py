@@ -39,10 +39,10 @@ class SelectTeacherAndDateForm(Form):
         return cleaned_data
 
 class SubstitutionForm(ModelForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, teachers, *args, **kwargs):
         super(SubstitutionForm, self).__init__(*args, **kwargs)
         self.choices = [('', _('-----')), ('null', _('cancelled'))]
-        self.choices += [(str(t.pk), str(t)) for t in Teacher.objects.all()]
+        self.choices += [(str(t.pk), str(t)) for t in teachers]
         self.fields['substitute'] = ChoiceField(choices=self.choices, required=False)
         if self.instance.substitute == None \
                 and Substitution.objects.filter(pk=self.instance.pk).exists():
@@ -82,9 +82,12 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
             .filter(teacher=teacher, date=date) \
             .order_by('period')
         self.teacher = teacher
+        self.teachers = Teacher.objects.all() # So as not to repeat queries
         self.date = date
         self.lessons = Lesson.objects \
             .filter(teacher=teacher, weekday=date.weekday()) \
+            .select_related('teacher', 'group', 'room', 'subject') \
+            .prefetch_related('group__classes') \
             .order_by('period')
 
     def total_form_count(self):
@@ -108,7 +111,7 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
             obj = self.queryset.get(period=period)
         except ObjectDoesNotExist:
             obj = Substitution(teacher=self.teacher, period=period, date=self.date)
-        form = SubstitutionForm(instance=obj, **defaults)
+        form = SubstitutionForm(self.teachers, instance=obj, **defaults)
         form.lesson = self.lessons[i]
         return form
 
