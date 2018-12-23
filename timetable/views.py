@@ -21,7 +21,20 @@ from .forms import *
 
 
 @vary_on_cookie
-def show_default_timetable(request):
+def show_timetable(request):
+    """Redirects to timetable given in GET parameter or in cookies"""
+    klass = request.GET.get('class')
+    if klass:
+        return HttpResponseRedirect('/timetable/class/'+klass+'/')
+
+    teacher = request.GET.get('teacher')
+    if teacher:
+        return HttpResponseRedirect('/timetable/teacher/'+teacher+'/')
+
+    room = request.GET.get('room')
+    if room:
+        return HttpResponseRedirect('/timetable/room/'+room+'/')
+
     default_url = request.COOKIES.get('timetable_default') # set in JS
     version = request.COOKIES.get('timetable_version')
     if default_url is None or version != settings.TIMETABLE_VERSION:
