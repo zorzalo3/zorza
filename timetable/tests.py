@@ -1,4 +1,5 @@
 from datetime import date
+from http.cookies import SimpleCookie
 
 from django.contrib.auth.models import User
 from django.test import TestCase, RequestFactory
@@ -83,3 +84,36 @@ class TimetableStatusCodeTest(TestCase):
             response = self.client.get(self.app_prefix + url)
             self.assertEqual(response.status_code, 302)
         self.client.logout()
+
+class DefaultTimetableTest(TestCase):
+    fixtures = ['fixtures/demo.json']
+
+    def test(self):
+        fallback = '/timetable/class/1/'
+        user_default = '/timetable/class/2/'
+        cookie1 = SimpleCookie({'timetable_default': user_default})
+        cookie1['timetable_default']['path'] = '/timetable/'
+        self.client.cookies = cookie1
+
+        with self.settings(TIMETABLE_VERSION=None):
+            response = self.client.get('/timetable/')
+            self.assertRedirects(response, user_default)
+
+        with self.settings(TIMETABLE_VERSION='changed'):
+            response = self.client.get('/timetable/')
+            self.assertRedirects(response, fallback)
+
+        cookie2 = SimpleCookie({
+            'timetable_default': user_default,
+            'timetable_version': 'changed'
+        })
+        self.client.cookies = cookie2
+
+        with self.settings(TIMETABLE_VERSION='changed'):
+            response = self.client.get('/timetable/')
+            self.assertRedirects(response, user_default)
+
+        with self.settings(TIMETABLE_VERSION='changedAgain'):
+            response = self.client.get('/timetable/')
+            self.assertRedirects(response, fallback)
+
