@@ -120,8 +120,6 @@ def get_events(begin_date=None, end_date=None):
     for period in Period.objects.all():
         period_strs[period.schedule_id][period.number] = str(period)
 
-    print(period_strs)
-
     for sub in events['substitutions']:
         schedule = schedule_by_date[sub.date]
         if schedule == None:
