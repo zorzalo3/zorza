@@ -102,6 +102,30 @@ def get_events(begin_date=None, end_date=None):
         'dayplans': DayPlan.objects.filter(**filter_kwargs) \
                             .select_related('schedule'),
     }
+    default = Schedule.objects.get(is_default=True)
+    schedule_by_date = dict()
+    for n in range((filter_kwargs['date__lt']-filter_kwargs['date__gte']).days):
+        date = filter_kwargs['date__gte'] + timedelta(days=n)
+        schedule_by_date[date] = default if date.weekday() in day_ids() else None
+
+    for dayplan in events['dayplans']:
+        schedule_by_date[dayplan.date] = dayplan.schedule
+
+    period_strs = dict()
+    for schedule in Schedule.objects.all():
+        period_strs[schedule.id] = dict()
+
+    for period in Period.objects.all():
+        period_strs[period.schedule_id][period.number] = str(period)
+
+    print(period_strs)
+
+    for sub in events['substitutions']:
+        schedule = schedule_by_date[sub.date]
+        if schedule == None:
+            sub.period_strs = ''
+        else:
+            sub.period_str = period_strs[schedule.id][sub.lesson.period]
 
     return events
 

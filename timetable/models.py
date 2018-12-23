@@ -158,11 +158,6 @@ class Substitution(models.Model):
     def display_substitute(self):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
-    @property
-    def period_str(self):
-        from .utils import get_period_str
-        return get_period_str(self.lesson.period, self.date)
-
     def __str__(self):
         return '%s %s %s -> %s' % (self.date, self.period_number, self.teacher, \
                 self.display_substitute)
