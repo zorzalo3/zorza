@@ -92,7 +92,9 @@ def get_events(begin_date=None, end_date=None):
 
     events = {
         'substitutions': Substitution.objects.filter(**filter_kwargs) \
-                            .select_related() \
+                            .select_related('lesson', 'lesson__room',
+                                'lesson__teacher', 'lesson__subject',
+                                'lesson__group', 'substitute') \
                             .order_by('date', 'lesson__teacher', 'lesson__period'),
         'absences': Absence.objects.filter(**filter_kwargs) \
                             .order_by('date', 'group', 'period_number'),
