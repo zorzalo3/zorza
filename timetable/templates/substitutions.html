@@ -7,7 +7,7 @@
 {% regroup substitutions by date as substitutions_by_day %}
 {% for day in substitutions_by_day %}
 
-{% regroup day.list by teacher as substitutions_by_teacher %}
+{% regroup day.list by lesson.teacher as substitutions_by_teacher %}
 {% for teacher in substitutions_by_teacher %}
 
 <table class="substitution">
@@ -25,9 +25,9 @@
 		{% endif %}
 	</tr>
 	{% for substitution in teacher.list %}
-	{% with group=substitution.group %}
+	{% with group=substitution.lesson.group %}
 	<tr {% if group in groups or timetable_teacher != None and timetable_teacher == substitution.substitute %}class="relevant"{% endif %}>
-		<td>{{ substitution.period_number }}</td>
+		<td>{{ substitution.lesson.period }}</td>
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>

@@ -147,35 +147,21 @@ class Occasion(models.Model):
     class Meta:
         abstract = True
 
-class Substitution(Occasion):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, \
-            related_name='absences')
-    # substitute is None <=> lesson is cancelled
+class Substitution(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     substitute = models.ForeignKey(Teacher, on_delete=models.CASCADE,
             null=True, blank=True, related_name='substitutions')
+    date = models.DateField()
+    # date is redundant with lesson.weekday, but that makes things easier.
 
     @property
     def display_substitute(self):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
     @property
-    def lesson(self):
-        return Lesson.objects.get(
-            period=self.period_number, weekday=self.weekday, teacher=self.teacher)
-
-    @property
-    def group(self):
-        query = Lesson.objects \
-            .select_related('group') \
-            .get(period=self.period_number, weekday=self.weekday, teacher=self.teacher)
-        return query.group
-
-    @property
-    def room(self):
-        query = Lesson.objects.select_related('room') \
-            .get(period=self.period_number, weekday=self.weekday, teacher=self.teacher)
-        return query.room
-
+    def period_str(self):
+        from .utils import get_period_str
+        return get_period_str(self.lesson.period, self.date)
 
     def __str__(self):
         return '%s %s %s -> %s' % (self.date, self.period_number, self.teacher, \

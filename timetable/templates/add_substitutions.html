@@ -34,9 +34,9 @@ Adding substitutions for {{ teacher }} on {{ date }}
 			{% for hidden in form.hidden_fields %}
 			{{ hidden }}
 			{% endfor %}
-			<td> {{ form.lesson.period }} </td>
+			<td> {{ form.instance.lesson.period }} </td>
 			<td>
-				{% include "teacher_timetable_cell.html" with lesson=form.lesson %}
+				{% include "teacher_timetable_cell.html" with lesson=form.instance.lesson %}
 			</td>
 			<td> {{ form.substitute }} </td>
 		</tr>

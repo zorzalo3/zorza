@@ -79,8 +79,8 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
     def __init__(self, teacher, date, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.queryset = Substitution.objects \
-            .filter(teacher=teacher, date=date) \
-            .order_by('period_number')
+            .filter(lesson__teacher=teacher, date=date) \
+            .order_by('lesson__period')
         self.teacher = teacher
         self.teachers = Teacher.objects.all() # So as not to repeat queries
         self.date = date
@@ -108,11 +108,10 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
             defaults['data'] = self.data
         period = self.lessons[i].period
         try:
-            obj = self.queryset.get(period_number=period)
+            obj = self.queryset.get(lesson__period=period)
         except ObjectDoesNotExist:
-            obj = Substitution(teacher=self.teacher, period_number=period, date=self.date)
+            obj = Substitution(lesson=self.lessons[i], date=self.date)
         form = SubstitutionForm(self.teachers, instance=obj, **defaults)
-        form.lesson = self.lessons[i]
         return form
 
 SubstitutionFormSet = formset_factory(Substitution, BaseSubstitutionFormSet, extra=0)
