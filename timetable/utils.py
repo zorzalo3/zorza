@@ -10,8 +10,10 @@ from django.utils import timezone
 
 from .models import *
 
-days = settings.TIMETABLE_WEEKDAYS
-day_ids = [x[0] for x in days]
+def days():
+    return settings.TIMETABLE_WEEKDAYS
+def day_ids():
+    return [x[0] for x in days()]
 
 def get_max_period():
     return Period.objects.aggregate(Max('number'))['number__max']
@@ -24,8 +26,8 @@ def get_period_strings(periods):
 
 def get_display_context():
     context = {
-        'days': days,
-        'day_ids': day_ids,
+        'days': days(),
+        'day_ids': day_ids(),
         'todays_periods_json': serialize('json', get_todays_periods()),
         'utc_offset': get_utc_offset(),
     }
@@ -47,7 +49,7 @@ def get_timetable_context(lessons):
     table = OrderedDict()
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
-        for day_number, day_string in days:
+        for day_number, day_string in days():
             table[period][1][day_number] = []
 
     for lesson in lessons:
@@ -113,7 +115,7 @@ def get_days_periods(date):
     except:
         weekday = date.weekday()
         # if no dayplan for that day and it's a working day
-        if any(weekday == day_number for day_number, day_string in days):
+        if any(weekday == day_number for day_number, day_string in days()):
             schedule = Schedule.objects.get(is_default=True)
         else:
             return []
