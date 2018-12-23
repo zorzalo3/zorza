@@ -125,25 +125,31 @@ def get_todays_periods():
     return get_days_periods(date.today())
 
 def get_schedules_table():
-    all_periods = Period.objects.all().prefetch_related('schedule')
-    min_max = all_periods.aggregate(Min('number'), Max('number'))
-    period_range = range(min_max['number__min'], min_max['number__max']+1)
+    all_periods = Period.objects.all().select_related('schedule')
     schedules = {period.schedule for period in all_periods}
+    default = next(schedule for schedule in schedules if schedule.is_default)
 
     table = OrderedDict()
-    for period in period_range:
-        table[period] = OrderedDict()
+
+    for period in default.period_set.all():
+        table[period.number] = OrderedDict()
         for schedule in schedules:
-            table[period][schedule] = ''
+            table[period.number][schedule] = ''
 
     for period in all_periods:
         table[period.number][period.schedule] = str(period)
 
-    context = {
-        'schedules': schedules,
-        'table': table,
-    }
-    context.update(get_display_context())
+    context = get_display_context()
+    active = None # Today's schedule
+    first = context['dayplans'].first() # The only dayplan which could be today
+    if first and first.is_today:
+        active = first.schedule
+    elif date.today().weekday() in context['day_ids']:
+        active = default
+
+    context['active'] = active
+    context['schedules'] = schedules
+    context['table'] = table
     return context;
 
 def get_utc_offset():
