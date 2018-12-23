@@ -1,15 +1,23 @@
 # Zorza
 (/'zɔʐa/ ZAW-zha - Polish for *aurora*)  
 An informational website for schools with an advanced timetable interface.
-It strives to be light, comfortable to use, and look good on many devices.
-Supports teacher substitutions and occasional schedule changes.
-Includes a public information display and documents - a tree of downloadable files/rich text.
 
 <p style="float: left">
 <img src="https://user-images.githubusercontent.com/35867657/50306538-c6940500-048d-11e9-92c7-30e17ef75930.png" height="390px">
 <img src="https://user-images.githubusercontent.com/35867657/50116506-4a59b180-0242-11e9-8762-03b7207a20dc.png" height="390px">
 <img src="https://user-images.githubusercontent.com/35867657/50116513-4e85cf00-0242-11e9-8049-800552640229.png" height="390px">
 </p>
+
+* View class, group, teacher, classroom timetables
+* Set a default timetable for easy repeated access
+* Find out about upcoming schedule changes, cancelled lessons and teacher substitutions
+* Fast experience - minimal use of JavaScript and good caching
+* No registration - everything works without user accounts
+* Use on any device - fully responsive design
+* Check which classrooms are occupied at a given time
+* Access school documents and files quickly
+* *Not* a [student information system](https://en.wikipedia.org/wiki/Student_information_system), but can be complementary to one
+* See remaining break time and substitutions also on a publicly installed screen
 
 ## Setup
 Install Django 2.0 or later and Python 3.4 or later.
