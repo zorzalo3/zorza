@@ -80,6 +80,7 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
         super().__init__(*args, **kwargs)
         self.queryset = Substitution.objects \
             .filter(lesson__teacher=teacher, date=date) \
+            .select_related() \
             .order_by('lesson__period')
         self.teacher = teacher
         self.teachers = Teacher.objects.all() # So as not to repeat queries
