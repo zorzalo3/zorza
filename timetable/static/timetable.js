@@ -99,7 +99,7 @@ function updateLesson() {
 	if (clock) {
 		clock.textContent = now.toLocaleTimeString();
 	}
-	if (!periods) return;
+	if (periods.length == 0) return;
 	if (prev_highlight) {
 		prev_highlight.classList.remove("highlight", "break-highlight");
 	}
