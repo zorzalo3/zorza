@@ -35,14 +35,14 @@ def show_timetable(request):
     if room:
         return HttpResponseRedirect('/timetable/room/'+room+'/')
 
-    default_url = request.COOKIES.get('timetable_default') # set in JS
+    user_default = request.COOKIES.get('timetable_default') # set in JS
     version = request.COOKIES.get('timetable_version')
-    if default_url is None or version != settings.TIMETABLE_VERSION:
-        response = HttpResponseRedirect(reverse('class_timetable', args=[1]))
+    if user_default is None or version != settings.TIMETABLE_VERSION:
+        response = HttpResponseRedirect('/timetable/class/1/')
         response.delete_cookie('timetable_default', path='/timetable/')
         response.delete_cookie('timetable_version', path='/timetable/')
         return response
-    return HttpResponseRedirect(default_url)
+    return HttpResponseRedirect(user_default)
 
 def show_class_timetable(request, class_id):
     klass = get_object_or_404(Class, pk=class_id)
