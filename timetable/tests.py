@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.contrib.auth.models import User
 from django.test import TestCase, RequestFactory
 from django.utils.translation import gettext_lazy as _
 from .views import *
@@ -51,5 +52,34 @@ class ScheduleChangeTest(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'class="highlight"', response.content)
 
+class TimetableStatusCodeTest(TestCase):
+    fixtures = ['fixtures/demo.json']
+    app_prefix = '/timetable'
+    public_urls = [
+        '/class/1/', '/room/1/', '/teacher/1/', '/groups/1,2/',
+        '/personalize/1/', '/display/', '/rooms/', '/rooms/2018-12-31/1/',
+    ]
+    restricted_urls = [
+        '/substitutions/add/', '/substitutions/add/1/2018-12-31/',
+        '/calendar/edit/'
+    ]
+    def setUp(self):
+        self.user = User.objects.create_user('user', password='secret')
+        self.user.save()
 
+    def test_public_status_ok(self):
+        for url in self.public_urls:
+            response = self.client.get(self.app_prefix + url)
+            self.assertEqual(response.status_code, 200)
 
+    def test_restricted_redirect(self):
+        for url in self.restricted_urls:
+            response = self.client.get(self.app_prefix + url)
+            self.assertEqual(response.status_code, 302)
+
+    def test_restricted_logged_in_redirect(self):
+        self.client.force_login(self.user)
+        for url in self.restricted_urls:
+            response = self.client.get(self.app_prefix + url)
+            self.assertEqual(response.status_code, 302)
+        self.client.logout()
