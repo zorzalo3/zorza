@@ -57,6 +57,7 @@
 	</table>
 </div>
 {% block custom %}{% endblock %}
+
 <h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
 <form action="/timetable/" class="text-center" autocomplete="off">
 	{% if class_list %}
@@ -90,7 +91,9 @@
 	{% endif %}
 </form>
 
-{% include "event_list.html" %}
+{% include "substitutions.html" %}
+{% include "absences.html" %}
+{% include "reservations.html" %}
 {% include "timetable_data.html" %}
 
 <script src="{% static "timetable.js" %}"></script>
