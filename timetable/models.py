@@ -117,6 +117,9 @@ class DayPlan(models.Model):
     def is_today(self):
         return date.today() == self.date
 
+    class Meta:
+        ordering = ['date']
+
 class Lesson(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)

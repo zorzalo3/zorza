@@ -148,7 +148,7 @@ def add_substitutions2(request, teacher_id, date):
 @never_cache
 @permission_required('timetable.add_dayplan')
 def edit_calendar(request):
-    qs = DayPlan.objects.filter(date__gte=date.today()).order_by('date')
+    qs = DayPlan.objects.filter(date__gte=date.today())
     if request.method == 'POST':
         formset = DayPlanFormSet(request.POST, queryset=qs)
         if formset.is_valid():
