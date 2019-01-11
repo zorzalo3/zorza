@@ -67,7 +67,7 @@ Custom admin commands (see `./manage.py COMMAND --help`):
 To access substitution editing forms or the calendar (DayPlan formset) the user needs the `add_substitution` or `add_dayplan` permission respectively.
 To access Django Admin `is_staff` is needed, as is normal with Django.
 
-After timetable changes or group changes in real world, such that teacher/class/group ids saved in the default timetable cookie correspond to a different thing than before, you must change/add the `TIMETABLE_VERSION` setting in `localsettings.py`. Otherwise you risk default timetables being wrong or 404s.
+After timetable changes or group changes in real world, such that teacher/class/group ids saved in the default timetable cookie correspond to a different thing than before, you must increment/add the integer `TIMETABLE_VERSION` in `localsettings.py`. Otherwise you risk default timetables being wrong or 404s.
 
 ## License and credits
 This project is licensed under AGPLv3.
