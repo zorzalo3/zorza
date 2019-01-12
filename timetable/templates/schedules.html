@@ -26,7 +26,7 @@
 			<th>{% trans "No." context "timetable header" %}</th>
 			{% for schedule in schedules %}
 			<th>
-				{{ schedule.name }}
+				{{ schedule.name|capfirst }}
 			</th>
 			{% endfor %}
 		</tr>
