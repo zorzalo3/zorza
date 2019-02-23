@@ -82,7 +82,7 @@ class TimetableStatusCodeTest(TestCase):
         self.client.force_login(self.user)
         for url in self.restricted_urls:
             response = self.client.get(self.app_prefix + url)
-            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.status_code, 403)
         self.client.logout()
 
 class DefaultTimetableTest(TestCase):

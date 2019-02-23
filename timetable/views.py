@@ -125,7 +125,8 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
         return context
 
 @never_cache
-@permission_required('timetable.add_substitution')
+@login_required
+@permission_required('timetable.add_substitution',raise_exception=True)
 def add_substitutions2(request, teacher_id, date):
     date = parse_date(date)
     teacher = get_object_or_404(Teacher, pk=teacher_id)
@@ -146,7 +147,8 @@ def add_substitutions2(request, teacher_id, date):
     return render(request, 'add_substitutions.html', context)
 
 @never_cache
-@permission_required('timetable.add_dayplan')
+@login_required
+@permission_required('timetable.add_dayplan',raise_exception=True)
 def edit_calendar(request):
     qs = DayPlan.objects.filter(date__gte=date.today())
     if request.method == 'POST':
@@ -197,7 +199,8 @@ def display(request):
     context = get_display_context()
     return render(request, 'display.html', context)
 
-@permission_required('timetable.add_substitution')
+@login_required
+@permission_required('timetable.add_substitution',raise_exception=True)
 def delete_substitution(request, substitution_id):
     if request.POST:
         obj = get_object_or_404(Substitution, pk=substitution_id)
