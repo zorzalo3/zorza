@@ -162,8 +162,14 @@ class Substitution(models.Model):
         return self.substitute.full_name if self.substitute else _('cancelled')
 
     def __str__(self):
-        return '%s %s %s -> %s' % (self.date, self.period_number, self.teacher, \
-                self.display_substitute)
+        """We must use hasattr, because self.lesson has null=False and
+        self.lesson, before initial saving, can be unassigned."""
+        period =  None
+        teacher_absent =  None
+        if hasattr(self,'lesson'):
+            period = self.lesson.period
+            teacher_absent = self.lesson.teacher.full_name
+        return '%s %s %s -> %s' % (self.date, period, teacher_absent, self.display_substitute)
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
