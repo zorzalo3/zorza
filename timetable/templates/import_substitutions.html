@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Substitutions" %} - {% trans "Import from \"Librus\" CSV file" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<form class="form-small" method="post" enctype="multipart/form-data">
+	<h2>{% trans "Import substitutions from \"Librus\" CSV file" %}</h2>
+	<p>{% trans "You must use file genereted by \"Librus\" substitution module." %}</p>
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+	{{ form.as_p }}
+	<p class="text-center">
+		<button type="submit" class="button-primary">
+			{% trans "Import" %}
+		</button>
+	</p>
+</form>
+
+{% endblock %}

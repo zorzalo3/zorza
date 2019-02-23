@@ -12,6 +12,7 @@ urlpatterns = [
     path('personalize/<int:class_id>/', personalize, name='personalize'),
     path('schedules/', show_schedules, name='schedules'),
     path('substitutions/add/', never_cache(AddSubstitutionsView1.as_view()), name='add_substitutions1'),
+    path('substitutions/add/import/', never_cache(SubstitutionsImportView.as_view()), name='import_substitutions'),
     path('substitutions/add/<int:teacher_id>/<date>/', add_substitutions2, name='add_substitutions2'),
     path('calendar/edit/', edit_calendar, name='edit_calendar'),
     path('rooms/<date>/<period>/', show_rooms, name='rooms'),
