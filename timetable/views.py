@@ -210,43 +210,32 @@ class SubstitutionsImportView(FormView):
     template_name = 'import_substitutions.html'
     form_class = SubstitutionsImportForm
     permission_required = 'timetable.add_substitution'
-    
+
     def form_valid(self,form):
-        csv_file = TextIOWrapper(form.cleaned_data['file'],encoding="iso-8859-2")
-        a = CSVReader(csv_file,delimiter=';')
+        csv_file = TextIOWrapper(form.cleaned_data['file'], encoding="iso-8859-2")
+        a = CSVReader(csv_file, delimiter=';')
         first_row = True
         for row in a:
             if first_row:
                 first_row = False
                 continue
-            if len(row)<7:
+            if len(row) < 7:
                 continue
             try:
                 row_date = date(year=int(row[0][0:4]),
                                   month=int(row[0][5:7]),
-                                  day=int(row[0][8:10]) )
-                row_lesson = Lesson.objects.get(weekday=subst.date.weekday(),
-                                                  period=int(row[1]),
-                                                  teacher=get_teacher_by_name(row[4]))
+                                  day=int(row[0][8:10]))
+                row_lesson = Lesson.objects.get(
+                        weekday=subst.date.weekday(),
+                        period=int(row[1]),
+                        teacher=get_teacher_by_name(row[4]))
                 row_substitute = None
-                if row[5]!='zajęcia odwołane':
+                if row[5] != 'zajęcia odwołane':
                     row_substitute = get_teacher_by_name(row[5])
 
-                #Check if substitution exist
-                query = Substitution.objects.filter(date=row_date,
-                                     lesson=row_lesson)
-                #If substitution does not exist, add one
-                if query.count() == 0:
-                    subst = Substitution(date=row_date,
-                                         lesson=row_lesson,
-                                         substitute=row_substitute)
-                    subst.save()
-                #Otherwise update subsitute
-                else:
-                    subst = query.first()
-                    subst.substitute=row_substitute
-                    subst.save()
-
+                Substitution.objects.update_or_create(
+                        date=row_date, lesson=row_lesson,
+                        defaults={'substitute': row_substitute})
             except:
                 pass
         return HttpResponseRedirect(reverse('add_substitutions1'))
