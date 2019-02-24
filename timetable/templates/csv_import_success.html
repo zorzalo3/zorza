@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "CSV file imported" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<div class="form-small">
+<h2>{% trans "Substitutions imported successfully" %}</h2>
+<ul>
+{% blocktrans trimmed %}
+	<li>Rows added: {{ rows_added }}</li>
+	<li>Rows updated: {{ rows_updated }}</li>
+	<li>Rows failed: {{ rows_failed }}</li>
+{% endblocktrans %}
+</ul>
+</div>
+{% endblock %}

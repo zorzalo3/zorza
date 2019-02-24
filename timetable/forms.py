@@ -152,3 +152,11 @@ class GroupForm(ModelForm):
         if link_to_class and classes.count() != 1:
             raise ValidationError('link_to_class required exactly one class')
         return self.cleaned_data
+
+class SubstitutionsImportForm(Form):
+    file = FileField(label=_('CSV file with substitutions'))
+    def clean(self):
+        cleaned_data = super().clean()
+        #TODO check for encoding
+        #TODO check for csv import errors
+        return cleaned_data
