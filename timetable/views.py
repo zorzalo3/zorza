@@ -225,6 +225,7 @@ class SubstitutionsImportView(FormView):
             'rows_failed': 0,
             'rows_added': 0,
             'rows_updated': 0,
+            'substitutions': []
         }
         for row in reader:
             try:
@@ -244,6 +245,7 @@ class SubstitutionsImportView(FormView):
                 obj, created = Substitution.objects.update_or_create(
                         date=sub_date, lesson=lesson,
                         defaults={'substitute': substitute})
+                context['substitutions'].append(obj)
                 if created:
                     context['rows_added'] += 1
                 else:

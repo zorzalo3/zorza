@@ -16,5 +16,9 @@
 	<li>Rows failed: {{ rows_failed }}</li>
 {% endblocktrans %}
 </ul>
+<pre class="block-center">
+{% for obj in substitutions %}
+{{ obj }}{% endfor %}
+</pre>
 </div>
 {% endblock %}

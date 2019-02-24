@@ -429,3 +429,8 @@ table.substitution {
     padding: 4rem;
   }
 }
+
+pre {
+  font-family: monospace;
+  overflow-x: auto;
+}
