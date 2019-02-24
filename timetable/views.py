@@ -216,10 +216,12 @@ class SubstitutionsImportView(FormView):
     permission_required = 'timetable.add_substitution'
 
     def form_valid(self,form):
-        f = TextIOWrapper(
+        csv_file = TextIOWrapper(
             form.cleaned_data['file'],
             encoding=settings.TIMETABLE_CSV_ENCODING)
-        reader = DictReader(f, delimiter=settings.TIMETABLE_CSV_DELIMITER)
+        reader = DictReader(
+            csv_file, skipinitialspace=True,
+            delimiter=settings.TIMETABLE_CSV_DELIMITER)
         HEADER = settings.TIMETABLE_CSV_HEADER
         context = {
             'rows_failed': 0,
@@ -252,6 +254,9 @@ class SubstitutionsImportView(FormView):
                 else:
                     context['rows_updated'] += 1
             except Exception as e:
+                if ''.join(filter(None, row.values())) == '':
+                    # Blank line
+                    continue
                 context['rows_failed'] += 1
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
