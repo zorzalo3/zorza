@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-24 16:37+0100\n"
+"POT-Creation-Date: 2019-02-24 17:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,6 +339,14 @@ msgid ""
 msgstr ""
 "<li>Dodano: %(rows_added)s</li> <li>Zaktualizowano: %(rows_updated)s</li> "
 "<li>Błędów: %(rows_failed)s</li>"
+
+#: timetable/templates/csv_import_success.html:19
+msgid "Added/updated"
+msgstr "Dodane/zaktualizowane"
+
+#: timetable/templates/csv_import_success.html:24
+msgid "Errors"
+msgstr "Błędy"
 
 #: timetable/templates/dayplans.html:11
 #, python-format

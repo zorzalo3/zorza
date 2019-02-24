@@ -225,7 +225,8 @@ class SubstitutionsImportView(FormView):
             'rows_failed': 0,
             'rows_added': 0,
             'rows_updated': 0,
-            'substitutions': []
+            'substitutions': [],
+            'errors': [],
         }
         for row in reader:
             try:
@@ -251,6 +252,6 @@ class SubstitutionsImportView(FormView):
                 else:
                     context['rows_updated'] += 1
             except Exception as e:
-                print(e)
                 context['rows_failed'] += 1
+                context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
