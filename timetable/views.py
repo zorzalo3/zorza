@@ -233,13 +233,16 @@ class SubstitutionsImportView(FormView):
             try:
                 #sub_date = parse_date(row[HEADER['date']])
                 sub_date = parse_date(row[HEADER['date']].split()[0])
+                tname = row[HEADER['teacher']]
+                teacher = (get_teacher_by_name(tname, False) or
+                        get_teacher_by_name(tname, True))
                 lesson = Lesson.objects.get(
                         weekday=sub_date.weekday(),
                         period=int(row[HEADER['period']]),
-                        teacher=get_teacher_by_name(row[HEADER['teacher']]))
-                substitute = None
-                if row[HEADER['substitute']] != 'zajęcia odwołane':
-                    substitute = get_teacher_by_name(row[HEADER['substitute']])
+                        teacher=teacher)
+                sname = row[HEADER['substitute']]
+                substitute = (get_teacher_by_name(sname, False) or
+                        get_teacher_by_name(sname, True))
 
                 obj, created = Substitution.objects.update_or_create(
                         date=sub_date, lesson=lesson,
@@ -248,6 +251,7 @@ class SubstitutionsImportView(FormView):
                     context['rows_added'] += 1
                 else:
                     context['rows_updated'] += 1
-            except:
+            except Exception as e:
+                print(e)
                 context['rows_failed'] += 1
         return render(self.request, 'csv_import_success.html', context)

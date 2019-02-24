@@ -206,25 +206,11 @@ def get_next_schoolday():
             return day
     return today
 
-def get_teacher_by_name(nameandsurname="",surnamefirst=None):
-    """Returns first Teacher object that matches this name and surname
-    nameandsurname is text to analize
-    surnamefirst: True is surname before name, False is name before surname,
-    None is check both ways"""
-    words = nameandsurname.split(' ')
-    for a in range(1,len(words)+1):
-        name1 = ' '.join(words[:a])
-        name2 = ' '.join(words[a:])
-        if surnamefirst != True:
-            query = Teacher.objects.filter(first_name=name1)
-            if len(name2)>0:
-                query = query.filter(last_name=name2)
-            if query.count()>0:
-                return query.first()
-        if surnamefirst != False:
-            query = Teacher.objects.filter(last_name=name1)
-            if len(name2)>0:
-                query = query.filter(first_name=name2)
-            if query.count()>0:
-                return query.first()
+def get_teacher_by_name(full_name='', surname_first=False):
+    name1, name2 = full_name.split(maxsplit=1)
+    if surname_first:
+        name1, name2 = name2, name1
+    qs = Teacher.objects.filter(first_name=name1, last_name=name2)
+    if qs.exists():
+        return qs.first()
     return None
