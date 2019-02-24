@@ -206,7 +206,7 @@ def get_next_schoolday():
             return day
     return today
 
-def get_teacher_by_name(full_name='', surname_first=False):
+def get_teacher_by_name(full_name, surname_first=False):
     name1, name2 = full_name.split(maxsplit=1)
     if surname_first:
         name1, name2 = name2, name1
