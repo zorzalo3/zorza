@@ -216,14 +216,11 @@ class SubstitutionsImportView(FormView):
     permission_required = 'timetable.add_substitution'
 
     def form_valid(self,form):
-        csv_file = TextIOWrapper(form.cleaned_data['file'], encoding="iso-8859-2")
-        reader = DictReader(csv_file, delimiter=';')
-        HEADER = {
-            'date': 'Data',
-            'period': 'Nr lekcji',
-            'teacher': 'Nauczyciel nieobecny',
-            'substitute': 'Nauczyciel zastępujšcy',
-        }
+        f = TextIOWrapper(
+            form.cleaned_data['file'],
+            encoding=settings.TIMETABLE_CSV_ENCODING)
+        reader = DictReader(f, delimiter=settings.TIMETABLE_CSV_DELIMITER)
+        HEADER = settings.TIMETABLE_CSV_HEADER
         context = {
             'rows_failed': 0,
             'rows_added': 0,

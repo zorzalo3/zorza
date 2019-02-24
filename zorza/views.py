@@ -7,7 +7,8 @@ from django.conf import settings
 @login_required
 def manage(request):
     context = {
-        'cache_time': int(settings.CACHE_MIDDLEWARE_SECONDS/60)
+        'cache_time': int(settings.CACHE_MIDDLEWARE_SECONDS/60),
+        'csv_enabled': bool(settings.TIMETABLE_CSV_HEADER),
     }
     return render(request, 'management.html', context)
 

@@ -161,6 +161,18 @@ FORMAT_MODULE_PATH = [ 'zorza.formats' ]
 # We want to prevent having outdated urls set in the default timetable cookie
 TIMETABLE_VERSION = None
 
+TIMETABLE_CSV_DELIMITER = ';'
+TIMETABLE_CSV_ENCODING = 'iso-8859-2'
+TIMETABLE_CSV_HEADER = None
+"""
+TIMETABLE_CSV_HEADER = {
+    'date': 'Data',
+    'period': 'Nr lekcji',
+    'teacher': 'Nauczyciel nieobecny',
+    'substitute': 'Nauczyciel zastępujšcy',
+}
+"""
+
 try:
     from .localsettings import *
 except ImportError:
