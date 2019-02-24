@@ -1,7 +1,8 @@
+from csv import DictReader
 from itertools import groupby
 from collections import OrderedDict
 from datetime import date
-from csv import reader as CSVReader
+
 from io import TextIOWrapper
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -213,29 +214,37 @@ class SubstitutionsImportView(FormView):
 
     def form_valid(self,form):
         csv_file = TextIOWrapper(form.cleaned_data['file'], encoding="iso-8859-2")
-        a = CSVReader(csv_file, delimiter=';')
-        first_row = True
-        for row in a:
-            if first_row:
-                first_row = False
-                continue
-            if len(row) < 7:
-                continue
+        reader = DictReader(csv_file, delimiter=';')
+        HEADER = {
+            'date': 'Data',
+            'period': 'Nr lekcji',
+            'teacher': 'Nauczyciel nieobecny',
+            'substitute': 'Nauczyciel zastępujšcy',
+        }
+        context = {
+            'rows_failed': 0,
+            'rows_added': 0,
+            'rows_updated': 0,
+        }
+        for row in reader:
             try:
-                row_date = date(year=int(row[0][0:4]),
-                                  month=int(row[0][5:7]),
-                                  day=int(row[0][8:10]))
-                row_lesson = Lesson.objects.get(
-                        weekday=subst.date.weekday(),
-                        period=int(row[1]),
-                        teacher=get_teacher_by_name(row[4]))
-                row_substitute = None
-                if row[5] != 'zajęcia odwołane':
-                    row_substitute = get_teacher_by_name(row[5])
+                #sub_date = parse_date(row[HEADER['date']])
+                sub_date = parse_date(row[HEADER['date']].split()[0])
+                lesson = Lesson.objects.get(
+                        weekday=sub_date.weekday(),
+                        period=int(row[HEADER['period']]),
+                        teacher=get_teacher_by_name(row[HEADER['teacher']]))
+                substitute = None
+                if row[HEADER['substitute']] != 'zajęcia odwołane':
+                    substitute = get_teacher_by_name(row[HEADER['substitute']])
 
-                Substitution.objects.update_or_create(
-                        date=row_date, lesson=row_lesson,
-                        defaults={'substitute': row_substitute})
+                obj, created = Substitution.objects.update_or_create(
+                        date=sub_date, lesson=lesson,
+                        defaults={'substitute': substitute})
+                if created:
+                    context['rows_added'] += 1
+                else:
+                    context['rows_updated'] += 1
             except:
-                pass
-        return HttpResponseRedirect(reverse('add_substitutions1'))
+                context['rows_failed'] += 1
+        return render(self.request, 'csv_import_success.html', context)
