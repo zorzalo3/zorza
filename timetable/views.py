@@ -37,7 +37,7 @@ def show_timetable(request):
 
     user_default = request.COOKIES.get('timetable_default') # set in JS
     version = request.COOKIES.get('timetable_version')
-    if user_default is None or version != settings.TIMETABLE_VERSION:
+    if user_default is None or version != str(settings.TIMETABLE_VERSION):
         response = HttpResponseRedirect('/timetable/class/1/')
         response.delete_cookie('timetable_default', path='/timetable/')
         response.delete_cookie('timetable_version', path='/timetable/')
