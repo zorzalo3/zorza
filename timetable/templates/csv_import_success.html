@@ -16,15 +16,19 @@
 	<li>Rows failed: {{ rows_failed }}</li>
 {% endblocktrans %}
 </ul>
+{% if substitutions %}
 <h2>{% trans "Added/updated" %}</h2>
 <pre class="block-center">
 {% for obj in substitutions %}{{ obj }}
 {% endfor %}
 </pre>
+{% endif %}
+{% if errors %}
 <h2>{% trans "Errors" %}</h2>
 <pre class="block-center">
 {% for error in errors %}{{ errors }}
 {% endfor %}
 </pre>
+{% endif %}
 </div>
 {% endblock %}
