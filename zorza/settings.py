@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'contact',
     'documents',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

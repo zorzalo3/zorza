@@ -117,6 +117,11 @@ class DayPlan(models.Model):
     def is_today(self):
         return date.today() == self.date
 
+    @property
+    def display_schedule(self):
+        return str(self.schedule) if self.schedule else _('cancelled')
+
+
     class Meta:
         ordering = ['date']
 

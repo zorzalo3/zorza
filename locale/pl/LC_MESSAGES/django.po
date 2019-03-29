@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-24 17:03+0100\n"
+"POT-Creation-Date: 2019-03-29 14:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,7 +241,8 @@ msgstr "{} nie ma planowych lekcji podanego dnia."
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:44 timetable/forms.py:130 timetable/models.py:162
+#: timetable/forms.py:44 timetable/forms.py:130 timetable/models.py:122
+#: timetable/models.py:167
 msgid "cancelled"
 msgstr "odwołane"
 
@@ -257,7 +258,7 @@ msgstr "Plik CSV z zastępstwami"
 msgid "link_to_class needs exactly one class"
 msgstr ""
 
-#: timetable/models.py:134 timetable/templates/add_substitutions.html:29
+#: timetable/models.py:139 timetable/templates/add_substitutions.html:29
 msgid "Lesson"
 msgstr "Lekcja"
 
@@ -340,32 +341,30 @@ msgstr ""
 "<li>Dodano: %(rows_added)s</li> <li>Zaktualizowano: %(rows_updated)s</li> "
 "<li>Błędów: %(rows_failed)s</li>"
 
-#: timetable/templates/csv_import_success.html:19
+#: timetable/templates/csv_import_success.html:20
 msgid "Added/updated"
 msgstr "Dodane/zaktualizowane"
 
-#: timetable/templates/csv_import_success.html:24
+#: timetable/templates/csv_import_success.html:27
 msgid "Errors"
 msgstr "Błędy"
 
-#: timetable/templates/dayplans.html:11
-#, python-format
-msgid "Today the %(schedule)s is in function."
-msgstr "Dzisiaj obowiązują %(schedule)s."
+#: timetable/templates/dayplans.html:6
+msgctxt "dayplans"
+msgid "On "
+msgstr " "
 
-#: timetable/templates/dayplans.html:13
+#: timetable/templates/dayplans.html:12
 #, python-format
-msgid "On %(date)s the %(schedule)s will be in function."
-msgstr "%(date)s będą obowiązywać %(schedule)s."
+msgctxt "dayplans"
+msgid "%(schedule)s takes effect."
+msgstr "obowiązują %(schedule)s."
 
-#: timetable/templates/dayplans.html:19
-msgid "Today classes are cancelled."
-msgstr "Dzisiaj lekcje są odwołane."
-
-#: timetable/templates/dayplans.html:21
-#, python-format
-msgid "On %(date)s there will be no classes."
-msgstr "Lekcje %(date)s są odwołane."
+#: timetable/templates/dayplans.html:16
+#| msgid "Today classes are cancelled."
+msgctxt "dayplans"
+msgid "lessons are cancelled."
+msgstr "lekcje są odwołane."
 
 #: timetable/templates/display.html:80
 msgid "Last connection:"
@@ -568,23 +567,23 @@ msgstr ""
 msgid "Show lessons at a given time"
 msgstr "Pokaż lekcje o danej porze"
 
-#: timetable/tests.py:12 zorza/settings.py:140
+#: timetable/tests.py:12 zorza/settings.py:141
 msgid "Monday"
 msgstr ""
 
-#: timetable/tests.py:13 zorza/settings.py:141
+#: timetable/tests.py:13 zorza/settings.py:142
 msgid "Tuesday"
 msgstr ""
 
-#: timetable/tests.py:14 zorza/settings.py:142
+#: timetable/tests.py:14 zorza/settings.py:143
 msgid "Wednesday"
 msgstr ""
 
-#: timetable/tests.py:15 zorza/settings.py:143
+#: timetable/tests.py:15 zorza/settings.py:144
 msgid "Thursday"
 msgstr ""
 
-#: timetable/tests.py:16 zorza/settings.py:144
+#: timetable/tests.py:16 zorza/settings.py:145
 msgid "Friday"
 msgstr ""
 
@@ -599,6 +598,15 @@ msgstr ""
 #: timetable/views.py:93
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
+
+#~ msgid "Today the %(schedule)s is in function."
+#~ msgstr "Dzisiaj obowiązują %(schedule)s."
+
+#~ msgid "On %(date)s the %(schedule)s will be in function."
+#~ msgstr "%(date)s będą obowiązywać %(schedule)s."
+
+#~ msgid "On %(date)s there will be no classes."
+#~ msgstr "Lekcje %(date)s są odwołane."
 
 #, fuzzy
 #~| msgid "Contact"

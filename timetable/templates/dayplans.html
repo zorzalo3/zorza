@@ -1,28 +1,19 @@
 {% load i18n %}
+{% load humanize %}
 {% if dayplans %}
-{% for dayplan in dayplans %}
-{% with schedule=dayplan.schedule date=dayplan.date|date:"MONTH_DAY_FORMAT" %}
-
-{% if dayplan.schedule.is_default %} {# Don't show anything #}
-
-{% elif dayplan.schedule %}
-
-{% if dayplan.is_today %}
-{% blocktrans %}Today the {{ schedule }} is in function.{% endblocktrans %}
+{% regroup dayplans by schedule as dayplans_by_schedule %}
+{% for schedule_dayplans in dayplans_by_schedule %}
+{% for dayplan in schedule_dayplans.list %}
+{{ dayplan.date|naturalday:"MONTH_DAY_FORMAT"|capfirst }}{% if not forloop.last %},{% endif %}
+{% endfor %}
+{% with schedule=schedule_dayplans.grouper %}
+{% if schedule %}
+{% blocktrans context "dayplans" trimmed %}
+{{ schedule }} takes effect.
+{% endblocktrans %}
 {% else %}
-{% blocktrans %}On {{ date }} the {{ schedule }} will be in function.{% endblocktrans %}
+{% trans "lessons are cancelled." context "dayplans" %}
 {% endif %}
-
-{% else %} {# if schedule == None, so lessons are cancelled #}
-
-{% if dayplan.is_today %}
-{% blocktrans %}Today classes are cancelled.{% endblocktrans %}
-{% else %}
-{% blocktrans %}On {{ date }} there will be no classes.{% endblocktrans %}
-{% endif %}
-
-{% endif %}
-
 {% endwith %}
 {% endfor %}
 {% endif %}
