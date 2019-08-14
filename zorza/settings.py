@@ -174,6 +174,10 @@ TIMETABLE_CSV_HEADER = {
 }
 """
 
+# How long ahead should zorza share bell info via its API
+# 0 - disabled, other unsigned integer - number of days including current day.
+BELL_API_TIMESPAN = 0 # disabled by default
+
 try:
     from .localsettings import *
 except ImportError:

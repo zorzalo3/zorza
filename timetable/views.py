@@ -1,12 +1,12 @@
 from csv import DictReader
 from itertools import groupby
 from collections import OrderedDict
-from datetime import date
+from datetime import date, datetime
 
 from io import TextIOWrapper
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date
@@ -201,6 +201,38 @@ class RoomsDatePeriodSelectView(FormView):
 def display(request):
     context = get_display_context()
     return render(request, 'display.html', context)
+
+
+# This is view that should expose DayPlan, Schedule and Period models
+# in JSON format for use in automated bell system.
+# It should be incorporated in zorza API if one would be implemented
+@never_cache
+def timetable_bell_api(request):
+
+    days = settings.BELL_API_TIMESPAN
+
+    if not days > 0:
+        return Http404()
+
+    now = datetime.datetime.now()
+
+    #make dictionary
+    data = {}
+    data['date'] = { 'year': now.year, 'month': now.month, 'day': now.day }
+    data['time'] = { 'hour': now.hour, 'minute': now.minute, 'second': now.second }
+    data['bells'] = []
+
+    current_date = now.date()
+    for a in range(days):
+        times = []
+        for t in get_days_periods(current_date):
+            times.append([t.begin_time.hour,t.begin_time.minute])
+            times.append([t.end_time.hour,t.end_time.minute])
+        times.sort()
+        data['bells'].append(times)
+        current_date += datetime.timedelta(days=1)
+
+    return JsonResponse(data)
 
 @login_required
 @permission_required('timetable.add_substitution', raise_exception=True)
