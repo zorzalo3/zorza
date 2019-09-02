@@ -18,7 +18,7 @@ class Class(models.Model):
         verbose_name_plural = 'classes'
 
 class Group(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=17)
     classes = models.ManyToManyField(Class, blank=True)
     # Link directly to class timetable instead of group timetable
     link_to_class = models.BooleanField(default=False)
