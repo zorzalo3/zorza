@@ -24,7 +24,7 @@ Showing lessons by room on {{ date }}, period number {{ period }}.
 		{% for room, lesson in rooms.items %}
 		<tr>
 			<td>
-				<a href="{% url "room_timetable" room.id %}">
+				<a href="{% url "room_timetable" room.id %}" title="{{ room.name }}">
 					{{ room.short_name }}
 				</a>
 			</td>
