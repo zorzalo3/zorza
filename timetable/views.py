@@ -212,7 +212,7 @@ def timetable_bell_api(request):
     days = settings.BELL_API_TIMESPAN
 
     if not days > 0:
-        return Http404()
+        raise Http404()
 
     now = datetime.datetime.now()
 
