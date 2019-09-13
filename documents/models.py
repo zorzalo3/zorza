@@ -1,10 +1,23 @@
 from django.db import models
 from django.conf import settings
 
+ITEM_ORDER = [
+#    ('author', 'author ascending'),
+    ('title', 'title ascending'),
+    ('created_date', 'created date ascending'),
+    ('modified_date', 'modified date ascending'),
+#    ('-author', 'author descending'),
+    ('-title', 'title descending'),
+    ('-created_date', 'created date descending'),
+    ('-modified_date', 'modified date descending'),
+]
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     parent = models.ForeignKey('self', null=True, blank=True,
                                on_delete=models.CASCADE)
+    order = models.CharField(max_length=15, choices=ITEM_ORDER,
+                             blank=True, null=True)
 
     @property
     def ancestors(self):

@@ -15,12 +15,17 @@ def show_category(request, parent_id=None):
         parent = None
     categories = Category.objects.filter(parent=parent)
 
+    items = Item.objects.filter(category=parent)
+    if parent and parent.order:
+        items = items.order_by(parent.order)
+
     context = {
         'parent': parent,
         'categories': categories,
-        'items': Item.objects.filter(category=parent)
+        'items': items,
     }
     return render(request, 'show_category.html', context)
+
 @never_cache
 def show_document(request, document_id):
     document = get_object_or_404(Document, pk=document_id)
