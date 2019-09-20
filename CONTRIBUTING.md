@@ -7,10 +7,8 @@ for that.
 Run the site locally with `python3 manage.py runserver`.
 Now you can create a branch for a feature or a bug fix and send a pull request!
 
-## Requirements
-* Python 3.4 and later
-* Django 2.0
-* sassc or other .scss to .css compiler
+SCSS is used for stylesheets, so install `sassc` or other `.scss` to `.css`
+compiler if you want to change them.
 
 ## Python style
 * Official Python style guide: https://www.python.org/dev/peps/pep-0008/
@@ -18,6 +16,7 @@ Now you can create a branch for a feature or a bug fix and send a pull request!
 * Try to use Django's built-in testing features.
 
 ## SCSS and HTML style
+
 Classes should be lowercase with dashes between words, eg. `example-div`.
 
 Make use of HTML5 tags like `<main>`, `<section>`, don't add classes when not necessary.
