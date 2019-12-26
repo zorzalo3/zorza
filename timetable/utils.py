@@ -124,9 +124,9 @@ def get_events(begin_date=None, end_date=None):
     for sub in events['substitutions']:
         schedule = schedule_by_date[sub.date]
         if schedule == None:
-            sub.period_strs = ''
+            sub.period_str = ''
         else:
-            sub.period_str = period_strs[schedule.id][sub.lesson.period]
+            sub.period_str = period_strs[schedule.id].get(sub.lesson.period, '')
 
     return events
 
