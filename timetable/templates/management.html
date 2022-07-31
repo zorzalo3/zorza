@@ -18,6 +18,11 @@
 	<p>
 		<a href="{% url "add_substitutions1" %}">{% trans "Substitutions" %}</a>
 	</p>
+	<p>
+		<a href="{% url "print_substitutions" %}">{% trans "Print substitutions" %}</a>
+	</p>
+		
+	
 	{% if csv_enabled %}
 	<p>
 		<a href="{% url "import_substitutions" %}">{% trans "Import substitutions from CSV" %}</a>

@@ -7,7 +7,7 @@
 
 {% block content %}
 <form class="form-small add-substitutions1 no-print" method="post">
-	<h2>{% trans "Adding substitutions — step 1" %}</h2>
+	<h2>{% trans "Select date" %}</h2>
 	<p>
 		{% now "SHORT_DATE_FORMAT" as today %}
 		{% blocktrans trimmed %}
@@ -17,7 +17,7 @@
 	{% csrf_token %}
 	{{ form.as_p }}
 	<p class="text-center">
-		<button type="submit" class="button-primary" >
+		<button type="submit" class="button-primary">
 			{% trans "Go to the next step" %}
 		</button>
 	</p>

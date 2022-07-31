@@ -1,3 +1,4 @@
+from ast import arg
 import datetime
 
 from django.forms  import *
@@ -160,3 +161,78 @@ class SubstitutionsImportForm(Form):
         #TODO check for encoding
         #TODO check for csv import errors
         return cleaned_data
+
+class SelectDateForm(Form):
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
+    
+    
+class AddDayPlanForm(Form):
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday())
+    i = 0
+    choices = list(tuple())
+    for name in Schedule.objects.all().iterator():
+        choices.append((i, name))
+        i += 1
+    choice = ChoiceField(choices=choices, label=_('Choice'))
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        choice = cleaned_data.get('choice')
+        
+        today = datetime.date.today()
+        if date < today:
+            raise ValidationError(_('The given date cannot be in the past'))
+        if date >= datetime.date(today.year + 1, today.month, today.day):
+            raise ValidationError(_('The given date must be within a year from now'))
+        if DayPlan.objects.filter(date=date):
+            raise ValidationError(_('There is already a dayplan for {}').format(date))
+        
+        return cleaned_data
+        
+        
+
+"""
+class SelectTeacherAndDateForm(Form):
+    teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
+    date = DateField(
+        label=_('Date'), initial=get_next_schoolday, widget=Html5DateInput)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        teacher = cleaned_data.get('teacher')
+        date = cleaned_data.get('date')
+
+        today = datetime.date.today()
+        if date < today:
+            raise ValidationError(_('The given date cannot be in the past'))
+        if date >= datetime.date(today.year + 1, today.month, today.day):
+            raise ValidationError(_('The given date must be within a year from now'))
+        if not Lesson.objects.filter(teacher=teacher, weekday=date.weekday()):
+            raise ValidationError(_('{} has no planned lessons on the given day.')
+                    .format(teacher))
+        return cleaned_data
+        
+        
+if not Lesson.objects.filter(teacher=teacher, weekday=date.weekday()):
+            raise ValidationError(_('{} has no planned lessons on the given day.')
+                    .format(teacher))
+
+    #FIXME: zabezpiecz przy dodawaniu kolejnego dayplanu tego samego dnia
+    #TODO: wyswietlaj dayplany na stronie add_dayplan
+    #TODO: usuwanie dayplanow
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        choice = form.cleaned_data['choice']
+        
+        #dayplan_exists = False
+        
+        try:
+            existing_dayplan = get_object_or_404(DayPlan, date=date)
+            dayplan_exists = True
+        except:
+            dayplan_exists = False
+            
+            
+"""

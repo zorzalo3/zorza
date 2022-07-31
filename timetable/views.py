@@ -4,6 +4,10 @@ from collections import OrderedDict
 from datetime import date, datetime
 
 from io import TextIOWrapper
+from multiprocessing import context
+from secrets import choice
+from urllib import response
+from aiohttp import request
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect, JsonResponse
@@ -106,7 +110,6 @@ def show_schedules(request):
 
 class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     """The first step to adding a substitution
-
     selects a teacher and a date to be passed into the second step
     """
     permission_required = 'timetable.add_substitution'
@@ -292,3 +295,111 @@ class SubstitutionsImportView(FormView):
                 context['rows_failed'] += 1
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
+
+class PrintSubstitutionsView(FormView):
+    template_name = 'print_substitutions.html'
+    form_class = SelectDateForm
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        return redirect('print_substitutions', date)
+    
+def show_substitutions(request, date):
+    substitutions = Substitution.objects.filter(date=date)
+    context = {
+        'substitutions': substitutions,
+        'date': parse_date(date)
+    }
+    return render(request, 'show_substitutions_to_print.html', context)
+
+"""
+class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
+    permission_required = 'timetable.add_substitution'
+    template_name = 'teacher_and_date_select.html'
+    form_class = SelectTeacherAndDateForm
+
+    def form_valid(self, form):
+        teacher = form.cleaned_data['teacher']
+        date = form.cleaned_data['date']
+        return redirect('add_substitutions2', teacher.pk, str(date))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        end_date = date(today.year + 1, today.month, today.day)
+        events = get_events(end_date=end_date)
+        context['substitutions'] = events['substitutions']
+        context['show_substitution_delete'] = True
+        return context
+"""
+"""    def def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        end_date = date(today.year + 1, today.month, today.day)
+        events = get_events(end_date=end_date)
+        context[""] = 
+        return context"""
+
+class AddDayPlanView(PermissionRequiredMixin, FormView):
+    permission_required = 'timetable.add_dayplan'
+    template_name = 'add_dayplan.html'
+    form_class = AddDayPlanForm
+    
+    #FIXME: zabezpiecz przy dodawaniu kolejnego dayplanu tego samego dnia
+    #TODO: wyswietlaj dayplany na stronie add_dayplan
+    #TODO: usuwanie dayplanow
+    
+
+    
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        choice = form.cleaned_data['choice']
+        
+        print(get_events())
+        
+        print(get_object_or_404(DayPlan, date=date))
+        
+        all_schedules = Schedule.objects.all()
+        print(type(choice))
+        schedule = get_object_or_404(Schedule, name=all_schedules[int(choice)])
+        dayplan = DayPlan(date=date, schedule=schedule)
+        dayplan.save()
+        #add_dayplan()
+        #print(Schedule.objects.filter(id=41))
+        #d = DayPlan(date=date, schedule=Schedule.objects.filter(id=choice))
+        #d.save()
+        return redirect('add_dayplan')
+    
+    #def form_valid(self, form):
+     #   date = form.cleaned_data['date']
+      #  choice = form.cleaned_data['choice']
+       # return 
+       
+"""def add_dayplan(date, schedule_id):
+    schedule = get_object_or_404(Schedule, pk=schedule_id)
+    dayplan = DayPlan(date=date, schedule=schedule)
+    dayplan.save()"""
+    
+    
+       
+"""The first step to adding a substitution
+    selects a teacher and a date to be passed into the second step
+    
+    permission_required = 'timetable.add_substitution'
+    template_name = 'teacher_and_date_select.html'
+    form_class = SelectTeacherAndDateForm
+
+    def form_valid(self, form):
+        teacher = form.cleaned_data['teacher']
+        date = form.cleaned_data['date']
+        return redirect('add_substitutions2', teacher.pk, str(date))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        end_date = date(today.year + 1, today.month, today.day)
+        events = get_events(end_date=end_date)
+        context['substitutions'] = events['substitutions']
+        context['show_substitution_delete'] = True
+        return context"""

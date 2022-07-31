@@ -80,3 +80,6 @@ This project includes [medium-editor](https://github.com/yabwe/medium-editor/) b
 
 ## Contributing
 See CONTRIBUTING.md
+
+## Additional notes
+There is add_dayplan path which is currently unused (replaced with an edit calendar option) in files: timetable/templates/add_dayplan.html, timetable/forms.py, timetables/views.py.
