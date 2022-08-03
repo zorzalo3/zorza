@@ -5,6 +5,31 @@
 {% trans "Substitutions" %} - Zorza
 {% endblock %}
 
+<script>
+	function close_print () {
+		document.body.removeChild(this.__container__);
+	}
+	function setPrint () {
+		this.contentWindow.__container__ = this;
+		this.contentWindow.onbeforeunload = closePrint;
+		this.contentWindow.onafterprint = closePrint;
+		this.contentWindow.focus();
+		this.contentWindow.print();
+	  }
+	function printPage (sURL) {
+		var oHideFrame = document.createElement("iframe");
+		oHideFrame.onload = setPrint;
+		oHideFrame.style.position = "fixed";
+		oHideFrame.style.right = "0";
+		oHideFrame.style.bottom = "0";
+		oHideFrame.style.width = "0";
+		oHideFrame.style.height = "0";
+		oHideFrame.style.border = "0";
+		oHideFrame.src = sURL;
+		document.body.appendChild(oHideFrame);
+	  }
+</script>
+
 {% block content %}
 <form class="form-small print-substitutions no-print" method="post">
 	<h2>{% trans "Prining substitutions" %}</h2>
@@ -17,7 +42,7 @@
 	{% csrf_token %}
 	{{ form.as_p }}
 	<p class="text-center">
-		<button type="submit" class="button-primary">
+		<button type="submit" class="button-primary" onclick="printPage('');">
 			{% trans "Print" %}
 		</button>
 	</p>
