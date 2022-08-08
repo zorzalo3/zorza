@@ -292,3 +292,19 @@ class SubstitutionsImportView(FormView):
                 context['rows_failed'] += 1
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
+
+class PrintSubstitutionsView(PermissionRequiredMixin, FormView):
+    template_name = 'print_substitutions.html'
+    form_class = SelectDateForm
+
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        return redirect('print_substitutions', date)
+
+def show_substitutions(request, date):
+    substitutions = Substitution.objects.filter(date=date)
+    context = {
+        'substitutions': substitutions,
+        'date': parse_date(date)
+    }
+    return render(request, 'show_substitutions_to_print.html', context)

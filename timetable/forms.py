@@ -160,3 +160,6 @@ class SubstitutionsImportForm(Form):
         #TODO check for encoding
         #TODO check for csv import errors
         return cleaned_data
+
+class SelectDateForm(Form):
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
