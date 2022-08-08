@@ -4,9 +4,6 @@ from collections import OrderedDict
 from datetime import date, datetime
 
 from io import TextIOWrapper
-from secrets import choice
-from urllib import response
-from aiohttp import request
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect, JsonResponse
@@ -109,6 +106,7 @@ def show_schedules(request):
 
 class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     """The first step to adding a substitution
+
     selects a teacher and a date to be passed into the second step
     """
     permission_required = 'timetable.add_substitution'
@@ -295,15 +293,14 @@ class SubstitutionsImportView(FormView):
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
 
-
 class PrintSubstitutionsView(PermissionRequiredMixin, FormView):
     template_name = 'print_substitutions.html'
     form_class = SelectDateForm
-    
+
     def form_valid(self, form):
         date = form.cleaned_data['date']
         return redirect('print_substitutions', date)
-    
+
 def show_substitutions(request, date):
     substitutions = Substitution.objects.filter(date=date)
     context = {
