@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Printing substitutions" %} - Zorza
+{% endblock %}
+
+{% block content%}
+
+{% if substitutions %}
+{% include "substitutions.html" %}
+<script>
+	window.print()
+</script>
+{% else %}
+<h2 class="text-center">{% trans "There are no substitutions scheduled for that day." %}</h2>
+<div class="container text-center">
+	<h3><a href="{% url "home" %}" title="{% trans "Visit the main page" %}">{% trans "Visit the main page" %}</a></h3>
+</div>
+{% endif %}
+
+
+
+
+{% endblock %}
