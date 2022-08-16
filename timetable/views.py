@@ -296,10 +296,11 @@ class SubstitutionsImportView(FormView):
 class PrintSubstitutionsView(PermissionRequiredMixin, FormView):
     template_name = 'print_substitutions.html'
     form_class = SelectDateForm
+    permission_required = 'timetable.print_substitution'
 
     def form_valid(self, form):
         date = form.cleaned_data['date']
-        return redirect('print_substitutions', date)
+        return redirect('show_substitutions_as_html', date)
 
 def show_substitutions(request, date):
     substitutions = Substitution.objects.filter(date=date)
