@@ -558,7 +558,7 @@ msgstr "Drukuj zastępstwa"
 
 #: timetable/templates/show_substitutions_to_print.html:16
 msgid "There are no substitutions scheduled for that day."
-msgstr "Nie ma zaplanowanych zastępst wybranego dnia."
+msgstr "Nie ma zaplanowanych zastępstw wybranego dnia."
 
 #: timetable/templates/substitutions.html:24
 msgid "Delete?"
