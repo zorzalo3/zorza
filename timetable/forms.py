@@ -83,7 +83,7 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
             .select_related() \
             .order_by('lesson__period')
         self.teacher = teacher
-        self.teachers = Teacher.objects.all() # So as not to repeat queries
+        self.teachers = Teacher.objects.all().exclude(id=teacher.id) # So as not to repeat queries
         self.date = date
         self.lessons = Lesson.objects \
             .filter(teacher=teacher, weekday=date.weekday()) \
