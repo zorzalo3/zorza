@@ -44,15 +44,23 @@ Showing lessons by room on {{ date }}, period number {{ period }}.
 				{% endif %}
 			</td>
 			<td>
+				{% if lesson.message %}
+				<span title="{{ lesson.message }}">
+					{{ lesson.message }}
+				</span>
+				{% else %}
 				<span title="{{ lesson.subject.name }}">
 					{{ lesson.subject.short_name }}
 				</span>
+				{% endif %}
 			</td>
 
 			<td>
+				{% if not lesson.message %}
 				<a href="{% url "groups_timetable" lesson.group_id|slugify %}">
 					{{ lesson.group }}
 				</a>
+				{% endif %}
 			</td>
 			{% else %}
 			<td></td>

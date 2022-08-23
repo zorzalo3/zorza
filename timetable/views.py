@@ -180,6 +180,11 @@ def show_rooms(request, date, period):
     for sub in substitutions:
         rooms[sub.lesson.room].substitute = sub.substitute
 
+    reservations = Reservation.objects.filter(date=date, period_number=period)
+    for res in reservations:
+        rooms[res.room].substitute = res.teacher
+        rooms[res.room].message = _("RESERVED")
+    
     context = {
         'date': date,
         'period': period,

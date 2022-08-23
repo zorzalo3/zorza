@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 18:49+0200\n"
+"POT-Creation-Date: 2022-08-23 22:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,7 +141,7 @@ msgid "Author: "
 msgstr "Autor: "
 
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
-#: timetable/templates/management.html:43
+#: timetable/templates/management.html:41
 msgid "My documents"
 msgstr "Moje dokumenty"
 
@@ -189,10 +189,6 @@ msgstr "Zarządzanie"
 msgid "Logged out"
 msgstr ""
 
-#: templates/registration/logged_out.html:15
-msgid "or"
-msgstr ""
-
 #: templates/registration/logged_out.html:17
 msgid "Log in again"
 msgstr ""
@@ -216,52 +212,44 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:23 timetable/templates/reservations.html:14
+#: timetable/forms.py:22 timetable/templates/reservations.html:14
 #: timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
-#: timetable/forms.py:25 timetable/forms.py:136 timetable/forms.py:166
-#: timetable/forms.py:170 timetable/templates/edit_calendar.html:21
+#: timetable/forms.py:24 timetable/forms.py:135 timetable/forms.py:165
+#: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
-#: timetable/forms.py:34 timetable/forms.py:185
+#: timetable/forms.py:33
 msgid "The given date cannot be in the past"
 msgstr "Podana data nie może być w przeszłości"
 
-#: timetable/forms.py:36 timetable/forms.py:187
+#: timetable/forms.py:35
 msgid "The given date must be within a year from now"
 msgstr "Do podanej daty musi być mniej niż jeden rok"
 
-#: timetable/forms.py:38
+#: timetable/forms.py:37
 msgid "{} has no planned lessons on the given day."
 msgstr "{} nie ma planowych lekcji podanego dnia."
 
-#: timetable/forms.py:45
+#: timetable/forms.py:44
 msgid "-----"
 msgstr ""
 
-#: timetable/forms.py:45 timetable/forms.py:131 timetable/models.py:122
+#: timetable/forms.py:44 timetable/forms.py:130 timetable/models.py:122
 #: timetable/models.py:167
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:142
+#: timetable/forms.py:141
 msgid "Period number"
 msgstr "Numer lekcji"
 
-#: timetable/forms.py:158
+#: timetable/forms.py:157
 msgid "CSV file with substitutions"
 msgstr "Plik CSV z zastępstwami"
-
-#: timetable/forms.py:176
-msgid "Choice"
-msgstr "Wybór"
-
-#: timetable/forms.py:189
-msgid "There is already a dayplan for {}"
-msgstr "Istnieje już rozkład dzwonków dla {}"
 
 #: timetable/models.py:28
 msgid "link_to_class needs exactly one class"
@@ -296,7 +284,7 @@ msgstr "Dodawanie rozkładu dzwonków"
 
 #: timetable/templates/add_dayplan.html:13
 #: timetable/templates/date_select.html:13
-#: timetable/templates/print_substitutions.html:13
+#: timetable/templates/print_substitutions.html:38
 #: timetable/templates/teacher_and_date_select.html:13
 #, python-format
 msgid "Today's date is %(today)s."
@@ -415,7 +403,7 @@ msgstr "Ostatnie połączenie:"
 
 #: timetable/templates/edit_calendar.html:5
 #: timetable/templates/edit_calendar.html:10
-#: timetable/templates/management.html:39
+#: timetable/templates/management.html:37
 msgid "Calendar"
 msgstr "Kalendarz"
 
@@ -465,15 +453,15 @@ msgstr ""
 msgid "Print substitutions"
 msgstr "Drukuj zastępstwa"
 
-#: timetable/templates/management.html:28
+#: timetable/templates/management.html:26
 msgid "Import substitutions from CSV"
 msgstr "Importuj zastępstwa z CSV"
 
-#: timetable/templates/management.html:34
+#: timetable/templates/management.html:32
 msgid "Administration"
 msgstr ""
 
-#: timetable/templates/management.html:47
+#: timetable/templates/management.html:45
 #, python-format
 msgid ""
 "Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
@@ -491,11 +479,11 @@ msgstr "Personalizacja planu"
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
-#: timetable/templates/print_substitutions.html:10
+#: timetable/templates/print_substitutions.html:35
 msgid "Prining substitutions"
 msgstr "Drukuj zastępstwa"
 
-#: timetable/templates/print_substitutions.html:21
+#: timetable/templates/print_substitutions.html:46
 msgid "Print"
 msgstr "Drukuj"
 
@@ -614,37 +602,19 @@ msgstr ""
 msgid "Show lessons at a given time"
 msgstr "Pokaż lekcje o danej porze"
 
-#: timetable/tests.py:12 zorza/settings.py:141
-msgid "Monday"
-msgstr ""
-
-#: timetable/tests.py:13 zorza/settings.py:142
-msgid "Tuesday"
-msgstr ""
-
-#: timetable/tests.py:14 zorza/settings.py:143
-msgid "Wednesday"
-msgstr ""
-
-#: timetable/tests.py:15 zorza/settings.py:144
-msgid "Thursday"
-msgstr ""
-
-#: timetable/tests.py:16 zorza/settings.py:145
-msgid "Friday"
-msgstr ""
-
-#: timetable/tests.py:17
-msgid "Saturday"
-msgstr ""
-
-#: timetable/tests.py:18
-msgid "Sunday"
-msgstr ""
-
-#: timetable/views.py:97
+#: timetable/views.py:93
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
+
+#: timetable/views.py:186
+msgid "RESERVED"
+msgstr "ZAREZERWOWANE"
+
+#~ msgid "Choice"
+#~ msgstr "Wybór"
+
+#~ msgid "There is already a dayplan for {}"
+#~ msgstr "Istnieje już rozkład dzwonków dla {}"
 
 #~ msgctxt "dayplans"
 #~ msgid "On "
