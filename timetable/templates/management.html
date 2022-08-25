@@ -40,6 +40,12 @@
 	<p>
 		<a href="{% url "my_documents" %}">{% trans "My documents" %}</a>
 	</p>
+	{% if perms.timetable.add_reservation %}
+	<p>
+		<a href="{% url "add_reservation" %}">{% trans "Reservations" %}</a>
+	</p>
+	{% endif %}
+
 	{% if cache_time != 0 %}
 	<p>
 		{% blocktrans trimmed %}

@@ -1,3 +1,4 @@
+from calendar import weekday
 from csv import DictReader
 from itertools import groupby
 from collections import OrderedDict
@@ -76,9 +77,14 @@ def show_room_timetable(request, room_id):
     context['room'] = room
     reservations = Reservation.objects.filter(room=room)
     for reservation in reservations:
-        context['table'][reservation.period_number][1][reservation.weekday][0].teacher = reservation.teacher
-        context['table'][reservation.period_number][1][reservation.weekday][0].group = None
-        context['table'][reservation.period_number][1][reservation.weekday][0].subject = None
+        context['table'][reservation.period_number][1][reservation.weekday].append(Lesson(
+            teacher=reservation.teacher,
+            group = None,
+            subject=None,
+            period=reservation.period_number,
+            weekday=reservation.weekday,
+            room=reservation.room
+            ))
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):
@@ -319,3 +325,17 @@ def show_substitutions(request, date):
         'date': parse_date(date)
     }
     return render(request, 'show_substitutions_to_print.html', context)
+
+class AddReservationView(PermissionRequiredMixin, FormView):
+    template_name = 'add_reservation.html'
+    form_class = AddReservationForm
+    permission_required = 'timetable.add_reservation'
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        period = form.cleaned_data['period']
+        teacher = form.cleaned_data['teacher']
+        room = form.cleaned_data['room']
+        reservation = Reservation(date=date, period_number=period, teacher=teacher, room=room)
+        reservation.save()
+        return redirect('add_reservation')

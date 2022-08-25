@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 22:39+0200\n"
+"POT-Creation-Date: 2022-08-25 20:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,13 +212,13 @@ msgstr ""
 "Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
 "konto z odpowiednimi uprawnieniami."
 
-#: timetable/forms.py:22 timetable/templates/reservations.html:14
-#: timetable/templates/rooms.html:19
+#: timetable/forms.py:22 timetable/forms.py:170
+#: timetable/templates/reservations.html:14 timetable/templates/rooms.html:19
 msgid "Teacher"
 msgstr "Nauczyciel"
 
 #: timetable/forms.py:24 timetable/forms.py:135 timetable/forms.py:165
-#: timetable/templates/edit_calendar.html:21
+#: timetable/forms.py:168 timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
 
@@ -243,13 +243,18 @@ msgstr ""
 msgid "cancelled"
 msgstr "odwołane"
 
-#: timetable/forms.py:141
+#: timetable/forms.py:141 timetable/forms.py:169
 msgid "Period number"
 msgstr "Numer lekcji"
 
 #: timetable/forms.py:157
 msgid "CSV file with substitutions"
 msgstr "Plik CSV z zastępstwami"
+
+#: timetable/forms.py:171 timetable/templates/reservations.html:15
+#: timetable/templates/room_timetable.html:5 timetable/templates/rooms.html:18
+msgid "Room"
+msgstr "Sala"
 
 #: timetable/models.py:28
 msgid "link_to_class needs exactly one class"
@@ -283,16 +288,28 @@ msgid "Adding dayplan"
 msgstr "Dodawanie rozkładu dzwonków"
 
 #: timetable/templates/add_dayplan.html:13
+#: timetable/templates/add_reservation.html:13
 #: timetable/templates/date_select.html:13
-#: timetable/templates/print_substitutions.html:38
+#: timetable/templates/print_substitutions.html:13
 #: timetable/templates/teacher_and_date_select.html:13
 #, python-format
 msgid "Today's date is %(today)s."
 msgstr "Dzisiejsza data to %(today)s."
 
 #: timetable/templates/add_dayplan.html:21
+#: timetable/templates/add_reservation.html:21
 msgid "Submit"
 msgstr "Zatwierdź"
+
+#: timetable/templates/add_reservation.html:5
+#: timetable/templates/management.html:45
+#: timetable/templates/reservations.html:4
+msgid "Reservations"
+msgstr "Rezerwacje sal"
+
+#: timetable/templates/add_reservation.html:10
+msgid "Adding reservations"
+msgstr "Dodawanie rezerwacji"
 
 #: timetable/templates/add_substitutions.html:5
 #, python-format
@@ -461,7 +478,7 @@ msgstr "Importuj zastępstwa z CSV"
 msgid "Administration"
 msgstr ""
 
-#: timetable/templates/management.html:45
+#: timetable/templates/management.html:51
 #, python-format
 msgid ""
 "Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
@@ -479,17 +496,13 @@ msgstr "Personalizacja planu"
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
-#: timetable/templates/print_substitutions.html:35
+#: timetable/templates/print_substitutions.html:10
 msgid "Prining substitutions"
 msgstr "Drukuj zastępstwa"
 
-#: timetable/templates/print_substitutions.html:46
+#: timetable/templates/print_substitutions.html:21
 msgid "Print"
 msgstr "Drukuj"
-
-#: timetable/templates/reservations.html:4
-msgid "Reservations"
-msgstr "Rezerwacje sal"
 
 #: timetable/templates/reservations.html:13
 #: timetable/templates/substitutions.html:20
@@ -498,14 +511,13 @@ msgctxt "timetable header"
 msgid "Period"
 msgstr "Godz."
 
-#: timetable/templates/reservations.html:15
-#: timetable/templates/room_timetable.html:5 timetable/templates/rooms.html:18
-msgid "Room"
-msgstr "Sala"
-
 #: timetable/templates/room_timetable.html:9
 msgid "Classroom"
 msgstr "Sala"
+
+#: timetable/templates/room_timetable.html:35 timetable/views.py:191
+msgid "RESERVED"
+msgstr "ZAREZERWOWANE"
 
 #: timetable/templates/rooms.html:5 timetable/templates/rooms.html:9
 #: timetable/templates/rooms_date_period_select.html:6
@@ -536,7 +548,7 @@ msgid "Show lessons in rooms"
 msgstr "Pokaż lekcje w salach"
 
 #: timetable/templates/schedules.html:6 timetable/templates/schedules.html:11
-#: timetable/templates/timetable_base.html:100
+#: timetable/templates/timetable_footer.html:3
 msgid "Schedules"
 msgstr "Rozkłady dzwonków"
 
@@ -578,37 +590,33 @@ msgstr "Lekcje się już skończyły."
 msgid "Set as default timetable"
 msgstr "Ustaw jako domyślny plan lekcji"
 
-#: timetable/templates/timetable_base.html:61
-msgid "Choose timetable to display"
-msgstr "Wybierz plan lekcji"
-
-#: timetable/templates/timetable_base.html:65
-msgid "Choose a class"
-msgstr "Wybierz klasę"
-
-#: timetable/templates/timetable_base.html:73
-msgid "Choose a teacher"
-msgstr "Wybierz nauczyciela"
-
-#: timetable/templates/timetable_base.html:81
-msgid "Choose a classroom"
-msgstr "Wybierz salę"
-
-#: timetable/templates/timetable_base.html:89
-msgid "Go"
-msgstr ""
-
-#: timetable/templates/timetable_base.html:101
+#: timetable/templates/timetable_footer.html:4
 msgid "Show lessons at a given time"
 msgstr "Pokaż lekcje o danej porze"
 
-#: timetable/views.py:93
+#: timetable/templates/timetable_select.html:3
+msgid "Choose timetable to display"
+msgstr "Wybierz plan lekcji"
+
+#: timetable/templates/timetable_select.html:7
+msgid "Choose a class"
+msgstr "Wybierz klasę"
+
+#: timetable/templates/timetable_select.html:15
+msgid "Choose a teacher"
+msgstr "Wybierz nauczyciela"
+
+#: timetable/templates/timetable_select.html:23
+msgid "Choose a classroom"
+msgstr "Wybierz salę"
+
+#: timetable/templates/timetable_select.html:31
+msgid "Go"
+msgstr ""
+
+#: timetable/views.py:98
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
-
-#: timetable/views.py:186
-msgid "RESERVED"
-msgstr "ZAREZERWOWANE"
 
 #~ msgid "Choice"
 #~ msgstr "Wybór"
