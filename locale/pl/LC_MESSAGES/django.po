@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 20:00+0200\n"
+"POT-Creation-Date: 2022-08-25 20:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,7 @@ msgid "Title"
 msgstr "Tytuł"
 
 #: documents/forms.py:21
+#: env/lib/python3.10/site-packages/django/db/models/fields/files.py:221
 msgid "File"
 msgstr "Plik"
 
@@ -515,7 +516,7 @@ msgstr "Godz."
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/room_timetable.html:35 timetable/views.py:191
+#: timetable/templates/room_timetable.html:35 timetable/views.py:197
 msgid "RESERVED"
 msgstr "ZAREZERWOWANE"
 
@@ -614,9 +615,37 @@ msgstr "Wybierz salę"
 msgid "Go"
 msgstr ""
 
-#: timetable/views.py:98
+#: timetable/views.py:104
 msgid "Select at least one group"
 msgstr "Wybierz co najmniej jedną grupę"
+
+#: timetable/tests.py:12 zorza/settings.py:141
+msgid "Monday"
+msgstr ""
+
+#: timetable/tests.py:13 zorza/settings.py:142
+msgid "Tuesday"
+msgstr ""
+
+#: timetable/tests.py:14 zorza/settings.py:143
+msgid "Wednesday"
+msgstr ""
+
+#: timetable/tests.py:15 zorza/settings.py:144
+msgid "Thursday"
+msgstr ""
+
+#: timetable/tests.py:16 zorza/settings.py:145
+msgid "Friday"
+msgstr ""
+
+#: timetable/tests.py:17
+msgid "Saturday"
+msgstr ""
+
+#: timetable/tests.py:18
+msgid "Sunday"
+msgstr ""
 
 #~ msgid "Choice"
 #~ msgstr "Wybór"
