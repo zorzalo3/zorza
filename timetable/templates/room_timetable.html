@@ -31,9 +31,12 @@
 		{{ lesson.group.name }}
 	</a>
 	<span class="subject" title="{{ lesson.subject.name }}">
+		{% if not lesson.subject.short_name %}
+		{% trans "RESERVED" %}
+		{% else %}
 		{{ lesson.subject.short_name }}
+		{% endif %}
 	</span>
 </div>
 {% endif %}
 {% endblock %}
-

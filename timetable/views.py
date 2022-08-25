@@ -74,6 +74,11 @@ def show_room_timetable(request, room_id):
     lessons = Lesson.objects.filter(room=room).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['room'] = room
+    reservations = Reservation.objects.filter(room=room)
+    for reservation in reservations:
+        context['table'][reservation.period_number][1][reservation.weekday][0].teacher = reservation.teacher
+        context['table'][reservation.period_number][1][reservation.weekday][0].group = None
+        context['table'][reservation.period_number][1][reservation.weekday][0].subject = None
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):

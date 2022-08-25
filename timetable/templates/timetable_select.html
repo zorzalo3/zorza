@@ -1,0 +1,34 @@
+﻿{% load i18n%}
+
+<h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
+<form action="/timetable/" class="text-center" autocomplete="off">
+	{% if class_list %}
+	<select name="class" class="timetable-select" onchange="location = '/timetable/class/'+this.value+'/'">
+		<option disabled selected value>{% trans "Choose a class" %}</option>
+		{% for class_item in class_list %}
+		<option value="{{ class_item.id }}">{{ class_item.name }} </option>
+		{% endfor %}
+	</select>
+	{% endif %}
+	{% if teacher_list %}
+	<select name="teacher" class="timetable-select" onchange="location = '/timetable/teacher/'+this.value+'/'">
+		<option disabled selected value>{% trans "Choose a teacher" %}</option>
+		{% for teacher_item in teacher_list %}
+		<option value="{{ teacher_item.id }}">{{ teacher_item.last_name }} {{ teacher_item.first_name }}</option>
+		{% endfor %}
+	</select>
+	{% endif %}
+	{% if room_list %}
+	<select name="room" class="timetable-select" onchange="location = '/timetable/room/'+this.value+'/'">
+		<option disabled selected value>{% trans "Choose a classroom" %}</option>
+		{% for room_item in room_list %}
+		<option value="{{ room_item.id }}">{{ room_item.short_name }}</option>
+		{% endfor %}
+	</select>
+	{% endif %}
+	{% if class_list or teacher_list or room_list %}
+	<noscript>
+		<button>{% trans "Go" %}</button>
+	</noscript>
+	{% endif %}
+</form>
