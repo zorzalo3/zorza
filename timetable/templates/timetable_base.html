@@ -58,38 +58,7 @@
 </div>
 {% block custom %}{% endblock %}
 
-<h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
-<form action="/timetable/" class="text-center" autocomplete="off">
-	{% if class_list %}
-	<select name="class" class="timetable-select" onchange="location = '/timetable/class/'+this.value+'/'">
-		<option disabled selected value>{% trans "Choose a class" %}</option>
-		{% for class_item in class_list %}
-		<option value="{{ class_item.id }}">{{ class_item.name }} </option>
-		{% endfor %}
-	</select>
-	{% endif %}
-	{% if teacher_list %}
-	<select name="teacher" class="timetable-select" onchange="location = '/timetable/teacher/'+this.value+'/'">
-		<option disabled selected value>{% trans "Choose a teacher" %}</option>
-		{% for teacher_item in teacher_list %}
-		<option value="{{ teacher_item.id }}">{{ teacher_item.last_name }} {{ teacher_item.first_name }}</option>
-		{% endfor %}
-	</select>
-	{% endif %}
-	{% if room_list %}
-	<select name="room" class="timetable-select" onchange="location = '/timetable/room/'+this.value+'/'">
-		<option disabled selected value>{% trans "Choose a classroom" %}</option>
-		{% for room_item in room_list %}
-		<option value="{{ room_item.id }}">{{ room_item.short_name }}</option>
-		{% endfor %}
-	</select>
-	{% endif %}
-	{% if class_list or teacher_list or room_list %}
-	<noscript>
-		<button>{% trans "Go" %}</button>
-	</noscript>
-	{% endif %}
-</form>
+{% include "timetable_select.html" %}
 
 {% include "substitutions.html" %}
 {% include "absences.html" %}
@@ -97,6 +66,5 @@
 {% include "timetable_data.html" %}
 
 <script src="{% static "timetable.js" %}"></script>
-<h2 class="text-center"><a href="{% url "schedules" %}">{% trans "Schedules" %}</a></h2>
-<h2 class="text-center"><a href="{% url "rooms" %}">{% trans "Show lessons at a given time" %}</a></h2>
+{% include "timetable_footer.html" %}
 {% endblock %}
