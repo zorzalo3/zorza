@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.conf import settings
 
 from .models import *
-from .utils import (get_timetable_context, get_schedules_table, get_days_periods,
+from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
     get_events, get_display_context, get_teacher_by_name)
 from .forms import *
 
@@ -310,21 +310,20 @@ class SubstitutionsImportView(FormView):
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
 
-class PrintSubstitutionsView(PermissionRequiredMixin, FormView):
-    template_name = 'print_substitutions.html'
-    form_class = SelectDateForm
-    permission_required = 'timetable.print_substitution'
-
-    def form_valid(self, form):
-        date = form.cleaned_data['date']
-        return redirect('show_substitutions_as_html', date)
-
-def show_substitutions(request, date):
-    substitutions = Substitution.objects.filter(date=date)
-    context = {
-        'substitutions': substitutions,
-        'date': parse_date(date)
-    }
+def show_substitutions(request, date, teacher_ids):
+    context = dict()
+    try:
+        teacher_ids = [int(n) for n in teacher_ids.split(',')]
+    except:
+        raise Http404
+    date = parse_date(date)
+    teachers = Teacher.objects.filter(pk__in=teacher_ids)
+    if len(teacher_ids) != len(teachers):
+        raise Http404
+    substitutions = Substitution.objects.filter(date=date, lesson__teacher__in=teachers)
+    context.update(get_timetable_context(Lesson.objects.filter(teacher__in=teachers)))
+    context['substitutions'] = substitutions
+    context['date'] = 'date'
     return render(request, 'show_substitutions_to_print.html', context)
 
 class AddReservationView(PermissionRequiredMixin, FormView):
@@ -340,3 +339,39 @@ class AddReservationView(PermissionRequiredMixin, FormView):
         reservation = Reservation(date=date, period_number=period, teacher=teacher, room=room)
         reservation.save()
         return redirect('add_reservation')
+
+class PrintSubstitutionsView1(PermissionRequiredMixin, FormView):
+    permission_required = 'timetable.print_substitution'
+    template_name = 'print_substitutions1.html'
+    form_class = SelectDateForm
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        return redirect('print_substitutions2', str(date))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        end_date = date(today.year + 1, today.month, today.day)
+        events = get_events(end_date=end_date)
+        context['substitutions'] = events['substitutions']
+        return context
+
+@never_cache
+@login_required
+@permission_required('timetable.print_substitutions', raise_exception=True)
+def print_substitution2(request, date):
+    context = dict()
+    date = parse_date(date)
+    if request.method == 'POST':
+        teachers = request.POST.getlist('teacher-checkbox')
+        if not teachers:
+            context['error'] = _('Select at least one teacher')
+        else:
+            return redirect('show_substitutions_as_html', date, ','.join(teachers))
+    teachers = get_teachers_by_substitutions_date(date)
+    context['teachers'] = teachers
+    context['date'] = date
+    if len(teachers) < 1: 
+        return render(request, 'show_substitutions_to_print.html', context)
+    return render(request, 'print_substitutions2.html', context)
