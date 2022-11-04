@@ -13,13 +13,10 @@
 	window.print()
 </script>
 {% else %}
-<h2 class="text-center">{% trans "There are no substitutions scheduled for that day." %}</h2>
+<h2 class="text-center">{% trans "There are no substitutions scheduled for selected teachers for that day." %}</h2>
 <div class="container text-center">
 	<h3><a href="{% url "home" %}" title="{% trans "Visit the main page" %}">{% trans "Visit the main page" %}</a></h3>
 </div>
 {% endif %}
-
-
-
 
 {% endblock %}

@@ -7,7 +7,7 @@
 
 {% block content %}
 <form class="form-small print-substitutions no-print" method="post">
-	<h2>{% trans "Prining substitutions" %}</h2>
+	<h2>{% trans "Printing substitutions" %}</h2>
 	<p>
 		{% now "SHORT_DATE_FORMAT" as today %}
 		{% blocktrans trimmed %}
@@ -18,10 +18,10 @@
 	{{ form.as_p }}
 	<p class="text-center">
 		<button type="submit" class="button-primary">
-			{% trans "Print" %}
+			{% trans "Go" %}
 		</button>
 	</p>
 </form>
-{% include "substitutions.html" %}
+
 
 {% endblock %}
