@@ -309,10 +309,15 @@ button:hover, .button:hover {
   width: 100%;
 }
 
+.teacher-checkbox {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 label.group-checkbox {
   display: inline-block;
-  margin-bottom: 0.5rem;
-  width: 10rem;
 }
 
 label.group-checkbox input[type="checkbox"] {

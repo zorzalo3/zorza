@@ -299,16 +299,19 @@ button, .button {
 		width: 100%;
 	}
 }
+.teacher-checkbox {
+	display: grid;
+	grid-template-columns: 80% 20%;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
 label.group-checkbox {
 	display: inline-block;
-	margin-bottom: 0.5rem;
-	width: 10rem;
 	input[type="checkbox"] {
 		display: inline-block;
 		width: auto;
 		padding: 0;
 		margin: 0;
-		// Fix misaligned checkbox and text...
 		position: relative;
 		bottom: 1px;
 		vertical-align: middle;
