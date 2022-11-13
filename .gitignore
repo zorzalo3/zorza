@@ -1,6 +1,7 @@
 # Python cache and bytecode
 *.py[cod]
 __pycache__
+./__pycache__
 
 localsettings.py
 
@@ -10,7 +11,11 @@ localsettings.py
 # KDE Dolphin cache files
 .directory
 
+/env
 /venv
 staticfiles
 mediafiles
 media
+tmp
+temp
+.vscode
