@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block content %}
+<script type="text/javascript">
+	function SelectAll() { 
+		var elements = document.getElementsByName("teacher-checkbox");
+		if (document.getElementById("select-all").checked) elements.forEach(e => e.checked = true)
+		else elements.forEach(e => e.checked = false)
+	}
+</script>
+
 <form class="form-small print-substitutions no-print" method="post">
 	<h2>{% trans "Printing substitutions" %}</h2>
 	{% if error %}
@@ -20,6 +28,12 @@
 	{% csrf_token %}
 	
 	{% for teacher in teachers %}
+	<label class="teacher-checkbox">
+		<span>
+			{% trans "Select All" %}
+		</span>
+		<input type="checkbox" id="select-all" onclick="SelectAll()">
+	</label>
 	<label class="teacher-checkbox" for="teacher-checkbox-{{ teacher.id }}">
 		<span>
 			{{ teacher.last_name }} {{ teacher.first_name }}
