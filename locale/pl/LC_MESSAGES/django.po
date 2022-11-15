@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 20:33+0200\n"
+"POT-Creation-Date: 2022-11-15 20:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,6 @@ msgid "Title"
 msgstr "Tytuł"
 
 #: documents/forms.py:21
-#: env/lib/python3.10/site-packages/django/db/models/fields/files.py:221
 msgid "File"
 msgstr "Plik"
 
@@ -190,6 +189,10 @@ msgstr "Zarządzanie"
 msgid "Logged out"
 msgstr ""
 
+#: templates/registration/logged_out.html:15
+msgid "or"
+msgstr "lub"
+
 #: templates/registration/logged_out.html:17
 msgid "Log in again"
 msgstr ""
@@ -291,7 +294,8 @@ msgstr "Dodawanie rozkładu dzwonków"
 #: timetable/templates/add_dayplan.html:13
 #: timetable/templates/add_reservation.html:13
 #: timetable/templates/date_select.html:13
-#: timetable/templates/print_substitutions.html:13
+#: timetable/templates/print_substitutions1.html:13
+#: timetable/templates/print_substitutions2.html:16
 #: timetable/templates/teacher_and_date_select.html:13
 #, python-format
 msgid "Today's date is %(today)s."
@@ -387,17 +391,17 @@ msgstr "Błędy"
 #: timetable/templates/date_select.html:5
 #: timetable/templates/import_substitutions.html:6
 #: timetable/templates/management.html:19
-#: timetable/templates/print_substitutions.html:5
+#: timetable/templates/print_substitutions1.html:5
+#: timetable/templates/print_substitutions2.html:5
 #: timetable/templates/substitutions.html:4
 #: timetable/templates/teacher_and_date_select.html:5
 msgid "Substitutions"
 msgstr "Zastępstwa"
 
 #: timetable/templates/date_select.html:10
-#, fuzzy
 #| msgid "Select date and period"
 msgid "Select date"
-msgstr "Wybierz datę i numer lekcji"
+msgstr "Wybierz datę"
 
 #: timetable/templates/date_select.html:21
 #: timetable/templates/teacher_and_date_select.html:21
@@ -497,11 +501,18 @@ msgstr "Personalizacja planu"
 msgid "Go to timetable"
 msgstr "Przejdź do planu"
 
-#: timetable/templates/print_substitutions.html:10
-msgid "Prining substitutions"
+#: timetable/templates/print_substitutions1.html:10
+#: timetable/templates/print_substitutions2.html:10
+#: timetable/templates/show_substitutions_to_print.html:5
+msgid "Printing substitutions"
 msgstr "Drukuj zastępstwa"
 
-#: timetable/templates/print_substitutions.html:21
+#: timetable/templates/print_substitutions1.html:21
+#: timetable/templates/timetable_select.html:31
+msgid "Go"
+msgstr "Idź"
+
+#: timetable/templates/print_substitutions2.html:32
 msgid "Print"
 msgstr "Drukuj"
 
@@ -516,7 +527,7 @@ msgstr "Godz."
 msgid "Classroom"
 msgstr "Sala"
 
-#: timetable/templates/room_timetable.html:35 timetable/views.py:197
+#: timetable/templates/room_timetable.html:35 timetable/views.py:198
 msgid "RESERVED"
 msgstr "ZAREZERWOWANE"
 
@@ -553,13 +564,11 @@ msgstr "Pokaż lekcje w salach"
 msgid "Schedules"
 msgstr "Rozkłady dzwonków"
 
-#: timetable/templates/show_substitutions_to_print.html:5
-msgid "Printing substitutions"
-msgstr "Drukuj zastępstwa"
-
 #: timetable/templates/show_substitutions_to_print.html:16
-msgid "There are no substitutions scheduled for that day."
-msgstr "Nie ma zaplanowanych zastępstw wybranego dnia."
+#| msgid "There are no substitutions scheduled for that day."
+msgid ""
+"There are no substitutions scheduled for selected teachers for that day."
+msgstr "Wybrani nauczyciee nie mają zaplanowanych zastępstw danego dnia."
 
 #: timetable/templates/substitutions.html:24
 msgid "Delete?"
@@ -611,14 +620,6 @@ msgstr "Wybierz nauczyciela"
 msgid "Choose a classroom"
 msgstr "Wybierz salę"
 
-#: timetable/templates/timetable_select.html:31
-msgid "Go"
-msgstr ""
-
-#: timetable/views.py:104
-msgid "Select at least one group"
-msgstr "Wybierz co najmniej jedną grupę"
-
 #: timetable/tests.py:12 zorza/settings.py:141
 msgid "Monday"
 msgstr ""
@@ -646,6 +647,18 @@ msgstr ""
 #: timetable/tests.py:18
 msgid "Sunday"
 msgstr ""
+
+#: timetable/views.py:104
+msgid "Select at least one group"
+msgstr "Wybierz co najmniej jedną grupę"
+
+#: timetable/views.py:369
+#| msgid "Select at least one group"
+msgid "Select at least one teacher"
+msgstr "Wybierz co najmniej jednego nauczyciela"
+
+#~ msgid "Prining substitutions"
+#~ msgstr "Drukuj zastępstwa"
 
 #~ msgid "Choice"
 #~ msgstr "Wybór"
