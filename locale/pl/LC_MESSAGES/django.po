@@ -568,7 +568,7 @@ msgstr "Rozkłady dzwonków"
 #| msgid "There are no substitutions scheduled for that day."
 msgid ""
 "There are no substitutions scheduled for selected teachers for that day."
-msgstr "Wybrani nauczyciee nie mają zaplanowanych zastępstw danego dnia."
+msgstr "Wybrani nauczyciele nie mają zaplanowanych zastępstw danego dnia."
 
 #: timetable/templates/substitutions.html:24
 msgid "Delete?"
