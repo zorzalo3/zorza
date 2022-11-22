@@ -27,13 +27,13 @@
 	</p>
 	{% csrf_token %}
 	
-	{% for teacher in teachers %}
 	<label class="teacher-checkbox">
 		<span>
 			{% trans "Select All" %}
 		</span>
 		<input type="checkbox" id="select-all" onclick="SelectAll()">
 	</label>
+	{% for teacher in teachers %}
 	<label class="teacher-checkbox" for="teacher-checkbox-{{ teacher.id }}">
 		<span>
 			{{ teacher.last_name }} {{ teacher.first_name }}
