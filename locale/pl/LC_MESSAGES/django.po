@@ -657,6 +657,11 @@ msgstr "Wybierz co najmniej jedną grupę"
 msgid "Select at least one teacher"
 msgstr "Wybierz co najmniej jednego nauczyciela"
 
+#: timetable/templates/print_substitutions2.html:32
+msgid "Select all"
+msgstr "Wybierz wszystkich"
+
+
 #~ msgid "Prining substitutions"
 #~ msgstr "Drukuj zastępstwa"
 
