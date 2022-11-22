@@ -374,6 +374,7 @@ table.substitution {
 @media print {
 	* {
 		color: black !important;
+		page-break-inside: avoid;
 	}
 	header, footer, .no-print {
 		display: none !important;
