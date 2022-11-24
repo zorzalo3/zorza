@@ -255,6 +255,12 @@ input[type="file"] {
 	background: transparent;
 }
 
+input.fix
+{
+  float: right;
+  width: 1em;
+}
+
 textarea {
 	resize: vertical;
 }
