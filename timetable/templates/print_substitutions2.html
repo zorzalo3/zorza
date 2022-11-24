@@ -26,17 +26,18 @@
 	{% csrf_token %}
 	
 	<label class="teacher-checkbox">
-		<span>
+		<div style="font-weight: bold;">
 			{% trans "Select all" %}
-		</span>
-		<input type="checkbox" id="select-all" onclick="SelectAll()">
+			<input type="checkbox" id="select-all" class="fix" onclick="SelectAll()">
+		</div>
 	</label>
 	{% for teacher in teachers %}
 	<label class="teacher-checkbox" for="teacher-checkbox-{{ teacher.id }}">
-		<span>
+		<div>
 			{{ teacher.last_name }} {{ teacher.first_name }}
-		</span>
-		<input type="checkbox" name="teacher-checkbox" id="teacher-checkbox-{{ teacher.id }}" value="{{ teacher.id }}">
+			<input type="checkbox" name="teacher-checkbox" id="teacher-checkbox-{{ teacher.id }}" class="fix" value="{{ teacher.id }}">
+		</div>
+		
 	</label>
 	{% endfor %}
 	<p class="text-center">
