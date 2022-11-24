@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+
 <script type="text/javascript">
 	function SelectAll() { 
 		var elements = document.getElementsByName("teacher-checkbox");
@@ -16,9 +17,6 @@
 
 <form class="form-small print-substitutions no-print" method="post">
 	<h2>{% trans "Printing substitutions" %}</h2>
-	{% if error %}
-	<p>{{ error }}</p>
-	{% endif %}
 	<p>
 		{% now "SHORT_DATE_FORMAT" as today %}
 		{% blocktrans trimmed %}
@@ -29,7 +27,7 @@
 	
 	<label class="teacher-checkbox">
 		<span>
-			{% trans "Select All" %}
+			{% trans "Select all" %}
 		</span>
 		<input type="checkbox" id="select-all" onclick="SelectAll()">
 	</label>
