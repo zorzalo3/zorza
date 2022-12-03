@@ -295,11 +295,15 @@ msgstr "Dodawanie rozkładu dzwonków"
 #: timetable/templates/add_reservation.html:13
 #: timetable/templates/date_select.html:13
 #: timetable/templates/print_substitutions1.html:13
-#: timetable/templates/print_substitutions2.html:16
 #: timetable/templates/teacher_and_date_select.html:13
 #, python-format
 msgid "Today's date is %(today)s."
 msgstr "Dzisiejsza data to %(today)s."
+
+#: timetable/templates/print_substitutions2.html:16
+#, python-format
+msgid "You're printing substitutions for %(date)s."
+msgstr "Drukujesz zastępstwa dla daty %(date)s."
 
 #: timetable/templates/add_dayplan.html:21
 #: timetable/templates/add_reservation.html:21
@@ -567,8 +571,8 @@ msgstr "Rozkłady dzwonków"
 #: timetable/templates/show_substitutions_to_print.html:16
 #| msgid "There are no substitutions scheduled for that day."
 msgid ""
-"There are no substitutions scheduled for selected teachers for that day."
-msgstr "Wybrani nauczyciele nie mają zaplanowanych zastępstw danego dnia."
+"There are no substitutions that meet the given criteria."
+msgstr "Nie ma zastępstw spełniających podane warunki."
 
 #: timetable/templates/substitutions.html:24
 msgid "Delete?"
