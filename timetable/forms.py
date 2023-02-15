@@ -165,7 +165,7 @@ class SelectDateForm(Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
 
 class AddReservationForm(Form):
-    date = Html5DateField(label=_('Date'), initial=get_next_schoolday())
-    period = IntegerField(label=_('Period number'), min_value=get_min_period(), max_value=get_max_period())
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
+    period = IntegerField(label=_('Period number'), min_value=get_min_period, max_value=get_max_period)
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
     room = ModelChoiceField(label=_('Room'), queryset=Room.objects.all())
