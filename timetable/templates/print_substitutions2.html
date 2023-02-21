@@ -20,7 +20,7 @@
 	<p>
 		{% now "SHORT_DATE_FORMAT" as today %}
 		{% blocktrans trimmed %}
-		Today's date is {{ today }}.
+		You're printing substitutions for {{ date }}.
 		{% endblocktrans %}
 	</p>
 	{% csrf_token %}

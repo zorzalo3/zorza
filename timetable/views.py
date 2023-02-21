@@ -322,6 +322,7 @@ def show_substitutions(request, date, teacher_ids):
         raise Http404
     substitutions = Substitution.objects.filter(date=date, lesson__teacher__in=teachers)
     context.update(get_timetable_context(Lesson.objects.filter(teacher__in=teachers)))
+    substitutions = sorted(substitutions, key=lambda substitution: substitution.lesson.period)
     context['substitutions'] = substitutions
     context['date'] = 'date'
     return render(request, 'show_substitutions_to_print.html', context)
