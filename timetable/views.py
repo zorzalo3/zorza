@@ -310,6 +310,7 @@ class SubstitutionsImportView(FormView):
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
 
+@never_cache
 def show_substitutions(request, date, teacher_ids):
     context = dict()
     try:
