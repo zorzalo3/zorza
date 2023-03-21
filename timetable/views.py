@@ -310,6 +310,7 @@ class SubstitutionsImportView(FormView):
                 context['errors'].append(row)
         return render(self.request, 'csv_import_success.html', context)
 
+@never_cache
 def show_substitutions(request, date, teacher_ids):
     context = dict()
     try:
@@ -320,9 +321,8 @@ def show_substitutions(request, date, teacher_ids):
     teachers = Teacher.objects.filter(pk__in=teacher_ids)
     if len(teacher_ids) != len(teachers):
         raise Http404
-    substitutions = Substitution.objects.filter(date=date, lesson__teacher__in=teachers)
+    substitutions = Substitution.objects.filter(date=date, lesson__teacher__in=teachers).order_by('date', 'lesson__teacher', 'lesson__period')
     context.update(get_timetable_context(Lesson.objects.filter(teacher__in=teachers)))
-    substitutions = sorted(substitutions, key=lambda substitution: substitution.lesson.period)
     context['substitutions'] = substitutions
     context['date'] = 'date'
     return render(request, 'show_substitutions_to_print.html', context)
