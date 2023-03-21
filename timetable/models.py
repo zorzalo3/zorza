@@ -131,7 +131,7 @@ class Lesson(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     period = models.IntegerField()
     weekday = models.IntegerField(choices=settings.TIMETABLE_WEEKDAYS)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, null=True)
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING, blank=True, null=True, default=None)
 
     def __str__(self):
         return '%s %s %s, %s, %s %d %s' % \
