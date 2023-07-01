@@ -350,6 +350,7 @@ class AddAbsenceView(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(get_timetable_context(Lesson.objects.filter(group__in=Group.objects.filter(absence__isnull=False).distinct())))
+        context['show_absence_delete'] = True
         return context
     
 
@@ -396,3 +397,13 @@ def delete_reservation(request, reservation_id):
         res = get_object_or_404(Reservation, pk=reservation_id)
         res.delete()
         return HttpResponseRedirect(reverse('add_reservation'))
+
+@login_required
+@permission_required('timetable.add_absence', raise_exception=True)
+def delete_absence(request, absence_id):
+    # Removes all absences with the same group and date as the given one
+    if request.POST:
+        given_abs = get_object_or_404(Absence, pk=absence_id)
+        abs = Absence.objects.filter(group=given_abs.group, date=given_abs.date)
+        abs.delete()
+        return HttpResponseRedirect(reverse('add_absence'))

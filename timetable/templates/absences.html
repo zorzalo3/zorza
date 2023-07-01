@@ -12,6 +12,9 @@
 		<th>{% trans "Group" %}</th>
 		<th>{% trans "Periods" %}</th>
         <th>{% trans "Reason" %}</th>
+        {% if show_absence_delete %}
+        <th>{% trans "Delete?" %}</th>
+        {% endif %}
 	</tr>
 	{% for group in absences_by_group %}
 	<tr>
@@ -36,6 +39,14 @@
             {% trans "none" %}
             {% endif %}
         </td>
+        {% if show_absence_delete %}
+        <td>
+            <form method="post" action="{% url "delete_absence" group.list.0.id %}">
+                {% csrf_token %}
+                <button>{% trans "Delete" %}</button>
+            </form>    
+        </td>
+        {% endif %}
 	</tr>
 	{% endfor %}
 </table>
