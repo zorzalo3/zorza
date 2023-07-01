@@ -324,6 +324,11 @@ class AddReservationView(PermissionRequiredMixin, FormView):
         reservation = Reservation(date=date, period_number=period, teacher=teacher, room=room)
         reservation.save()
         return redirect('add_reservation')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_timetable_context(Lesson.objects.filter(room__in=Room.objects.filter(reservation__isnull=False).distinct())))
+        return context
 
 class AddAbsenceView(PermissionRequiredMixin, FormView):
     template_name = 'add_absence.html'
