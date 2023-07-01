@@ -45,6 +45,11 @@
 		<a href="{% url "add_reservation" %}">{% trans "Reservations" %}</a>
 	</p>
 	{% endif %}
+    {% if perms.timetable.add_absence %}
+	<p>
+		<a href="{% url "add_absence" %}">{% trans "Absences" %}</a>
+	</p>
+    {% endif %}
 
 	{% if cache_time != 0 %}
 	<p>
