@@ -328,6 +328,7 @@ class AddReservationView(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(get_timetable_context(Lesson.objects.filter(room__in=Room.objects.filter(reservation__isnull=False).distinct())))
+        context['show_reservation_delete'] = True
         return context
 
 class AddAbsenceView(PermissionRequiredMixin, FormView):
@@ -387,3 +388,11 @@ def print_substitution2(request, date):
     if len(teachers) < 1: 
         return render(request, 'show_substitutions_to_print.html', context)
     return render(request, 'print_substitutions2.html', context)
+
+@login_required
+@permission_required('timetable.add_reservation', raise_exception=True)
+def delete_reservation(request, reservation_id):
+    if request.POST:
+        res = get_object_or_404(Reservation, pk=reservation_id)
+        res.delete()
+        return HttpResponseRedirect(reverse('add_reservation'))

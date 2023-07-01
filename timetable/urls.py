@@ -25,4 +25,5 @@ urlpatterns = [
     path('substitutions/delete/<int:substitution_id>/', delete_substitution, name='delete_substitution'),
     path('reservation/add/', AddReservationView.as_view(), name='add_reservation'),
     path('absence/add/', AddAbsenceView.as_view(), name='add_absence'),
+    path('reservation/delete/<int:reservation_id>/', delete_reservation, name='delete_reservation'),
 ]
