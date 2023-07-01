@@ -1,0 +1,61 @@
+﻿{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Group absences" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<form class="form-small add-absences no-print" method="post">
+	<h2>{% trans "Adding group absences" %}</h2>
+	<p>
+		{% now "SHORT_DATE_FORMAT" as today %}
+		{% blocktrans trimmed %}
+		Today's date is {{ today }}.
+		{% endblocktrans %}
+	</p>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p class="text-center">
+		<button type="submit" class="button-primary">
+			{% trans "Submit" %}
+		</button>
+	</p>
+</form>
+{% include "absences.html" %}
+
+<script>
+    var start_period_box = document.querySelector("input#id_start_period");
+    var end_period_box = document.querySelector("input#id_end_period");
+    var is_whole_day_checkbox = document.querySelector("input#id_is_whole_day");
+
+    start_period_box.required = true;
+    end_period_box.required = true;
+
+    function update_period_inputs(){
+        if (is_whole_day_checkbox.checked) {
+            start_period_box.required = false;
+            start_period_box.disabled = true;
+            start_period_box.value = "";
+            end_period_box.required = false;
+            end_period_box.disabled = true;
+            end_period_box.value = "";
+            start_period_box.style.backgroundColor = "grey";
+            end_period_box.style.backgroundColor = "grey";
+        }
+        else {
+            start_period_box.required = true;
+            start_period_box.disabled = false;
+            start_period_box.value = "";
+            end_period_box.required = true;
+            end_period_box.disabled = false;
+            end_period_box.value = "";
+            start_period_box.style.backgroundColor = "white";
+            end_period_box.style.backgroundColor = "white";
+        }
+    }
+
+    is_whole_day_checkbox.addEventListener("click", update_period_inputs)
+</script>
+
+{% endblock %}

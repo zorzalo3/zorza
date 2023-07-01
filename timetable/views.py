@@ -341,6 +341,28 @@ class AddReservationView(PermissionRequiredMixin, FormView):
         reservation.save()
         return redirect('add_reservation')
 
+class AddAbsenceView(PermissionRequiredMixin, FormView):
+    template_name = 'add_absence.html'
+    form_class = AddAbsenceForm
+    permission_required = 'timetable.add_absence'
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        start_period = form.cleaned_data['start_period']
+        end_period = form.cleaned_data['end_period']
+        reason = form.cleaned_data['reason']
+        group = form.cleaned_data['group']
+        for period in range(start_period, end_period+1):
+            absence = Absence(date=date, period_number=period, reason=reason, group=group)
+            absence.save()
+        return redirect('add_absence')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_timetable_context(Lesson.objects.filter(group__in=Group.objects.filter(absence__isnull=False).distinct())))
+        return context
+    
+
 class PrintSubstitutionsView1(PermissionRequiredMixin, FormView):
     permission_required = 'timetable.print_substitution'
     template_name = 'print_substitutions1.html'

@@ -169,3 +169,27 @@ class AddReservationForm(Form):
     period = IntegerField(label=_('Period number'), min_value=get_min_period, max_value=get_max_period)
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
     room = ModelChoiceField(label=_('Room'), queryset=Room.objects.all())
+
+class AddAbsenceForm(Form):
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
+    start_period = IntegerField(label=_('Start period'), min_value=get_min_period, max_value=get_max_period, required=False)
+    end_period = IntegerField(label=_('End period'), min_value=get_min_period, max_value=get_max_period, required=False)
+    is_whole_day = BooleanField(label=_('Whole day'), required=False)
+    reason = CharField(label=_('Reason'), max_length=40, required=False)
+    group = ModelChoiceField(label=_('Group'), queryset=Group.objects.all())
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        is_whole_day = cleaned_data.get('is_whole_day')
+        start_period = cleaned_data.get('start_period')
+        end_period = cleaned_data.get('end_period')
+        
+        if is_whole_day:
+            cleaned_data['start_period'] = get_min_period()
+            cleaned_data['end_period'] = get_max_period()
+        elif not is_whole_day and (start_period is None or end_period is None):
+            raise ValidationError(_('Provide initial and final period.'))
+        elif start_period > end_period:
+            raise ValidationError(_('The initial period cannot be later than the final period.'))    
+        
+        return self.cleaned_data
