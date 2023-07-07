@@ -19,3 +19,6 @@ media
 tmp
 temp
 .vscode
+
+# TODOs
+TODO.*

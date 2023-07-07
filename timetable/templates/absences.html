@@ -11,15 +11,42 @@
 	<tr>
 		<th>{% trans "Group" %}</th>
 		<th>{% trans "Periods" %}</th>
+        <th>{% trans "Reason" %}</th>
+        {% if show_absence_delete %}
+        <th>{% trans "Delete?" %}</th>
+        {% endif %}
 	</tr>
 	{% for group in absences_by_group %}
 	<tr>
 		<td>{{ group.grouper }}</td>
 		<td>
-			{% for absence in group.list %}
-			{{ absence.period }}{% if not forloop.last %}, {% endif %}
-			{% endfor %}
+            {% if group.list|length == table|length %}
+            {% trans "Whole day" %}
+            {% else %}
+                {{ group.list.0.period_number }}
+                {% if group.list|length != 1 %}
+                - 
+                {% with group.list|last as last %}
+                {{ last.period_number }}
+                {% endwith %}
+                {% endif %}
+            {% endif %}
 		</td>
+        <td>
+            {% if group.list.0.reason %}
+            {{ group.list.0.reason }}
+            {% else %}
+            {% trans "none" %}
+            {% endif %}
+        </td>
+        {% if show_absence_delete %}
+        <td>
+            <form method="post" action="{% url "delete_absence" group.list.0.id %}">
+                {% csrf_token %}
+                <button>{% trans "Delete" %}</button>
+            </form>    
+        </td>
+        {% endif %}
 	</tr>
 	{% endfor %}
 </table>

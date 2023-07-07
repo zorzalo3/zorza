@@ -75,16 +75,6 @@ def show_room_timetable(request, room_id):
     lessons = Lesson.objects.filter(room=room).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['room'] = room
-    reservations = Reservation.objects.filter(room=room)
-    for reservation in reservations:
-        context['table'][reservation.period_number][1][reservation.weekday].append(Lesson(
-            teacher=reservation.teacher,
-            group = None,
-            subject=None,
-            period=reservation.period_number,
-            weekday=reservation.weekday,
-            room=reservation.room
-            ))
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):
@@ -190,12 +180,6 @@ def show_rooms(request, date, period):
     substitutions = Substitution.objects.filter(date=date, lesson__period=period)
     for sub in substitutions:
         rooms[sub.lesson.room].substitute = sub.substitute
-
-    reservations = Reservation.objects.filter(date=date, period_number=period)
-    for res in reservations:
-        rooms[res.room] = lessons[0]
-        rooms[res.room].substitute = res.teacher
-        rooms[res.room].message = _("RESERVED")
     
     context = {
         'date': date,
@@ -340,6 +324,35 @@ class AddReservationView(PermissionRequiredMixin, FormView):
         reservation = Reservation(date=date, period_number=period, teacher=teacher, room=room)
         reservation.save()
         return redirect('add_reservation')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_timetable_context(Lesson.objects.filter(room__in=Room.objects.filter(reservation__isnull=False).distinct())))
+        context['show_reservation_delete'] = True
+        return context
+
+class AddAbsenceView(PermissionRequiredMixin, FormView):
+    template_name = 'add_absence.html'
+    form_class = AddAbsenceForm
+    permission_required = 'timetable.add_absence'
+    
+    def form_valid(self, form):
+        date = form.cleaned_data['date']
+        start_period = form.cleaned_data['start_period']
+        end_period = form.cleaned_data['end_period']
+        reason = form.cleaned_data['reason']
+        group = form.cleaned_data['group']
+        for period in range(start_period, end_period+1):
+            absence = Absence(date=date, period_number=period, reason=reason, group=group)
+            absence.save()
+        return redirect('add_absence')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_timetable_context(Lesson.objects.filter(group__in=Group.objects.filter(absence__isnull=False).distinct())))
+        context['show_absence_delete'] = True
+        return context
+    
 
 class PrintSubstitutionsView1(PermissionRequiredMixin, FormView):
     permission_required = 'timetable.print_substitution'
@@ -376,3 +389,21 @@ def print_substitution2(request, date):
     if len(teachers) < 1: 
         return render(request, 'show_substitutions_to_print.html', context)
     return render(request, 'print_substitutions2.html', context)
+
+@login_required
+@permission_required('timetable.add_reservation', raise_exception=True)
+def delete_reservation(request, reservation_id):
+    if request.POST:
+        res = get_object_or_404(Reservation, pk=reservation_id)
+        res.delete()
+        return HttpResponseRedirect(reverse('add_reservation'))
+
+@login_required
+@permission_required('timetable.add_absence', raise_exception=True)
+def delete_absence(request, absence_id):
+    # Removes all absences with the same group and date as the given one
+    if request.POST:
+        given_abs = get_object_or_404(Absence, pk=absence_id)
+        abs = Absence.objects.filter(group=given_abs.group, date=given_abs.date)
+        abs.delete()
+        return HttpResponseRedirect(reverse('add_absence'))

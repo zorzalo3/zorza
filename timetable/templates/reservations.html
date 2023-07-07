@@ -13,6 +13,9 @@
 		<th>{% trans "Period" context "timetable header" %}</th>
 		<th>{% trans "Teacher" %}</th>
 		<th>{% trans "Room" %}</th>
+        {% if show_reservation_delete %}
+		<th class="no-print">{% trans "Delete?" %}</th>
+		{% endif %}
 	</tr>
 	{% for reservation in day.list %}
 	<tr>
@@ -20,6 +23,14 @@
 		<td>{{ reservation.period_str }}</td>
 		<td>{{ reservation.display_teacher }}</td>
 		<td>{{ reservation.room.short_name }}</td>
+        {% if show_reservation_delete %}
+        <td>
+            <form method="post" action="{% url "delete_reservation" reservation.id %}">
+                {% csrf_token %}
+                <button>{% trans "Delete" %}</button>
+            </form>    
+        </td>
+        {% endif %}
 	</tr>
 	{% endfor %}
 </table>

@@ -23,5 +23,8 @@ urlpatterns = [
     path('display/', display, name='display'),
     path('api/1/bell/', timetable_bell_api, name='timetable_bell_api'),
     path('substitutions/delete/<int:substitution_id>/', delete_substitution, name='delete_substitution'),
-    path('reservation/add/', AddReservationView.as_view(), name='add_reservation')
+    path('reservation/add/', AddReservationView.as_view(), name='add_reservation'),
+    path('absence/add/', AddAbsenceView.as_view(), name='add_absence'),
+    path('reservation/delete/<int:reservation_id>/', delete_reservation, name='delete_reservation'),
+    path('absence/delete/<int:absence_id>/', delete_absence, name='delete_absence'),
 ]
