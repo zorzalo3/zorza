@@ -207,3 +207,6 @@ class Reservation(Occasion):
     def __str__(self):
         return '%s %s %s %s' % (self.date, self.period_number, self.room, \
                 self.teacher)
+
+    class Meta:
+        unique_together = ('period_number', 'room')

@@ -170,6 +170,14 @@ class AddReservationForm(Form):
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
     room = ModelChoiceField(label=_('Room'), queryset=Room.objects.all())
 
+    def clean(self):
+        cleaned_data = super().clean()
+        period = cleaned_data.get('period')
+        room = cleaned_data.get('room')
+        if len(Reservation.objects.filter(period_number=period, room=room)):
+            raise ValidationError(_('This room is already reserved during this period.'))
+        return self.cleaned_data
+
 class AddAbsenceForm(Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
     start_period = IntegerField(label=_('Start period'), min_value=get_min_period, max_value=get_max_period, required=False)
