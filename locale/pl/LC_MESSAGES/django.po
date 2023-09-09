@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 18:30+0000\n"
+"POT-Creation-Date: 2023-09-09 17:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,7 +223,7 @@ msgid "Teacher"
 msgstr "Nauczyciel"
 
 #: timetable/forms.py:24 timetable/forms.py:135 timetable/forms.py:165
-#: timetable/forms.py:168 timetable/forms.py:174
+#: timetable/forms.py:168 timetable/forms.py:182
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
 msgstr "Data"
@@ -262,34 +262,39 @@ msgstr "Plik CSV z zastępstwami"
 msgid "Room"
 msgstr "Sala"
 
-#: timetable/forms.py:175
+#: timetable/forms.py:178
+msgid "This room is already reserved during this period."
+msgstr "Ta sala jest już zarezerwowana na tej lekcji."
+
+#: timetable/forms.py:183
 msgid "Start period"
 msgstr "Lekcja początkowa"
 
-#: timetable/forms.py:176
+#: timetable/forms.py:184
 msgid "End period"
 msgstr "Lekcja końcowa"
 
-#: timetable/forms.py:177 timetable/templates/absences.html:24
+#: timetable/forms.py:185 timetable/templates/absences.html:24
 msgid "Whole day"
 msgstr "Cały dzień"
 
-#: timetable/forms.py:178 timetable/templates/absences.html:14
+#: timetable/forms.py:186 timetable/templates/absences.html:14
 msgid "Reason"
 msgstr "Powód"
 
-#: timetable/forms.py:179 timetable/templates/absences.html:12
+#: timetable/forms.py:187 timetable/templates/absences.html:12
 #: timetable/templates/group_timetable.html:7
 #: timetable/templates/group_timetable.html:18
 #: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:22
 msgid "Group"
 msgstr "Grupa"
 
-#: timetable/forms.py:191
+#: timetable/forms.py:199
 msgid "Provide initial and final period."
-msgstr "Proszę wprowadzić poprawną lekcję rozpoczęcia i zakończenia nieobecności."
+msgstr ""
+"Proszę wprowadzić poprawną lekcję rozpoczęcia i zakończenia nieobecności."
 
-#: timetable/forms.py:193
+#: timetable/forms.py:201
 msgid "The initial period cannot be later than the final period."
 msgstr "Lekcja początkowa nie może być później niż końcowa."
 
