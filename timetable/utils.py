@@ -103,7 +103,7 @@ def get_events(begin_date=None, end_date=None):
                             .order_by('date', 'period_number'),
         'dayplans': DayPlan.objects.filter(**filter_kwargs) \
                             .select_related('schedule')
-                            .order_by('schedule', 'date'),
+                            .order_by('date', 'schedule'),
     }
     default = Schedule.objects.get(is_default=True)
     schedule_by_date = dict()
