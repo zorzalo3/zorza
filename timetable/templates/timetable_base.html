@@ -43,9 +43,19 @@
 			<tr>
 				<td id="period-{{ period }}">{{ period }}</td>
 				<td>
-					{% autoescape off %}
-					{{ row.0|hyphen_break }}
-					{% endautoescape %}
+					<div style="color: #888888 ;">
+						<!--  Alternative date -->
+						{% if row.2 %} 
+							{% autoescape off %}
+							{{ row.2|hyphen_break }}
+							{% endautoescape %}
+						{% endif %}
+					</div>
+					<div>
+						{% autoescape off %}
+						{{ row.0|hyphen_break }}
+						{% endautoescape %}
+					</div>
 				</td>
 				{% for _, hour in row.1.items %}
 				<td>
