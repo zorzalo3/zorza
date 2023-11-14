@@ -28,7 +28,7 @@
 	{% with group=substitution.lesson.group %}
 	<tr {% if group in groups or timetable_teacher != None and timetable_teacher == substitution.substitute %}class="relevant"{% endif %}>
 		<td>{{ substitution.lesson.period }}</td>
-		<td {% if substitution.substitute == None %} style="text-decoration: line-through;"{% endif %}>{{ substitution.period_str }}</td>
+		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
 		{% if show_substitution_delete %}
