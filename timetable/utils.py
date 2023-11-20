@@ -44,14 +44,15 @@ def get_timetable_context(lessons):
     periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
 
-    alternative_periods = Period.objects.filter(schedule=2)
-    alternative_period_strs = get_period_strings(alternative_periods)
+    alternative_periods = Period.objects.exclude(schedule=1) # Exclude default periods
 
     # TODO: a cleaner way to pass period str to the template while using
     #       period number as key?
     table = OrderedDict()
     for period in periods:
-        table[period] = (period_strs[period], OrderedDict(), alternative_period_strs[period])
+        table[period] = (period_strs[period], OrderedDict())
+        for alt_period in alternative_periods.filter(number=period):
+            table[period] = table[period] + (alt_period,)
         for day_number, day_string in days():
             table[period][1][day_number] = []
 

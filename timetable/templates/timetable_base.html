@@ -43,14 +43,18 @@
 			<tr>
 				<td id="period-{{ period }}">{{ period }}</td>
 				<td>
-					<div style="color: #888888 ;">
-						<!--  Alternative date -->
-						{% if row.2 %} 
-							{% autoescape off %}
-							{{ row.2|hyphen_break }}
-							{% endautoescape %}
+					{% if row.2 %}
+						{% for alt_lesson in row %}
+						{% if forloop.counter >= 3 %}
+							<div style="color: #888888 ;">
+								<!--  Alternative dates -->
+								{% autoescape off %}
+								{{ alt_lesson|hyphen_break }}
+								{% endautoescape %}
+							</div>
 						{% endif %}
-					</div>
+						{% endfor %}
+					{% endif %}
 					<div>
 						{% autoescape off %}
 						{{ row.0|hyphen_break }}
