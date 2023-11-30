@@ -51,8 +51,10 @@ def get_timetable_context(lessons):
     table = OrderedDict()
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
-        for alt_period in alternative_periods.filter(number=period):
-            table[period] = table[period] + (alt_period,)
+        for dayPlan in DayPlan.objects.all():
+            if dayPlan.is_today and not dayPlan.schedule.is_default:
+                for alt_period in alternative_periods.filter(number=period):
+                    table[period] = table[period] + (alt_period,)
         for day_number, day_string in days():
             table[period][1][day_number] = []
 
