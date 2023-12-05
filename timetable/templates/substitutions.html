@@ -20,6 +20,7 @@
 		<th>{% trans "Period" context "timetable header" %}</th>
 		<th>{% trans "Substitute" %}</th>
 		<th>{% trans "Group" %}</th>
+		<th>{% trans "Room" %}</th>
 		{% if show_substitution_delete %}
 		<th class="no-print">{% trans "Delete?" %}</th>
 		{% endif %}
@@ -31,6 +32,7 @@
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
+		<td>{{ substitution.lesson.room}}</td> {% comment %} Change if there'll be an option to change room for substitution {% endcomment %}
 		{% if show_substitution_delete %}
 		<td class="no-print">
 			<form method="post" action="{% url "delete_substitution" substitution.id %}">
