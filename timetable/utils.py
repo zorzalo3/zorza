@@ -3,7 +3,7 @@ from datetime import datetime, date, timedelta
 from collections import OrderedDict
 
 from django.conf import settings
-from django.db.models import Min, Max, ObjectDoesNotExist
+from django.db.models import Min, Max
 from django.http import Http404
 from django.core.serializers import serialize
 from django.utils import timezone
@@ -48,8 +48,11 @@ def get_timetable_context(lessons):
 
     try:
         alternative_day_plan = DayPlan.objects.get(date=date.today())
-        alternative_periods = Period.objects.filter(schedule=alternative_day_plan.schedule)
-    except ObjectDoesNotExist:
+        if alternative_day_plan.schedule.is_default:
+            alternative_day_plan = None
+        else:
+            alternative_periods = Period.objects.filter(schedule=alternative_day_plan.schedule)
+    except DayPlan.DoesNotExist:
         alternative_day_plan = None
 
     table = OrderedDict()
@@ -59,7 +62,7 @@ def get_timetable_context(lessons):
             try:
                 alt_period = alternative_periods.get(number=period)
                 table[period] = table[period] + (alt_period,)
-            except ObjectDoesNotExist:
+            except Period.DoesNotExist:
                 table[period] = table[period] + ("",)
         for day_number, day_string in days():
             table[period][1][day_number] = []
