@@ -32,7 +32,7 @@
 		<td>{{ substitution.period_str }}</td>
 		<td>{{ substitution.display_substitute }}</td>
 		<td>{{ group }}</td>
-		<td>{{ substitution.lesson.room}}</td> {% comment %} Change if there'll be an option to change room for substitution {% endcomment %}
+		<td>{{ substitution.lesson.room.short_name}}</td> {% comment %} Change if there'll be an option to change room for substitution {% endcomment %}
 		{% if show_substitution_delete %}
 		<td class="no-print">
 			<form method="post" action="{% url "delete_substitution" substitution.id %}">
