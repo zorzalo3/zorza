@@ -3,7 +3,7 @@ from datetime import datetime, date, timedelta
 from collections import OrderedDict
 
 from django.conf import settings
-from django.db.models import Min, Max
+from django.db.models import Min, Max, ObjectDoesNotExist
 from django.http import Http404
 from django.core.serializers import serialize
 from django.utils import timezone
@@ -41,26 +41,26 @@ def get_timetable_context(lessons):
 
     lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
 
+    # TODO: a cleaner way to pass period str to the template while using
+    #       period number as key?
     periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
 
-    alternative_periods = Period.objects.exclude(schedule=1) # Exclude default periods
-
-    # TODO: a cleaner way to pass period str to the template while using
-    #       period number as key?
-    alternative_periods = Period.objects.exclude(schedule=1) # Exclude default periods
-    alternative_day_plan = None
-    for day_plan in DayPlan.objects.all():
-        if day_plan.is_today:
-            alternative_day_plan = day_plan
-            break
+    try:
+        alternative_day_plan = DayPlan.objects.get(date=date.today())
+        alternative_periods = Period.objects.filter(schedule=alternative_day_plan.schedule)
+    except ObjectDoesNotExist:
+        alternative_day_plan = None
 
     table = OrderedDict()
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
         if alternative_day_plan is not None:
-            alt_period = alternative_periods.filter(number=period, schedule=alternative_day_plan.schedule)[0]
-            table[period] = table[period] + (alt_period,)
+            try:
+                alt_period = alternative_periods.get(number=period, schedule=alternative_day_plan.schedule)
+                table[period] = table[period] + (alt_period,)
+            except ObjectDoesNotExist:
+                table[period] = table[period] + ("",)
         for day_number, day_string in days():
             table[period][1][day_number] = []
 
