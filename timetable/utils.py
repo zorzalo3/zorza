@@ -34,6 +34,14 @@ def get_display_context():
     context.update(get_events())
     return context
 
+def get_object_or_none(model, *args, **kwargs):
+    """Uses get() to return an object, or returns None if the object does not exist.
+    Argument model must has get() attr."""
+    try:
+        return model.objects.get(*args, **kwargs)
+    except model.DoesNotExist:
+        return None
+
 def get_timetable_context(lessons):
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
@@ -41,14 +49,23 @@ def get_timetable_context(lessons):
 
     lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
 
+    # TODO: a cleaner way to pass period str to the template while using
+    #       period number as key?
     periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
 
-    # TODO: a cleaner way to pass period str to the template while using
-    #       period number as key?
+    alt_dayplan = get_object_or_none(DayPlan, date=date.today(), schedule__is_default=None)
     table = OrderedDict()
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
+        if alt_dayplan is not None and alt_dayplan.schedule is not None:
+            # Alternative schedule exists and and these are not cancelled nor default lessons
+            alt_period = get_object_or_none(Period, number=period, schedule=alt_dayplan.schedule)
+            table[period] = table[period] + (alt_period if alt_period is not None else '',)
+        elif alt_dayplan is not None and alt_dayplan.schedule is None:
+            # Alternative schedule exists and and these ARE cancelled lessons
+            table[period] = table[period] + ('',)
+
         for day_number, day_string in days():
             table[period][1][day_number] = []
 
