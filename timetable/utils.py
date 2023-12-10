@@ -45,10 +45,14 @@ def get_timetable_context(lessons):
     #       period number as key?
     periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
+    lessons_cancelled = False
 
     try:
         alternative_day_plan = DayPlan.objects.get(date=date.today())
-        if alternative_day_plan.schedule.is_default:
+        if alternative_day_plan.schedule is None: 
+            # Lessons are cancelled
+            lessons_cancelled = True
+        elif alternative_day_plan.schedule.is_default:
             alternative_day_plan = None
         else:
             alternative_periods = Period.objects.filter(schedule=alternative_day_plan.schedule)
@@ -59,11 +63,14 @@ def get_timetable_context(lessons):
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
         if alternative_day_plan is not None:
-            try:
-                alt_period = alternative_periods.get(number=period)
-                table[period] = table[period] + (alt_period,)
-            except Period.DoesNotExist:
+            if lessons_cancelled:
                 table[period] = table[period] + ("",)
+            else:
+                try:
+                    alt_period = alternative_periods.get(number=period)
+                    table[period] = table[period] + (alt_period,)
+                except Period.DoesNotExist:
+                    table[period] = table[period] + ("",)
         for day_number, day_string in days():
             table[period][1][day_number] = []
 
