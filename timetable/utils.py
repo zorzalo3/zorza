@@ -34,6 +34,14 @@ def get_display_context():
     context.update(get_events())
     return context
 
+def get_object_or_none(model, *args, **kwargs):
+    """Uses get() to return an object, or returns None if the object does not exist.
+    Argument model must has get() attr."""
+    try:
+        return model.objects.get(*args, **kwargs)
+    except model.DoesNotExist:
+        return None
+
 def get_timetable_context(lessons):
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
@@ -45,32 +53,19 @@ def get_timetable_context(lessons):
     #       period number as key?
     periods = [period.number for period in default_periods]
     period_strs = get_period_strings(default_periods)
-    lessons_cancelled = False
 
-    try:
-        alternative_day_plan = DayPlan.objects.get(date=date.today())
-        if alternative_day_plan.schedule is None: 
-            # Lessons are cancelled
-            lessons_cancelled = True
-        elif alternative_day_plan.schedule.is_default:
-            alternative_day_plan = None
-        else:
-            alternative_periods = Period.objects.filter(schedule=alternative_day_plan.schedule)
-    except DayPlan.DoesNotExist:
-        alternative_day_plan = None
-
+    alt_dayplan = get_object_or_none(DayPlan, date=date.today(), schedule__is_default=None)
     table = OrderedDict()
     for period in periods:
         table[period] = (period_strs[period], OrderedDict())
-        if alternative_day_plan is not None:
-            if lessons_cancelled:
-                table[period] = table[period] + ("",)
-            else:
-                try:
-                    alt_period = alternative_periods.get(number=period)
-                    table[period] = table[period] + (alt_period,)
-                except Period.DoesNotExist:
-                    table[period] = table[period] + ("",)
+        if alt_dayplan is not None and alt_dayplan.schedule is not None:
+            # Alternative schedule exists and and these are not cancelled nor default lessons
+            alt_period = get_object_or_none(Period, number=period, schedule=alt_dayplan.schedule)
+            table[period] = table[period] + (alt_period if alt_period is not None else '',)
+        elif alt_dayplan is not None and alt_dayplan.schedule is None:
+            # Alternative schedule exists and and these ARE cancelled lessons
+            table[period] = table[period] + ('',)
+
         for day_number, day_string in days():
             table[period][1][day_number] = []
 
