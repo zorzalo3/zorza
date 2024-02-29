@@ -122,7 +122,18 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
-        end_date = date(today.year + 1, today.month, today.day)
+        if today.month == 2 and today.day == 29:
+            # Check if next year is a leap year
+            next_year = today.year + 1
+            if next_year % 4 == 0 and (next_year % 100 != 0 or next_year % 400 == 0):
+                # If next year is a leap year, set the date to February 29th
+                end_date = date(next_year, 2, 29)
+            else:
+                # If next year is not a leap year, set the date to February 28th
+                end_date = date(next_year, 2, 28)
+        else:
+            # For other dates, simply increment the year by 1
+            end_date = date(today.year + 1, today.month, today.day)
         events = get_events(end_date=end_date)
         context['substitutions'] = events['substitutions']
         context['show_substitution_delete'] = True
@@ -366,7 +377,18 @@ class PrintSubstitutionsView1(PermissionRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
-        end_date = date(today.year + 1, today.month, today.day)
+        if today.month == 2 and today.day == 29:
+            # Check if next year is a leap year
+            next_year = today.year + 1
+            if next_year % 4 == 0 and (next_year % 100 != 0 or next_year % 400 == 0):
+                # If next year is a leap year, set the date to February 29th
+                end_date = date(next_year, 2, 29)
+            else:
+                # If next year is not a leap year, set the date to February 28th
+                end_date = date(next_year, 2, 28)
+        else:
+            # For other dates, simply increment the year by 1
+            end_date = date(today.year + 1, today.month, today.day)
         events = get_events(end_date=end_date)
         context['substitutions'] = events['substitutions']
         return context
