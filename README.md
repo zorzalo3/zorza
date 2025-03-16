@@ -21,7 +21,7 @@ An informational website for schools with an advanced timetable interface.
 
 ## Setup
 Install Python 3.5 or later and set up a Python virtual environment, then
-install Django 2.2.5 or later (you can use `pip install -r requirements.txt`).
+install Django 2.2.28 or later (you can use `pip install -r requirements.txt`).
 
 Now you can `git clone` the repository.
 You will need to create a `zorza/localsettings.py` file and set `DEBUG`,
