@@ -67,7 +67,7 @@ class Schedule(models.Model):
     """
 
     name = models.CharField(max_length=40)
-    is_default = models.NullBooleanField(default=None, unique=True)
+    is_default = models.BooleanField(null=True, default=None, unique=True)
 
     def __str__(self):
         return self.name
