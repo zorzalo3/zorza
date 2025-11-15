@@ -37,6 +37,9 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 class Teacher(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -126,7 +129,7 @@ class DayPlan(models.Model):
         ordering = ['date']
 
 class Lesson(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True, default=None)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     period = models.IntegerField()
@@ -134,10 +137,20 @@ class Lesson(models.Model):
     room = models.ForeignKey(Room, on_delete=models.DO_NOTHING, blank=True, null=True, default=None)
 
     def __str__(self):
-        return '%s %s %s, %s, %s %d %s' % \
-            (self.teacher.initials, self.subject.short_name,
-             self.room.short_name, self.group.name, _('Lesson'),
-             self.period, settings.TIMETABLE_WEEKDAYS[self.weekday][1])
+        room_name = self.room.short_name if self.room else "-"
+        group_name = self.group.name if self.group else "-"
+
+        return '%s %s %s, %s, %s %d %s' % (
+            self.teacher.initials,
+            self.subject.short_name,
+            room_name,
+            group_name,
+            _('Lesson'),
+            self.period,
+            settings.TIMETABLE_WEEKDAYS[self.weekday][1]
+        )
+        
+
 
 class Occasion(models.Model):
     date = models.DateField()
@@ -171,10 +184,11 @@ class Substitution(models.Model):
         self.lesson, before initial saving, can be unassigned."""
         period =  None
         teacher_absent =  None
+        group=self.lesson.group if self.lesson.group else "-"
         if hasattr(self,'lesson'):
             period = self.lesson.period
             teacher_absent = self.lesson.teacher.full_name
-        return '%s %s %s -> %s' % (self.date, period, teacher_absent, self.display_substitute)
+        return '%s %s %s (%s) -> %s' % (self.date, period, teacher_absent, group, self.display_substitute)
 
 class Absence(Occasion):
     reason = models.CharField(max_length=40, blank=True);
