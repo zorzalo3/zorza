@@ -1,0 +1,124 @@
+/* ======================
+   DRUK – A4 POZIOMO
+   ====================== */
+@media print {
+
+    /* --- Ustawienia strony --- */
+    @page {
+        size: A4 landscape;
+        margin: 1.2cm;
+    }
+
+    /* --- Reset wyglądu --- */
+    * {
+        background: none !important;
+        color: #000 !important;
+        box-shadow: none !important;
+    }
+
+    body {
+        font-size: 10pt;
+        line-height: 1.25;
+    }
+
+    /* --- Ukrywanie zbędnych elementów --- */
+    header,
+    footer,
+    nav,
+    .nav,
+    form,
+    select,
+    button,
+    noscript,
+    .lesson-timer,
+    .text-right,
+    h2.text-center,
+    h2.text-center a,
+    h3.text-center,
+    .container > p
+    {
+        display: none !important;
+    }
+
+    /* --- Nagłówki --- */
+    h2 {
+        display: block;
+        text-align: center;
+        font-size: 16pt;
+        margin-bottom: 0.2cm;
+    }
+
+    .timetable-caption {
+        text-align: center;
+        font-size: 13pt;
+        font-weight: bold;
+        margin-bottom: 0.6cm;
+    }
+
+    /* --- Tabela --- */
+    table.timetable {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        page-break-inside: avoid;
+    }
+
+    table.timetable th,
+    table.timetable td {
+        border: 1px solid #000;
+        padding: 3px 4px;
+        vertical-align: top;
+        font-size: 9.5pt;
+        word-wrap: break-word;
+    }
+
+    table.timetable th {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* --- Wąskie kolumny: numer i godziny --- */
+    #period-number-col {
+        width: 3%;
+    }
+
+    #period-col {
+        width: 7%;
+    }
+
+    /* --- Kolumny dni --- */
+    col[id^="day-"] {
+        width: calc(90% / 5);
+    }
+
+    /* --- Lekcje --- */
+    .lesson-tworows {
+        line-height: 1.15;
+    }
+
+    .subject {
+        font-weight: bold;
+        display: block;
+    }
+
+    .group,
+    .room {
+        font-size: 12pt;
+        display: inline-block;
+    }
+
+    /* --- Linki bez podkreśleń --- */
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    a::after {
+        content: "";
+    }
+
+    /* --- Zapobieganie łamaniu wierszy --- */
+    tr {
+        page-break-inside: avoid;
+    }
+}

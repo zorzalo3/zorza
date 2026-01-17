@@ -1,6 +1,10 @@
 {% extends "timetable_base.html" %}
 {% load i18n %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'teacher_timetable_print.css' %}">
+{% endblock %}
+
 {% block title %}
 {% trans "Timetable" %} - {{ teacher.full_name }} - Zorza
 {% endblock %}
