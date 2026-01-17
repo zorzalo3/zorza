@@ -1,15 +1,10 @@
-/* ======================
-   DRUK – A4 POZIOMO
-   ====================== */
 @media print {
 
-    /* --- Ustawienia strony --- */
     @page {
         size: A4 landscape;
         margin: 1.2cm;
     }
 
-    /* --- Reset wyglądu --- */
     * {
         background: none !important;
         color: #000 !important;
@@ -21,7 +16,6 @@
         line-height: 1.25;
     }
 
-    /* --- Ukrywanie zbędnych elementów --- */
     header,
     footer,
     nav,
@@ -40,7 +34,6 @@
         display: none !important;
     }
 
-    /* --- Nagłówki --- */
     h2 {
         display: block;
         text-align: center;
@@ -67,7 +60,8 @@
     table.timetable td {
         border: 1px solid #000;
         padding: 3px 4px;
-        vertical-align: top;
+        vertical-align: center;
+        text-align: center;
         font-size: 9.5pt;
         word-wrap: break-word;
     }
@@ -77,7 +71,6 @@
         font-weight: bold;
     }
 
-    /* --- Wąskie kolumny: numer i godziny --- */
     #period-number-col {
         width: 3%;
     }
@@ -86,28 +79,27 @@
         width: 7%;
     }
 
-    /* --- Kolumny dni --- */
+
     col[id^="day-"] {
         width: calc(90% / 5);
     }
 
-    /* --- Lekcje --- */
     .lesson-tworows {
         line-height: 1.15;
     }
 
     .subject {
         font-weight: bold;
-        display: block;
+        display: inline;
     }
 
+    .class,
     .group,
     .room {
         font-size: 12pt;
-        display: inline-block;
+        display: inline;
     }
 
-    /* --- Linki bez podkreśleń --- */
     a {
         text-decoration: none;
         color: #000;
@@ -117,7 +109,6 @@
         content: "";
     }
 
-    /* --- Zapobieganie łamaniu wierszy --- */
     tr {
         page-break-inside: avoid;
     }
