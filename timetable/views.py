@@ -11,10 +11,11 @@ from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date
+from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_cookie
 from django.views.decorators.cache import never_cache
 from django.views.generic.edit import FormView
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.conf import settings
 
@@ -105,7 +106,7 @@ def show_schedules(request):
     context = get_schedules_table()
     return render(request, 'schedules.html', context)
 
-class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
+class AddSubstitutionsView1(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     """The first step to adding a substitution
 
     selects a teacher and a date to be passed into the second step
@@ -136,7 +137,7 @@ class AddSubstitutionsView1(PermissionRequiredMixin, FormView):
             end_date = date(today.year + 1, today.month, today.day)
         events = get_events(end_date=end_date)
         context['substitutions'] = events['substitutions']
-        context['show_substitution_delete'] = True
+        context['show_substitution_'] = True
         return context
 
 @never_cache
@@ -248,17 +249,19 @@ def timetable_bell_api(request):
 
 @login_required
 @permission_required('timetable.add_substitution', raise_exception=True)
+@require_POST
 def delete_substitution(request, substitution_id):
     if request.POST:
         obj = get_object_or_404(Substitution, pk=substitution_id)
         obj.delete()
         return HttpResponseRedirect(reverse('add_substitutions1'))
 
-class SubstitutionsImportView(FormView):
+class SubstitutionsImportView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = 'import_substitutions.html'
     form_class = SubstitutionsImportForm
     permission_required = 'timetable.add_substitution'
-
+    raise_exception = True
+    
     def form_valid(self,form):
         csv_file = TextIOWrapper(
             form.cleaned_data['file'],
@@ -322,7 +325,7 @@ def show_substitutions(request, date, teacher_ids):
     context['date'] = 'date'
     return render(request, 'show_substitutions_to_print.html', context)
 
-class AddReservationView(PermissionRequiredMixin, FormView):
+class AddReservationView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = 'add_reservation.html'
     form_class = AddReservationForm
     permission_required = 'timetable.add_reservation'
@@ -342,7 +345,7 @@ class AddReservationView(PermissionRequiredMixin, FormView):
         context['show_reservation_delete'] = True
         return context
 
-class AddAbsenceView(PermissionRequiredMixin, FormView):
+class AddAbsenceView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = 'add_absence.html'
     form_class = AddAbsenceForm
     permission_required = 'timetable.add_absence'
@@ -365,7 +368,7 @@ class AddAbsenceView(PermissionRequiredMixin, FormView):
         return context
     
 
-class PrintSubstitutionsView1(PermissionRequiredMixin, FormView):
+class PrintSubstitutionsView1(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     permission_required = 'timetable.print_substitution'
     template_name = 'print_substitutions1.html'
     form_class = SelectDateForm
@@ -414,6 +417,7 @@ def print_substitution2(request, date):
 
 @login_required
 @permission_required('timetable.add_reservation', raise_exception=True)
+@require_POST
 def delete_reservation(request, reservation_id):
     if request.POST:
         res = get_object_or_404(Reservation, pk=reservation_id)
@@ -422,6 +426,7 @@ def delete_reservation(request, reservation_id):
 
 @login_required
 @permission_required('timetable.add_absence', raise_exception=True)
+@require_POST
 def delete_absence(request, absence_id):
     # Removes all absences with the same group and date as the given one
     if request.POST:
