@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if absences %}
-<h2 class="text-center">{% trans "Absences" %}</h3>
+<h2 class="text-center">{% trans "Absences" %}</h2>
 
 {% regroup absences by date as absences_by_day %}
 {% for day in absences_by_day %}

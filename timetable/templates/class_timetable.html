@@ -20,10 +20,11 @@
 {% endblock %}
 
 {% block custom %}
-<h3 class="text-center">
-	<a href="{% url "personalize" class.id %}">
-		{% trans "Select groups to show" %}
-	</a>
-</h3>
+<div class="group-filter" id="group-filter">
+	<button class="group-filter-toggle" onclick="toggleGroupFilter()">
+		{% trans "Select groups to show" %} <span id="group-filter-arrow">&#9660;</span>
+	</button>
+	<div class="group-filter-panel" id="group-filter-panel"></div>
+</div>
 {% endblock %}
 

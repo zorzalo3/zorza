@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if reservations %}
-<h2 class="text-center">{% trans "Reservations" %}</h3>
+<h2 class="text-center">{% trans "Reservations" %}</h2>
 
 {% regroup reservations by date as reservations_by_day %}
 {% for day in reservations_by_day %}
