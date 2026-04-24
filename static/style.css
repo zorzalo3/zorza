@@ -445,3 +445,47 @@ pre {
   font-family: monospace;
   overflow-x: auto;
 }
+
+.group-filter {
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.group-filter-toggle {
+  display: inline;
+  font-size: 1rem;
+  background: none !important;
+  border: none;
+  color: #79b6da;
+  padding: 0 !important;
+}
+.group-filter-toggle:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.group-filter-panel {
+  display: none;
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.8rem 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+}
+.group-filter-panel.open {
+  display: block;
+}
+.group-filter-panel label {
+  display: inline-block;
+  margin: 0.2rem 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.group-filter-panel label input[type="checkbox"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0 0.3rem 0 0;
+  background: transparent;
+  vertical-align: middle;
+}

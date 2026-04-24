@@ -1,3 +1,4 @@
+import json
 import locale
 from datetime import datetime, date, timedelta
 from collections import OrderedDict
@@ -42,6 +43,7 @@ def get_object_or_none(model, *args, **kwargs):
     except model.DoesNotExist:
         return None
 
+
 def get_timetable_context(lessons):
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
@@ -75,8 +77,8 @@ def get_timetable_context(lessons):
 
     teachers = Teacher.objects.all().values()
     teachers = sorted(teachers, key=lambda t:
-        locale.strxfrm(t['last_name']+t['first_name']))
-        # Sort considering system locale
+    locale.strxfrm(t['last_name'] + t['first_name']))
+    # Sort considering system locale
 
     context = {
         'table': table,
@@ -242,3 +244,44 @@ def get_teachers_by_substitutions_date(date):
     teachers = sorted(teachers, key=lambda t:
         locale.strxfrm(t.last_name+t.first_name))
     return teachers
+
+
+def serialize_lessons_for_js(all_groups, lessons, selected_groups):
+    """Serialize lesson data for the JS group filter on the class timetable page."""
+    lesson_list = []
+    for lesson in lessons:
+        item = {
+            'period': lesson.period,
+            'weekday': lesson.weekday,
+            'teacher': {
+                'id': lesson.teacher_id,
+                'initials': lesson.teacher.initials,
+                'full_name': lesson.teacher.full_name,
+            },
+            'subject': {
+                'name': lesson.subject.name,
+                'short_name': lesson.subject.short_name,
+            },
+            'room': {
+                'id': lesson.room_id or 0,
+                'name': lesson.room.name if lesson.room else '',
+                'short_name': lesson.room.short_name if lesson.room else '',
+            },
+            'group': {
+                'id': lesson.group_id,
+                'name': lesson.group.name,
+                'link_to_class': lesson.group.link_to_class,
+            },
+        }
+        if lesson.group.link_to_class:
+            first_class = lesson.group.classes.first()
+            if first_class:
+                item['class'] = {'id': first_class.id, 'name': first_class.name}
+        lesson_list.append(item)
+
+    return json.dumps({
+        'type': 'class',
+        'lessons': lesson_list,
+        'groups': [{'id': g.id, 'name': g.name} for g in all_groups],
+        'selected_group_ids': [g.id for g in selected_groups],
+    }, ensure_ascii=False)

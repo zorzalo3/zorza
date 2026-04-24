@@ -21,7 +21,7 @@ from django.conf import settings
 
 from .models import *
 from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
-    get_events, get_display_context, get_teacher_by_name)
+    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js)
 from .forms import *
 
 
@@ -30,15 +30,15 @@ def show_timetable(request):
     """Redirects to timetable given in GET parameter or in cookies"""
     klass = request.GET.get('class')
     if klass:
-        return HttpResponseRedirect('/timetable/class/'+klass+'/')
+        return HttpResponseRedirect(f'/timetable/class/{klass}/')
 
     teacher = request.GET.get('teacher')
     if teacher:
-        return HttpResponseRedirect('/timetable/teacher/'+teacher+'/')
+        return HttpResponseRedirect(f'/timetable/teacher/{teacher}/')
 
     room = request.GET.get('room')
     if room:
-        return HttpResponseRedirect('/timetable/room/'+room+'/')
+        return HttpResponseRedirect(f'/timetable/room/{room}/')
 
     user_default = request.COOKIES.get('timetable_default') # set in JS
     version = request.COOKIES.get('timetable_version')
@@ -51,11 +51,32 @@ def show_timetable(request):
 
 def show_class_timetable(request, class_id):
     klass = get_object_or_404(Class, pk=class_id)
-    groups = Group.objects.filter(classes=klass)
-    lessons = Lesson.objects.filter(group__in=groups)
+    all_groups = list(Group.objects.filter(classes=klass))
+
+        # Handle ?groups=1,3 filter — SSR renders only the selected groups
+    groups_param = request.GET.get('groups', '')
+    if groups_param:
+        try:
+            selected_ids = set(int(x) for x in groups_param.split(','))
+            selected_groups = [g for g in all_groups if g.id in selected_ids]
+            if not selected_groups:
+                selected_groups = all_groups
+        except ValueError:
+            selected_groups = all_groups
+    else:
+        selected_groups = all_groups
+
+    lessons = Lesson.objects.filter(group__in=selected_groups)
     context = get_timetable_context(lessons)
     context['class'] = klass
-    context['groups'] = groups
+    context['groups'] = selected_groups  # drives "relevant" highlight in substitutions
+
+    # All lessons serialized for JS client-side filtering
+    all_lessons = Lesson.objects.filter(group__in=all_groups).select_related(
+        'teacher', 'group', 'room', 'subject'
+    ).prefetch_related('group__classes')
+    context['init_data_json'] = serialize_lessons_for_js(all_groups, all_lessons, selected_groups)
+
     return render(request, 'class_timetable.html', context)
 
 def show_groups_timetable(request, group_ids):

@@ -10,7 +10,7 @@
 	{% include "timer.html" %}
 </p>
 
-<p>
+<p id="dayplans-container">
 	{% include "dayplans.html" %}
 </p>
 
@@ -74,9 +74,9 @@
 
 {% include "timetable_select.html" %}
 
-{% include "substitutions.html" %}
-{% include "absences.html" %}
-{% include "reservations.html" %}
+<div id="substitutions-container">{% include "substitutions.html" %}</div>
+<div id="absences-container">{% include "absences.html" %}</div>
+<div id="reservations-container">{% include "reservations.html" %}</div>
 {% include "timetable_data.html" %}
 
 <script src="{% static "timetable.js" %}"></script>
