@@ -1,5 +1,11 @@
 "use strict";
 
+const DOM = {
+    classSelect: document.getElementById('timetable-select-class'),
+    teacherSelect: document.getElementById('timetable-select-teacher'),
+    roomSelect: document.getElementById('timetable-select-room'),
+}
+
 let currentDate = new Date();
 let currentWeekday = currentDate.getDay();
 currentWeekday = (currentWeekday + 6) % 7;
@@ -304,9 +310,7 @@ function renderGroupCheckboxes() {
     let panel = document.getElementById('group-filter-panel');
     if (!panel) return;
 
-    let groups = groupsFilterData.allGroups.slice().sort(function (a, b) {
-        return a.name.localeCompare(b.name);
-    });
+    let groups = groupsFilterData.allGroups.slice();
 
     groups.forEach(function (group) {
         let label = document.createElement('label');

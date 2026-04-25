@@ -378,6 +378,11 @@ caption {
 
 .timetable-select {
   margin-bottom: 0.3rem;
+  border-radius: 20px;
+  background: #292c33;
+  border-color: #2a313e;
+  color: #ffffff;
+  text-align: center;
 }
 
 article {
@@ -488,6 +493,12 @@ pre {
   margin: 0 0.3rem 0 0;
   background: transparent;
   vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+  .group-filter-panel {
+    text-align: left; /* Align left on small screens for better readability */
+  }
 }
 
 /* ----- Subject colour picker ----- */

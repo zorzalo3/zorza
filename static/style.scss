@@ -409,6 +409,12 @@ caption {
 	}
 }
 
+@media (max-width: 576px) {
+	.group-filter-panel {
+		text-align: left;
+	}
+}
+
 
 article {
 	max-width: 44rem;
