@@ -5,6 +5,38 @@
 {% trans "Timetable" %} - {% trans "Class" %} {{ class.name }} - Zorza
 {% endblock %}
 
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
+<script>
+function generateSubjectColor(subjectShort, seed = 2) {
+    var custom = localStorage.getItem('subjectColor_' + subjectShort);
+    if (custom) return custom;
+    var h = seed;
+    var s = subjectShort || '';
+    for (var i = 0; i < s.length; i++) {
+        h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+    }
+    var hue = Math.floor(70 + (Math.abs(h) * 0.618033988749895 % 1) * 250);
+    var saturation = [50, 65, 80][Math.abs(h >> 4) % 3];
+    var lightness = [45, 55, 65][Math.abs(h >> 8) % 3];
+    return 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
+}
+(function () {
+    var seen = Object.create(null);
+    var rules = '';
+    {% for period, row in table.items %}{% for _, hour in row.1.items %}{% for lesson in hour %}{% with short_name=lesson.subject.short_name %}
+    if (!seen['{{ short_name|escapejs }}']) {
+        seen['{{ short_name|escapejs }}'] = true;
+        rules += '.subject[data-subject="{{ short_name|escapejs }}"]{color:' + generateSubjectColor('{{ short_name|escapejs }}') + '}';
+    }
+    {% endwith %}{% endfor %}{% endfor %}{% endfor %}
+    var el = document.createElement('style');
+    el.textContent = rules;
+    document.head.appendChild(el);
+}());
+</script>
+{% endblock %}
+
 {% block caption %}
 {% trans "Class" %} {{ class.name }}
 {% endblock %}
@@ -12,10 +44,33 @@
 {% block lesson %}
 <div class="lesson-onerow">
 	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	<span class="subject" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
 	<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">{{ lesson.room.short_name }}</a>
+</div>
+{% endblock %}
+
+{% block above_default_btn %}
+<div class="subject-colors-container">
+	<button id="subject-colors-btn" class="subject-colors-label">Kolory przedmiotów</button>
+</div>
+
+<div id="color-picker-modal" class="color-modal-overlay" style="display:none;" aria-modal="true" role="dialog">
+	<div class="color-modal">
+		<div class="color-modal-header">
+			<label class="color-toggle-switch" title="Włącz/wyłącz kolory">
+				<input type="checkbox" id="color-toggle-input">
+				<span class="color-toggle-slider"></span>
+			</label>
+			<button id="color-modal-close" class="color-modal-close" aria-label="Zamknij">✕</button>
+		</div>
+		<div id="color-subjects-list" class="color-subjects-list"></div>
+		<div id="color-iro-container" class="color-iro-container" style="display:none;">
+			<div class="color-iro-label">Kolor: <strong id="color-iro-subject-name"></strong></div>
+			<div id="color-iro-picker"></div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 
@@ -27,4 +82,3 @@
 	<div class="group-filter-panel" id="group-filter-panel"></div>
 </div>
 {% endblock %}
-

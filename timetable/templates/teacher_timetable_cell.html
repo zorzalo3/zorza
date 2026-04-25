@@ -2,7 +2,7 @@
 <div class="lesson-onerow">
 	{% with class=lesson.group.classes.all.0 %}
 	<a class="class" href="{% url "class_timetable" class.id %}">{{ class.name }}</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	<span class="subject" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
 	<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
@@ -16,7 +16,7 @@
 	<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
 		{{ lesson.room.short_name }}
 	</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	<span class="subject" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
 </div>

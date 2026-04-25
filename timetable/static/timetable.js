@@ -207,9 +207,11 @@ function getLessonCell(period, weekday) {
 
 function buildLessonClassMode(lesson) {
     let t = lesson.teacher, s = lesson.subject, r = lesson.room;
+    let textColor = subjectColor(s.short_name); 
+
     return '<div class="lesson-onerow">' +
         '<a class="teacher" href="/timetable/teacher/' + t.id + '/" title="' + esc(t.full_name) + '">' + esc(t.initials) + '</a>' +
-        '<span class="subject" title="' + esc(s.name) + '">' + esc(s.short_name) + '</span>' +
+        '<span class="subject" title="' + esc(s.name) + '" style="color: ' + esc(textColor) + ';">' + esc(s.short_name) + '</span>' +
         '<a class="room" href="/timetable/room/' + r.id + '/" title="' + esc(r.name) + '">' + esc(r.short_name) + '</a>' +
         '</div>';
 }
@@ -367,3 +369,194 @@ function syncGroupFilterUrl() {
 }
 
 initGroupFilter();
+
+let colorsEnabled = localStorage.getItem('subjectColorsEnabled') !== 'false';
+
+function setColorsEnabled(val) {
+    colorsEnabled = val;
+    localStorage.setItem('subjectColorsEnabled', String(val));
+}
+
+function subjectColor(subjectShort, seed = 2) {
+    if (!colorsEnabled) return 'inherit';
+    const custom = localStorage.getItem('subjectColor_' + subjectShort);
+    if (custom) return custom;
+
+    let h = seed;
+    const s = subjectShort || '';
+
+    for (let i = 0; i < s.length; i++) {
+        h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+    }
+
+    const goldenRatioConjugate = 0.618033988749895;
+    let hueFraction = (Math.abs(h) * goldenRatioConjugate) % 1;
+
+    const minHue = 70;
+    const maxHue = 320;
+    const hue = Math.floor(minHue + hueFraction * (maxHue - minHue));
+
+    const saturationOptions = [50, 65, 80];
+    const saturation = saturationOptions[Math.abs(h >> 4) % saturationOptions.length];
+
+    const lightnessOptions = [45, 55, 65];
+    const lightness = lightnessOptions[Math.abs(h >> 8) % lightnessOptions.length];
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+// Converts hsl(...) string or hex string to a #rrggbb hex value for <input type="color">.
+function colorToHex(color) {
+    if (!color) return '#4da8dc';
+    if (color.startsWith('#')) return color;
+    const match = color.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
+    if (!match) return '#4da8dc';
+    let h = parseInt(match[1]) / 360;
+    const s = parseInt(match[2]) / 100;
+    const l = parseInt(match[3]) / 100;
+    let r, g, b;
+    if (s === 0) {
+        r = g = b = l;
+    } else {
+        const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        };
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+    }
+    const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+function renderSchedule() {
+    if (!groupsFilterData.allLessons) return;
+    applyGroupFilter();
+}
+
+function initColorModal() {
+    const btn = document.getElementById('subject-colors-btn');
+    const modal = document.getElementById('color-picker-modal');
+    const closeBtn = document.getElementById('color-modal-close');
+    const toggleInput = document.getElementById('color-toggle-input');
+    const subjectsList = document.getElementById('color-subjects-list');
+    const iroContainer = document.getElementById('color-iro-container');
+    const iroSubjectName = document.getElementById('color-iro-subject-name');
+    if (!btn || !modal) return;
+
+    let iroPicker = null;
+    let selectedSwatch = null;
+    let selectedShort = null;
+    let isSilent = false;
+
+    function initIroPicker() {
+        if (iroPicker || !window.iro) return;
+        iroPicker = new window.iro.ColorPicker('#color-iro-picker', {
+            width: 200,
+            color: '#4da8dc',
+            layout: [
+                { component: window.iro.ui.Wheel },
+                { component: window.iro.ui.Slider, options: { sliderType: 'value' } },
+            ],
+            borderWidth: 1,
+            borderColor: '#2a313e',
+            handleRadius: 8,
+        });
+
+        iroPicker.on('color:change', color => {
+            if (isSilent || !selectedShort) return;
+            const hex = color.hexString;
+            if (selectedSwatch) selectedSwatch.style.background = hex;
+            localStorage.setItem('subjectColor_' + selectedShort, hex);
+            renderSchedule();
+        });
+    }
+
+    function selectSwatch(swatchEl, short, name) {
+        if (selectedSwatch) selectedSwatch.classList.remove('selected');
+        selectedSwatch = swatchEl;
+        selectedShort = short;
+        swatchEl.classList.add('selected');
+
+        if (iroSubjectName) iroSubjectName.textContent = name;
+        if (iroContainer) iroContainer.style.display = 'flex';
+
+        initIroPicker();
+        if (iroPicker) {
+            isSilent = true;
+            iroPicker.color.hexString = colorToHex(subjectColor(short));
+            isSilent = false;
+        }
+    }
+
+    function updateToggle() {
+        if (toggleInput) toggleInput.checked = colorsEnabled;
+    }
+
+    function populateSubjects() {
+        const seen = {};
+        groupsFilterData.allLessons.forEach(lesson => {
+            const short = lesson.subject.short_name;
+            if (short && !seen[short]) seen[short] = lesson.subject.name || short;
+        });
+
+        subjectsList.innerHTML = '';
+        selectedSwatch = null;
+        selectedShort = null;
+        if (iroContainer) iroContainer.style.display = 'none';
+
+        Object.entries(seen)
+            .sort((a, b) => a[1].localeCompare(b[1], 'pl'))
+            .forEach(([short, name]) => {
+                const row = document.createElement('div');
+                row.className = 'color-subject-row';
+
+                const label = document.createElement('span');
+                label.className = 'color-subject-name';
+                label.textContent = name;
+
+                const swatch = document.createElement('button');
+                swatch.className = 'color-swatch-btn';
+                swatch.style.background = colorToHex(
+                    localStorage.getItem('subjectColor_' + short) || subjectColor(short)
+                );
+                swatch.title = 'Kliknij, aby zmienić kolor';
+                swatch.type = 'button';
+                swatch.addEventListener('click', () => selectSwatch(swatch, short, name));
+
+                row.appendChild(label);
+                row.appendChild(swatch);
+                subjectsList.appendChild(row);
+            });
+    }
+
+    function openModal() {
+        populateSubjects();
+        updateToggle();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    toggleInput.addEventListener('change', () => {
+        setColorsEnabled(toggleInput.checked);
+        renderSchedule();
+    });
+}
+
+initColorModal();
+
