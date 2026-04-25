@@ -1,8 +1,8 @@
 {% extends "timetable_base.html" %}
-{% load i18n static %} // Fixed the load statement to include 'static' for loading static files like CSS
+{% load i18n static %} 
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'teacher_timetable_print.css' %}"> // Fixed the path to the CSS file
+<link rel="stylesheet" href="{% static 'teacher_timetable_print.css' %}"> 
 {% endblock %}
 
 {% block title %}
