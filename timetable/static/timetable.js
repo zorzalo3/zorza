@@ -76,48 +76,48 @@ function updateLesson() {
     if (prevHighlight) {
         prevHighlight.classList.remove("highlight", "break-highlight");
     }
-    var timer, until;
+    let timerElement, until;
     // timer - the <span> element which should be shown
     // until - time to which it is count down
 
-    if (now < periods[0].begin_time) {
+    if (now < periods[0].beginTime) {
         // If it's before all lessons
 
-        if (addMinutes(now, 60) < periods[0].begin_time) {
+        if (addMinutes(now, 60) < periods[0].beginTime) {
             return;
         }
 
-        timer = document.getElementById("before-lessons");
-        until = periods[0].begin_time;
-    } else if (now > periods[periods.length - 1].end_time) {
+        timerElement = document.getElementById("before-lessons");
+        until = periods[0].beginTime;
+    } else if (now > periods[periods.length - 1].endTime) {
         // If it's after all lessons
-        timer = document.getElementById("after-lessons");
+        timerElement = document.getElementById("after-lessons");
     } else for (var i = 0; i < periods.length; i++) {
-        if (periods[i].begin_time < now && now < periods[i].end_time) {
+        if (periods[i].beginTime < now && now < periods[i].endTime) {
             // If a lesson is ongoing
-            timer = document.getElementById("during-lesson");
-            var tmp = document.getElementById("period-" + periods[i]['number']);
+            timerElement = document.getElementById("during-lesson");
+            let tmp = document.getElementById("period-" + periods[i]['number']);
             if (tmp) {
-                var row = tmp.parentElement;
+                let row = tmp.parentElement;
                 row.classList.add("highlight");
                 prevHighlight = row;
             }
-            until = periods[i].end_time;
-            let period_no = timer.getElementsByClassName("period-no")[0];
+            until = periods[i].endTime;
+            let period_no = timerElement.getElementsByClassName("period-no")[0];
             period_no.textContent = periods[i].number;
             break;
         }
-        if (i > 0 && periods[i - 1].end_time < now && now < periods[i].begin_time) {
+        if (i > 0 && periods[i - 1].endTime < now && now < periods[i].beginTime) {
             // If it's a break between lessons
-            timer = document.getElementById("between-lessons");
-            var tmp = document.getElementById("period-" + periods[i - 1]['number']);
+            timerElement = document.getElementById("between-lessons");
+            let tmp = document.getElementById("period-" + periods[i - 1]['number']);
             if (tmp) {
-                var row = tmp.parentElement;
+                let row = tmp.parentElement;
                 row.classList.add("break-highlight");
                 prevHighlight = row;
             }
-            until = periods[i].begin_time;
-            let period_no = timer.getElementsByClassName("period-no")[0];
+            until = periods[i].beginTime;
+            let period_no = timerElement.getElementsByClassName("period-no")[0];
             period_no.textContent = periods[i].number;
             break;
         }
@@ -126,8 +126,8 @@ function updateLesson() {
     prevTimer = timerElement;
     if (timerElement) {
         timerElement.removeAttribute("hidden");
-        if (countdownUntil) {
-            timerElement.getElementsByTagName("time")[0].textContent = toDisplay(countdownUntil - now);
+        if (until) {
+            timerElement.getElementsByTagName("time")[0].textContent = toDisplay(until - now);
         }
     }
 }

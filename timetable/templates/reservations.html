@@ -21,8 +21,14 @@
 	<tr>
 		<td>{{ reservation.period_number }}</td>
 		<td>{{ reservation.period_str }}</td>
-		<td>{{ reservation.display_teacher }}</td>
-		<td>{{ reservation.room.short_name }}</td>
+		<td>
+			{% if reservation.teacher_id %}
+			<a href="{% url "teacher_timetable" reservation.teacher_id %}">{{ reservation.display_teacher }}</a>
+			{% else %}
+			{{ reservation.display_teacher }}
+			{% endif %}
+		</td>
+		<td><a href="{% url "room_timetable" reservation.room_id %}">{{ reservation.room.short_name }}</a></td>
         {% if show_reservation_delete %}
         <td>
             <form method="post" action="{% url "delete_reservation" reservation.id %}">
