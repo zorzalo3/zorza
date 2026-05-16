@@ -22,6 +22,7 @@ function generateSubjectColor(subjectShort, seed = 2) {
     return 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
 }
 (function () {
+    if (localStorage.getItem('subjectColorsEnabled') !== 'true') return;
     var seen = Object.create(null);
     var rules = '';
     {% for period, row in table.items %}{% for _, hour in row.1.items %}{% for lesson in hour %}{% with short_name=lesson.subject.short_name %}
@@ -53,32 +54,45 @@ function generateSubjectColor(subjectShort, seed = 2) {
 
 {% block above_default_btn %}
 <div class="subject-colors-container">
-	<button id="subject-colors-btn" class="subject-colors-label">Kolory przedmiotów</button>
+	<button id="personalization-btn" class="subject-colors-label">{% trans "Personalization" %}</button>
 </div>
 
-<div id="color-picker-modal" class="color-modal-overlay" style="display:none;" aria-modal="true" role="dialog">
-	<div class="color-modal">
+<div id="personalization-modal" class="color-modal-overlay" style="display:none;" aria-modal="true" role="dialog">
+	<div class="color-modal personalization-modal">
 		<div class="color-modal-header">
-			<label class="color-toggle-switch" title="Włącz/wyłącz kolory">
-				<input type="checkbox" id="color-toggle-input">
-				<span class="color-toggle-slider"></span>
-			</label>
-			<button id="color-modal-close" class="color-modal-close" aria-label="Zamknij">✕</button>
+			<span class="personalization-modal-title">{% trans "Personalization" %}</span>
+			<button id="personalization-modal-close" class="color-modal-close" aria-label="Zamknij">✕</button>
 		</div>
-		<div id="color-subjects-list" class="color-subjects-list"></div>
-		<div id="color-iro-container" class="color-iro-container" style="display:none;">
-			<div class="color-iro-label">Kolor: <strong id="color-iro-subject-name"></strong></div>
-			<div id="color-iro-picker"></div>
+		<div class="persona-sections">
+			<div class="persona-section" id="colors-section">
+				<button class="persona-section-toggle" id="colors-section-toggle" type="button">
+					<span class="persona-section-title">{% trans "Colors of subjects" %}</span>
+					<label class="color-toggle-switch persona-inline-toggle" title="{% trans "On/off colors" %}" onclick="event.stopPropagation()">
+						<input type="checkbox" id="color-toggle-input">
+						<span class="color-toggle-slider"></span>
+					</label>
+					<span class="persona-section-arrow" id="colors-section-arrow">&#9660;</span>
+				</button>
+				<div class="persona-section-content" id="colors-section-content">
+					<div id="color-subjects-list" class="color-subjects-list"></div>
+					<div id="color-iro-container" class="color-iro-container" style="display:none;">
+						<div class="color-iro-label">{% trans "Color:" %} <strong id="color-iro-subject-name"></strong></div>
+						<div id="color-iro-picker"></div>
+					</div>
+				</div>
+			</div>
+			<div class="persona-section" id="groups-section" style="display:none;">
+				<button class="persona-section-toggle" id="groups-section-toggle" type="button">
+					<span class="persona-section-title">{% trans "Select groups to show" %}</span>
+					<span class="persona-section-arrow" id="groups-section-arrow">&#9660;</span>
+				</button>
+				<div class="persona-section-content" id="groups-section-content">
+					<div id="group-filter-panel" class="persona-group-filter-panel"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
 
-{% block custom %}
-<div class="group-filter" id="group-filter">
-	<button class="group-filter-toggle" onclick="toggleGroupFilter()">
-		{% trans "Select groups to show" %} <span id="group-filter-arrow">&#9660;</span>
-	</button>
-	<div class="group-filter-panel" id="group-filter-panel"></div>
-</div>
-{% endblock %}
+{% block custom %}{% endblock %}

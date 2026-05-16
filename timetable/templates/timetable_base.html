@@ -80,6 +80,7 @@
 <div id="reservations-container">{% include "reservations.html" %}</div>
 {% include "timetable_data.html" %}
 
+<script>var TIMETABLE_I18N = {clickToChangeColor: "{% trans "Click to change color" %}"};</script>
 <script src="{% static "timetable.js" %}"></script>
 {% include "timetable_footer.html" %}
 {% endblock %}

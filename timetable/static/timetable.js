@@ -286,24 +286,12 @@ function initGroupFilter() {
         groupsFilterData.selectedIds = new Set(data.selected_group_ids);
     }
 
-    let filter = document.getElementById('group-filter');
-    if (!filter) return;
-
-    // Only show the filter when there are multiple groups to choose from
-    if (data.groups.length <= 1) {
-        filter.style.display = 'none';
-        return;
+    // Only show the groups section when there are multiple groups to choose from
+    let groupsSection = document.getElementById('groups-section');
+    if (groupsSection && data.groups.length > 1) {
+        groupsSection.style.display = '';
+        renderGroupCheckboxes();
     }
-
-    renderGroupCheckboxes();
-}
-
-function toggleGroupFilter() {
-    let panel = document.getElementById('group-filter-panel');
-    if (!panel) return;
-    let open = panel.classList.toggle('open');
-    let arrow = document.getElementById('group-filter-arrow');
-    if (arrow) arrow.innerHTML = open ? '&#9650;' : '&#9660;';
 }
 
 function renderGroupCheckboxes() {
@@ -314,6 +302,7 @@ function renderGroupCheckboxes() {
 
     groups.forEach(function (group) {
         let label = document.createElement('label');
+        label.className = 'persona-group-label';
 
         let cb = document.createElement('input');
         cb.type = 'checkbox';
@@ -374,7 +363,7 @@ function syncGroupFilterUrl() {
 
 initGroupFilter();
 
-let colorsEnabled = localStorage.getItem('subjectColorsEnabled') !== 'false';
+let colorsEnabled = localStorage.getItem('subjectColorsEnabled') === 'true';
 
 function setColorsEnabled(val) {
     colorsEnabled = val;
@@ -445,10 +434,47 @@ function renderSchedule() {
     applyGroupFilter();
 }
 
+function initPersonalizationAccordion() {
+    const sections = [
+        { toggleId: 'colors-section-toggle', contentId: 'colors-section-content', arrowId: 'colors-section-arrow' },
+        { toggleId: 'groups-section-toggle', contentId: 'groups-section-content', arrowId: 'groups-section-arrow' },
+    ];
+
+    sections.forEach(function (sec) {
+        let content = document.getElementById(sec.contentId);
+        if (content) content.classList.add('persona-section-content--closed');
+    });
+
+    sections.forEach(function (sec) {
+        let toggle = document.getElementById(sec.toggleId);
+        let content = document.getElementById(sec.contentId);
+        let arrow = document.getElementById(sec.arrowId);
+        if (!toggle || !content) return;
+
+        toggle.addEventListener('click', function () {
+            let isNowOpen = content.classList.contains('persona-section-content--closed');
+
+            // Close all sections first
+            sections.forEach(function (other) {
+                let otherContent = document.getElementById(other.contentId);
+                let otherArrow = document.getElementById(other.arrowId);
+                if (otherContent) otherContent.classList.add('persona-section-content--closed');
+                if (otherArrow) otherArrow.innerHTML = '&#9660;';
+            });
+
+            // Open clicked section if it was closed
+            if (isNowOpen) {
+                content.classList.remove('persona-section-content--closed');
+                if (arrow) arrow.innerHTML = '&#9650;';
+            }
+        });
+    });
+}
+
 function initColorModal() {
-    const btn = document.getElementById('subject-colors-btn');
-    const modal = document.getElementById('color-picker-modal');
-    const closeBtn = document.getElementById('color-modal-close');
+    const btn = document.getElementById('personalization-btn');
+    const modal = document.getElementById('personalization-modal');
+    const closeBtn = document.getElementById('personalization-modal-close');
     const toggleInput = document.getElementById('color-toggle-input');
     const subjectsList = document.getElementById('color-subjects-list');
     const iroContainer = document.getElementById('color-iro-container');
@@ -531,7 +557,7 @@ function initColorModal() {
                 swatch.style.background = colorToHex(
                     localStorage.getItem('subjectColor_' + short) || subjectColor(short)
                 );
-                swatch.title = 'Kliknij, aby zmienić kolor';
+                swatch.title = (typeof TIMETABLE_I18N !== 'undefined') ? TIMETABLE_I18N.clickToChangeColor : 'Kliknij, aby zmienić kolor';
                 swatch.type = 'button';
                 swatch.addEventListener('click', () => selectSwatch(swatch, short, name));
 
@@ -563,4 +589,5 @@ function initColorModal() {
 }
 
 initColorModal();
+initPersonalizationAccordion();
 

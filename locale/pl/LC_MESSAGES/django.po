@@ -36,7 +36,7 @@ msgid "Send"
 msgstr "Wyślij"
 
 #: contact/templates/contact/success.html:5
-msgid "Message sent succesfully"
+msgid "Message sent successfully"
 msgstr "Wiadomość wysłana pomyślnie"
 
 #: contact/templates/contact/success.html:10
@@ -44,7 +44,7 @@ msgid "Success"
 msgstr "Sukces"
 
 #: contact/templates/contact/success.html:12
-msgid "Your message was sent succesfully."
+msgid "Your message was sent successfully."
 msgstr "Twoja wiadomość została wysłana pomyślnie."
 
 #: documents/forms.py:15 documents/forms.py:25
@@ -413,6 +413,26 @@ msgstr "Klasa"
 msgid "Select groups to show"
 msgstr "Wybierz grupy do wyświetlania"
 
+#: timetable/templates/class_timetable.html
+msgid "Personalization"
+msgstr "Personalizacja"
+
+#: timetable/templates/class_timetable.html
+msgid "Colors of subjects"
+msgstr "Kolory przedmiotów"
+
+#: timetable/templates/class_timetable.html
+msgid "Color:"
+msgstr "Kolor:"
+
+#: timetable/templates/class_timetable.html
+msgid "On/off colors"
+msgstr "Włącz/wyłącz kolory"
+
+#: timetable/templates/class_timetable.html:35
+msgid "Click to change color"
+msgstr "Kliknij, aby zmienić kolor"
+
 #: timetable/templates/csv_import_success.html:6
 msgid "CSV file imported"
 msgstr "Plik CSV zaimportowany"
@@ -514,11 +534,11 @@ msgstr "Zalogowano jako %(user)s."
 
 #: timetable/templates/management.html:14
 msgid "Log out"
-msgstr ""
+msgstr "Wyloguj się"
 
 #: timetable/templates/management.html:15
 msgid "Change password"
-msgstr ""
+msgstr "Zmień hasło"
 
 #: timetable/templates/management.html:22
 msgid "Print substitutions"
@@ -530,7 +550,7 @@ msgstr "Importuj zastępstwa z CSV"
 
 #: timetable/templates/management.html:32
 msgid "Administration"
-msgstr ""
+msgstr "Administracja"
 
 #: timetable/templates/management.html:56
 #, python-format
@@ -634,7 +654,7 @@ msgstr "Do pierwszej lekcji pozostało <time></time>."
 msgid ""
 "<time></time> until the end of period no. <span class=\"period-no\"></span>."
 msgstr ""
-"Do końca <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
+"Do końca <span class=\"period-no\"></span> lekcji pozostało <time></time>."
 
 #: timetable/templates/timer.html:9
 msgid "<time></time> until period no. <span class=\"period-no\"></span>."
@@ -670,31 +690,31 @@ msgstr "Wybierz salę"
 
 #: timetable/tests.py:12 zorza/settings.py:141
 msgid "Monday"
-msgstr ""
+msgstr "Poniedziałek"
 
 #: timetable/tests.py:13 zorza/settings.py:142
 msgid "Tuesday"
-msgstr ""
+msgstr "Wtorek"
 
 #: timetable/tests.py:14 zorza/settings.py:143
 msgid "Wednesday"
-msgstr ""
+msgstr "Środa"
 
 #: timetable/tests.py:15 zorza/settings.py:144
 msgid "Thursday"
-msgstr ""
+msgstr "Czwartek"
 
 #: timetable/tests.py:16 zorza/settings.py:145
 msgid "Friday"
-msgstr ""
+msgstr "Piątek"
 
 #: timetable/tests.py:17
 msgid "Saturday"
-msgstr ""
+msgstr "Sobota"
 
 #: timetable/tests.py:18
 msgid "Sunday"
-msgstr ""
+msgstr "Niedziela"
 
 #: timetable/views.py:94
 msgid "Select at least one group"

@@ -483,7 +483,7 @@ pre {
 	overflow-x: auto;
 }
 
-// ----- Subject colour picker -----
+// ----- Personalization button -----
 
 .subject-colors-container {
 	display: flex;
@@ -506,6 +506,128 @@ pre {
 	&:hover {
 		color: $font-color-primary;
 		text-decoration: underline;
+	}
+}
+
+// ----- Personalization modal -----
+
+.personalization-modal {
+	width: 460px;
+}
+
+.personalization-modal-title {
+	font-size: 1rem;
+	font-weight: 600;
+	color: $font-color-primary;
+	letter-spacing: 0.01em;
+}
+
+.persona-sections {
+	overflow-y: auto;
+	padding: 10px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.persona-section {
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 10px;
+	background: #252b2f;
+	overflow: hidden;
+}
+
+.persona-section-toggle {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
+	background: none;
+	border: none;
+	color: $font-color-primary;
+	font-size: 0.95rem;
+	font-family: inherit;
+	cursor: pointer;
+	text-align: left;
+	transition: background 0.15s;
+	&:hover {
+		background: rgba(255, 255, 255, 0.05);
+	}
+}
+
+.persona-inline-toggle {
+	flex-shrink: 0;
+	width: 44px;
+	height: 24px;
+	.color-toggle-slider {
+		border-radius: 12px;
+		&::before {
+			width: 18px;
+			height: 18px;
+		}
+	}
+	input:checked + .color-toggle-slider::before {
+		transform: translateX(20px);
+	}
+}
+
+.persona-section-title {
+	flex: 1;
+	min-width: 0;
+}
+
+.persona-section-arrow {
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.45);
+	flex-shrink: 0;
+	transition: transform 0.2s;
+	margin-left: 8px;
+}
+
+.persona-section-content {
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	overflow: hidden;
+	transition: max-height 0.25s ease, opacity 0.2s ease;
+	max-height: 400px;
+	opacity: 1;
+
+	.color-subjects-list {
+		max-height: 280px;
+		overflow-y: auto;
+	}
+
+	&--closed {
+		max-height: 0;
+		opacity: 0;
+		border-top: none;
+	}
+}
+
+.persona-group-filter-panel {
+	padding: 10px 16px 12px;
+
+	label {
+		display: inline-block;
+		margin: 0.2rem 0.5rem;
+		cursor: pointer;
+		white-space: nowrap;
+
+		input[type="checkbox"] {
+			display: inline;
+			width: auto;
+			height: auto;
+			padding: 0;
+			margin: 0 0.3rem 0 0;
+			background: transparent;
+			vertical-align: middle;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.personalization-modal {
+		width: 100%;
 	}
 }
 
