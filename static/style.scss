@@ -79,7 +79,7 @@ tr.highlight {
 	background-color: rgba(255, 255, 255, 0.04);
 }
 tr.break-highlight {
-	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+	background-image: linear-gradient(to bottom, transparent calc(100% - 2px), rgba(255, 255, 255, 0.2) calc(100% - 2px));
 }
 .timetable {
 	width: 100%;

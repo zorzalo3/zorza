@@ -29,6 +29,7 @@ function generateSubjectColor(subjectShort, seed = 2) {
     return 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
 }
 (function () {
+    if (localStorage.getItem('subjectColorsEnabled') !== 'true') return;
     var seen = Object.create(null);
     var rules = '';
     {% for period, row in table.items %}{% for _, hour in row.1.items %}{% for lesson in hour %}{% with short_name=lesson.subject.short_name %}
