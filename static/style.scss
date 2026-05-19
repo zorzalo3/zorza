@@ -40,10 +40,9 @@ body {
 	position: relative;
 	display: flex;
 	padding: 0.5rem 1rem;
-	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	height: 4rem;
+	min-height: 4rem;
 }
 
 .site-logo {
@@ -179,6 +178,63 @@ a {
 .nav-item {
 	flex: 1 1 auto;
 	text-align: center;
+}
+
+.lang-switcher {
+	position: relative;
+
+	.lang-current {
+		cursor: default;
+		user-select: none;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		white-space: nowrap;
+	}
+
+	img.emoji {
+		height: 1.1em;
+		width: 1.1em;
+		vertical-align: -0.15em;
+	}
+
+	.lang-arrow {
+		font-size: 0.75em;
+		opacity: 0.7;
+	}
+
+	.lang-dropdown {
+		display: none;
+		position: absolute;
+		top: calc(100% - 0.5rem);
+		right: 0;
+		background-color: #1d2124;
+		list-style: none;
+		padding: 0.3rem 0;
+		margin: 0;
+		min-width: 7rem;
+		z-index: 1000;
+		border-radius: 4px;
+		box-shadow: $shadow-default;
+
+		li a {
+			display: block;
+			padding: 0.4rem 1rem;
+			color: $font-color-primary;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 1.1rem;
+			white-space: nowrap;
+
+			&:hover {
+				color: $link-color;
+			}
+		}
+	}
+
+	&.open .lang-dropdown {
+		display: block;
+	}
 }
 
 .text-left {
@@ -360,6 +416,11 @@ caption {
 
 .timetable-select {
 	margin-bottom: 0.3rem;
+	border-radius: 20px;
+	background: #292c33;
+	border-color: #2a313e;
+	color: #ffffff;
+	text-align: center;
 }
 
 .group-filter {
@@ -412,6 +473,9 @@ caption {
 @media (max-width: 576px) {
 	.group-filter-panel {
 		text-align: left;
+	}
+	.nav-link {
+		padding: 0.5rem 0.5rem;
 	}
 }
 

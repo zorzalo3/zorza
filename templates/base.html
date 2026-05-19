@@ -20,6 +20,19 @@
 					</a>
 				</h1>
 				<ul class="nav">
+					{% get_current_language as current_lang %}
+					<li class="nav-item lang-switcher">
+						<span class="nav-link lang-current">
+							{% if current_lang == 'pl' %}🇵🇱 PL{% elif current_lang == 'en' %}🇬🇧 EN{% elif current_lang == 'de' %}🇩🇪 DE{% elif current_lang == 'ru' %}🇷🇺 RU{% elif current_lang == 'uk' %}🇺🇦 UK{% else %}{{ current_lang|upper }}{% endif %} <span class="lang-arrow">▾</span>
+						</span>
+						<ul class="lang-dropdown">
+							<li><a href="#" onclick="setLang('pl'); return false;">🇵🇱 PL</a></li>
+							<li><a href="#" onclick="setLang('en'); return false;">🇬🇧 EN</a></li>
+							<li><a href="#" onclick="setLang('uk'); return false;">🇺🇦 UA</a></li>
+							<li><a href="#" onclick="setLang('ru'); return false;">🇷🇺 RU</a></li>
+							<li><a href="#" onclick="setLang('de'); return false;">🇩🇪 DE</a></li>
+						</ul>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{% url "timetable" %}">{% trans "Timetable" %}</a>
 					</li>
@@ -48,6 +61,31 @@
 			{% endfor %}
 
 		</footer>
+		<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+		<script>
+		const browserLang = (navigator.language || '').slice(0, 2);
+		if (browserLang === 'pl') {
+			const switcher = document.querySelector('.lang-switcher');
+			if (switcher) switcher.remove();
+		}
+		twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
+		function setLang(lang) {
+			document.cookie = 'django_language=' + lang + '; path=/; max-age=31536000; SameSite=Lax';
+			location.reload();
+		}
+		(function() {
+			const switcher = document.querySelector('.lang-switcher');
+			if (!switcher) return;
+			const current = switcher.querySelector('.lang-current');
+			current.addEventListener('click', function(e) {
+				e.stopPropagation();
+				switcher.classList.toggle('open');
+			});
+			document.addEventListener('click', function() {
+				switcher.classList.remove('open');
+			});
+		})();
+		</script>
 	</body>
 </html>
 

@@ -2,77 +2,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 17:47+0000\n"
+"POT-Creation-Date: 2026-05-18 17:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pl\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
-"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: contact/models.py:6
 msgid "Your email address"
-msgstr "Twój adres e-mail"
+msgstr "Ваша електронна адреса"
 
 #: contact/models.py:7
 msgid "Subject"
-msgstr "Temat"
+msgstr "Тема"
 
 #: contact/models.py:8 documents/forms.py:31
 msgid "Content"
-msgstr "Treść"
+msgstr "Зміст"
 
 #: contact/templates/contact/message_form.html:5
 #: contact/templates/contact/message_form.html:10 templates/base.html:39
 msgid "Contact"
-msgstr "Kontakt"
+msgstr "Контакти"
 
 #: contact/templates/contact/message_form.html:15
 msgid "Send"
-msgstr "Wyślij"
+msgstr "Надіслати"
 
 #: contact/templates/contact/success.html:5
 msgid "Message sent successfully"
-msgstr "Wiadomość wysłana pomyślnie"
+msgstr "Повідомлення успішно надіслано"
 
 #: contact/templates/contact/success.html:10
 msgid "Success"
-msgstr "Sukces"
+msgstr "Успіх"
 
 #: contact/templates/contact/success.html:12
 msgid "Your message was sent successfully."
-msgstr "Twoja wiadomość została wysłana pomyślnie."
+msgstr "Ваше повідомлення було успішно надіслано."
 
 #: documents/forms.py:15 documents/forms.py:25
 msgid "Category"
-msgstr "Kategoria"
+msgstr "Категорія"
 
 #: documents/forms.py:20 documents/forms.py:30
 msgid "Title"
-msgstr "Tytuł"
+msgstr "Назва"
 
 #: documents/forms.py:21
 msgid "File"
-msgstr "Plik"
+msgstr "Файл"
 
 #: documents/templates/breadcrumbs.html:2
 #: documents/templates/show_category.html:5 templates/base.html:25
 msgid "Documents"
-msgstr "Dokumenty"
+msgstr "Документи"
 
 #: documents/templates/delete_item.html:5
 #: documents/templates/delete_item.html:11
 msgid "Delete item"
-msgstr "Usuń obiekt"
+msgstr "Видалити елемент"
 
 #: documents/templates/delete_item.html:13
 #, python-format
 msgid "Are you sure you want to delete \"%(object)s\"?"
-msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
+msgstr "Ви впевнені, що хочете видалити \"%(object)s\"?"
 
 #: documents/templates/delete_item.html:17
 #: documents/templates/edit_document.html:24
@@ -80,93 +78,93 @@ msgstr "Czy na pewno chcesz usunąć \"%(object)s\"?"
 #: timetable/templates/add_substitutions.html:47
 #: timetable/templates/add_substitutions.html:59
 msgid "Back"
-msgstr "Powrót"
+msgstr "Назад"
 
 #: documents/templates/delete_item.html:19
 #: documents/templates/show_mine.html:31 timetable/templates/absences.html:46
 #: timetable/templates/reservations.html:30
 #: timetable/templates/substitutions.html:38
 msgid "Delete"
-msgstr "Usuń"
+msgstr "Видалити"
 
 #: documents/templates/edit_document.html:6
 #: documents/templates/edit_document.html:16
 msgid "Edit document"
-msgstr "Edytuj dokument"
+msgstr "Редагувати документ"
 
 #: documents/templates/edit_document.html:8
 #: documents/templates/edit_document.html:18
 msgid "Create a document"
-msgstr "Utwórz dokument"
+msgstr "Створити документ"
 
 #: documents/templates/edit_document.html:26
 #: documents/templates/edit_file.html:26
 #: timetable/templates/add_substitutions.html:49
 #: timetable/templates/edit_calendar.html:42
 msgid "Save"
-msgstr "Zapisz"
+msgstr "Зберегти"
 
 #: documents/templates/edit_file.html:6 documents/templates/edit_file.html:16
 msgid "Update file"
-msgstr "Zmień plik"
+msgstr "Оновити файл"
 
 #: documents/templates/edit_file.html:8 documents/templates/edit_file.html:18
 msgid "Create a file"
-msgstr "Utwórz plik"
+msgstr "Створити файл"
 
 #: documents/templates/show_category.html:13
 msgid "Subcategories:"
-msgstr "Podkategorie:"
+msgstr "Підкатегорії:"
 
 #: documents/templates/show_category.html:27
 #: documents/templates/show_document.html:16
 #: documents/templates/show_mine.html:18
 #, python-format
 msgid "Created on %(created)s."
-msgstr "Utworzono %(created)s."
+msgstr "Створено %(created)s."
 
 #: documents/templates/show_category.html:27
 #: documents/templates/show_document.html:21
 #: documents/templates/show_mine.html:18
 #, python-format
 msgid "Modified on %(modified)s."
-msgstr "Zmodyfikowano %(modified)s."
+msgstr "Змінено %(modified)s."
 
 #: documents/templates/show_category.html:45
 #: documents/templates/show_mine.html:37
 msgid "Nothing here!"
-msgstr "Nic tu nie ma!"
+msgstr "Тут нічого немає!"
 
 #: documents/templates/show_document.html:12
 msgid "Author: "
-msgstr "Autor: "
+msgstr "Автор: "
 
 #: documents/templates/show_mine.html:5 documents/templates/show_mine.html:9
 #: timetable/templates/management.html:41
 msgid "My documents"
-msgstr "Moje dokumenty"
+msgstr "Мої документи"
 
 #: documents/templates/show_mine.html:28
 msgid "Edit"
-msgstr "Edytuj"
+msgstr "Редагувати"
 
 #: documents/templates/show_mine.html:42
 msgid "Add a file"
-msgstr "Dodaj plik"
+msgstr "Додати файл"
 
 #: documents/templates/show_mine.html:45
 msgid "Add a document"
-msgstr "Dodaj dokument"
+msgstr "Додати документ"
 
 #: templates/404.html:12
 msgid "Page not found"
-msgstr ""
+msgstr "Сторінку не знайдено"
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
 #: timetable/templates/display.html:54
 #: timetable/templates/show_substitutions_to_print.html:18
 msgid "Visit the main page"
-msgstr "Odwiedź stronę główną"
+msgstr "Перейти на головну сторінку"
 
 #: templates/base.html:22 timetable/templates/class_timetable.html:5
 #: timetable/templates/group_timetable.html:5
@@ -174,163 +172,162 @@ msgstr "Odwiedź stronę główną"
 #: timetable/templates/teacher_timetable.html:5
 #: timetable/templates/timetable_base.html:7
 msgid "Timetable"
-msgstr "Plan lekcji"
+msgstr "Розклад"
 
 #: templates/base.html:35
 msgid "About"
-msgstr "O projekcie"
+msgstr "Про проєкт"
 
 #: templates/base.html:37 timetable/templates/management.html:5
 #: timetable/templates/management.html:11
 msgid "Management"
-msgstr "Zarządzanie"
+msgstr "Керування"
 
 #: templates/registration/logged_out.html:5
 #: templates/registration/logged_out.html:10
 msgid "Logged out"
-msgstr ""
+msgstr "Вихід із системи"
 
 #: templates/registration/logged_out.html:15
 msgid "or"
-msgstr "lub"
+msgstr "або"
 
 #: templates/registration/logged_out.html:17
 msgid "Log in again"
-msgstr ""
+msgstr "Увійти знову"
 
 #: templates/registration/login.html:5 templates/registration/login.html:10
 #: templates/registration/login.html:33
 msgid "Log in"
-msgstr ""
+msgstr "Увійти"
 
 #: templates/registration/login.html:13
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
-"Podana nazwa użytkownika i hasła nie pasują do siebie. Prosimy spróbować "
-"ponownie."
+"Вказані ім'я користувача та пароль не збігаються. Будь ласка, спробуйте "
+"ще раз."
 
 #: templates/registration/login.html:20
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
-"Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
-"konto z odpowiednimi uprawnieniami."
+"Ваш обліковий запис не має доступу до цієї сторінки. Щоб продовжити, "
+"увійдіть під обліковим записом з доступом."
 
 #: timetable/forms.py:22 timetable/forms.py:170
 #: timetable/templates/reservations.html:14 timetable/templates/rooms.html:19
 msgid "Teacher"
-msgstr "Nauczyciel"
+msgstr "Вчитель"
 
 #: timetable/forms.py:24 timetable/forms.py:135 timetable/forms.py:165
 #: timetable/forms.py:168 timetable/forms.py:182
 #: timetable/templates/edit_calendar.html:21
 msgid "Date"
-msgstr "Data"
+msgstr "Дата"
 
 #: timetable/forms.py:33
 msgid "The given date cannot be in the past"
-msgstr "Podana data nie może być w przeszłości"
+msgstr "Вказана дата не може бути в минулому"
 
 #: timetable/forms.py:35
 msgid "The given date must be within a year from now"
-msgstr "Do podanej daty musi być mniej niż jeden rok"
+msgstr "Вказана дата має бути в межах року відтепер"
 
 #: timetable/forms.py:37
 msgid "{} has no planned lessons on the given day."
-msgstr "{} nie ma planowych lekcji podanego dnia."
+msgstr "{} не має запланованих уроків на вказаний день."
 
 #: timetable/forms.py:44
 msgid "-----"
-msgstr ""
+msgstr "-----"
 
 #: timetable/forms.py:44 timetable/forms.py:130 timetable/models.py:122
 #: timetable/models.py:167
 msgid "cancelled"
-msgstr "odwołane"
+msgstr "скасовано"
 
 #: timetable/forms.py:141 timetable/forms.py:169
 msgid "Period number"
-msgstr "Numer lekcji"
+msgstr "Номер уроку"
 
 #: timetable/forms.py:157
 msgid "CSV file with substitutions"
-msgstr "Plik CSV z zastępstwami"
+msgstr "CSV-файл із замінами"
 
 #: timetable/forms.py:171 timetable/templates/reservations.html:15
 #: timetable/templates/room_timetable.html:5 timetable/templates/rooms.html:18
 msgid "Room"
-msgstr "Sala"
+msgstr "Кабінет"
 
 #: timetable/forms.py:178
 msgid "This room is already reserved during this period."
-msgstr "Ta sala jest już zarezerwowana na tej lekcji."
+msgstr "Цей кабінет уже заброньовано на цей період."
 
 #: timetable/forms.py:183
 msgid "Start period"
-msgstr "Lekcja początkowa"
+msgstr "Початковий урок"
 
 #: timetable/forms.py:184
 msgid "End period"
-msgstr "Lekcja końcowa"
+msgstr "Кінцевий урок"
 
 #: timetable/forms.py:185 timetable/templates/absences.html:24
 msgid "Whole day"
-msgstr "Cały dzień"
+msgstr "Увесь день"
 
 #: timetable/forms.py:186 timetable/templates/absences.html:14
 msgid "Reason"
-msgstr "Powód"
+msgstr "Причина"
 
 #: timetable/forms.py:187 timetable/templates/absences.html:12
 #: timetable/templates/group_timetable.html:7
 #: timetable/templates/group_timetable.html:18
 #: timetable/templates/rooms.html:21 timetable/templates/substitutions.html:22
 msgid "Group"
-msgstr "Grupa"
+msgstr "Група"
 
 #: timetable/forms.py:199
 msgid "Provide initial and final period."
-msgstr ""
-"Proszę wprowadzić poprawną lekcję rozpoczęcia i zakończenia nieobecności."
+msgstr "Вкажіть початковий і кінцевий урок."
 
 #: timetable/forms.py:201
 msgid "The initial period cannot be later than the final period."
-msgstr "Lekcja początkowa nie może być później niż końcowa."
+msgstr "Початковий урок не може бути пізнішим за кінцевий."
 
 #: timetable/models.py:28
 msgid "link_to_class needs exactly one class"
-msgstr ""
+msgstr "link_to_class потребує рівно один клас"
 
 #: timetable/models.py:139 timetable/templates/add_substitutions.html:29
 msgid "Lesson"
-msgstr "Lekcja"
+msgstr "Урок"
 
 #: timetable/templates/absences.html:4 timetable/templates/management.html:50
 msgid "Absences"
-msgstr "Nieobecności grup"
+msgstr "Відсутності"
 
 #: timetable/templates/absences.html:13
 msgid "Periods"
-msgstr "Lekcje"
+msgstr "Уроки"
 
 #: timetable/templates/absences.html:16
 #: timetable/templates/reservations.html:17
 #: timetable/templates/substitutions.html:24
 msgid "Delete?"
-msgstr "Usunąć?"
+msgstr "Видалити?"
 
 #: timetable/templates/absences.html:39
 msgid "none"
-msgstr "brak"
+msgstr "немає"
 
 #: timetable/templates/add_absence.html:5
 msgid "Group absences"
-msgstr "Nieobecności grup"
+msgstr "Відсутності груп"
 
 #: timetable/templates/add_absence.html:10
 msgid "Adding group absences"
-msgstr "Dodawanie nieobecności grup"
+msgstr "Додавання відсутностей груп"
 
 #: timetable/templates/add_absence.html:13
 #: timetable/templates/add_dayplan.html:13
@@ -340,40 +337,40 @@ msgstr "Dodawanie nieobecności grup"
 #: timetable/templates/teacher_and_date_select.html:13
 #, python-format
 msgid "Today's date is %(today)s."
-msgstr "Dzisiejsza data to %(today)s."
+msgstr "Сьогоднішня дата — %(today)s."
 
 #: timetable/templates/add_absence.html:21
 #: timetable/templates/add_dayplan.html:21
 #: timetable/templates/add_reservation.html:21
 msgid "Submit"
-msgstr "Zatwierdź"
+msgstr "Надіслати"
 
 #: timetable/templates/add_dayplan.html:5
 msgid "Dayplan"
-msgstr "Rozkład dzwonków"
+msgstr "Розклад дзвінків"
 
 #: timetable/templates/add_dayplan.html:10
 msgid "Adding dayplan"
-msgstr "Dodawanie rozkładu dzwonków"
+msgstr "Додавання розкладу дзвінків"
 
 #: timetable/templates/add_reservation.html:5
 #: timetable/templates/management.html:45
 #: timetable/templates/reservations.html:4
 msgid "Reservations"
-msgstr "Rezerwacje sal"
+msgstr "Бронювання кабінетів"
 
 #: timetable/templates/add_reservation.html:10
 msgid "Adding reservations"
-msgstr "Dodawanie rezerwacji"
+msgstr "Додавання бронювань"
 
 #: timetable/templates/add_substitutions.html:5
 #, python-format
 msgid "Adding substitutions for %(teacher)s on %(date)s"
-msgstr "Dodawanie zastępstw za %(teacher)s w dniu %(date)s."
+msgstr "Додавання замін для %(teacher)s на %(date)s."
 
 #: timetable/templates/add_substitutions.html:13
 msgid "Adding substitutions — step 2"
-msgstr "Dodawanie zastępstw — krok 2"
+msgstr "Додавання замін — крок 2"
 
 #: timetable/templates/add_substitutions.html:18
 #, python-format
@@ -381,8 +378,7 @@ msgid ""
 "Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
 "(%(weekday)s). "
 msgstr ""
-"Zastępstwa za <a href=\"%(url)s\">%(teacher)s</a> w dniu %(date)s "
-"(%(weekday)s)."
+"Заміни для <a href=\"%(url)s\">%(teacher)s</a> на %(date)s (%(weekday)s). "
 
 #: timetable/templates/add_substitutions.html:28
 #: timetable/templates/reservations.html:12
@@ -391,55 +387,55 @@ msgstr ""
 #: timetable/templates/timetable_base.html:31
 msgctxt "timetable header"
 msgid "No."
-msgstr "Nr"
+msgstr "№"
 
 #: timetable/templates/add_substitutions.html:30
 #: timetable/templates/substitutions.html:21
 msgid "Substitute"
-msgstr "Zastępca"
+msgstr "Замінник"
 
 #: timetable/templates/add_substitutions.html:54
 #, python-format
 msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
-msgstr "%(name)s nie ma planowych lekcji tego dnia (%(weekday)s)."
+msgstr "%(name)s не має запланованих уроків на цей день (%(weekday)s)."
 
 #: timetable/templates/class_timetable.html:5
 #: timetable/templates/class_timetable.html:9
 #: timetable/templates/group_timetable.html:27
 msgid "Class"
-msgstr "Klasa"
+msgstr "Клас"
 
 #: timetable/templates/class_timetable.html:25
 msgid "Select groups to show"
-msgstr "Wybierz grupy do wyświetlania"
+msgstr "Виберіть групи для відображення"
 
 #: timetable/templates/class_timetable.html
 msgid "Personalization"
-msgstr "Personalizacja"
+msgstr "Персоналізація"
 
 #: timetable/templates/class_timetable.html
 msgid "Colors of subjects"
-msgstr "Kolory przedmiotów"
+msgstr "Кольори предметів"
 
 #: timetable/templates/class_timetable.html
 msgid "Color:"
-msgstr "Kolor:"
+msgstr "Колір:"
 
 #: timetable/templates/class_timetable.html
 msgid "On/off colors"
-msgstr "Włącz/wyłącz kolory"
+msgstr "Увімкнути/вимкнути кольори"
 
 #: timetable/templates/class_timetable.html:35
 msgid "Click to change color"
-msgstr "Kliknij, aby zmienić kolor"
+msgstr "Натисніть, щоб змінити колір"
 
 #: timetable/templates/csv_import_success.html:6
 msgid "CSV file imported"
-msgstr "Plik CSV zaimportowany"
+msgstr "CSV-файл імпортовано"
 
 #: timetable/templates/csv_import_success.html:11
 msgid "Substitutions imported successfully"
-msgstr "Zastępstwa zaimportowane pomyślnie"
+msgstr "Заміни успішно імпортовано"
 
 #: timetable/templates/csv_import_success.html:13
 #, python-format
@@ -447,16 +443,16 @@ msgid ""
 "<li>Rows added: %(rows_added)s</li> <li>Rows updated: %(rows_updated)s</li> "
 "<li>Rows failed: %(rows_failed)s</li>"
 msgstr ""
-"<li>Dodano: %(rows_added)s</li> <li>Zaktualizowano: %(rows_updated)s</li> "
-"<li>Błędów: %(rows_failed)s</li>"
+"<li>Додано: %(rows_added)s</li> <li>Оновлено: %(rows_updated)s</li> "
+"<li>Помилок: %(rows_failed)s</li>"
 
 #: timetable/templates/csv_import_success.html:20
 msgid "Added/updated"
-msgstr "Dodane/zaktualizowane"
+msgstr "Додано/оновлено"
 
 #: timetable/templates/csv_import_success.html:27
 msgid "Errors"
-msgstr "Błędy"
+msgstr "Помилки"
 
 #: timetable/templates/date_select.html:5
 #: timetable/templates/import_substitutions.html:6
@@ -466,91 +462,91 @@ msgstr "Błędy"
 #: timetable/templates/substitutions.html:4
 #: timetable/templates/teacher_and_date_select.html:5
 msgid "Substitutions"
-msgstr "Zastępstwa"
+msgstr "Заміни"
 
 #: timetable/templates/date_select.html:10
 msgid "Select date"
-msgstr "Wybierz datę"
+msgstr "Виберіть дату"
 
 #: timetable/templates/date_select.html:21
 #: timetable/templates/teacher_and_date_select.html:21
 msgid "Go to the next step"
-msgstr "Przejdź do następnego kroku"
+msgstr "Перейти до наступного кроку"
 
 #: timetable/templates/dayplans.html:11
 #, python-format
 msgctxt "dayplans"
 msgid "%(schedule)s takes effect."
-msgstr "obowiązują %(schedule)s."
+msgstr "Починає діяти %(schedule)s."
 
 #: timetable/templates/dayplans.html:15
 msgctxt "dayplans"
 msgid "lessons are cancelled."
-msgstr "lekcje są odwołane."
+msgstr "уроки скасовано."
 
 #: timetable/templates/display.html:80
 msgid "Last connection:"
-msgstr "Ostatnie połączenie:"
+msgstr "Останнє підключення:"
 
 #: timetable/templates/edit_calendar.html:5
 #: timetable/templates/edit_calendar.html:10
 #: timetable/templates/management.html:37
 msgid "Calendar"
-msgstr "Kalendarz"
+msgstr "Календар"
 
 #: timetable/templates/edit_calendar.html:12
 msgid "Add or change schedules for future dates."
-msgstr "Zmień rozkład dzwonków w przyszłe daty."
+msgstr "Додавайте або змінюйте розклади дзвінків для майбутніх дат."
 
 #: timetable/templates/edit_calendar.html:22
 msgid "Schedule"
-msgstr "Typ dzwonków"
+msgstr "Тип дзвінків"
 
 #: timetable/templates/group_timetable.html:9
 #: timetable/templates/group_timetable.html:20
 msgid "Groups"
-msgstr "Grupy"
+msgstr "Групи"
 
 #: timetable/templates/group_timetable.html:29
 msgid "Classes"
-msgstr "Klasy"
+msgstr "Класи"
 
 #: timetable/templates/import_substitutions.html:6
 msgid "Import from CSV"
-msgstr "Importuj z CSV"
+msgstr "Імпорт із CSV"
 
 #: timetable/templates/import_substitutions.html:11
 msgid "Import substitutions from a CSV file"
-msgstr "Importuj zastępstwa z pliku CSV"
+msgstr "Імпортувати заміни з CSV-файлу"
 
 #: timetable/templates/import_substitutions.html:17
 msgid "Import"
-msgstr "Importuj"
+msgstr "Імпортувати"
 
 #: timetable/templates/management.html:13
 #, python-format
 msgid "Logged in as %(user)s."
-msgstr "Zalogowano jako %(user)s."
+msgstr "Ви увійшли як %(user)s."
 
 #: timetable/templates/management.html:14
 msgid "Log out"
-msgstr "Wyloguj się"
+msgstr "Вийти"
 
 #: timetable/templates/management.html:15
 msgid "Change password"
-msgstr "Zmień hasło"
+msgstr "Змінити пароль"
 
 #: timetable/templates/management.html:22
 msgid "Print substitutions"
-msgstr "Drukuj zastępstwa"
+msgstr "Друкувати заміни"
 
 #: timetable/templates/management.html:26
 msgid "Import substitutions from CSV"
-msgstr "Importuj zastępstwa z CSV"
+msgstr "Імпортувати заміни з CSV"
 
 #: timetable/templates/management.html:32
 msgid "Administration"
-msgstr "Administracja"
+msgstr "Адміністрування"
 
 #: timetable/templates/management.html:56
 #, python-format
@@ -558,219 +554,215 @@ msgid ""
 "Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
 "changes on other pages."
 msgstr ""
-"Z powodów wydajnościowych może być potrzebne do %(cache_time)s minut, aby "
-"zobaczyć zmiany na innych podstronach."
+"З міркувань продуктивності може знадобитися до %(cache_time)s хвилин, щоб "
+"побачити зміни на інших сторінках."
 
 #: timetable/templates/personalization.html:5
 #: timetable/templates/personalization.html:9
 msgid "Timetable personalization"
-msgstr "Personalizacja planu"
+msgstr "Персоналізація розкладу"
 
 #: timetable/templates/personalization.html:24
 msgid "Go to timetable"
-msgstr "Przejdź do planu"
+msgstr "Перейти до розкладу"
 
 #: timetable/templates/print_substitutions1.html:10
 #: timetable/templates/print_substitutions2.html:19
 #: timetable/templates/show_substitutions_to_print.html:5
 msgid "Printing substitutions"
-msgstr "Drukuj zastępstwa"
+msgstr "Друк замін"
 
 #: timetable/templates/print_substitutions1.html:21
 #: timetable/templates/timetable_select.html:31
 msgid "Go"
-msgstr "Idź"
+msgstr "Перейти"
 
 #: timetable/templates/print_substitutions2.html:22
 #, python-format
 msgid "You're printing substitutions for %(date)s."
-msgstr "Drukujesz zastępstwa dla daty %(date)s."
+msgstr "Ви друкуєте заміни за %(date)s."
 
 #: timetable/templates/print_substitutions2.html:30
 msgid "Select all"
-msgstr "Wybierz wszystkich"
+msgstr "Вибрати все"
 
 #: timetable/templates/print_substitutions2.html:44
 msgid "Print"
-msgstr "Drukuj"
+msgstr "Друкувати"
 
 #: timetable/templates/reservations.html:13
 #: timetable/templates/substitutions.html:20
 #: timetable/templates/timetable_base.html:32
 msgctxt "timetable header"
 msgid "Period"
-msgstr "Godz."
+msgstr "Урок"
 
 #: timetable/templates/room_timetable.html:9
 msgid "Classroom"
-msgstr "Sala"
+msgstr "Кабінет"
 
 #: timetable/templates/rooms.html:5 timetable/templates/rooms.html:9
 #: timetable/templates/rooms_date_period_select.html:6
 msgid "Rooms"
-msgstr "Sale"
+msgstr "Кабінети"
 
 #: timetable/templates/rooms.html:11
 #, python-format
 msgid "Showing lessons by room on %(date)s, period number %(period)s."
-msgstr "Lekcje w salach %(date)s, lekcja numer %(period)s."
+msgstr "Показ уроків по кабінетах на %(date)s, номер уроку %(period)s."
 
 #: timetable/templates/rooms.html:20
 msgctxt "school subject"
 msgid "Subject"
-msgstr "Przedmiot"
+msgstr "Предмет"
 
 #: timetable/templates/rooms_date_period_select.html:6
 #: timetable/templates/rooms_date_period_select.html:11
 msgid "Select date and period"
-msgstr "Wybierz datę i numer lekcji"
+msgstr "Виберіть дату і номер уроку"
 
 #: timetable/templates/rooms_date_period_select.html:12
 msgid "Select the time for which to show lessons by room."
-msgstr "Wybierz moment, dla którego pokazać lekcje w każdej sali."
+msgstr "Виберіть час, для якого показати уроки по кабінетах."
 
 #: timetable/templates/rooms_date_period_select.html:18
 msgid "Show lessons in rooms"
-msgstr "Pokaż lekcje w salach"
+msgstr "Показати уроки по кабінетах"
 
 #: timetable/templates/schedules.html:6 timetable/templates/schedules.html:11
 #: timetable/templates/timetable_footer.html:3
 msgid "Schedules"
-msgstr "Rozkłady dzwonków"
+msgstr "Розклади дзвінків"
 
 #: timetable/templates/show_substitutions_to_print.html:16
 msgid "There are no substitutions that meet the given criteria."
-msgstr "Nie ma zastępstw spełniających wybrane kryteria."
+msgstr "Немає замін, що відповідають заданим критеріям."
 
 #: timetable/templates/teacher_and_date_select.html:10
 msgid "Adding substitutions — step 1"
-msgstr "Dodawanie zastępstw — krok 1"
+msgstr "Додавання замін — крок 1"
 
 #: timetable/templates/timer.html:3
 msgid "<time></time> until the first period today."
-msgstr "Do pierwszej lekcji pozostało <time></time>."
+msgstr "До першого уроку залишилося <time></time>."
 
 #: timetable/templates/timer.html:6
 msgid ""
 "<time></time> until the end of period no. <span class=\"period-no\"></span>."
 msgstr ""
-"Do końca <span class=\"period-no\"></span> lekcji pozostało <time></time>."
+"До кінця <span class=\"period-no\"></span> уроку залишилося <time></time>."
 
 #: timetable/templates/timer.html:9
 msgid "<time></time> until period no. <span class=\"period-no\"></span>."
-msgstr "Do <span class=\"period-no\"></span>. lekcji pozostało <time></time>."
+msgstr "До <span class=\"period-no\"></span> уроку залишилося <time></time>."
 
 #: timetable/templates/timer.html:12
 msgid "Lessons have already finished today."
-msgstr "Lekcje się już skończyły."
+msgstr "Уроки на сьогодні вже завершилися."
 
 #: timetable/templates/timetable_base.html:17
 msgid "Set as default timetable"
-msgstr "Ustaw jako domyślny plan lekcji"
+msgstr "Зробити розкладом за замовчуванням"
 
 #: timetable/templates/timetable_footer.html:4
 msgid "Show lessons at a given time"
-msgstr "Pokaż lekcje o danej porze"
+msgstr "Показати уроки в заданий час"
 
 #: timetable/templates/timetable_select.html:3
 msgid "Choose timetable to display"
-msgstr "Wybierz plan lekcji"
+msgstr "Виберіть розклад для відображення"
 
 #: timetable/templates/timetable_select.html:7
 msgid "Choose a class"
-msgstr "Wybierz klasę"
+msgstr "Виберіть клас"
 
 #: timetable/templates/timetable_select.html:15
 msgid "Choose a teacher"
-msgstr "Wybierz nauczyciela"
+msgstr "Виберіть вчителя"
 
 #: timetable/templates/timetable_select.html:23
 msgid "Choose a classroom"
-msgstr "Wybierz salę"
+msgstr "Виберіть кабінет"
 
 #: timetable/tests.py:12 zorza/settings.py:141
 msgid "Monday"
-msgstr "Poniedziałek"
+msgstr "Понеділок"
 
 #: timetable/tests.py:13 zorza/settings.py:142
 msgid "Tuesday"
-msgstr "Wtorek"
+msgstr "Вівторок"
 
 #: timetable/tests.py:14 zorza/settings.py:143
 msgid "Wednesday"
-msgstr "Środa"
+msgstr "Середа"
 
 #: timetable/tests.py:15 zorza/settings.py:144
 msgid "Thursday"
-msgstr "Czwartek"
+msgstr "Четвер"
 
 #: timetable/tests.py:16 zorza/settings.py:145
 msgid "Friday"
-msgstr "Piątek"
+msgstr "П'ятниця"
 
 #: timetable/tests.py:17
 msgid "Saturday"
-msgstr "Sobota"
+msgstr "Субота"
 
 #: timetable/tests.py:18
 msgid "Sunday"
-msgstr "Niedziela"
+msgstr "Неділя"
 
 #: timetable/views.py:94
 msgid "Select at least one group"
-msgstr "Wybierz co najmniej jedną grupę"
+msgstr "Виберіть принаймні одну групу"
 
 #: timetable/views.py:383
 msgid "Select at least one teacher"
-msgstr "Wybierz co najmniej jednego nauczyciela"
+msgstr "Виберіть принаймні одного вчителя"
 
 #~ msgid "RESERVED"
-#~ msgstr "ZAREZERWOWANE"
+#~ msgstr "ЗАРЕЗЕРВОВАНО"
 
 #~ msgid "Prining substitutions"
-#~ msgstr "Drukuj zastępstwa"
+#~ msgstr "Друк замін"
 
 #~ msgid "Choice"
-#~ msgstr "Wybór"
+#~ msgstr "Вибір"
 
 #~ msgid "There is already a dayplan for {}"
-#~ msgstr "Istnieje już rozkład dzwonków dla {}"
+#~ msgstr "Для {} уже існує розклад дзвінків"
 
 #~ msgctxt "dayplans"
 #~ msgid "On "
-#~ msgstr " "
+#~ msgstr "У "
 
 #~ msgid "Today the %(schedule)s is in function."
-#~ msgstr "Dzisiaj obowiązują %(schedule)s."
+#~ msgstr "Сьогодні діє %(schedule)s."
 
 #~ msgid "On %(date)s the %(schedule)s will be in function."
-#~ msgstr "%(date)s będą obowiązywać %(schedule)s."
+#~ msgstr " %(schedule)s діятиме %(date)s."
 
 #~ msgid "On %(date)s there will be no classes."
-#~ msgstr "Lekcje %(date)s są odwołane."
+#~ msgstr " %(date)s занять не буде."
 
-#, fuzzy
-#~| msgid "Contact"
 #~ msgid "Contact us"
-#~ msgstr "Kontakt"
+#~ msgstr "Зв'яжіться з нами"
 
 #~ msgid "Show the lesson in each room"
-#~ msgstr "Pokaż lekcję dla każdej sali"
+#~ msgstr "Показати урок у кожному кабінеті"
 
 #~ msgid "Created on"
-#~ msgstr "Utworzono"
+#~ msgstr "Створено"
 
 #~ msgid "modified on"
-#~ msgstr "zmodyfikowano"
+#~ msgstr "змінено"
 
 #~ msgid "<time></time> until the next lesson."
-#~ msgstr "Do następnej lekcji pozostało <time></time>."
+#~ msgstr "До наступного уроку залишилося <time></time>."
 
-#, fuzzy
-#~| msgid "Subcategories:"
 #~ msgid "category"
-#~ msgstr "Podkategorie:"
+#~ msgstr "категорія"
 
 #~ msgctxt "datetime"
 #~ msgid "It is"
-#~ msgstr "Jest"
+#~ msgstr "Зараз"
