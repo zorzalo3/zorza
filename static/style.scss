@@ -279,6 +279,7 @@ select {
 	border: none;
 	color: $link-color;
 	padding: 0 !important;
+	margin-left: auto;
 	&:hover {
 		text-decoration: underline;
 		cursor: pointer;
@@ -549,13 +550,15 @@ pre {
 	overflow-x: auto;
 }
 
-// ----- Personalization button -----
+// ----- Timetable action row (personalization + set-default button) -----
 
-.subject-colors-container {
+.timetable-actions-row {
 	display: flex;
-	justify-content: flex-end;
+	align-items: center;
 	margin-bottom: 3px;
 }
+
+// ----- Personalization button -----
 
 .subject-colors-label {
 	display: inline-flex;
@@ -594,6 +597,8 @@ pre {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+	flex: 1;
+	min-height: 0;
 }
 
 .persona-section {
@@ -654,8 +659,8 @@ pre {
 .persona-section-content {
 	border-top: 1px solid rgba(255, 255, 255, 0.08);
 	overflow: hidden;
-	transition: max-height 0.25s ease, opacity 0.2s ease;
-	max-height: 400px;
+	transition: max-height 0.3s ease, opacity 0.2s ease;
+	max-height: 700px;
 	opacity: 1;
 
 	.color-subjects-list {
@@ -694,6 +699,11 @@ pre {
 @media (max-width: 600px) {
 	.personalization-modal {
 		width: 100%;
+	}
+	.persona-section-content {
+		.color-subjects-list {
+			max-height: 140px;
+		}
 	}
 }
 

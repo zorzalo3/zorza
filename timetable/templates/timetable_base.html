@@ -15,8 +15,8 @@
 </p>
 
 <h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
-{% block above_default_btn %}{% endblock %}
-<div class="text-right">
+<div class="timetable-actions-row">
+	{% block above_default_btn %}{% endblock %}
 	<button id="set-def-button" onclick="setDefaultTimetable()" style="visibility: hidden;">
 		{% trans "Set as default timetable" %}
 	</button>

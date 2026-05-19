@@ -61,9 +61,7 @@ function generateSubjectColor(subjectShort, seed = 2) {
 {% endblock %}
 
 {% block above_default_btn %}
-<div class="subject-colors-container">
-	<button id="personalization-btn" class="subject-colors-label">{% trans "Personalization" %}</button>
-</div>
+<button id="personalization-btn" class="subject-colors-label">{% trans "Personalization" %}</button>
 
 <div id="personalization-modal" class="color-modal-overlay" style="display:none;" aria-modal="true" role="dialog">
 	<div class="color-modal personalization-modal">
