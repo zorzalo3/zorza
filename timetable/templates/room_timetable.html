@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
 <script>
 function generateSubjectColor(subjectShort, seed = 2) {
     const custom = localStorage.getItem('subjectColor_' + subjectShort);
@@ -47,6 +48,10 @@ function generateSubjectColor(subjectShort, seed = 2) {
 
 {% block caption %}
 {% trans "Classroom" %} {{ room.name }}
+{% endblock %}
+
+{% block above_default_btn %}
+{% include "personalization_modal.html" %}
 {% endblock %}
 
 {% block lesson %}

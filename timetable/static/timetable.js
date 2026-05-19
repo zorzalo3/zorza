@@ -434,8 +434,31 @@ function colorToHex(color) {
 }
 
 function renderSchedule() {
-    if (!groupsFilterData.allLessons) return;
-    applyGroupFilter();
+    if (groupsFilterData.allLessons) {
+        applyGroupFilter();
+        return;
+    }
+    // teacher / room timetable: update a dynamic <style> block in place
+    let dynamicStyle = document.getElementById('dynamic-subject-colors');
+    if (!dynamicStyle) {
+        dynamicStyle = document.createElement('style');
+        dynamicStyle.id = 'dynamic-subject-colors';
+        document.head.appendChild(dynamicStyle);
+    }
+    if (!colorsEnabled) {
+        dynamicStyle.textContent = '';
+        return;
+    }
+    const seen = Object.create(null);
+    let rules = '';
+    document.querySelectorAll('.subject[data-subject]').forEach(function (el) {
+        const short = el.getAttribute('data-subject');
+        if (short && !seen[short]) {
+            seen[short] = true;
+            rules += '.subject[data-subject="' + short.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]{color:' + subjectColorRaw(short) + '}';
+        }
+    });
+    dynamicStyle.textContent = rules;
 }
 
 function initPersonalizationAccordion() {
@@ -536,10 +559,18 @@ function initColorModal() {
 
     function populateSubjects() {
         const seen = {};
-        groupsFilterData.allLessons.forEach(lesson => {
-            const short = lesson.subject.short_name;
-            if (short && !seen[short]) seen[short] = lesson.subject.name || short;
-        });
+        if (groupsFilterData.allLessons) {
+            groupsFilterData.allLessons.forEach(lesson => {
+                const short = lesson.subject.short_name;
+                if (short && !seen[short]) seen[short] = lesson.subject.name || short;
+            });
+        } else {
+            document.querySelectorAll('.subject[data-subject]').forEach(function (el) {
+                const short = el.getAttribute('data-subject');
+                const name = el.getAttribute('title') || short;
+                if (short && !seen[short]) seen[short] = name;
+            });
+        }
 
         subjectsList.innerHTML = '';
         selectedSwatch = null;
