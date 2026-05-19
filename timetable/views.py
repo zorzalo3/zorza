@@ -80,14 +80,44 @@ def show_class_timetable(request, class_id):
     return render(request, 'class_timetable.html', context)
 
 def show_groups_timetable(request, group_ids):
+    orig_ids = group_ids
     try:
-        group_ids = [int(n) for n in group_ids.split(',')]
-    except:
+        requested_ids = list(map(int, group_ids.split(',')))
+    except ValueError:
         raise Http404
-    groups = Group.objects.filter(pk__in=group_ids)
-    if len(groups) != len(group_ids):
+
+    groups = Group.objects.filter(pk__in=requested_ids)
+
+    found_ids = [str(group.pk) for group in groups]
+
+    if not found_ids:
         raise Http404
-    lessons = Lesson.objects.filter(group__in=group_ids)
+
+    if len(found_ids) != len(requested_ids):
+        valid_ids_str = ','.join(found_ids)
+        new_url = request.path.replace(orig_ids, valid_ids_str)
+        return HttpResponseRedirect(new_url) # If some of the requested groups were not found, redirect to the same URL with only the valid group IDs.
+
+    if len(requested_ids) > 1:
+        # Experimental redirect to class timetable if all groups belong to the same class
+        group_class_db = list(groups.values('id', 'name', 'classes'))
+        group_classes = {}
+        for group in group_class_db:
+            if not group_classes.get(group['classes']):
+                group_classes[group['classes']] = []
+            group_classes[group['classes']].append(group['id'])
+
+        redirect_url = None
+        found_max = 0
+        for key, value in group_classes.items():
+            if len(value) == len(requested_ids):
+                found_max += 1
+                redirect_url = f"/timetable/class/{key}/?groups={orig_ids}"
+
+        if found_max == 1 and redirect_url:
+            return HttpResponseRedirect(redirect_url)
+
+    lessons = Lesson.objects.filter(group__in=requested_ids)
     context = get_timetable_context(lessons)
     context['groups'] = groups
     return render(request, 'group_timetable.html', context)

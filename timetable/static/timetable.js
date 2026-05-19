@@ -370,8 +370,7 @@ function setColorsEnabled(val) {
     localStorage.setItem('subjectColorsEnabled', String(val));
 }
 
-function subjectColor(subjectShort, seed = 2) {
-    if (!colorsEnabled) return 'inherit';
+function subjectColorRaw(subjectShort, seed = 2) {
     const custom = localStorage.getItem('subjectColor_' + subjectShort);
     if (custom) return custom;
 
@@ -396,6 +395,11 @@ function subjectColor(subjectShort, seed = 2) {
     const lightness = lightnessOptions[Math.abs(h >> 8) % lightnessOptions.length];
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+function subjectColor(subjectShort, seed = 2) {
+    if (!colorsEnabled) return 'inherit';
+    return subjectColorRaw(subjectShort, seed);
 }
 
 // Converts hsl(...) string or hex string to a #rrggbb hex value for <input type="color">.
@@ -459,13 +463,13 @@ function initPersonalizationAccordion() {
                 let otherContent = document.getElementById(other.contentId);
                 let otherArrow = document.getElementById(other.arrowId);
                 if (otherContent) otherContent.classList.add('persona-section-content--closed');
-                if (otherArrow) otherArrow.innerHTML = '&#9660;';
+                if (otherArrow) otherArrow.innerHTML = '&#9660;'; // ▼
             });
 
             // Open clicked section if it was closed
             if (isNowOpen) {
                 content.classList.remove('persona-section-content--closed');
-                if (arrow) arrow.innerHTML = '&#9650;';
+                if (arrow) arrow.innerHTML = '&#9650;'; // ▲
             }
         });
     });
@@ -521,7 +525,7 @@ function initColorModal() {
         initIroPicker();
         if (iroPicker) {
             isSilent = true;
-            iroPicker.color.hexString = colorToHex(subjectColor(short));
+            iroPicker.color.hexString = colorToHex(subjectColorRaw(short));
             isSilent = false;
         }
     }
@@ -554,9 +558,7 @@ function initColorModal() {
 
                 const swatch = document.createElement('button');
                 swatch.className = 'color-swatch-btn';
-                swatch.style.background = colorToHex(
-                    localStorage.getItem('subjectColor_' + short) || subjectColor(short)
-                );
+                swatch.style.background = colorToHex(subjectColorRaw(short));
                 swatch.title = (typeof TIMETABLE_I18N !== 'undefined') ? TIMETABLE_I18N.clickToChangeColor : 'Kliknij, aby zmienić kolor';
                 swatch.type = 'button';
                 swatch.addEventListener('click', () => selectSwatch(swatch, short, name));

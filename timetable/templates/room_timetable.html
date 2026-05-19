@@ -4,29 +4,37 @@
 {% block extra_css %}
 <script>
 function generateSubjectColor(subjectShort, seed = 2) {
-    var custom = localStorage.getItem('subjectColor_' + subjectShort);
+    const custom = localStorage.getItem('subjectColor_' + subjectShort);
     if (custom) return custom;
-    var h = seed;
-    var s = subjectShort || '';
-    for (var i = 0; i < s.length; i++) {
+    
+    let h = seed;
+    const s = subjectShort || '';
+    
+    for (let i = 0; i < s.length; i++) {
         h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
     }
-    var hue = Math.floor(70 + (Math.abs(h) * 0.618033988749895 % 1) * 250);
-    var saturation = [50, 65, 80][Math.abs(h >> 4) % 3];
-    var lightness = [45, 55, 65][Math.abs(h >> 8) % 3];
-    return 'hsl(' + hue + ',' + saturation + '%,' + lightness + '%)';
+    
+    const hue = Math.floor(70 + (Math.abs(h) * 0.618033988749895 % 1) * 250);
+    const saturation = [50, 65, 80][Math.abs(h >> 4) % 3];
+    const lightness = [45, 55, 65][Math.abs(h >> 8) % 3];
+    
+    return `hsl(${hue},${saturation}%,${lightness}%)`;
 }
+
 (function () {
     if (localStorage.getItem('subjectColorsEnabled') !== 'true') return;
-    var seen = Object.create(null);
-    var rules = '';
+    
+    const seen = Object.create(null);
+    let rules = '';
+    
     {% for period, row in table.items %}{% for _, hour in row.1.items %}{% for lesson in hour %}{% with short_name=lesson.subject.short_name %}
     if (!seen['{{ short_name|escapejs }}']) {
         seen['{{ short_name|escapejs }}'] = true;
         rules += '.subject[data-subject="{{ short_name|escapejs }}"]{color:' + generateSubjectColor('{{ short_name|escapejs }}') + '}';
     }
     {% endwith %}{% endfor %}{% endfor %}{% endfor %}
-    var el = document.createElement('style');
+    
+    const el = document.createElement('style');
     el.textContent = rules;
     document.head.appendChild(el);
 }());

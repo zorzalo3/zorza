@@ -160,7 +160,12 @@ msgstr "Dodaj dokument"
 
 #: templates/404.html:12
 msgid "Page not found"
-msgstr ""
+msgstr "Nie znaleziono strony"
+
+#. Translators: {time} is replaced with the number of seconds remaining
+#: templates/404.html:13
+msgid "You will be redirected to homepage after {time} seconds"
+msgstr "Za {time} sekund nastąpi przekierowanie na stronę główną"
 
 #: templates/base.html:16 templates/registration/logged_out.html:13
 #: timetable/templates/display.html:54

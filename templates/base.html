@@ -64,7 +64,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 		<script>
 		const browserLang = (navigator.language || '').slice(0, 2);
-		if (browserLang === 'pl') {
+		if (browserLang === 'pl') { // If the user's browser language is Polish, hide the language switcher since it's the default language
 			const switcher = document.querySelector('.lang-switcher');
 			if (switcher) switcher.remove();
 		}
