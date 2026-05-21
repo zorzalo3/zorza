@@ -26,11 +26,32 @@ const cookieAttributes = "; path=/timetable/; expires=Fri, 31 Dec 9999 23:59:59 
 let defaultButton = document.getElementById("set-def-button");
 let currentPath = window.location.pathname + window.location.search;
 
-if (defaultButton) {
-    if (!document.cookie.split(';').filter(item => item.indexOf(defaultCookieKey + "=" + currentPath) >= 0).length) {
-        defaultButton.style.visibility = "visible";
+function setCurrentPath() {
+    currentPath = window.location.pathname + window.location.search;
+}
+
+function initDefaultButton() {
+    setCurrentPath();
+    if (defaultButton) {
+        // Search exact match
+        const isExactlyDefault = document.cookie.split(';').some(item => {
+            const trimmed = item.trim();
+            const eqIndex = trimmed.indexOf('=');
+            if (eqIndex === -1) return false;
+            const key = trimmed.substring(0, eqIndex);
+            const value = trimmed.substring(eqIndex + 1);
+            return key === defaultCookieKey && value === currentPath;
+        });
+
+        if (!isExactlyDefault) {
+            defaultButton.style.visibility = "visible";
+        } else {
+            defaultButton.style.visibility = "hidden";
+        }
     }
 }
+
+initDefaultButton();
 
 function setDefaultTimetable() {
     document.cookie = defaultCookieKey + "=" + currentPath + cookieAttributes;
@@ -359,6 +380,7 @@ function syncGroupFilterUrl() {
     }
     // Keep commas readable in the address bar
     window.history.replaceState({}, '', url.toString().replace(/%2C/g, ','));
+    initDefaultButton();
 }
 
 initGroupFilter();
@@ -615,6 +637,9 @@ function initColorModal() {
     btn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
     toggleInput.addEventListener('change', () => {
         setColorsEnabled(toggleInput.checked);
         renderSchedule();
