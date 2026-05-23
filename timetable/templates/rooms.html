@@ -13,6 +13,34 @@ Showing lessons by room on {{ date }}, period number {{ period }}.
 {% endblocktrans %}
 </p>
 
+<div class="day-switcher-wrap">
+	<div class="day-switcher" id="day-switcher">
+		{% for day in date_range %}
+		{% if day.is_weekend %}
+		<span class="day-chip day-chip--weekend{% if day.is_current %} day-chip--active{% endif %}">
+			<span class="day-chip-name">{{ day.date|date:"D" }}</span>
+			<span class="day-chip-date">{{ day.date|date:"j" }}</span>
+			<span class="day-chip-month">{{ day.date|date:"M" }}</span>
+		</span>
+		{% else %}
+		<a href="{% url 'rooms' day.date|date:'Y-m-d' period %}" class="day-chip{% if day.is_current %} day-chip--active{% endif %}">
+			<span class="day-chip-name">{{ day.date|date:"D" }}</span>
+			<span class="day-chip-date">{{ day.date|date:"j" }}</span>
+			<span class="day-chip-month">{{ day.date|date:"M" }}</span>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+<div class="period-switcher">
+	{% for p in period_range %}
+	<a href="{% url 'rooms' date|date:'Y-m-d' p %}" class="period-chip{% if p == period %} period-chip--active{% endif %}">
+		{{ p }}
+	</a>
+	{% endfor %}
+</div>
+
 <table class="block-center text-center">
 	<thead>
 		<th>{% trans "Room" %}</th>
@@ -72,4 +100,10 @@ Showing lessons by room on {{ date }}, period number {{ period }}.
 	</tbody>
 </table>
 
+<script>
+(function() {
+	var active = document.querySelector('.day-chip--active');
+	if (active) active.scrollIntoView({inline: 'center', block: 'nearest'});
+})();
+</script>
 {% endblock %}

@@ -5,59 +5,85 @@
 {% trans "Management" %} - Zorza
 {% endblock %}
 
-
 {% block content %}
-<div class="form-small">
-	<h2>{% trans "Management" %}</h2>
-	<p>
+<div class="manage-page">
+	<h2 class="manage-heading">{% trans "Management" %}</h2>
+	<p class="manage-user">
 		{% blocktrans trimmed %}Logged in as {{ user }}.{% endblocktrans %}
-		<a href="{% url "logout" %}">{% trans "Log out" %}</a><br>
-		<a href="{% url "password_change" %}">{% trans "Change password" %}</a>
 	</p>
-	{% if perms.timetable.add_substitution %}
-	<p>
-		<a href="{% url "add_substitutions1" %}">{% trans "Substitutions" %}</a>
-	</p>
-	<p>
-		<a href="{% url "print_substitutions1" %}">{% trans "Print substitutions" %}</a>
-	</p>
-	{% if csv_enabled %}
-	<p>
-		<a href="{% url "import_substitutions" %}">{% trans "Import substitutions from CSV" %}</a>
-	</p>
-	{% endif %}
-	{% endif %}
-	{% if user.is_staff %}
-	<p>
-		<a href="{% url "admin:index" %}">{% trans "Administration" %}</a>
-	</p>
-	{% endif %}
-	{% if perms.timetable.add_dayplan %}
-	<p>
-		<a href="{% url "edit_calendar" %}">{% trans "Calendar" %}</a>
-	</p>
-	{% endif %}
-	<p>
-		<a href="{% url "my_documents" %}">{% trans "My documents" %}</a>
-	</p>
-	{% if perms.timetable.add_reservation %}
-	<p>
-		<a href="{% url "add_reservation" %}">{% trans "Reservations" %}</a>
-	</p>
-	{% endif %}
-    {% if perms.timetable.add_absence %}
-	<p>
-		<a href="{% url "add_absence" %}">{% trans "Absences" %}</a>
-	</p>
-    {% endif %}
+
+	<div class="manage-grid">
+
+		<a href="{% url "logout" %}" class="manage-card">
+			<span class="manage-card-icon">↩</span>
+			<span class="manage-card-title">{% trans "Log out" %}</span>
+		</a>
+
+		<a href="{% url "password_change" %}" class="manage-card">
+			<span class="manage-card-icon">🔑</span>
+			<span class="manage-card-title">{% trans "Change password" %}</span>
+		</a>
+
+		{% if user.is_staff %}
+		<a href="{% url "admin:index" %}" class="manage-card manage-card--accent">
+			<span class="manage-card-icon">⚙</span>
+			<span class="manage-card-title">{% trans "Administration" %}</span>
+		</a>
+		{% endif %}
+
+		{% if perms.timetable.add_substitution %}
+		<a href="{% url "add_substitutions1" %}" class="manage-card">
+			<span class="manage-card-icon">✏</span>
+			<span class="manage-card-title">{% trans "Substitutions" %}</span>
+		</a>
+
+		<a href="{% url "print_substitutions1" %}" class="manage-card">
+			<span class="manage-card-icon">🖨</span>
+			<span class="manage-card-title">{% trans "Print substitutions" %}</span>
+		</a>
+
+		{% if csv_enabled %}
+		<a href="{% url "import_substitutions" %}" class="manage-card">
+			<span class="manage-card-icon">📥</span>
+			<span class="manage-card-title">{% trans "Import substitutions from CSV" %}</span>
+		</a>
+		{% endif %}
+		{% endif %}
+
+		{% if perms.timetable.add_dayplan %}
+		<a href="{% url "edit_calendar" %}" class="manage-card">
+			<span class="manage-card-icon">📅</span>
+			<span class="manage-card-title">{% trans "Calendar" %}</span>
+		</a>
+		{% endif %}
+
+		<a href="{% url "my_documents" %}" class="manage-card">
+			<span class="manage-card-icon">📄</span>
+			<span class="manage-card-title">{% trans "My documents" %}</span>
+		</a>
+
+		{% if perms.timetable.add_reservation %}
+		<a href="{% url "add_reservation" %}" class="manage-card">
+			<span class="manage-card-icon">🔒</span>
+			<span class="manage-card-title">{% trans "Reservations" %}</span>
+		</a>
+		{% endif %}
+
+		{% if perms.timetable.add_absence %}
+		<a href="{% url "add_absence" %}" class="manage-card">
+			<span class="manage-card-icon">📋</span>
+			<span class="manage-card-title">{% trans "Absences" %}</span>
+		</a>
+		{% endif %}
+
+	</div>
 
 	{% if cache_time != 0 %}
-	<p>
+	<p class="manage-cache-note">
 		{% blocktrans trimmed %}
 		Due to efficiency reasons up to {{ cache_time }} minutes may be needed to see changes on other pages.
 		{% endblocktrans %}
 	</p>
 	{% endif %}
-
 </div>
 {% endblock %}

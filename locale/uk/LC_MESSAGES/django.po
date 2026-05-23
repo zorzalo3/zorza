@@ -27,7 +27,7 @@ msgstr "Зміст"
 #: contact/templates/contact/message_form.html:5
 #: contact/templates/contact/message_form.html:10 templates/base.html:39
 msgid "Contact"
-msgstr "Контакти"
+msgstr "Зв'язатися з нами"
 
 #: contact/templates/contact/message_form.html:15
 msgid "Send"
@@ -637,7 +637,7 @@ msgstr "Показати уроки по кабінетах"
 #: timetable/templates/schedules.html:6 timetable/templates/schedules.html:11
 #: timetable/templates/timetable_footer.html:3
 msgid "Schedules"
-msgstr "Розклади дзвінків"
+msgstr "Розклад дзвінків"
 
 #: timetable/templates/show_substitutions_to_print.html:16
 msgid "There are no substitutions that meet the given criteria."

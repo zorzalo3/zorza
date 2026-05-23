@@ -68,7 +68,8 @@
 			const switcher = document.querySelector('.lang-switcher');
 			if (switcher) switcher.remove();
 		}
-		twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
+		const langSwitcher = document.querySelector('.lang-switcher');
+		if (langSwitcher) twemoji.parse(langSwitcher, {folder: 'svg', ext: '.svg'});
 		function setLang(lang) {
 			document.cookie = 'django_language=' + lang + '; path=/; max-age=31536000; SameSite=Lax';
 			location.reload();

@@ -21,7 +21,8 @@ from django.conf import settings
 
 from .models import *
 from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
-    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js)
+    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js,
+    get_min_period, get_max_period)
 from .forms import *
 
 
@@ -230,6 +231,7 @@ def edit_calendar(request):
     return render(request, 'edit_calendar.html', context)
 
 def show_rooms(request, date, period):
+    from datetime import timedelta as _timedelta
     date = parse_date(date)
     weekday = date.weekday()
     period = int(period)
@@ -243,11 +245,26 @@ def show_rooms(request, date, period):
     substitutions = Substitution.objects.filter(date=date, lesson__period=period)
     for sub in substitutions:
         rooms[sub.lesson.room].substitute = sub.substitute
-    
+
+    date_range = []
+    for delta in range(-7, 8):
+        d = date + _timedelta(days=delta)
+        date_range.append({
+            'date': d,
+            'is_weekend': d.weekday() >= 5,
+            'is_current': d == date,
+        })
+
+    min_p = get_min_period()
+    max_p = get_max_period()
+    period_range = list(range(min_p, max_p + 1)) if min_p is not None and max_p is not None else []
+
     context = {
         'date': date,
         'period': period,
         'rooms': rooms,
+        'date_range': date_range,
+        'period_range': period_range,
     }
     return render(request, 'rooms.html', context)
 
@@ -255,6 +272,9 @@ class RoomsDatePeriodSelectView(FormView):
     """A form with date and period to be passed to show_rooms."""
     template_name = 'rooms_date_period_select.html'
     form_class = SelectDateAndPeriodForm
+
+    def get(self, request, *args, **kwargs):
+        return redirect('rooms', get_next_schoolday(), get_min_period() or 0)
 
     def form_valid(self, form):
         date = form.cleaned_data['date']

@@ -187,11 +187,6 @@ a:hover {
   gap: 0.25rem;
   white-space: nowrap;
 }
-.lang-switcher img.emoji {
-  height: 1.1em;
-  width: 1.1em;
-  vertical-align: -0.15em;
-}
 .lang-switcher .lang-arrow {
   font-size: 0.75em;
   opacity: 0.7;
@@ -295,6 +290,13 @@ input[type=checkbox] {
   height: auto;
 }
 
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+}
+
 input[type=file] {
   padding: 0;
   color: white;
@@ -331,14 +333,18 @@ button:hover, .button:hover {
   border-top: rgba(255, 255, 255, 0.25) solid 1px;
   border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
   outline: none;
+  border-radius: 20px;
+  transition: background 0.2s, transform 0.15s;
 }
 .button-primary:hover {
   background: linear-gradient(150deg, rgb(54.3527607362, 134.1472392638, 100.6104294479), rgb(42.1975806452, 107.3024193548, 89.2177419355));
+  transform: translateY(-2px);
 }
 .button-primary:active {
   background: linear-gradient(150deg, #23594a, #2f7457);
   border-top: #23594a solid 1px;
   border-bottom: #23594a solid 1px;
+  transform: translateY(1px);
 }
 
 .form-small {
@@ -348,6 +354,14 @@ button:hover, .button:hover {
 .form-small select {
   display: block;
   width: 100%;
+}
+
+.input-field {
+  background-color: #2a313e;
+  border-color: #1d2124;
+  border-radius: 20px;
+  color: #ffffff;
+  color-scheme: dark;
 }
 
 .teacher-checkbox {
@@ -529,6 +543,83 @@ table.substitution {
 pre {
   font-family: monospace;
   overflow-x: auto;
+}
+
+.manage-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+}
+
+.manage-heading {
+  margin-bottom: 0.25rem;
+}
+
+.manage-user {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.manage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 0.75rem;
+}
+
+.manage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.4rem 1rem;
+  background: #252b2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s, transform 0.15s, border-color 0.15s;
+}
+.manage-card:hover {
+  background: #2e353b;
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: #fff;
+}
+.manage-card--accent {
+  background: linear-gradient(150deg, rgba(47, 116, 87, 0.35), rgba(35, 89, 74, 0.35));
+  border-color: rgba(47, 116, 87, 0.4);
+}
+.manage-card--accent:hover {
+  background: linear-gradient(150deg, rgba(47, 116, 87, 0.5), rgba(35, 89, 74, 0.5));
+  border-color: rgba(47, 116, 87, 0.6);
+}
+
+.manage-card-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.manage-card-icon img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0;
+  vertical-align: 0;
+}
+
+.manage-card-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.manage-cache-note {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .timetable-actions-row {
@@ -846,6 +937,107 @@ pre {
   .color-modal-overlay {
     align-items: flex-start;
   }
+}
+.day-switcher-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding: 0.25rem 0 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.day-switcher {
+  display: flex;
+  gap: 0.35rem;
+  min-width: max-content;
+  margin: 0 auto;
+  padding: 0 0.25rem;
+  justify-content: center;
+}
+
+.day-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.2rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  background: #252b2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: background 0.12s, border-color 0.12s;
+}
+.day-chip:hover:not(.day-chip--weekend):not(.day-chip--active) {
+  background: #2e353b;
+  border-color: rgba(255, 255, 255, 0.22);
+  text-decoration: none;
+  color: #fff;
+}
+.day-chip--active {
+  background: #23594a;
+  border-color: rgba(47, 116, 87, 0.7);
+  color: #fff;
+}
+.day-chip--weekend {
+  color: #e05c5c;
+  cursor: default;
+  opacity: 0.7;
+}
+.day-chip .day-chip-name {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+.day-chip .day-chip-date {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.day-chip .day-chip-month {
+  font-size: 0.68rem;
+  opacity: 0.6;
+  line-height: 1.2;
+}
+
+.period-switcher {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.period-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 2.3rem;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 50%;
+  background: #252b2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.12s, border-color 0.12s;
+}
+.period-chip:hover:not(.period-chip--active) {
+  background: #2e353b;
+  border-color: rgba(255, 255, 255, 0.22);
+  text-decoration: none;
+  color: #fff;
+}
+.period-chip--active {
+  background: #23594a;
+  border-color: rgba(47, 116, 87, 0.7);
+  color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */
