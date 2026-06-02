@@ -1,5 +1,6 @@
 import json
 import locale
+import time
 from datetime import datetime, date, timedelta
 from collections import OrderedDict
 
@@ -7,12 +8,14 @@ from django.conf import settings
 from django.db.models import Min, Max
 from django.http import Http404
 from django.core.serializers import serialize
+from django.core.cache import cache
 from django.utils import timezone
 
 from .models import *
 
 def days():
     return settings.TIMETABLE_WEEKDAYS
+
 def day_ids():
     return [x[0] for x in days()]
 
@@ -24,6 +27,13 @@ def get_min_period():
 
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
+
+def clear_cache():
+    cache.clear()
+    cache.set('last_update', time.time(), None)
+
+def get_last_update():
+    return cache.get('last_update', 0)
 
 def get_display_context():
     context = {
@@ -246,7 +256,7 @@ def get_teachers_by_substitutions_date(date):
     return teachers
 
 
-def serialize_lessons_for_js(all_groups, lessons, selected_groups):
+def serialize_lessons_for_js(all_groups, lessons, selected_groups, **kwargs):
     """Serialize lesson data for the JS group filter on the class timetable page."""
     lesson_list = []
     for lesson in lessons:
@@ -278,10 +288,19 @@ def serialize_lessons_for_js(all_groups, lessons, selected_groups):
             if first_class:
                 item['class'] = {'id': first_class.id, 'name': first_class.name}
         lesson_list.append(item)
-
-    return json.dumps({
+    
+    final_dict = {
         'type': 'class',
         'lessons': lesson_list,
         'groups': [{'id': g.id, 'name': g.name} for g in all_groups],
         'selected_group_ids': [g.id for g in selected_groups],
-    }, ensure_ascii=False)
+    }
+    
+    for key, value in kwargs.items():
+        final_dict[key] = value
+    
+    return json.dumps(final_dict, ensure_ascii=False)
+
+def serialize_data(data: dict):
+    """Serialize data for JS, converting date and time objects to strings."""
+    return json.dumps(data, ensure_ascii=False)

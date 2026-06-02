@@ -25,6 +25,7 @@ const cookieVersionKey = "timetable_version";
 const cookieAttributes = "; path=/timetable/; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 let defaultButton = document.getElementById("set-def-button");
 let currentPath = window.location.pathname + window.location.search;
+let lastUpdate = timetable_init_data?.last_update || 0; // Timetable last update (UNIX timestamp)
 
 function setCurrentPath() {
     currentPath = window.location.pathname + window.location.search;
@@ -292,7 +293,7 @@ const groupsFilterData = {
 };
 
 function initGroupFilter() {
-    if (typeof timetable_init_data === 'undefined' || timetable_init_data.type !== 'class') return;
+    if (!timetable_init_data || timetable_init_data.type !== 'class') return;
 
     let data = timetable_init_data;
     groupsFilterData.allGroups = data.groups;
@@ -646,6 +647,39 @@ function initColorModal() {
     });
 }
 
-initColorModal();
-initPersonalizationAccordion();
+async function getLastUpdate() {
+    try {
+        const response = await fetch('/timetable/api/1/last_update/');
+        
+        const data = await response.json();
+        
+        return data.last_update;
+    } catch (error) {
+        return null;
+    }
+}
 
+function init() {
+    initColorModal();
+    initPersonalizationAccordion();
+    
+    window.addEventListener('visibilitychange', async (e) => {
+        if (document.visibilityState !== 'visible') return;
+        
+        try {
+            const serverLastUpdate = await getLastUpdate();
+            
+            // console.log("Server last update:", serverLastUpdate, "Current last update:", lastUpdate);
+            
+            if (serverLastUpdate && serverLastUpdate > lastUpdate) {
+                // If the timetable was updated while the user had the page open in another tab, reload to get fresh data.
+                window.location.reload();
+                lastUpdate = serverLastUpdate;
+            }
+        } catch (error) {
+            console.error("Error checking for timetable updates:", error);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', init);

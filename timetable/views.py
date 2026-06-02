@@ -21,17 +21,17 @@ from django.conf import settings
 
 from .models import *
 from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
-    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js,
-    get_min_period, get_max_period)
+    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js, serialize_data,
+    clear_cache, get_last_update)
 from .forms import *
 
 
 @vary_on_cookie
 def show_timetable(request):
     """Redirects to timetable given in GET parameter or in cookies"""
-    klass = request.GET.get('class')
-    if klass:
-        return HttpResponseRedirect(f'/timetable/class/{klass}/')
+    class_ = request.GET.get('class')
+    if class_:
+        return HttpResponseRedirect(f'/timetable/class/{class_}/')
 
     teacher = request.GET.get('teacher')
     if teacher:
@@ -51,10 +51,10 @@ def show_timetable(request):
     return HttpResponseRedirect(user_default)
 
 def show_class_timetable(request, class_id):
-    klass = get_object_or_404(Class, pk=class_id)
-    all_groups = list(Group.objects.filter(classes=klass))
+    class_ = get_object_or_404(Class, pk=class_id)
+    all_groups = list(Group.objects.filter(classes=class_))
 
-        # Handle ?groups=1,3 filter — SSR renders only the selected groups
+    # Handle ?groups=1,3 filter — SSR renders only the selected groups
     groups_param = request.GET.get('groups', '')
     if groups_param:
         try:
@@ -69,14 +69,16 @@ def show_class_timetable(request, class_id):
 
     lessons = Lesson.objects.filter(group__in=selected_groups)
     context = get_timetable_context(lessons)
-    context['class'] = klass
+    context['class'] = class_
     context['groups'] = selected_groups  # drives "relevant" highlight in substitutions
 
     # All lessons serialized for JS client-side filtering
     all_lessons = Lesson.objects.filter(group__in=all_groups).select_related(
         'teacher', 'group', 'room', 'subject'
     ).prefetch_related('group__classes')
-    context['init_data_json'] = serialize_lessons_for_js(all_groups, all_lessons, selected_groups)
+    
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_lessons_for_js(all_groups, all_lessons, selected_groups, last_update=timetable_last_update)
 
     return render(request, 'class_timetable.html', context)
 
@@ -121,6 +123,9 @@ def show_groups_timetable(request, group_ids):
     lessons = Lesson.objects.filter(group__in=requested_ids)
     context = get_timetable_context(lessons)
     context['groups'] = groups
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'group_timetable.html', context)
 
 def show_room_timetable(request, room_id):
@@ -128,6 +133,9 @@ def show_room_timetable(request, room_id):
     lessons = Lesson.objects.filter(room=room).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['room'] = room
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):
@@ -136,10 +144,13 @@ def show_teacher_timetable(request, teacher_id):
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
     context['timetable_teacher'] = teacher
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'teacher_timetable.html', context)
 
 def personalize(request, class_id):
-    #TODO: switch to a Django form?
+    # Deprecated view. Left for backward compatibility
     context = dict()
     if request.POST:
         groups = request.POST.getlist('group-checkbox')
@@ -148,9 +159,9 @@ def personalize(request, class_id):
         else:
             url = reverse('groups_timetable', args=[','.join(groups)])
             return HttpResponseRedirect(url)
-    klass = get_object_or_404(Class, pk=class_id)
-    groups = Group.objects.filter(classes=klass)
-    context['class'] = klass
+    class_ = get_object_or_404(Class, pk=class_id)
+    groups = Group.objects.filter(classes=class_)
+    context['class'] = class_
     context['groups'] = groups
     return render(request, 'personalization.html', context)
 
@@ -206,7 +217,9 @@ def add_substitutions2(request, teacher_id, date):
             return HttpResponseRedirect(reverse('add_substitutions1'))
     else:
         formset = SubstitutionFormSet(teacher, date)
-
+    
+    clear_cache()
+    
     context = {
         'teacher': teacher,
         'formset': formset,
@@ -227,6 +240,9 @@ def edit_calendar(request):
             return HttpResponseRedirect(request.path)
     else:
         formset = DayPlanFormSet(queryset=qs)
+    
+    clear_cache()
+    
     context = {'formset': formset}
     return render(request, 'edit_calendar.html', context)
 
@@ -318,6 +334,11 @@ def timetable_bell_api(request):
 
     return JsonResponse(data)
 
+@never_cache
+def get_last_update_api(request):
+    last_update = get_last_update()
+    return JsonResponse({'last_update': last_update})
+
 @login_required
 @permission_required('timetable.add_substitution', raise_exception=True)
 @require_POST
@@ -377,6 +398,9 @@ class SubstitutionsImportView(LoginRequiredMixin, PermissionRequiredMixin, FormV
                     continue
                 context['rows_failed'] += 1
                 context['errors'].append(row)
+        
+        clear_cache()
+        
         return render(self.request, 'csv_import_success.html', context)
 
 @never_cache
@@ -414,6 +438,8 @@ class AddReservationView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
         context = super().get_context_data(**kwargs)
         context.update(get_timetable_context(Lesson.objects.filter(room__in=Room.objects.filter(reservation__isnull=False).distinct())))
         context['show_reservation_delete'] = True
+        
+        clear_cache()
         return context
 
 class AddAbsenceView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
@@ -493,6 +519,8 @@ def delete_reservation(request, reservation_id):
     if request.POST:
         res = get_object_or_404(Reservation, pk=reservation_id)
         res.delete()
+        
+        clear_cache()
         return HttpResponseRedirect(reverse('add_reservation'))
 
 @login_required
@@ -504,4 +532,6 @@ def delete_absence(request, absence_id):
         given_abs = get_object_or_404(Absence, pk=absence_id)
         abs = Absence.objects.filter(group=given_abs.group, date=given_abs.date)
         abs.delete()
+        
+        clear_cache()
         return HttpResponseRedirect(reverse('add_absence'))
