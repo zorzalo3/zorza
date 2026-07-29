@@ -96,6 +96,7 @@ def get_timetable_context(lessons):
         'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
         'timetable_version': settings.TIMETABLE_VERSION,
+        'subject_list_json': json.dumps(get_subject_list(table)),
     }
     context.update(get_display_context())
 
@@ -304,3 +305,16 @@ def serialize_lessons_for_js(all_groups, lessons, selected_groups, **kwargs):
 def serialize_data(data: dict):
     """Serialize data for JS, converting date and time objects to strings."""
     return json.dumps(data, ensure_ascii=False)
+
+def get_subject_list(table):
+    """Extract unique subject short names from timetable."""
+    subjects = []
+    seen = set()
+    for period, (period_str, hours_dict) in table.items():
+        for day, lessons in hours_dict.items():
+            for lesson in lessons:
+                short = lesson.subject.short_name
+                if short and short not in seen:
+                    seen.add(short)
+                    subjects.append(short)
+    return subjects

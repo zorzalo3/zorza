@@ -235,11 +235,10 @@ function getLessonCell(period, weekday) {
 
 function buildLessonClassMode(lesson) {
     let t = lesson.teacher, s = lesson.subject, r = lesson.room;
-    let textColor = subjectColor(s.short_name); 
 
     return '<div class="lesson-onerow">' +
         '<a class="teacher" href="/timetable/teacher/' + t.id + '/" title="' + esc(t.full_name) + '">' + esc(t.initials) + '</a>' +
-        '<span class="subject" title="' + esc(s.name) + '" style="color: ' + esc(textColor) + ';">' + esc(s.short_name) + '</span>' +
+        '<span class="subject" data-subject="' + esc(s.short_name) + '" title="' + esc(s.name) + '">' + esc(s.short_name) + '</span>' +
         '<a class="room" href="/timetable/room/' + r.id + '/" title="' + esc(r.name) + '">' + esc(r.short_name) + '</a>' +
         '</div>';
 }
@@ -354,6 +353,8 @@ function applyGroupFilter() {
     updateSubstitutionHighlights();
 
     syncGroupFilterUrl();
+
+    renderSchedule();
 }
 
 function updateSubstitutionHighlights() {

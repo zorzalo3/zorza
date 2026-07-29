@@ -1,5 +1,5 @@
 {% extends "timetable_base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
 {% trans "Timetable" %} - {% trans "Class" %} {{ class.name }} - Zorza
@@ -7,42 +7,11 @@
 
 {% block extra_css %}
 <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
+<script src="{% static 'timetable_colors.js' %}"></script>
 <script>
-function generateSubjectColor(subjectShort, seed = 2) {
-    const custom = localStorage.getItem('subjectColor_' + subjectShort);
-    if (custom) return custom;
-    
-    let h = seed;
-    const s = subjectShort || '';
-    
-    for (let i = 0; i < s.length; i++) {
-        h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
-    }
-    
-    const hue = Math.floor(70 + (Math.abs(h) * 0.618033988749895 % 1) * 250);
-    const saturation = [50, 65, 80][Math.abs(h >> 4) % 3];
-    const lightness = [45, 55, 65][Math.abs(h >> 8) % 3];
-    
-    return `hsl(${hue},${saturation}%,${lightness}%)`;
+if (localStorage.getItem('subjectColorsEnabled') === 'true') {
+    initializeSubjectColors({{ subject_list_json|safe }});
 }
-
-(function () {
-    if (localStorage.getItem('subjectColorsEnabled') !== 'true') return;
-    
-    const seen = Object.create(null);
-    let rules = '';
-    
-    {% for period, row in table.items %}{% for _, hour in row.1.items %}{% for lesson in hour %}{% with short_name=lesson.subject.short_name %}
-    if (!seen['{{ short_name|escapejs }}']) {
-        seen['{{ short_name|escapejs }}'] = true;
-        rules += '.subject[data-subject="{{ short_name|escapejs }}"]{color:' + generateSubjectColor('{{ short_name|escapejs }}') + '}';
-    }
-    {% endwith %}{% endfor %}{% endfor %}{% endfor %}
-    
-    const el = document.createElement('style');
-    el.textContent = rules;
-    document.head.appendChild(el);
-}());
 </script>
 {% endblock %}
 
