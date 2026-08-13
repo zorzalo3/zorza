@@ -22,7 +22,7 @@ from django.conf import settings
 from .models import *
 from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
     get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js, serialize_data,
-    clear_cache, get_last_update)
+    clear_cache, get_last_update, apply_substitution_overlay, get_teaching_for_entries)
 from .forms import *
 
 
@@ -76,7 +76,8 @@ def show_class_timetable(request, class_id):
     all_lessons = Lesson.objects.filter(group__in=all_groups).select_related(
         'teacher', 'group', 'room', 'subject'
     ).prefetch_related('group__classes')
-    
+    all_lessons = apply_substitution_overlay(all_lessons)
+
     timetable_last_update = get_last_update()
     context['init_data_json'] = serialize_lessons_for_js(all_groups, all_lessons, selected_groups, last_update=timetable_last_update)
 
@@ -144,6 +145,11 @@ def show_teacher_timetable(request, teacher_id):
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
     context['timetable_teacher'] = teacher
+
+    for entry in get_teaching_for_entries(teacher):
+        row = context['table'].get(entry.period)
+        if row is not None:
+            row[1][entry.weekday].append(entry)
     timetable_last_update = get_last_update()
     context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
     

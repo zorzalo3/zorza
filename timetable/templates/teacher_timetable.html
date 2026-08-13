@@ -9,6 +9,9 @@
 if (localStorage.getItem('subjectColorsEnabled') === 'true') {
     initializeSubjectColors({{ subject_list_json|safe }});
 }
+if (localStorage.getItem('substitutionsEnabled') === 'true') {
+    document.documentElement.classList.add('show-substitutions');
+}
 </script>
 {% endblock %}
 

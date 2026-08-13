@@ -8,6 +8,13 @@
 			<button id="personalization-modal-close" class="color-modal-close" aria-label="Zamknij">✕</button>
 		</div>
 		<div class="persona-sections">
+			<div class="persona-section persona-static-row" id="substitutions-row">
+				<span class="persona-section-title">{% trans "Show substitutions in the timetable" %}</span>
+				<label class="color-toggle-switch persona-inline-toggle" title="{% trans "On/off substitutions" %}">
+					<input type="checkbox" id="substitutions-toggle-input">
+					<span class="color-toggle-slider"></span>
+				</label>
+			</div>
 			<div class="persona-section" id="colors-section">
 				<button class="persona-section-toggle" id="colors-section-toggle" type="button">
 					<span class="persona-section-title">{% trans "Colors of subjects" %}</span>

@@ -235,11 +235,29 @@ function getLessonCell(period, weekday) {
 
 function buildLessonClassMode(lesson) {
     let t = lesson.teacher, s = lesson.subject, r = lesson.room;
+    let overlay = lesson.overlay;
+    let kind = overlay ? overlay.kind : null;
 
-    return '<div class="lesson-onerow">' +
-        '<a class="teacher" href="/timetable/teacher/' + t.id + '/" title="' + esc(t.full_name) + '">' + esc(t.initials) + '</a>' +
-        '<span class="subject" data-subject="' + esc(s.short_name) + '" title="' + esc(s.name) + '">' + esc(s.short_name) + '</span>' +
-        '<a class="room" href="/timetable/room/' + r.id + '/" title="' + esc(r.name) + '">' + esc(r.short_name) + '</a>' +
+    let divClass = 'lesson-onerow';
+    if (kind === 'cancelled' || kind === 'absence') divClass += ' lesson-danger';
+    let titleAttr = (kind === 'absence' && overlay.reason) ? ' title="' + esc(overlay.reason) + '"' : '';
+
+    let teacherHtml;
+    if (kind === 'substituted') {
+        let sub = overlay.substitute;
+        teacherHtml = '<span class="teacher-stack">' +
+            '<a class="teacher sub-original" href="/timetable/teacher/' + t.id + '/" title="' + esc(t.full_name) + '">' + esc(t.initials) + '</a>' +
+            '<a class="teacher sub-new" href="/timetable/teacher/' + sub.id + '/" title="' + esc(sub.full_name) + '">' + esc(sub.initials) + '</a>' +
+            '</span>';
+    } else {
+        teacherHtml = '<a class="teacher" href="/timetable/teacher/' + t.id + '/" title="' + esc(t.full_name) + '">' + esc(t.initials) + '</a>';
+    }
+    let affectedClass = kind === 'substituted' ? ' sub-affected' : '';
+
+    return '<div class="' + divClass + '"' + titleAttr + '>' +
+        teacherHtml +
+        '<span class="subject' + affectedClass + '" data-subject="' + esc(s.short_name) + '" title="' + esc(s.name) + '">' + esc(s.short_name) + '</span>' +
+        '<a class="room' + affectedClass + '" href="/timetable/room/' + r.id + '/" title="' + esc(r.name) + '">' + esc(r.short_name) + '</a>' +
         '</div>';
 }
 
@@ -394,6 +412,14 @@ function setColorsEnabled(val) {
     localStorage.setItem('subjectColorsEnabled', String(val));
 }
 
+let substitutionsEnabled = localStorage.getItem('substitutionsEnabled') === 'true';
+
+function setSubstitutionsEnabled(val) {
+    substitutionsEnabled = val;
+    localStorage.setItem('substitutionsEnabled', String(val));
+    document.documentElement.classList.toggle('show-substitutions', val);
+}
+
 function subjectColorRaw(subjectShort, seed = 2) {
     const custom = localStorage.getItem('subjectColor_' + subjectShort);
     if (custom) return custom;
@@ -527,6 +553,7 @@ function initColorModal() {
     const modal = document.getElementById('personalization-modal');
     const closeBtn = document.getElementById('personalization-modal-close');
     const toggleInput = document.getElementById('color-toggle-input');
+    const substitutionsToggleInput = document.getElementById('substitutions-toggle-input');
     const subjectsList = document.getElementById('color-subjects-list');
     const iroContainer = document.getElementById('color-iro-container');
     const iroSubjectName = document.getElementById('color-iro-subject-name');
@@ -579,6 +606,7 @@ function initColorModal() {
 
     function updateToggle() {
         if (toggleInput) toggleInput.checked = colorsEnabled;
+        if (substitutionsToggleInput) substitutionsToggleInput.checked = substitutionsEnabled;
     }
 
     function populateSubjects() {
@@ -646,6 +674,11 @@ function initColorModal() {
         setColorsEnabled(toggleInput.checked);
         renderSchedule();
     });
+    if (substitutionsToggleInput) {
+        substitutionsToggleInput.addEventListener('change', () => {
+            setSubstitutionsEnabled(substitutionsToggleInput.checked);
+        });
+    }
 }
 
 async function getLastUpdate() {

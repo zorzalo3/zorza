@@ -54,12 +54,98 @@ def get_object_or_none(model, *args, **kwargs):
         return None
 
 
+def get_weekday_target_dates(span_days=None):
+    """For each weekday, the nearest date on/after today within the span of days"""
+    if span_days is None:
+        span_days = settings.TIMETABLE_EVENTS_SPAN_DAYS
+    today = date.today()
+    target_dates = {}
+    for n in range(span_days):
+        d = today + timedelta(days=n)
+        if d.weekday() not in target_dates:
+            target_dates[d.weekday()] = d
+    return target_dates
+
+def apply_substitution_overlay(lessons):
+    """Attaches `.overlay` (dict or None) to each Lesson, describing a
+    substitution/cancellation/absence on its nearest upcoming occurrence."""
+    lessons = list(lessons)
+    for lesson in lessons:
+        lesson.overlay = None
+    if not lessons:
+        return lessons
+
+    target_dates = get_weekday_target_dates()
+    dates = set(target_dates.values())
+    lesson_by_id = {lesson.id: lesson for lesson in lessons}
+
+    sub_by_lesson_id = {}
+    substitutions = Substitution.objects.filter(
+        lesson_id__in=lesson_by_id.keys(), date__in=dates
+    ).select_related('substitute')
+    for sub in substitutions:
+        lesson = lesson_by_id.get(sub.lesson_id)
+        if lesson is not None and target_dates.get(lesson.weekday) == sub.date:
+            sub_by_lesson_id[sub.lesson_id] = sub
+
+    group_ids = {lesson.group_id for lesson in lessons}
+    absence_by_group_period = {}
+    absences = Absence.objects.filter(group_id__in=group_ids, date__in=dates)
+    for absence in absences:
+        absence_by_group_period[(absence.group_id, absence.period_number)] = absence
+
+    for lesson in lessons:
+        target_date = target_dates.get(lesson.weekday)
+        if target_date is None:
+            continue
+        absence = absence_by_group_period.get((lesson.group_id, lesson.period))
+        if absence is not None and absence.date == target_date:
+            lesson.overlay = {'kind': 'absence', 'reason': absence.reason}
+            continue
+        sub = sub_by_lesson_id.get(lesson.id)
+        if sub is not None:
+            if sub.substitute_id is None:
+                lesson.overlay = {'kind': 'cancelled'}
+            else:
+                lesson.overlay = {'kind': 'substituted', 'substitute': sub.substitute}
+    return lessons
+
+def get_teaching_for_entries(teacher):  
+    target_dates = get_weekday_target_dates()
+    dates = set(target_dates.values())
+    substitutions = Substitution.objects.filter(
+        substitute=teacher, date__in=dates
+    ).select_related('lesson__group', 'lesson__subject', 'lesson__room', 'lesson__teacher')
+
+    entries = []
+    for sub in substitutions:
+        lesson = sub.lesson
+        if target_dates.get(lesson.weekday) == sub.date:
+            lesson.overlay = {'kind': 'teaching_for', 'original_teacher': lesson.teacher}
+            entries.append(lesson)
+    return entries
+
+def serialize_overlay_for_js(overlay):
+    if not overlay:
+        return None
+    result = {'kind': overlay['kind']}
+    if overlay['kind'] == 'substituted':
+        substitute = overlay['substitute']
+        result['substitute'] = {
+            'id': substitute.id,
+            'initials': substitute.initials,
+            'full_name': substitute.full_name,
+        }
+    elif overlay['kind'] == 'absence':
+        result['reason'] = overlay.get('reason') or ''
+    return result
+
 def get_timetable_context(lessons):
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
         raise Http404('No default timetable or periods')
 
-    lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
+    lessons = apply_substitution_overlay(lessons.select_related('teacher', 'group', 'room', 'subject'))
 
     # TODO: a cleaner way to pass period str to the template while using
     #       period number as key?
@@ -283,6 +369,7 @@ def serialize_lessons_for_js(all_groups, lessons, selected_groups, **kwargs):
                 'name': lesson.group.name,
                 'link_to_class': lesson.group.link_to_class,
             },
+            'overlay': serialize_overlay_for_js(getattr(lesson, 'overlay', None)),
         }
         if lesson.group.link_to_class:
             first_class = lesson.group.classes.first()

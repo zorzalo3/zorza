@@ -107,10 +107,11 @@ tr.break-highlight {
 .lesson-onerow {
   white-space: nowrap;
 }
-.lesson-onerow * {
+.lesson-onerow > * {
   display: table-cell;
+  vertical-align: middle;
 }
-.lesson-onerow :nth-child(2) {
+.lesson-onerow > :nth-child(2) {
   width: 100%;
   padding-left: 0.4rem;
   padding-right: 0.4rem;
@@ -127,6 +128,39 @@ tr.break-highlight {
 
 .teacher, .room, .class {
   font-family: monospace;
+}
+
+.sub-new, .lesson-teaching-for {
+  display: none;
+}
+
+html.show-substitutions .lesson-danger * {
+  color: #c0392b;
+  text-decoration: line-through;
+}
+html.show-substitutions .lesson-teaching-for {
+  display: revert;
+}
+html.show-substitutions .lesson-teaching-for * {
+  color: #d29922;
+}
+html.show-substitutions .sub-original {
+  color: #c0392b;
+  text-decoration: line-through;
+}
+html.show-substitutions .sub-new {
+  display: revert;
+  color: #d29922;
+}
+html.show-substitutions .sub-affected {
+  color: #d29922;
+}
+html.show-substitutions .teacher-stack {
+  display: table-cell;
+  vertical-align: middle;
+}
+html.show-substitutions .teacher-stack .sub-original, html.show-substitutions .teacher-stack .sub-new {
+  display: block;
 }
 
 header {
@@ -156,7 +190,7 @@ a:hover {
 }
 
 .nav-link {
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   display: block;
   padding: 0.5rem 1rem;
@@ -279,7 +313,7 @@ input, textarea, .medium-editor-element {
   border: none;
   border-radius: 2px;
   color: rgba(0, 0, 0, 0.9);
-  background: white;
+  background: #ffffff;
 }
 
 input {
@@ -299,7 +333,7 @@ img.emoji {
 
 input[type=file] {
   padding: 0;
-  color: white;
+  color: #ffffff;
   background: transparent;
 }
 
@@ -329,7 +363,7 @@ button:hover, .button:hover {
 
 .button-primary {
   background: linear-gradient(150deg, #2f7457, #23594a);
-  color: #fff;
+  color: #ffffff;
   border-top: rgba(255, 255, 255, 0.25) solid 1px;
   border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
   outline: none;
@@ -484,8 +518,8 @@ caption {
 }
 article {
   max-width: 44rem;
-  background: white;
-  color: black;
+  background: #ffffff;
+  color: #000000;
   padding: 2rem;
   margin: 0 auto;
 }
@@ -497,7 +531,7 @@ table.substitution {
 
 @media print {
   * {
-    color: black !important;
+    color: #000000 !important;
     page-break-inside: avoid;
   }
   header, footer, .no-print {
@@ -588,7 +622,7 @@ pre {
   border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
 }
 .manage-card--accent {
   background: linear-gradient(150deg, rgba(47, 116, 87, 0.35), rgba(35, 89, 74, 0.35));
@@ -691,6 +725,13 @@ pre {
 }
 .persona-section-toggle:hover {
   background: rgba(255, 255, 255, 0.05);
+}
+
+.persona-static-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
 }
 
 .persona-inline-toggle {
@@ -826,7 +867,7 @@ pre {
   height: 22px;
   left: 3px;
   top: 3px;
-  background: white;
+  background: #ffffff;
   border-radius: 50%;
   transition: transform 0.2s;
 }
@@ -972,12 +1013,12 @@ pre {
   background: #2e353b;
   border-color: rgba(255, 255, 255, 0.22);
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
 }
 .day-chip--active {
   background: #23594a;
   border-color: rgba(47, 116, 87, 0.7);
-  color: #fff;
+  color: #ffffff;
 }
 .day-chip--weekend {
   color: #e05c5c;
@@ -1032,12 +1073,12 @@ pre {
   background: #2e353b;
   border-color: rgba(255, 255, 255, 0.22);
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
 }
 .period-chip--active {
   background: #23594a;
   border-color: rgba(47, 116, 87, 0.7);
-  color: #fff;
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=style.css.map */
