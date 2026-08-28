@@ -11,6 +11,7 @@ from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date
+from django.utils.timezone import localdate
 from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_cookie
 from django.views.decorators.cache import never_cache
@@ -308,6 +309,10 @@ def display(request):
     context = get_display_context()
     return render(request, 'display.html', context)
 
+def show_matches(request):
+    context = {'matches': Match.objects.filter(date__date__gte=localdate())}
+    return render(request, 'matches_page.html', context)
+
 
 # This is view that should expose DayPlan, Schedule and Period models
 # in JSON format for use in automated bell system.
@@ -470,6 +475,20 @@ class AddAbsenceView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
         context['show_absence_delete'] = True
         return context
     
+
+class AddMatchView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    template_name = 'add_match.html'
+    form_class = AddMatchForm
+    permission_required = 'timetable.add_match'
+
+    def form_valid(self, form):
+        form.save()
+        return redirect('add_match')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['matches'] = Match.objects.filter(date__date__gte=localdate())
+        return context
 
 class PrintSubstitutionsView1(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     permission_required = 'timetable.print_substitution'

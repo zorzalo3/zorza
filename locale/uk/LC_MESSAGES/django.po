@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-05 17:07+0300\n"
+"POT-Creation-Date: 2026-08-25 18:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,75 +226,75 @@ msgstr ""
 "Ваш обліковий запис не має доступу до цієї сторінки. Щоб продовжити, "
 "увійдіть під обліковим записом з доступом."
 
-#: .\timetable\forms.py:33 .\timetable\forms.py:189
+#: .\timetable\forms.py:43 .\timetable\forms.py:199
 #: .\timetable\templates\reservations.html:14
 #: .\timetable\templates\rooms.html:47
 msgid "Teacher"
 msgstr "Вчитель"
 
-#: .\timetable\forms.py:34 .\timetable\forms.py:152 .\timetable\forms.py:184
-#: .\timetable\forms.py:187 .\timetable\forms.py:201
+#: .\timetable\forms.py:44 .\timetable\forms.py:162 .\timetable\forms.py:194
+#: .\timetable\forms.py:197 .\timetable\forms.py:211
 #: .\timetable\templates\edit_calendar.html:21
 msgid "Date"
 msgstr "Дата"
 
-#: .\timetable\forms.py:42
+#: .\timetable\forms.py:52
 msgid "The given date cannot be in the past"
 msgstr "Вказана дата не може бути в минулому"
 
-#: .\timetable\forms.py:51
+#: .\timetable\forms.py:61
 msgid "The given date must be within a year from now"
 msgstr "Вказана дата має бути в межах року відтепер"
 
-#: .\timetable\forms.py:53
+#: .\timetable\forms.py:63
 msgid "{} has no planned lessons on the given day."
 msgstr "{} не має запланованих уроків на вказаний день."
 
-#: .\timetable\forms.py:60
+#: .\timetable\forms.py:70
 msgid "-----"
 msgstr "-----"
 
-#: .\timetable\forms.py:60 .\timetable\forms.py:147 .\timetable\models.py:122
+#: .\timetable\forms.py:70 .\timetable\forms.py:157 .\timetable\models.py:122
 #: .\timetable\models.py:167
 msgid "cancelled"
 msgstr "скасовано"
 
-#: .\timetable\forms.py:159 .\timetable\forms.py:188
+#: .\timetable\forms.py:169 .\timetable\forms.py:198
 msgid "Period number"
 msgstr "Номер уроку"
 
-#: .\timetable\forms.py:176
+#: .\timetable\forms.py:186
 msgid "CSV file with substitutions"
 msgstr "CSV-файл із замінами"
 
-#: .\timetable\forms.py:190 .\timetable\templates\reservations.html:15
+#: .\timetable\forms.py:200 .\timetable\templates\reservations.html:15
 #: .\timetable\templates\room_timetable.html:18
 #: .\timetable\templates\rooms.html:46
 #: .\timetable\templates\substitutions.html:23
 msgid "Room"
 msgstr "Кабінет"
 
-#: .\timetable\forms.py:197
+#: .\timetable\forms.py:207
 msgid "This room is already reserved during this period."
 msgstr "Цей кабінет уже заброньовано на цей період."
 
-#: .\timetable\forms.py:202
+#: .\timetable\forms.py:212
 msgid "Start period"
 msgstr "Початковий урок"
 
-#: .\timetable\forms.py:203
+#: .\timetable\forms.py:213
 msgid "End period"
 msgstr "Кінцевий урок"
 
-#: .\timetable\forms.py:204 .\timetable\templates\absences.html:24
+#: .\timetable\forms.py:214 .\timetable\templates\absences.html:24
 msgid "Whole day"
 msgstr "Увесь день"
 
-#: .\timetable\forms.py:205 .\timetable\templates\absences.html:14
+#: .\timetable\forms.py:215 .\timetable\templates\absences.html:14
 msgid "Reason"
 msgstr "Причина"
 
-#: .\timetable\forms.py:206 .\timetable\templates\absences.html:12
+#: .\timetable\forms.py:216 .\timetable\templates\absences.html:12
 #: .\timetable\templates\group_timetable.html:7
 #: .\timetable\templates\group_timetable.html:30
 #: .\timetable\templates\rooms.html:49
@@ -302,21 +302,41 @@ msgstr "Причина"
 msgid "Group"
 msgstr "Група"
 
-#: .\timetable\forms.py:218
+#: .\timetable\forms.py:228
 msgid "Provide initial and final period."
 msgstr "Вкажіть початковий і кінцевий урок."
 
-#: .\timetable\forms.py:220
+#: .\timetable\forms.py:230
 msgid "The initial period cannot be later than the final period."
 msgstr "Початковий урок не може бути пізнішим за кінцевий."
 
-#: .\timetable\models.py:28
+#: .\timetable\forms.py:242
+msgid "Date and time"
+msgstr "Дата і час"
+
+#: .\timetable\forms.py:243 .\timetable\templates\matches.html:12
+msgid "Sport"
+msgstr "Вид спорту"
+
+#: .\timetable\forms.py:244
+msgid "Class 1"
+msgstr "Клас 1"
+
+#: .\timetable\forms.py:245
+msgid "Class 2"
+msgstr "Клас 2"
+
+#: .\timetable\models.py:29
 msgid "link_to_class needs exactly one class"
 msgstr "link_to_class потребує рівно один клас"
 
 #: .\timetable\models.py:139 .\timetable\templates\add_substitutions.html:29
 msgid "Lesson"
 msgstr "Урок"
+
+#: .\timetable\models.py:208
+msgid "A class cannot play a match against itself"
+msgstr "Клас не може грати матч сам із собою"
 
 #: .\timetable\templates\absences.html:4
 #: .\timetable\templates\management.html:75
@@ -368,6 +388,21 @@ msgstr "Розклад дзвінків"
 #: .\timetable\templates\add_dayplan.html:10
 msgid "Adding dayplan"
 msgstr "Додавання розкладу дзвінків"
+
+#: .\timetable\templates\add_match.html:5
+#: .\timetable\templates\management.html:82
+#: .\timetable\templates\matches.html:4
+#: .\timetable\templates\matches_page.html:5
+msgid "Matches"
+msgstr "Спортивні матчі"
+
+#: .\timetable\templates\add_match.html:10
+msgid "Adding matches"
+msgstr "Додавання матчів"
+
+#: .\timetable\templates\add_match.html:15
+msgid "Add match"
+msgstr "Додати матч"
 
 #: .\timetable\templates\add_reservation.html:5
 #: .\timetable\templates\management.html:68
@@ -500,6 +535,7 @@ msgid "Groups"
 msgstr "Групи"
 
 #: .\timetable\templates\group_timetable.html:41
+#: .\timetable\templates\matches.html:13
 msgid "Classes"
 msgstr "Класи"
 
@@ -540,7 +576,7 @@ msgstr "Друкувати заміни"
 msgid "Import substitutions from CSV"
 msgstr "Імпортувати заміни з CSV"
 
-#: .\timetable\templates\management.html:83
+#: .\timetable\templates\management.html:90
 #, python-format
 msgid ""
 "Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
@@ -548,6 +584,17 @@ msgid ""
 msgstr ""
 "З міркувань продуктивності може знадобитися до %(cache_time)s хвилин, щоб "
 "побачити зміни на інших сторінках."
+
+#: .\timetable\templates\matches.html:11
+msgid "Time"
+msgstr "Час"
+
+#: .\timetable\templates\matches.html:22
+#, python-format
+msgid ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
+msgstr ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
 
 #: .\timetable\templates\personalization.html:5
 #: .\timetable\templates\personalization.html:9
@@ -710,31 +757,31 @@ msgstr "Виберіть вчителя"
 msgid "Choose a classroom"
 msgstr "Виберіть кабінет"
 
-#: .\timetable\tests.py:12 .\zorza\settings.py:150
+#: .\timetable\tests.py:13 .\zorza\settings.py:150
 msgid "Monday"
 msgstr "Понеділок"
 
-#: .\timetable\tests.py:13 .\zorza\settings.py:151
+#: .\timetable\tests.py:14 .\zorza\settings.py:151
 msgid "Tuesday"
 msgstr "Вівторок"
 
-#: .\timetable\tests.py:14 .\zorza\settings.py:152
+#: .\timetable\tests.py:15 .\zorza\settings.py:152
 msgid "Wednesday"
 msgstr "Середа"
 
-#: .\timetable\tests.py:15 .\zorza\settings.py:153
+#: .\timetable\tests.py:16 .\zorza\settings.py:153
 msgid "Thursday"
 msgstr "Четвер"
 
-#: .\timetable\tests.py:16 .\zorza\settings.py:154
+#: .\timetable\tests.py:17 .\zorza\settings.py:154
 msgid "Friday"
 msgstr "П'ятниця"
 
-#: .\timetable\tests.py:17
+#: .\timetable\tests.py:18
 msgid "Saturday"
 msgstr "Субота"
 
-#: .\timetable\tests.py:18
+#: .\timetable\tests.py:19
 msgid "Sunday"
 msgstr "Неділя"
 
@@ -742,6 +789,6 @@ msgstr "Неділя"
 msgid "Select at least one group"
 msgstr "Виберіть принаймні одну групу"
 
-#: .\timetable\views.py:511
+#: .\timetable\views.py:529
 msgid "Select at least one teacher"
 msgstr "Виберіть принаймні одного вчителя"

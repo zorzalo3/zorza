@@ -190,4 +190,4 @@ BELL_API_TIMESPAN = 0 # disabled by default
 try:
     from .localsettings import *
 except ImportError:
-    print("localsettings.py not found")
+    print("zorza/localsettings.py not found")

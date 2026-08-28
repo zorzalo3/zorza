@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext as _
 from django.utils.formats import date_format
+from django.utils.timezone import localtime
 
 
 class Class(models.Model):
@@ -96,8 +97,7 @@ class Period(models.Model):
         qs = Period.objects.filter(number=self.number,
                                    schedule__is_default=True)
         if not qs.exists():
-            raise ValidationError("Period numbers must be a subset of default\
-                schedule's period numbers")
+            raise ValidationError("Period numbers must be a subset of defaultschedule's period numbers")
 
     class Meta:
         unique_together = (('number', 'schedule'),)
@@ -192,8 +192,29 @@ class Absence(Occasion):
         return query.room
 
     def __str__(self):
-        return '%s %s %s (%s)' % (self.date, self.period_number, self.group, \
-                self.reason)
+        return '%s %s %s (%s)' % (self.date, self.period_number, self.group, self.reason)
+
+class Match(models.Model):
+    "Inter-class sport match"
+    date = models.DateTimeField()
+    sport = models.CharField(max_length=40)
+    class_one = models.ForeignKey(Class, on_delete=models.CASCADE, related_name='matches_as_class_one')
+    class_two = models.ForeignKey(Class, on_delete=models.CASCADE, related_name='matches_as_class_two')
+
+    def clean(self):
+        if self.class_one_id and self.class_one_id == self.class_two_id:
+            raise ValidationError(_('A class cannot play a match against itself'))
+
+    @property
+    def day(self):
+        return localtime(self.date).date()
+
+    def __str__(self):
+        return '%s: %s - %s (%s)' % \
+            (self.sport, self.class_one, self.class_two, self.date)
+
+    class Meta:
+        ordering = ['date']
 
 class Reservation(Occasion):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE,
@@ -205,8 +226,7 @@ class Reservation(Occasion):
         return self.teacher.full_name if self.teacher else '-'
 
     def __str__(self):
-        return '%s %s %s %s' % (self.date, self.period_number, self.room, \
-                self.teacher)
+        return '%s %s %s %s' % (self.date, self.period_number, self.room, self.teacher)
 
     class Meta:
         unique_together = ('period_number', 'room')

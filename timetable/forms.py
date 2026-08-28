@@ -18,6 +18,16 @@ class Html5DateInput(DateInput):
 class Html5DateField(DateField):
     widget = Html5DateInput(format='%Y-%m-%d')
 
+class Html5DateTimeInput(DateTimeInput):
+    input_type = 'datetime-local'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.format = '%Y-%m-%dT%H:%M'
+
+class Html5DateTimeField(DateTimeField):
+    widget = Html5DateTimeInput(format='%Y-%m-%dT%H:%M')
+
 class InputFieldMixin:
     _skip_widgets = (CheckboxInput, FileInput, HiddenInput, MultipleHiddenInput)
 
@@ -217,6 +227,20 @@ class AddAbsenceForm(InputFieldMixin, Form):
         elif not is_whole_day and (start_period is None or end_period is None):
             raise ValidationError(_('Provide initial and final period.'))
         elif start_period > end_period:
-            raise ValidationError(_('The initial period cannot be later than the final period.'))    
-        
+            raise ValidationError(_('The initial period cannot be later than the final period.'))
+
         return self.cleaned_data
+
+class AddMatchForm(InputFieldMixin, ModelForm):
+    class Meta:
+        model = Match
+        fields = ['date', 'sport', 'class_one', 'class_two']
+        field_classes = {
+            'date': Html5DateTimeField,
+        }
+        labels = {
+            'date': _('Date and time'),
+            'sport': _('Sport'),
+            'class_one': _('Class 1'),
+            'class_two': _('Class 2'),
+        }

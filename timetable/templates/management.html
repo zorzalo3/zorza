@@ -76,6 +76,13 @@
 		</a>
 		{% endif %}
 
+		{% if perms.timetable.add_match %}
+		<a href="{% url "add_match" %}" class="manage-card">
+			<span class="manage-card-icon">🏆</span>
+			<span class="manage-card-title">{% trans "Matches" %}</span>
+		</a>
+		{% endif %}
+
 	</div>
 
 	{% if cache_time != 0 %}
