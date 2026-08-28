@@ -39,6 +39,7 @@ function initializeSubjectColors(subjectList) {
     });
 
     const el = document.createElement('style');
+    el.id = 'dynamic-subject-colors';
     el.textContent = rules;
     document.head.appendChild(el);
 }

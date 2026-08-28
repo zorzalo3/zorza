@@ -371,8 +371,6 @@ function applyGroupFilter() {
     updateSubstitutionHighlights();
 
     syncGroupFilterUrl();
-
-    renderSchedule();
 }
 
 function updateSubstitutionHighlights() {
@@ -486,9 +484,8 @@ function colorToHex(color) {
 function renderSchedule() {
     if (groupsFilterData.allLessons) {
         applyGroupFilter();
-        return;
     }
-    // teacher / room timetable: update a dynamic <style> block in place
+    // Update the dynamic <style> block with subject colors in place
     let dynamicStyle = document.getElementById('dynamic-subject-colors');
     if (!dynamicStyle) {
         dynamicStyle = document.createElement('style');
