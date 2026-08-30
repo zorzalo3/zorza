@@ -1,4 +1,6 @@
+import json
 import locale
+import time
 from datetime import datetime, date, timedelta
 from collections import OrderedDict
 
@@ -6,12 +8,14 @@ from django.conf import settings
 from django.db.models import Min, Max
 from django.http import Http404
 from django.core.serializers import serialize
+from django.core.cache import cache
 from django.utils import timezone
 
 from .models import *
 
 def days():
     return settings.TIMETABLE_WEEKDAYS
+
 def day_ids():
     return [x[0] for x in days()]
 
@@ -23,6 +27,13 @@ def get_min_period():
 
 def get_period_strings(periods):
     return {period.number: str(period) for period in periods}
+
+def clear_cache():
+    cache.clear()
+    cache.set('last_update', time.time(), None)
+
+def get_last_update():
+    return cache.get('last_update', 0)
 
 def get_display_context():
     context = {
@@ -42,12 +53,99 @@ def get_object_or_none(model, *args, **kwargs):
     except model.DoesNotExist:
         return None
 
+
+def get_weekday_target_dates(span_days=None):
+    """For each weekday, the nearest date on/after today within the span of days"""
+    if span_days is None:
+        span_days = settings.TIMETABLE_EVENTS_SPAN_DAYS
+    today = date.today()
+    target_dates = {}
+    for n in range(span_days):
+        d = today + timedelta(days=n)
+        if d.weekday() not in target_dates:
+            target_dates[d.weekday()] = d
+    return target_dates
+
+def apply_substitution_overlay(lessons):
+    """Attaches `.overlay` (dict or None) to each Lesson, describing a
+    substitution/cancellation/absence on its nearest upcoming occurrence."""
+    lessons = list(lessons)
+    for lesson in lessons:
+        lesson.overlay = None
+    if not lessons:
+        return lessons
+
+    target_dates = get_weekday_target_dates()
+    dates = set(target_dates.values())
+    lesson_by_id = {lesson.id: lesson for lesson in lessons}
+
+    sub_by_lesson_id = {}
+    substitutions = Substitution.objects.filter(
+        lesson_id__in=lesson_by_id.keys(), date__in=dates
+    ).select_related('substitute')
+    for sub in substitutions:
+        lesson = lesson_by_id.get(sub.lesson_id)
+        if lesson is not None and target_dates.get(lesson.weekday) == sub.date:
+            sub_by_lesson_id[sub.lesson_id] = sub
+
+    group_ids = {lesson.group_id for lesson in lessons}
+    absence_by_group_period = {}
+    absences = Absence.objects.filter(group_id__in=group_ids, date__in=dates)
+    for absence in absences:
+        absence_by_group_period[(absence.group_id, absence.period_number)] = absence
+
+    for lesson in lessons:
+        target_date = target_dates.get(lesson.weekday)
+        if target_date is None:
+            continue
+        absence = absence_by_group_period.get((lesson.group_id, lesson.period))
+        if absence is not None and absence.date == target_date:
+            lesson.overlay = {'kind': 'absence', 'reason': absence.reason}
+            continue
+        sub = sub_by_lesson_id.get(lesson.id)
+        if sub is not None:
+            if sub.substitute_id is None:
+                lesson.overlay = {'kind': 'cancelled'}
+            else:
+                lesson.overlay = {'kind': 'substituted', 'substitute': sub.substitute}
+    return lessons
+
+def get_teaching_for_entries(teacher):  
+    target_dates = get_weekday_target_dates()
+    dates = set(target_dates.values())
+    substitutions = Substitution.objects.filter(
+        substitute=teacher, date__in=dates
+    ).select_related('lesson__group', 'lesson__subject', 'lesson__room', 'lesson__teacher')
+
+    entries = []
+    for sub in substitutions:
+        lesson = sub.lesson
+        if target_dates.get(lesson.weekday) == sub.date:
+            lesson.overlay = {'kind': 'teaching_for', 'original_teacher': lesson.teacher}
+            entries.append(lesson)
+    return entries
+
+def serialize_overlay_for_js(overlay):
+    if not overlay:
+        return None
+    result = {'kind': overlay['kind']}
+    if overlay['kind'] == 'substituted':
+        substitute = overlay['substitute']
+        result['substitute'] = {
+            'id': substitute.id,
+            'initials': substitute.initials,
+            'full_name': substitute.full_name,
+        }
+    elif overlay['kind'] == 'absence':
+        result['reason'] = overlay.get('reason') or ''
+    return result
+
 def get_timetable_context(lessons):
     default_periods = Period.objects.filter(schedule__is_default=True)
     if not default_periods:
         raise Http404('No default timetable or periods')
 
-    lessons = lessons.select_related('teacher', 'group', 'room', 'subject')
+    lessons = apply_substitution_overlay(lessons.select_related('teacher', 'group', 'room', 'subject'))
 
     # TODO: a cleaner way to pass period str to the template while using
     #       period number as key?
@@ -75,8 +173,8 @@ def get_timetable_context(lessons):
 
     teachers = Teacher.objects.all().values()
     teachers = sorted(teachers, key=lambda t:
-        locale.strxfrm(t['last_name']+t['first_name']))
-        # Sort considering system locale
+    locale.strxfrm(t['last_name'] + t['first_name']))
+    # Sort considering system locale
 
     context = {
         'table': table,
@@ -84,6 +182,7 @@ def get_timetable_context(lessons):
         'teacher_list': teachers,
         'room_list': Room.objects.all().values(),
         'timetable_version': settings.TIMETABLE_VERSION,
+        'subject_list_json': json.dumps(get_subject_list(table)),
     }
     context.update(get_display_context())
 
@@ -242,3 +341,67 @@ def get_teachers_by_substitutions_date(date):
     teachers = sorted(teachers, key=lambda t:
         locale.strxfrm(t.last_name+t.first_name))
     return teachers
+
+
+def serialize_lessons_for_js(all_groups, lessons, selected_groups, **kwargs):
+    """Serialize lesson data for the JS group filter on the class timetable page."""
+    lesson_list = []
+    for lesson in lessons:
+        item = {
+            'period': lesson.period,
+            'weekday': lesson.weekday,
+            'teacher': {
+                'id': lesson.teacher_id,
+                'initials': lesson.teacher.initials,
+                'full_name': lesson.teacher.full_name,
+            },
+            'subject': {
+                'name': lesson.subject.name,
+                'short_name': lesson.subject.short_name,
+            },
+            'room': {
+                'id': lesson.room_id or 0,
+                'name': lesson.room.name if lesson.room else '',
+                'short_name': lesson.room.short_name if lesson.room else '',
+            },
+            'group': {
+                'id': lesson.group_id,
+                'name': lesson.group.name,
+                'link_to_class': lesson.group.link_to_class,
+            },
+            'overlay': serialize_overlay_for_js(getattr(lesson, 'overlay', None)),
+        }
+        if lesson.group.link_to_class:
+            first_class = lesson.group.classes.first()
+            if first_class:
+                item['class'] = {'id': first_class.id, 'name': first_class.name}
+        lesson_list.append(item)
+    
+    final_dict = {
+        'type': 'class',
+        'lessons': lesson_list,
+        'groups': [{'id': g.id, 'name': g.name} for g in all_groups],
+        'selected_group_ids': [g.id for g in selected_groups],
+    }
+    
+    for key, value in kwargs.items():
+        final_dict[key] = value
+    
+    return json.dumps(final_dict, ensure_ascii=False)
+
+def serialize_data(data: dict):
+    """Serialize data for JS, converting date and time objects to strings."""
+    return json.dumps(data, ensure_ascii=False)
+
+def get_subject_list(table):
+    """Extract unique subject short names from timetable."""
+    subjects = []
+    seen = set()
+    for period, (period_str, hours_dict) in table.items():
+        for day, lessons in hours_dict.items():
+            for lesson in lessons:
+                short = lesson.subject.short_name
+                if short and short not in seen:
+                    seen.add(short)
+                    subjects.append(short)
+    return subjects

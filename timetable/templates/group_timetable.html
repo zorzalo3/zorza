@@ -1,5 +1,5 @@
 {% extends "timetable_base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
 {% trans "Timetable" %} - 
@@ -11,6 +11,18 @@
 {% for group in groups %}
 {{ group.name }}{% if not forloop.last %},{% endif %}
 {% endfor %} - Zorza
+{% endblock %}
+
+{% block extra_css %}
+<script src="{% static 'timetable_colors.js' %}"></script>
+<script>
+if (localStorage.getItem('subjectColorsEnabled') === 'true') {
+    initializeSubjectColors({{ subject_list_json|safe }});
+}
+if (localStorage.getItem('substitutionsEnabled') === 'true') {
+    document.documentElement.classList.add('show-substitutions');
+}
+</script>
 {% endblock %}
 
 {% block caption %}
@@ -36,17 +48,27 @@
 
 {% endblock %}
 
+{% block above_default_btn %}
+{% include "personalization_modal.html" %}
+{% endblock %}
+
 {% block lesson %}
-<div class="lesson-onerow">
+<div class="lesson-onerow{% if lesson.overlay.kind == 'cancelled' or lesson.overlay.kind == 'absence' %} lesson-danger{% endif %}"{% if lesson.overlay.reason %} title="{{ lesson.overlay.reason }}"{% endif %}>
+	{% if lesson.overlay.kind == 'substituted' %}
+	<span class="teacher-stack">
+		<a class="teacher sub-original" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a>
+		<a class="teacher sub-new" href="{% url "teacher_timetable" lesson.overlay.substitute.id %}" title="{{ lesson.overlay.substitute.full_name }}">{{ lesson.overlay.substitute.initials }}</a>
+	</span>
+	{% else %}
 	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">
 		{{ lesson.teacher.initials }}
 	</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	{% endif %}
+	<span class="subject{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
-	<a class="room" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
+	<a class="room{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" href="{% url "room_timetable" lesson.room_id %}" title="{{ lesson.room.name }}">
 		{{ lesson.room.short_name }}
 	</a>
 </div>
 {% endblock %}
-

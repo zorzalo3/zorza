@@ -1,0 +1,792 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-25 18:34+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\contact\models.py:6
+msgid "Your email address"
+msgstr "Your email address"
+
+#: .\contact\models.py:7
+msgid "Subject"
+msgstr "Subject"
+
+#: .\contact\models.py:8 .\documents\forms.py:38
+msgid "Content"
+msgstr "Content"
+
+#: .\contact\templates\contact\message_form.html:5
+#: .\contact\templates\contact\message_form.html:10 .\templates\base.html:54
+msgid "Contact"
+msgstr "Contact"
+
+#: .\contact\templates\contact\message_form.html:15
+msgid "Send"
+msgstr "Send"
+
+#: .\contact\templates\contact\success.html:5
+msgid "Message sent successfully"
+msgstr "Message sent successfully"
+
+#: .\contact\templates\contact\success.html:10
+msgid "Success"
+msgstr "Success"
+
+#: .\contact\templates\contact\success.html:11
+msgid "Your message was sent successfully."
+msgstr "Your message was sent successfully."
+
+#: .\contact\templates\contact\success.html:12 .\templates\404.html:13
+#, python-brace-format
+msgid "You will be redirected to homepage after {time} seconds"
+msgstr "You will be redirected to homepage after {time} seconds"
+
+#: .\documents\forms.py:15 .\documents\forms.py:32
+msgid "Category"
+msgstr "Category"
+
+#: .\documents\forms.py:20 .\documents\forms.py:37
+msgid "Title"
+msgstr "Title"
+
+#: .\documents\forms.py:21
+msgid "File"
+msgstr "File"
+
+#: .\documents\templates\breadcrumbs.html:2
+#: .\documents\templates\show_category.html:5 .\templates\base.html:40
+msgid "Documents"
+msgstr "Documents"
+
+#: .\documents\templates\delete_item.html:5
+#: .\documents\templates\delete_item.html:11
+msgid "Delete item"
+msgstr "Delete item"
+
+#: .\documents\templates\delete_item.html:13
+#, python-format
+msgid "Are you sure you want to delete \"%(object)s\"?"
+msgstr "Are you sure you want to delete \"%(object)s\"?"
+
+#: .\documents\templates\delete_item.html:17
+#: .\documents\templates\edit_document.html:24
+#: .\documents\templates\edit_file.html:24
+#: .\timetable\templates\add_substitutions.html:47
+#: .\timetable\templates\add_substitutions.html:59
+msgid "Back"
+msgstr "Back"
+
+#: .\documents\templates\delete_item.html:19
+#: .\documents\templates\show_mine.html:31
+#: .\timetable\templates\absences.html:46
+#: .\timetable\templates\reservations.html:36
+#: .\timetable\templates\substitutions.html:51
+msgid "Delete"
+msgstr "Delete"
+
+#: .\documents\templates\edit_document.html:6
+#: .\documents\templates\edit_document.html:16
+msgid "Edit document"
+msgstr "Edit document"
+
+#: .\documents\templates\edit_document.html:8
+#: .\documents\templates\edit_document.html:18
+msgid "Create a document"
+msgstr "Create a document"
+
+#: .\documents\templates\edit_document.html:26
+#: .\documents\templates\edit_file.html:26
+#: .\timetable\templates\add_substitutions.html:49
+#: .\timetable\templates\edit_calendar.html:42
+msgid "Save"
+msgstr "Save"
+
+#: .\documents\templates\edit_file.html:6
+#: .\documents\templates\edit_file.html:16
+msgid "Update file"
+msgstr "Update file"
+
+#: .\documents\templates\edit_file.html:8
+#: .\documents\templates\edit_file.html:18
+msgid "Create a file"
+msgstr "Create a file"
+
+#: .\documents\templates\show_category.html:13
+msgid "Subcategories:"
+msgstr "Subcategories:"
+
+#: .\documents\templates\show_category.html:27
+#: .\documents\templates\show_document.html:16
+#: .\documents\templates\show_mine.html:18
+#, python-format
+msgid "Created on %(created)s."
+msgstr "Created on %(created)s."
+
+#: .\documents\templates\show_category.html:27
+#: .\documents\templates\show_document.html:21
+#: .\documents\templates\show_mine.html:18
+#, python-format
+msgid "Modified on %(modified)s."
+msgstr "Modified on %(modified)s."
+
+#: .\documents\templates\show_category.html:45
+#: .\documents\templates\show_mine.html:37
+msgid "Nothing here!"
+msgstr "Nothing here!"
+
+#: .\documents\templates\show_document.html:12
+msgid "Author: "
+msgstr "Author: "
+
+#: .\documents\templates\show_mine.html:5
+#: .\documents\templates\show_mine.html:9
+#: .\timetable\templates\management.html:62
+msgid "My documents"
+msgstr "My documents"
+
+#: .\documents\templates\show_mine.html:28
+msgid "Edit"
+msgstr "Edit"
+
+#: .\documents\templates\show_mine.html:42
+msgid "Add a file"
+msgstr "Add a file"
+
+#: .\documents\templates\show_mine.html:45
+msgid "Add a document"
+msgstr "Add a document"
+
+#: .\templates\404.html:12
+msgid "Page not found"
+msgstr "Page not found"
+
+#: .\templates\base.html:18 .\templates\registration\logged_out.html:13
+#: .\timetable\templates\display.html:56
+#: .\timetable\templates\show_substitutions_to_print.html:18
+msgid "Visit the main page"
+msgstr "Visit the main page"
+
+#: .\templates\base.html:37 .\timetable\templates\class_timetable.html:5
+#: .\timetable\templates\group_timetable.html:5
+#: .\timetable\templates\room_timetable.html:18
+#: .\timetable\templates\teacher_timetable.html:19
+#: .\timetable\templates\timetable_base.html:7
+msgid "Timetable"
+msgstr "Timetable"
+
+#: .\templates\base.html:50
+msgid "About"
+msgstr "About"
+
+#: .\templates\base.html:52 .\timetable\templates\management.html:5
+#: .\timetable\templates\management.html:10
+msgid "Management"
+msgstr "Management"
+
+#: .\templates\registration\logged_out.html:5
+#: .\templates\registration\logged_out.html:10
+msgid "Logged out"
+msgstr "Logged out"
+
+#: .\templates\registration\logged_out.html:15
+msgid "or"
+msgstr "or"
+
+#: .\templates\registration\logged_out.html:17
+msgid "Log in again"
+msgstr "Log in again"
+
+#: .\templates\registration\login.html:5
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:33
+msgid "Log in"
+msgstr "Log in"
+
+#: .\templates\registration\login.html:13
+msgid "Your username and password didn't match. Please try again."
+msgstr "Your username and password didn't match. Please try again."
+
+#: .\templates\registration\login.html:20
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Your account doesn't have access to this page. To proceed, please log in "
+"with an account that has access."
+
+#: .\timetable\forms.py:43 .\timetable\forms.py:199
+#: .\timetable\templates\reservations.html:14
+#: .\timetable\templates\rooms.html:47
+msgid "Teacher"
+msgstr "Teacher"
+
+#: .\timetable\forms.py:44 .\timetable\forms.py:162 .\timetable\forms.py:194
+#: .\timetable\forms.py:197 .\timetable\forms.py:211
+#: .\timetable\templates\edit_calendar.html:21
+msgid "Date"
+msgstr "Date"
+
+#: .\timetable\forms.py:52
+msgid "The given date cannot be in the past"
+msgstr "The given date cannot be in the past"
+
+#: .\timetable\forms.py:61
+msgid "The given date must be within a year from now"
+msgstr "The given date must be within a year from now"
+
+#: .\timetable\forms.py:63
+msgid "{} has no planned lessons on the given day."
+msgstr "{} has no planned lessons on the given day."
+
+#: .\timetable\forms.py:70
+msgid "-----"
+msgstr "-----"
+
+#: .\timetable\forms.py:70 .\timetable\forms.py:157 .\timetable\models.py:122
+#: .\timetable\models.py:167
+msgid "cancelled"
+msgstr "cancelled"
+
+#: .\timetable\forms.py:169 .\timetable\forms.py:198
+msgid "Period number"
+msgstr "Period number"
+
+#: .\timetable\forms.py:186
+msgid "CSV file with substitutions"
+msgstr "CSV file with substitutions"
+
+#: .\timetable\forms.py:200 .\timetable\templates\reservations.html:15
+#: .\timetable\templates\room_timetable.html:18
+#: .\timetable\templates\rooms.html:46
+#: .\timetable\templates\substitutions.html:23
+msgid "Room"
+msgstr "Room"
+
+#: .\timetable\forms.py:207
+msgid "This room is already reserved during this period."
+msgstr "This room is already reserved during this period."
+
+#: .\timetable\forms.py:212
+msgid "Start period"
+msgstr "Start period"
+
+#: .\timetable\forms.py:213
+msgid "End period"
+msgstr "End period"
+
+#: .\timetable\forms.py:214 .\timetable\templates\absences.html:24
+msgid "Whole day"
+msgstr "Whole day"
+
+#: .\timetable\forms.py:215 .\timetable\templates\absences.html:14
+msgid "Reason"
+msgstr "Reason"
+
+#: .\timetable\forms.py:216 .\timetable\templates\absences.html:12
+#: .\timetable\templates\group_timetable.html:7
+#: .\timetable\templates\group_timetable.html:30
+#: .\timetable\templates\rooms.html:49
+#: .\timetable\templates\substitutions.html:22
+msgid "Group"
+msgstr "Group"
+
+#: .\timetable\forms.py:228
+msgid "Provide initial and final period."
+msgstr "Please provide a valid start and end period for the absence."
+
+#: .\timetable\forms.py:230
+msgid "The initial period cannot be later than the final period."
+msgstr "The start period cannot be later than the end period."
+
+#: .\timetable\forms.py:242
+msgid "Date and time"
+msgstr "Date and time"
+
+#: .\timetable\forms.py:243 .\timetable\templates\matches.html:12
+msgid "Sport"
+msgstr "Sport"
+
+#: .\timetable\forms.py:244
+msgid "Class 1"
+msgstr "Class 1"
+
+#: .\timetable\forms.py:245
+msgid "Class 2"
+msgstr "Class 2"
+
+#: .\timetable\models.py:29
+msgid "link_to_class needs exactly one class"
+msgstr "link_to_class needs exactly one class"
+
+#: .\timetable\models.py:139 .\timetable\templates\add_substitutions.html:29
+msgid "Lesson"
+msgstr "Lesson"
+
+#: .\timetable\models.py:208
+msgid "A class cannot play a match against itself"
+msgstr "A class cannot play a match against itself"
+
+#: .\timetable\templates\absences.html:4
+#: .\timetable\templates\management.html:75
+msgid "Absences"
+msgstr "Absences"
+
+#: .\timetable\templates\absences.html:13
+msgid "Periods"
+msgstr "Periods"
+
+#: .\timetable\templates\absences.html:16
+#: .\timetable\templates\reservations.html:17
+#: .\timetable\templates\substitutions.html:25
+msgid "Delete?"
+msgstr "Delete?"
+
+#: .\timetable\templates\absences.html:39
+msgid "none"
+msgstr "none"
+
+#: .\timetable\templates\add_absence.html:5
+msgid "Group absences"
+msgstr "Group absences"
+
+#: .\timetable\templates\add_absence.html:10
+msgid "Adding group absences"
+msgstr "Adding group absences"
+
+#: .\timetable\templates\add_absence.html:13
+#: .\timetable\templates\add_dayplan.html:13
+#: .\timetable\templates\add_reservation.html:13
+#: .\timetable\templates\date_select.html:13
+#: .\timetable\templates\print_substitutions1.html:13
+#: .\timetable\templates\teacher_and_date_select.html:13
+#, python-format
+msgid "Today's date is %(today)s."
+msgstr "Today's date is %(today)s."
+
+#: .\timetable\templates\add_absence.html:21
+#: .\timetable\templates\add_dayplan.html:21
+#: .\timetable\templates\add_reservation.html:21
+msgid "Submit"
+msgstr "Submit"
+
+#: .\timetable\templates\add_dayplan.html:5
+msgid "Dayplan"
+msgstr "Day plan"
+
+#: .\timetable\templates\add_dayplan.html:10
+msgid "Adding dayplan"
+msgstr "Adding day plan"
+
+#: .\timetable\templates\add_match.html:5
+#: .\timetable\templates\management.html:82
+#: .\timetable\templates\matches.html:4
+#: .\timetable\templates\matches_page.html:5
+msgid "Matches"
+msgstr "Matches"
+
+#: .\timetable\templates\add_match.html:10
+msgid "Adding matches"
+msgstr "Adding matches"
+
+#: .\timetable\templates\add_match.html:15
+msgid "Add match"
+msgstr "Add match"
+
+#: .\timetable\templates\add_reservation.html:5
+#: .\timetable\templates\management.html:68
+#: .\timetable\templates\reservations.html:4
+msgid "Reservations"
+msgstr "Reservations"
+
+#: .\timetable\templates\add_reservation.html:10
+msgid "Adding reservations"
+msgstr "Adding reservations"
+
+#: .\timetable\templates\add_substitutions.html:5
+#, python-format
+msgid "Adding substitutions for %(teacher)s on %(date)s"
+msgstr "Adding substitutions for %(teacher)s on %(date)s"
+
+#: .\timetable\templates\add_substitutions.html:13
+msgid "Adding substitutions — step 2"
+msgstr "Adding substitutions — step 2"
+
+#: .\timetable\templates\add_substitutions.html:18
+#, python-format
+msgid ""
+"Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
+"(%(weekday)s). "
+msgstr ""
+"Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
+"(%(weekday)s). "
+
+#: .\timetable\templates\add_substitutions.html:28
+#: .\timetable\templates\reservations.html:12
+#: .\timetable\templates\schedules.html:26
+#: .\timetable\templates\substitutions.html:19
+#: .\timetable\templates\timetable_base.html:35
+msgctxt "timetable header"
+msgid "No."
+msgstr "No."
+
+#: .\timetable\templates\add_substitutions.html:30
+#: .\timetable\templates\substitutions.html:21
+msgid "Substitute"
+msgstr "Substitute"
+
+#: .\timetable\templates\add_substitutions.html:54
+#, python-format
+msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
+msgstr "%(name)s has no planned lessons on that day (%(weekday)s)."
+
+#: .\timetable\templates\class_timetable.html:5
+#: .\timetable\templates\class_timetable.html:22
+#: .\timetable\templates\group_timetable.html:39
+msgid "Class"
+msgstr "Class"
+
+#: .\timetable\templates\csv_import_success.html:6
+msgid "CSV file imported"
+msgstr "CSV file imported"
+
+#: .\timetable\templates\csv_import_success.html:11
+msgid "Substitutions imported successfully"
+msgstr "Substitutions imported successfully"
+
+#: .\timetable\templates\csv_import_success.html:13
+#, python-format
+msgid ""
+"<li>Rows added: %(rows_added)s</li> <li>Rows updated: %(rows_updated)s</li> "
+"<li>Rows failed: %(rows_failed)s</li>"
+msgstr ""
+"<li>Rows added: %(rows_added)s</li> <li>Rows updated: %(rows_updated)s</li> "
+"<li>Rows failed: %(rows_failed)s</li>"
+
+#: .\timetable\templates\csv_import_success.html:20
+msgid "Added/updated"
+msgstr "Added/updated"
+
+#: .\timetable\templates\csv_import_success.html:27
+msgid "Errors"
+msgstr "Errors"
+
+#: .\timetable\templates\date_select.html:5
+#: .\timetable\templates\import_substitutions.html:6
+#: .\timetable\templates\management.html:37
+#: .\timetable\templates\print_substitutions1.html:5
+#: .\timetable\templates\print_substitutions2.html:5
+#: .\timetable\templates\substitutions.html:4
+#: .\timetable\templates\teacher_and_date_select.html:5
+msgid "Substitutions"
+msgstr "Substitutions"
+
+#: .\timetable\templates\date_select.html:10
+msgid "Select date"
+msgstr "Select date"
+
+#: .\timetable\templates\date_select.html:21
+#: .\timetable\templates\teacher_and_date_select.html:21
+msgid "Go to the next step"
+msgstr "Go to the next step"
+
+#: .\timetable\templates\dayplans.html:11
+#, python-format
+msgctxt "dayplans"
+msgid "%(schedule)s takes effect."
+msgstr "%(schedule)s takes effect."
+
+#: .\timetable\templates\dayplans.html:15
+msgctxt "dayplans"
+msgid "lessons are cancelled."
+msgstr "lessons are cancelled."
+
+#: .\timetable\templates\display.html:82
+msgid "Last connection:"
+msgstr "Last connection:"
+
+#: .\timetable\templates\edit_calendar.html:5
+#: .\timetable\templates\edit_calendar.html:10
+#: .\timetable\templates\management.html:56
+msgid "Calendar"
+msgstr "Calendar"
+
+#: .\timetable\templates\edit_calendar.html:12
+msgid "Add or change schedules for future dates."
+msgstr "Add or change schedules for future dates."
+
+#: .\timetable\templates\edit_calendar.html:22
+msgid "Schedule"
+msgstr "Schedule"
+
+#: .\timetable\templates\group_timetable.html:9
+#: .\timetable\templates\group_timetable.html:32
+msgid "Groups"
+msgstr "Groups"
+
+#: .\timetable\templates\group_timetable.html:41
+#: .\timetable\templates\matches.html:13
+msgid "Classes"
+msgstr "Classes"
+
+#: .\timetable\templates\import_substitutions.html:6
+msgid "Import from CSV"
+msgstr "Import from CSV"
+
+#: .\timetable\templates\import_substitutions.html:11
+msgid "Import substitutions from a CSV file"
+msgstr "Import substitutions from a CSV file"
+
+#: .\timetable\templates\import_substitutions.html:17
+msgid "Import"
+msgstr "Import"
+
+#: .\timetable\templates\management.html:12
+#, python-format
+msgid "Logged in as %(user)s."
+msgstr "Logged in as %(user)s."
+
+#: .\timetable\templates\management.html:19
+msgid "Log out"
+msgstr "Log out"
+
+#: .\timetable\templates\management.html:24
+msgid "Change password"
+msgstr "Change password"
+
+#: .\timetable\templates\management.html:30
+msgid "Administration"
+msgstr "Administration"
+
+#: .\timetable\templates\management.html:42
+msgid "Print substitutions"
+msgstr "Print substitutions"
+
+#: .\timetable\templates\management.html:48
+msgid "Import substitutions from CSV"
+msgstr "Import substitutions from CSV"
+
+#: .\timetable\templates\management.html:90
+#, python-format
+msgid ""
+"Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
+"changes on other pages."
+msgstr ""
+"Due to efficiency reasons, it may take up to %(cache_time)s minutes to see "
+"changes on other pages."
+
+#: .\timetable\templates\matches.html:11
+msgid "Time"
+msgstr "Time"
+
+#: .\timetable\templates\matches.html:22
+#, python-format
+msgid ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
+msgstr ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
+
+#: .\timetable\templates\personalization.html:5
+#: .\timetable\templates\personalization.html:9
+msgid "Timetable personalization"
+msgstr "Timetable personalization"
+
+#: .\timetable\templates\personalization.html:24
+msgid "Go to timetable"
+msgstr "Go to timetable"
+
+#: .\timetable\templates\personalization_modal.html:2
+#: .\timetable\templates\personalization_modal.html:7
+msgid "Personalization"
+msgstr "Personalization"
+
+#: .\timetable\templates\personalization_modal.html:12
+msgid "Show substitutions in the timetable"
+msgstr "Show substitutions in the timetable"
+
+#: .\timetable\templates\personalization_modal.html:13
+msgid "On/off substitutions"
+msgstr "On/off substitutions"
+
+#: .\timetable\templates\personalization_modal.html:20
+msgid "Colors of subjects"
+msgstr "Colors of subjects"
+
+#: .\timetable\templates\personalization_modal.html:21
+msgid "On/off colors"
+msgstr "On/off colors"
+
+#: .\timetable\templates\personalization_modal.html:30
+msgid "Color:"
+msgstr "Color:"
+
+#: .\timetable\templates\personalization_modal.html:37
+msgid "Select groups to show"
+msgstr "Select groups to show"
+
+#: .\timetable\templates\print_substitutions1.html:10
+#: .\timetable\templates\print_substitutions2.html:19
+#: .\timetable\templates\show_substitutions_to_print.html:5
+msgid "Printing substitutions"
+msgstr "Printing substitutions"
+
+#: .\timetable\templates\print_substitutions1.html:21
+#: .\timetable\templates\timetable_select.html:31
+msgid "Go"
+msgstr "Go"
+
+#: .\timetable\templates\print_substitutions2.html:22
+#, python-format
+msgid "You're printing substitutions for %(date)s."
+msgstr "You're printing substitutions for %(date)s."
+
+#: .\timetable\templates\print_substitutions2.html:30
+msgid "Select all"
+msgstr "Select all"
+
+#: .\timetable\templates\print_substitutions2.html:44
+msgid "Print"
+msgstr "Print"
+
+#: .\timetable\templates\reservations.html:13
+#: .\timetable\templates\substitutions.html:20
+#: .\timetable\templates\timetable_base.html:36
+msgctxt "timetable header"
+msgid "Period"
+msgstr "Period"
+
+#: .\timetable\templates\room_timetable.html:22
+msgid "Classroom"
+msgstr "Classroom"
+
+#: .\timetable\templates\rooms.html:5 .\timetable\templates\rooms.html:9
+#: .\timetable\templates\rooms_date_period_select.html:6
+msgid "Rooms"
+msgstr "Rooms"
+
+#: .\timetable\templates\rooms.html:11
+#, python-format
+msgid "Showing lessons by room on %(date)s, period number %(period)s."
+msgstr "Showing lessons by room on %(date)s, period number %(period)s."
+
+#: .\timetable\templates\rooms.html:48
+msgctxt "school subject"
+msgid "Subject"
+msgstr "Subject"
+
+#: .\timetable\templates\rooms_date_period_select.html:6
+#: .\timetable\templates\rooms_date_period_select.html:11
+msgid "Select date and period"
+msgstr "Select date and period"
+
+#: .\timetable\templates\rooms_date_period_select.html:12
+msgid "Select the time for which to show lessons by room."
+msgstr "Select the time for which to show lessons by room."
+
+#: .\timetable\templates\rooms_date_period_select.html:18
+msgid "Show lessons in rooms"
+msgstr "Show lessons in rooms"
+
+#: .\timetable\templates\schedules.html:6
+#: .\timetable\templates\schedules.html:11
+#: .\timetable\templates\timetable_footer.html:3
+msgid "Schedules"
+msgstr "Schedules"
+
+#: .\timetable\templates\show_substitutions_to_print.html:16
+msgid "There are no substitutions that meet the given criteria."
+msgstr "There are no substitutions that meet the given criteria."
+
+#: .\timetable\templates\teacher_and_date_select.html:10
+msgid "Adding substitutions — step 1"
+msgstr "Adding substitutions — step 1"
+
+#: .\timetable\templates\timer.html:3
+msgid "<time></time> until the first period today."
+msgstr "<time></time> until the first period today."
+
+#: .\timetable\templates\timer.html:6
+msgid ""
+"<time></time> until the end of period no. <span class=\"period-no\"></span>."
+msgstr ""
+"<time></time> until the end of period no. <span class=\"period-no\"></span>."
+
+#: .\timetable\templates\timer.html:9
+msgid "<time></time> until period no. <span class=\"period-no\"></span>."
+msgstr "<time></time> until period no. <span class=\"period-no\"></span>."
+
+#: .\timetable\templates\timer.html:12
+msgid "Lessons have already finished today."
+msgstr "Lessons have already finished today."
+
+#: .\timetable\templates\timetable_base.html:21
+msgid "Set as default timetable"
+msgstr "Set as default timetable"
+
+#: .\timetable\templates\timetable_base.html:83
+msgid "Click to change color"
+msgstr "Click to change color"
+
+#: .\timetable\templates\timetable_footer.html:4
+msgid "Show lessons at a given time"
+msgstr "Show lessons at a given time"
+
+#: .\timetable\templates\timetable_select.html:3
+msgid "Choose timetable to display"
+msgstr "Choose timetable to display"
+
+#: .\timetable\templates\timetable_select.html:7
+msgid "Choose a class"
+msgstr "Choose a class"
+
+#: .\timetable\templates\timetable_select.html:15
+msgid "Choose a teacher"
+msgstr "Choose a teacher"
+
+#: .\timetable\templates\timetable_select.html:23
+msgid "Choose a classroom"
+msgstr "Choose a classroom"
+
+#: .\timetable\tests.py:13 .\zorza\settings.py:150
+msgid "Monday"
+msgstr "Monday"
+
+#: .\timetable\tests.py:14 .\zorza\settings.py:151
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: .\timetable\tests.py:15 .\zorza\settings.py:152
+msgid "Wednesday"
+msgstr "Wednesday"
+
+#: .\timetable\tests.py:16 .\zorza\settings.py:153
+msgid "Thursday"
+msgstr "Thursday"
+
+#: .\timetable\tests.py:17 .\zorza\settings.py:154
+msgid "Friday"
+msgstr "Friday"
+
+#: .\timetable\tests.py:18
+msgid "Saturday"
+msgstr "Saturday"
+
+#: .\timetable\tests.py:19
+msgid "Sunday"
+msgstr "Sunday"
+
+#: .\timetable\views.py:164
+msgid "Select at least one group"
+msgstr "Select at least one group"
+
+#: .\timetable\views.py:529
+msgid "Select at least one teacher"
+msgstr "Select at least one teacher"

@@ -11,6 +11,7 @@ from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.urls import resolve, reverse
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date
+from django.utils.timezone import localdate
 from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_cookie
 from django.views.decorators.cache import never_cache
@@ -21,24 +22,25 @@ from django.conf import settings
 
 from .models import *
 from .utils import (get_teachers_by_substitutions_date, get_timetable_context, get_schedules_table, get_days_periods,
-    get_events, get_display_context, get_teacher_by_name)
+    get_events, get_display_context, get_teacher_by_name, serialize_lessons_for_js, serialize_data,
+    clear_cache, get_last_update, apply_substitution_overlay, get_teaching_for_entries)
 from .forms import *
 
 
 @vary_on_cookie
 def show_timetable(request):
     """Redirects to timetable given in GET parameter or in cookies"""
-    klass = request.GET.get('class')
-    if klass:
-        return HttpResponseRedirect('/timetable/class/'+klass+'/')
+    class_ = request.GET.get('class')
+    if class_:
+        return HttpResponseRedirect(f'/timetable/class/{class_}/')
 
     teacher = request.GET.get('teacher')
     if teacher:
-        return HttpResponseRedirect('/timetable/teacher/'+teacher+'/')
+        return HttpResponseRedirect(f'/timetable/teacher/{teacher}/')
 
     room = request.GET.get('room')
     if room:
-        return HttpResponseRedirect('/timetable/room/'+room+'/')
+        return HttpResponseRedirect(f'/timetable/room/{room}/')
 
     user_default = request.COOKIES.get('timetable_default') # set in JS
     version = request.COOKIES.get('timetable_version')
@@ -50,25 +52,82 @@ def show_timetable(request):
     return HttpResponseRedirect(user_default)
 
 def show_class_timetable(request, class_id):
-    klass = get_object_or_404(Class, pk=class_id)
-    groups = Group.objects.filter(classes=klass)
-    lessons = Lesson.objects.filter(group__in=groups)
+    class_ = get_object_or_404(Class, pk=class_id)
+    all_groups = list(Group.objects.filter(classes=class_))
+
+    # Handle ?groups=1,3 filter — SSR renders only the selected groups
+    groups_param = request.GET.get('groups', '')
+    if groups_param:
+        try:
+            selected_ids = set(int(x) for x in groups_param.split(','))
+            selected_groups = [g for g in all_groups if g.id in selected_ids]
+            if not selected_groups:
+                selected_groups = all_groups
+        except ValueError:
+            selected_groups = all_groups
+    else:
+        selected_groups = all_groups
+
+    lessons = Lesson.objects.filter(group__in=selected_groups)
     context = get_timetable_context(lessons)
-    context['class'] = klass
-    context['groups'] = groups
+    context['class'] = class_
+    context['groups'] = selected_groups  # drives "relevant" highlight in substitutions
+
+    # All lessons serialized for JS client-side filtering
+    all_lessons = Lesson.objects.filter(group__in=all_groups).select_related(
+        'teacher', 'group', 'room', 'subject'
+    ).prefetch_related('group__classes')
+    all_lessons = apply_substitution_overlay(all_lessons)
+
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_lessons_for_js(all_groups, all_lessons, selected_groups, last_update=timetable_last_update)
+
     return render(request, 'class_timetable.html', context)
 
 def show_groups_timetable(request, group_ids):
+    orig_ids = group_ids
     try:
-        group_ids = [int(n) for n in group_ids.split(',')]
-    except:
+        requested_ids = list(map(int, group_ids.split(',')))
+    except ValueError:
         raise Http404
-    groups = Group.objects.filter(pk__in=group_ids)
-    if len(groups) != len(group_ids):
+
+    groups = Group.objects.filter(pk__in=requested_ids)
+
+    found_ids = [str(group.pk) for group in groups]
+
+    if not found_ids:
         raise Http404
-    lessons = Lesson.objects.filter(group__in=group_ids)
+
+    if len(found_ids) != len(requested_ids):
+        valid_ids_str = ','.join(found_ids)
+        new_url = request.path.replace(orig_ids, valid_ids_str)
+        return HttpResponseRedirect(new_url) # If some of the requested groups were not found, redirect to the same URL with only the valid group IDs.
+
+    if len(requested_ids) > 1:
+        # Experimental redirect to class timetable if all groups belong to the same class
+        group_class_db = list(groups.values('id', 'name', 'classes'))
+        group_classes = {}
+        for group in group_class_db:
+            if not group_classes.get(group['classes']):
+                group_classes[group['classes']] = []
+            group_classes[group['classes']].append(group['id'])
+
+        redirect_url = None
+        found_max = 0
+        for key, value in group_classes.items():
+            if len(value) == len(requested_ids):
+                found_max += 1
+                redirect_url = f"/timetable/class/{key}/?groups={orig_ids}"
+
+        if found_max == 1 and redirect_url:
+            return HttpResponseRedirect(redirect_url)
+
+    lessons = Lesson.objects.filter(group__in=requested_ids)
     context = get_timetable_context(lessons)
     context['groups'] = groups
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'group_timetable.html', context)
 
 def show_room_timetable(request, room_id):
@@ -76,6 +135,9 @@ def show_room_timetable(request, room_id):
     lessons = Lesson.objects.filter(room=room).prefetch_related('group__classes')
     context = get_timetable_context(lessons)
     context['room'] = room
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'room_timetable.html', context)
 
 def show_teacher_timetable(request, teacher_id):
@@ -84,10 +146,18 @@ def show_teacher_timetable(request, teacher_id):
     context = get_timetable_context(lessons)
     context['teacher'] = teacher
     context['timetable_teacher'] = teacher
+
+    for entry in get_teaching_for_entries(teacher):
+        row = context['table'].get(entry.period)
+        if row is not None:
+            row[1][entry.weekday].append(entry)
+    timetable_last_update = get_last_update()
+    context['init_data_json'] = serialize_data({'last_update': timetable_last_update})
+    
     return render(request, 'teacher_timetable.html', context)
 
 def personalize(request, class_id):
-    #TODO: switch to a Django form?
+    # Deprecated view. Left for backward compatibility
     context = dict()
     if request.POST:
         groups = request.POST.getlist('group-checkbox')
@@ -96,9 +166,9 @@ def personalize(request, class_id):
         else:
             url = reverse('groups_timetable', args=[','.join(groups)])
             return HttpResponseRedirect(url)
-    klass = get_object_or_404(Class, pk=class_id)
-    groups = Group.objects.filter(classes=klass)
-    context['class'] = klass
+    class_ = get_object_or_404(Class, pk=class_id)
+    groups = Group.objects.filter(classes=class_)
+    context['class'] = class_
     context['groups'] = groups
     return render(request, 'personalization.html', context)
 
@@ -154,7 +224,9 @@ def add_substitutions2(request, teacher_id, date):
             return HttpResponseRedirect(reverse('add_substitutions1'))
     else:
         formset = SubstitutionFormSet(teacher, date)
-
+    
+    clear_cache()
+    
     context = {
         'teacher': teacher,
         'formset': formset,
@@ -175,10 +247,14 @@ def edit_calendar(request):
             return HttpResponseRedirect(request.path)
     else:
         formset = DayPlanFormSet(queryset=qs)
+    
+    clear_cache()
+    
     context = {'formset': formset}
     return render(request, 'edit_calendar.html', context)
 
 def show_rooms(request, date, period):
+    from datetime import timedelta as _timedelta
     date = parse_date(date)
     weekday = date.weekday()
     period = int(period)
@@ -192,11 +268,26 @@ def show_rooms(request, date, period):
     substitutions = Substitution.objects.filter(date=date, lesson__period=period)
     for sub in substitutions:
         rooms[sub.lesson.room].substitute = sub.substitute
-    
+
+    date_range = []
+    for delta in range(-7, 8):
+        d = date + _timedelta(days=delta)
+        date_range.append({
+            'date': d,
+            'is_weekend': d.weekday() >= 5,
+            'is_current': d == date,
+        })
+
+    min_p = get_min_period()
+    max_p = get_max_period()
+    period_range = list(range(min_p, max_p + 1)) if min_p is not None and max_p is not None else []
+
     context = {
         'date': date,
         'period': period,
         'rooms': rooms,
+        'date_range': date_range,
+        'period_range': period_range,
     }
     return render(request, 'rooms.html', context)
 
@@ -204,6 +295,9 @@ class RoomsDatePeriodSelectView(FormView):
     """A form with date and period to be passed to show_rooms."""
     template_name = 'rooms_date_period_select.html'
     form_class = SelectDateAndPeriodForm
+
+    def get(self, request, *args, **kwargs):
+        return redirect('rooms', get_next_schoolday(), get_min_period() or 0)
 
     def form_valid(self, form):
         date = form.cleaned_data['date']
@@ -214,6 +308,10 @@ class RoomsDatePeriodSelectView(FormView):
 def display(request):
     context = get_display_context()
     return render(request, 'display.html', context)
+
+def show_matches(request):
+    context = {'matches': Match.objects.filter(date__date__gte=localdate())}
+    return render(request, 'matches_page.html', context)
 
 
 # This is view that should expose DayPlan, Schedule and Period models
@@ -246,6 +344,11 @@ def timetable_bell_api(request):
         current_date += datetime.timedelta(days=1)
 
     return JsonResponse(data)
+
+@never_cache
+def get_last_update_api(request):
+    last_update = get_last_update()
+    return JsonResponse({'last_update': last_update})
 
 @login_required
 @permission_required('timetable.add_substitution', raise_exception=True)
@@ -306,6 +409,9 @@ class SubstitutionsImportView(LoginRequiredMixin, PermissionRequiredMixin, FormV
                     continue
                 context['rows_failed'] += 1
                 context['errors'].append(row)
+        
+        clear_cache()
+        
         return render(self.request, 'csv_import_success.html', context)
 
 @never_cache
@@ -343,6 +449,8 @@ class AddReservationView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
         context = super().get_context_data(**kwargs)
         context.update(get_timetable_context(Lesson.objects.filter(room__in=Room.objects.filter(reservation__isnull=False).distinct())))
         context['show_reservation_delete'] = True
+        
+        clear_cache()
         return context
 
 class AddAbsenceView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
@@ -367,6 +475,20 @@ class AddAbsenceView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
         context['show_absence_delete'] = True
         return context
     
+
+class AddMatchView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+    template_name = 'add_match.html'
+    form_class = AddMatchForm
+    permission_required = 'timetable.add_match'
+
+    def form_valid(self, form):
+        form.save()
+        return redirect('add_match')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['matches'] = Match.objects.filter(date__date__gte=localdate())
+        return context
 
 class PrintSubstitutionsView1(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     permission_required = 'timetable.print_substitution'
@@ -422,6 +544,8 @@ def delete_reservation(request, reservation_id):
     if request.POST:
         res = get_object_or_404(Reservation, pk=reservation_id)
         res.delete()
+        
+        clear_cache()
         return HttpResponseRedirect(reverse('add_reservation'))
 
 @login_required
@@ -433,4 +557,6 @@ def delete_absence(request, absence_id):
         given_abs = get_object_or_404(Absence, pk=absence_id)
         abs = Absence.objects.filter(group=given_abs.group, date=given_abs.date)
         abs.delete()
+        
+        clear_cache()
         return HttpResponseRedirect(reverse('add_absence'))

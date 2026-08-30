@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # Localization
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -118,6 +119,14 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+LANGUAGES = [
+    ('pl', 'Polish'),
+    ('en', 'English'),
+    ('de', 'German'),
+    ('ru', 'Russian'),
+    ('uk', 'Ukrainian'),
+]
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
@@ -181,4 +190,4 @@ BELL_API_TIMESPAN = 0 # disabled by default
 try:
     from .localsettings import *
 except ImportError:
-    print("localsettings.py not found")
+    print("zorza/localsettings.py not found")

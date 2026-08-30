@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Matches" %} - Zorza
+{% endblock %}
+
+{% block content %}
+<form class="form-small add-matches no-print" method="post">
+	<h2>{% trans "Adding matches" %}</h2>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p class="text-center">
+		<button type="submit" class="button-primary">
+			{% trans "Add match" %}
+		</button>
+	</p>
+</form>
+{% include "matches.html" %}
+
+{% endblock %}

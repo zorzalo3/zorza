@@ -2,4 +2,5 @@
 	todays_periods = {% autoescape off %}{{ todays_periods_json }}{% endautoescape %};
 	server_utc_offset = {{ utc_offset }};
 	timetable_version = {{ timetable_version|default:"undefined" }};
+var timetable_init_data = {% if init_data_json %}{% autoescape off %}{{ init_data_json }}{% endautoescape %}{% else %}null{% endif %};
 </script>

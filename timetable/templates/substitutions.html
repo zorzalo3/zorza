@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if substitutions %}
-<h2 class="text-center">{% trans "Substitutions" %}</h3>
+<h2 class="text-center">{% trans "Substitutions" %}</h2>
 <div class="substitutions">
 
 {% regroup substitutions by date as substitutions_by_day %}
@@ -27,12 +27,22 @@
 	</tr>
 	{% for substitution in teacher.list %}
 	{% with group=substitution.lesson.group %}
-	<tr {% if group in groups or timetable_teacher != None and timetable_teacher == substitution.substitute %}class="relevant"{% endif %}>
+	<tr data-group-id="{{ group.id }}" {% if group in groups or timetable_teacher != None and timetable_teacher == substitution.substitute %}class="relevant"{% endif %}>
 		<td>{{ substitution.lesson.period }}</td>
 		<td>{{ substitution.period_str }}</td>
-		<td>{{ substitution.display_substitute }}</td>
-		<td>{{ group }}</td>
-		<td>{{ substitution.lesson.room.short_name}}</td> {% comment %} Change if there'll be an option to change room for substitution {% endcomment %}
+		<td>
+			{% if substitution.substitute %}
+			<a href="{% url "teacher_timetable" substitution.substitute_id %}">{{ substitution.display_substitute }}</a>
+			{% else %}
+			{{ substitution.display_substitute }}
+			{% endif %}
+		</td>
+		<td><a href="{% url "groups_timetable" group.id %}">{{ group }}</a></td>
+		<td>
+			{% if substitution.lesson.room_id %}
+			<a href="{% url "room_timetable" substitution.lesson.room_id %}">{{ substitution.lesson.room.short_name }}</a>
+			{% endif %}
+		</td> {% comment %} Change if there'll be an option to change room for substitution {% endcomment %}
 		{% if show_substitution_delete %}
 		<td class="no-print">
 			<form method="post" action="{% url "delete_substitution" substitution.id %}">

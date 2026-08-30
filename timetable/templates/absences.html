@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if absences %}
-<h2 class="text-center">{% trans "Absences" %}</h3>
+<h2 class="text-center">{% trans "Absences" %}</h2>
 
 {% regroup absences by date as absences_by_day %}
 {% for day in absences_by_day %}
@@ -18,7 +18,7 @@
 	</tr>
 	{% for group in absences_by_group %}
 	<tr>
-		<td>{{ group.grouper }}</td>
+		<td><a href="{% url "groups_timetable" group.grouper.id %}">{{ group.grouper }}</a></td>
 		<td>
             {% if group.list|length == table|length %}
             {% trans "Whole day" %}

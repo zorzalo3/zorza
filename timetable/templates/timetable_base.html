@@ -10,12 +10,13 @@
 	{% include "timer.html" %}
 </p>
 
-<p>
+<p id="dayplans-container">
 	{% include "dayplans.html" %}
 </p>
 
 <h3 class="timetable-caption">{% block caption %}{% endblock %}</h3>
-<div class="text-right">
+<div class="timetable-actions-row">
+	{% block above_default_btn %}{% endblock %}
 	<button id="set-def-button" onclick="setDefaultTimetable()" style="visibility: hidden;">
 		{% trans "Set as default timetable" %}
 	</button>
@@ -74,11 +75,12 @@
 
 {% include "timetable_select.html" %}
 
-{% include "substitutions.html" %}
-{% include "absences.html" %}
-{% include "reservations.html" %}
+<div id="substitutions-container">{% include "substitutions.html" %}</div>
+<div id="absences-container">{% include "absences.html" %}</div>
+<div id="reservations-container">{% include "reservations.html" %}</div>
 {% include "timetable_data.html" %}
 
+<script>var TIMETABLE_I18N = {clickToChangeColor: "{% trans "Click to change color" %}"};</script>
 <script src="{% static "timetable.js" %}"></script>
 {% include "timetable_footer.html" %}
 {% endblock %}

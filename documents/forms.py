@@ -21,6 +21,13 @@ class FileForm(ModelForm):
             'data': _('File'),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        skip = (FileInput, HiddenInput, MultipleHiddenInput)
+        for field in self.fields.values():
+            if not isinstance(field.widget, skip):
+                field.widget.attrs['class'] = 'input-field'
+
 class DocumentForm(ModelForm):
     category = ModelChoiceField(label=_('Category'), queryset=Category.objects.all(), required=False)
     class Meta:
