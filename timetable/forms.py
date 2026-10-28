@@ -18,10 +18,30 @@ class Html5DateInput(DateInput):
 class Html5DateField(DateField):
     widget = Html5DateInput(format='%Y-%m-%d')
 
-class SelectTeacherAndDateForm(Form):
+class Html5DateTimeInput(DateTimeInput):
+    input_type = 'datetime-local'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.format = '%Y-%m-%dT%H:%M'
+
+class Html5DateTimeField(DateTimeField):
+    widget = Html5DateTimeInput(format='%Y-%m-%dT%H:%M')
+
+class InputFieldMixin:
+    _skip_widgets = (CheckboxInput, FileInput, HiddenInput, MultipleHiddenInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            if not isinstance(field.widget, self._skip_widgets):
+                cls = field.widget.attrs.get('class', '')
+                if 'input-field' not in cls:
+                    field.widget.attrs['class'] = (cls + ' input-field').strip()
+
+class SelectTeacherAndDateForm(InputFieldMixin, Form):
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
-    date = DateField(
-        label=_('Date'), initial=get_next_schoolday, widget=Html5DateInput)
+    date = DateField(label=_('Date'), initial=get_next_schoolday, widget=Html5DateInput)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -44,12 +64,13 @@ class SelectTeacherAndDateForm(Form):
                     .format(teacher))
         return cleaned_data
 
-class SubstitutionForm(ModelForm):
+class SubstitutionForm(InputFieldMixin, ModelForm):
     def __init__(self, teachers, *args, **kwargs):
         super(SubstitutionForm, self).__init__(*args, **kwargs)
         self.choices = [('', _('-----')), ('null', _('cancelled'))]
         self.choices += [(str(t.pk), str(t)) for t in teachers]
-        self.fields['substitute'] = ChoiceField(choices=self.choices, required=False)
+        self.fields['substitute'] = ChoiceField(choices=self.choices, required=False,
+            widget=Select(attrs={'class': 'input-field'}))
         if self.instance.substitute == None \
                 and Substitution.objects.filter(pk=self.instance.pk).exists():
             self.initial['substitute'] = 'null'
@@ -124,7 +145,7 @@ class BaseSubstitutionFormSet(BaseModelFormSet):
 SubstitutionFormSet = formset_factory(Substitution, BaseSubstitutionFormSet, extra=0)
 
 
-class DayPlanForm(ModelForm):
+class DayPlanForm(InputFieldMixin, ModelForm):
     class Meta:
         model = DayPlan
         fields = '__all__'
@@ -138,14 +159,16 @@ class DayPlanForm(ModelForm):
 DayPlanFormSet = modelformset_factory(DayPlan, form=DayPlanForm, extra=8)
 
 class SelectDateAndPeriodForm(Form):
-    date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
+    date = Html5DateField(label=_('Date'), initial=get_next_schoolday,
+        widget=Html5DateInput(attrs={'class': 'input-field'}))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Generate min and max value dynamically because Period objects may
         # change after server launch
         self.fields['period'] = IntegerField(label=_('Period number'),
-            min_value=get_min_period(), max_value=get_max_period())
+            min_value=get_min_period(), max_value=get_max_period(),
+            widget=NumberInput(attrs={'class': 'input-field'}))
 
 class GroupForm(ModelForm):
     class Meta:
@@ -167,10 +190,10 @@ class SubstitutionsImportForm(Form):
         #TODO check for csv import errors
         return cleaned_data
 
-class SelectDateForm(Form):
+class SelectDateForm(InputFieldMixin, Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
 
-class AddReservationForm(Form):
+class AddReservationForm(InputFieldMixin, Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
     period = IntegerField(label=_('Period number'), min_value=get_min_period, max_value=get_max_period)
     teacher = ModelChoiceField(label=_('Teacher'), queryset=Teacher.objects.all())
@@ -184,7 +207,7 @@ class AddReservationForm(Form):
             raise ValidationError(_('This room is already reserved during this period.'))
         return self.cleaned_data
 
-class AddAbsenceForm(Form):
+class AddAbsenceForm(InputFieldMixin, Form):
     date = Html5DateField(label=_('Date'), initial=get_next_schoolday)
     start_period = IntegerField(label=_('Start period'), min_value=get_min_period, max_value=get_max_period, required=False)
     end_period = IntegerField(label=_('End period'), min_value=get_min_period, max_value=get_max_period, required=False)
@@ -204,6 +227,20 @@ class AddAbsenceForm(Form):
         elif not is_whole_day and (start_period is None or end_period is None):
             raise ValidationError(_('Provide initial and final period.'))
         elif start_period > end_period:
-            raise ValidationError(_('The initial period cannot be later than the final period.'))    
-        
+            raise ValidationError(_('The initial period cannot be later than the final period.'))
+
         return self.cleaned_data
+
+class AddMatchForm(InputFieldMixin, ModelForm):
+    class Meta:
+        model = Match
+        fields = ['date', 'sport', 'class_one', 'class_two']
+        field_classes = {
+            'date': Html5DateTimeField,
+        }
+        labels = {
+            'date': _('Date and time'),
+            'sport': _('Sport'),
+            'class_one': _('Class 1'),
+            'class_two': _('Class 2'),
+        }

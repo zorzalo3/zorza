@@ -1,8 +1,18 @@
 {% extends "timetable_base.html" %}
-{% load i18n %}
+{% load i18n static %} 
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static "teacher_timetable_print.css" %}">
+<link rel="stylesheet" href="{% static 'teacher_timetable_print.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
+<script src="{% static 'timetable_colors.js' %}"></script>
+<script>
+if (localStorage.getItem('subjectColorsEnabled') === 'true') {
+    initializeSubjectColors({{ subject_list_json|safe }});
+}
+if (localStorage.getItem('substitutionsEnabled') === 'true') {
+    document.documentElement.classList.add('show-substitutions');
+}
+</script>
 {% endblock %}
 
 {% block title %}
@@ -13,7 +23,10 @@
 {{ teacher.full_name }}
 {% endblock %}
 
+{% block above_default_btn %}
+{% include "personalization_modal.html" %}
+{% endblock %}
+
 {% block lesson %}
 {% include "teacher_timetable_cell.html" %}
 {% endblock %}
-

@@ -1,0 +1,30 @@
+{% load i18n %}
+
+{% if matches %}
+<h2 class="text-center">{% trans "Matches" %}</h2>
+
+{% regroup matches by day as matches_by_day %}
+{% for day in matches_by_day %}
+<table class="block-center text-center">
+	<caption>{{ day.grouper|date:"MONTH_DAY_FORMAT" }} ({{ day.grouper|date:"l" }})</caption>
+	<tr>
+		<th>{% trans "Time" %}</th>
+		<th>{% trans "Sport" %}</th>
+		<th>{% trans "Classes" %}</th>
+	</tr>
+	{% for match in day.list %}
+	<tr>
+		<td>{{ match.date|date:"TIME_FORMAT" }}</td>
+		<td>{{ match.sport }}</td>
+		<td>
+			{% url "class_timetable" match.class_one_id as url1 %}
+			{% url "class_timetable" match.class_two_id as url2 %}
+			{% blocktrans with class1=match.class_one class2=match.class_two %}<a href="{{ url1 }}">{{ class1 }}</a> vs <a href="{{ url2 }}">{{ class2 }}</a>{% endblocktrans %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endfor %}
+{% else %}
+<p class="text-center">{% trans "Nothing here!" %}</p>
+{% endif %}

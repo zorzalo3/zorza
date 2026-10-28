@@ -17,12 +17,12 @@ class CategoryOrderTest(TestCase):
         c = Client()
         response = c.get('/documents/category/' + str(self.category.pk) + '/')
         items = list(response.context['items'])
-        self.assertEquals(len(items), 2)
+        self.assertEqual(len(items), 2) # AssertEquals was deprecated in python 3.12
         self.assertTrue(items[0].title < items[1].title)
 
         self.category.order = '-title'
         self.category.save()
         response = c.get('/documents/category/' + str(self.category.pk) + '/')
         items = list(response.context['items'])
-        self.assertEquals(len(items), 2)
+        self.assertEqual(len(items), 2) # AssertEquals was deprecated in python 3.12
         self.assertTrue(items[0].title > items[1].title)

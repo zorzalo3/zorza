@@ -1,5 +1,18 @@
 {% extends "timetable_base.html" %}
-{% load i18n %}
+{% load i18n static %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js"></script>
+<script src="{% static 'timetable_colors.js' %}"></script>
+<script>
+if (localStorage.getItem('subjectColorsEnabled') === 'true') {
+    initializeSubjectColors({{ subject_list_json|safe }});
+}
+if (localStorage.getItem('substitutionsEnabled') === 'true') {
+    document.documentElement.classList.add('show-substitutions');
+}
+</script>
+{% endblock %}
 
 {% block title %}
 {% trans "Timetable" %} - {% trans "Room" %} {{ room.short_name }} - Zorza
@@ -9,28 +22,44 @@
 {% trans "Classroom" %} {{ room.name }}
 {% endblock %}
 
+{% block above_default_btn %}
+{% include "personalization_modal.html" %}
+{% endblock %}
+
 {% block lesson %}
 {% if lesson.group.link_to_class %}
-<div class="lesson-onerow">
+<div class="lesson-onerow{% if lesson.overlay.kind == 'cancelled' or lesson.overlay.kind == 'absence' %} lesson-danger{% endif %}"{% if lesson.overlay.reason %} title="{{ lesson.overlay.reason }}"{% endif %}>
 	{% with class=lesson.group.classes.all.0 %}
+	{% if lesson.overlay.kind == 'substituted' %}
+	<span class="teacher-inline">
+		<a class="teacher sub-original" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a> <a class="teacher sub-new" href="{% url "teacher_timetable" lesson.overlay.substitute.id %}" title="{{ lesson.overlay.substitute.full_name }}">{{ lesson.overlay.substitute.initials }}</a>
+	</span>
+	{% else %}
 	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">
 		{{ lesson.teacher.initials }}
 	</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	{% endif %}
+	<span class="subject{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
-	<a class="class" href="{% url "class_timetable" class.id %}">
+	<a class="class{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" href="{% url "class_timetable" class.id %}">
 		{{ class.name }}
 	</a>
 	{% endwith %}
 </div>
 {% else %}
-<div class="lesson-tworows">
-	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a>
-	<a class="group" href="{% url "groups_timetable" lesson.group_id %}">
+<div class="lesson-tworows{% if lesson.overlay.kind == 'cancelled' or lesson.overlay.kind == 'absence' %} lesson-danger{% endif %}"{% if lesson.overlay.reason %} title="{{ lesson.overlay.reason }}"{% endif %}>
+	{% if lesson.overlay.kind == 'substituted' %}
+	<span class="teacher-inline">
+		<a class="teacher sub-original" href="{% url "teacher_timetable" lesson.teacher_id %}" title="{{ lesson.teacher.full_name }}">{{ lesson.teacher.initials }}</a> <a class="teacher sub-new" href="{% url "teacher_timetable" lesson.overlay.substitute.id %}" title="{{ lesson.overlay.substitute.full_name }}">{{ lesson.overlay.substitute.initials }}</a>
+	</span>
+	{% else %}
+	<a class="teacher" href="{% url "teacher_timetable" lesson.teacher_id %}">{{ lesson.teacher.initials }}</a>
+	{% endif %}
+	<a class="group{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" href="{% url "groups_timetable" lesson.group_id %}">
 		{{ lesson.group.name }}
 	</a>
-	<span class="subject" title="{{ lesson.subject.name }}">
+	<span class="subject{% if lesson.overlay.kind == 'substituted' %} sub-affected{% endif %}" data-subject="{{ lesson.subject.short_name }}" title="{{ lesson.subject.name }}">
 		{{ lesson.subject.short_name }}
 	</span>
 </div>

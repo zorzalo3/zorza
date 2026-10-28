@@ -1,6 +1,8 @@
+<!doctype html>
+
 {% load static %}
 {% load i18n %}
-<!doctype html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -8,43 +10,43 @@
 		<link rel="stylesheet" href="{% static "style.css" %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<style>
-		body, html {
-			overflow: hidden;
-		}
-		{% if request.GET.light %}
-		body {
-			background-image: none !important;
-		}
-		header {
-			background-image: none !important;
-			box-shadow: none !important;
-		}
-		{% endif %}
-		a {
-			color: rgba(255, 255, 255, 0.9) !important;
-		}
-		#reload-error {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			padding: 0.1rem 0.2rem;
-			background: black;
-			color: white;
-		}
-		.display {
-			margin-top: 5rem;
-		}
-		header {
-			position: fixed;
-			top: 0;
-			width: 100%;
-		}
-		#display-time {
-			font-weight: bold;
-		}
-		.display-datetime, .display-timer {
-			font-size: 1.4rem;
-		}
+            body, html {
+                overflow: hidden;
+            }
+            {% if request.GET.light %}
+            body {
+                background-image: none !important;
+            }
+            header {
+                background-image: none !important;
+                box-shadow: none !important;
+            }
+            {% endif %}
+            a {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+            #reload-error {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                padding: 0.1rem 0.2rem;
+                background: black;
+                color: white;
+            }
+            .display {
+                margin-top: 5rem;
+            }
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+            #display-time {
+                font-weight: bold;
+            }
+            .display-datetime, .display-timer {
+                font-size: 1.4rem;
+            }
 		</style>
 	</head>
 	<body>

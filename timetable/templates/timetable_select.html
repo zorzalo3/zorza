@@ -3,7 +3,7 @@
 <h3 class="text-center">{% trans "Choose timetable to display" %}</h3>
 <form action="/timetable/" class="text-center" autocomplete="off">
 	{% if class_list %}
-	<select name="class" class="timetable-select" onchange="location = '/timetable/class/'+this.value+'/'">
+	<select name="class" class="timetable-select" id="timetable-select-class" onchange="changeTimetableHREF('class', this.value)">
 		<option disabled selected value>{% trans "Choose a class" %}</option>
 		{% for class_item in class_list %}
 		<option value="{{ class_item.id }}">{{ class_item.name }} </option>
@@ -11,7 +11,7 @@
 	</select>
 	{% endif %}
 	{% if teacher_list %}
-	<select name="teacher" class="timetable-select" onchange="location = '/timetable/teacher/'+this.value+'/'">
+	<select name="teacher" class="timetable-select" id="timetable-select-teacher" onchange="changeTimetableHREF('teacher', this.value)">
 		<option disabled selected value>{% trans "Choose a teacher" %}</option>
 		{% for teacher_item in teacher_list %}
 		<option value="{{ teacher_item.id }}">{{ teacher_item.last_name }} {{ teacher_item.first_name }}</option>
@@ -19,7 +19,7 @@
 	</select>
 	{% endif %}
 	{% if room_list %}
-	<select name="room" class="timetable-select" onchange="location = '/timetable/room/'+this.value+'/'">
+	<select name="room" class="timetable-select" id="timetable-select-room" onchange="changeTimetableHREF('room', this.value)">
 		<option disabled selected value>{% trans "Choose a classroom" %}</option>
 		{% for room_item in room_list %}
 		<option value="{{ room_item.id }}">{{ room_item.short_name }}</option>
@@ -32,3 +32,18 @@
 	</noscript>
 	{% endif %}
 </form>
+<script>
+function changeTimetableHREF(type, id) {
+    // Reset all selectors to first option
+    const resetSelectors = () => { // When pressing back button, the selected option may remain selected, so we need to reset it 
+        if (DOM.classSelect) DOM.classSelect.selectedIndex = 0;
+        if (DOM.teacherSelect) DOM.teacherSelect.selectedIndex = 0;
+        if (DOM.roomSelect) DOM.roomSelect.selectedIndex = 0;
+    }
+    
+    let newHref = "/timetable/" + type + "/" + id + "/";
+    resetSelectors();
+    if (newHref === currentPath) return;
+    window.location.href = newHref;
+}
+</script>

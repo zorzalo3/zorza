@@ -10,6 +10,28 @@
 <div class="form-small text-center">
 	<h2 class="text-center">HTTP 404</h2>
 	<p>{% trans "Page not found" %}</p>
+	<p id="redirect-msg" data-template="{% trans 'You will be redirected to homepage after {time} seconds' %}"></p>
 </div>
+
+<script>
+(function() {
+	let el = document.getElementById('redirect-msg');
+	let tmpl = el.getAttribute('data-template');
+	let t = 5;
+	function tick() {
+		el.textContent = tmpl.replace('{time}', t);
+		if (t <= 1) {
+			setTimeout(function() { 
+                window.location.href = '/'; 
+                el.style.visibility = 'hidden'; // If user will return to this page, the message will be hidden
+            }, 1000);
+		} else {
+			t--;
+			setTimeout(tick, 1000);
+		}
+	}
+	tick();
+}());
+</script>
 
 {% endblock %}

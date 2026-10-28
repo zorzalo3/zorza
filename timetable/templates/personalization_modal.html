@@ -1,0 +1,46 @@
+{% load i18n %}
+<button id="personalization-btn" class="subject-colors-label">{% trans "Personalization" %}</button>
+
+<div id="personalization-modal" class="color-modal-overlay" style="display:none;" aria-modal="true" role="dialog">
+	<div class="color-modal personalization-modal">
+		<div class="color-modal-header">
+			<span class="personalization-modal-title">{% trans "Personalization" %}</span>
+			<button id="personalization-modal-close" class="color-modal-close" aria-label="Zamknij">✕</button>
+		</div>
+		<div class="persona-sections">
+			<div class="persona-section persona-static-row" id="substitutions-row">
+				<span class="persona-section-title">{% trans "Show substitutions in the timetable" %}</span>
+				<label class="color-toggle-switch persona-inline-toggle" title="{% trans "On/off substitutions" %}">
+					<input type="checkbox" id="substitutions-toggle-input">
+					<span class="color-toggle-slider"></span>
+				</label>
+			</div>
+			<div class="persona-section" id="colors-section">
+				<button class="persona-section-toggle" id="colors-section-toggle" type="button">
+					<span class="persona-section-title">{% trans "Colors of subjects" %}</span>
+					<label class="color-toggle-switch persona-inline-toggle" title="{% trans "On/off colors" %}" onclick="event.stopPropagation()">
+						<input type="checkbox" id="color-toggle-input">
+						<span class="color-toggle-slider"></span>
+					</label>
+					<span class="persona-section-arrow" id="colors-section-arrow">&#9660;</span>
+				</button>
+				<div class="persona-section-content" id="colors-section-content">
+					<div id="color-subjects-list" class="color-subjects-list"></div>
+					<div id="color-iro-container" class="color-iro-container" style="display:none;">
+						<div class="color-iro-label">{% trans "Color:" %} <strong id="color-iro-subject-name"></strong></div>
+						<div id="color-iro-picker"></div>
+					</div>
+				</div>
+			</div>
+			<div class="persona-section" id="groups-section" style="display:none;">
+				<button class="persona-section-toggle" id="groups-section-toggle" type="button">
+					<span class="persona-section-title">{% trans "Select groups to show" %}</span>
+					<span class="persona-section-arrow" id="groups-section-arrow">&#9660;</span>
+				</button>
+				<div class="persona-section-content" id="groups-section-content">
+					<div id="group-filter-panel" class="persona-group-filter-panel"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
