@@ -1,0 +1,794 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-25 18:34+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: .\contact\models.py:6
+msgid "Your email address"
+msgstr "Ваша електронна адреса"
+
+#: .\contact\models.py:7
+msgid "Subject"
+msgstr "Тема"
+
+#: .\contact\models.py:8 .\documents\forms.py:38
+msgid "Content"
+msgstr "Зміст"
+
+#: .\contact\templates\contact\message_form.html:5
+#: .\contact\templates\contact\message_form.html:10 .\templates\base.html:54
+msgid "Contact"
+msgstr "Зв'язатися з нами"
+
+#: .\contact\templates\contact\message_form.html:15
+msgid "Send"
+msgstr "Надіслати"
+
+#: .\contact\templates\contact\success.html:5
+msgid "Message sent successfully"
+msgstr "Повідомлення успішно надіслано"
+
+#: .\contact\templates\contact\success.html:10
+msgid "Success"
+msgstr "Успіх"
+
+#: .\contact\templates\contact\success.html:11
+msgid "Your message was sent successfully."
+msgstr "Ваше повідомлення було успішно надіслано."
+
+#: .\contact\templates\contact\success.html:12 .\templates\404.html:13
+#, python-brace-format
+msgid "You will be redirected to homepage after {time} seconds"
+msgstr "Ви будете перенаправлені на головну сторінку через {time} секунд"
+
+#: .\documents\forms.py:15 .\documents\forms.py:32
+msgid "Category"
+msgstr "Категорія"
+
+#: .\documents\forms.py:20 .\documents\forms.py:37
+msgid "Title"
+msgstr "Назва"
+
+#: .\documents\forms.py:21
+msgid "File"
+msgstr "Файл"
+
+#: .\documents\templates\breadcrumbs.html:2
+#: .\documents\templates\show_category.html:5 .\templates\base.html:40
+msgid "Documents"
+msgstr "Документи"
+
+#: .\documents\templates\delete_item.html:5
+#: .\documents\templates\delete_item.html:11
+msgid "Delete item"
+msgstr "Видалити елемент"
+
+#: .\documents\templates\delete_item.html:13
+#, python-format
+msgid "Are you sure you want to delete \"%(object)s\"?"
+msgstr "Ви впевнені, що хочете видалити \"%(object)s\"?"
+
+#: .\documents\templates\delete_item.html:17
+#: .\documents\templates\edit_document.html:24
+#: .\documents\templates\edit_file.html:24
+#: .\timetable\templates\add_substitutions.html:47
+#: .\timetable\templates\add_substitutions.html:59
+msgid "Back"
+msgstr "Назад"
+
+#: .\documents\templates\delete_item.html:19
+#: .\documents\templates\show_mine.html:31
+#: .\timetable\templates\absences.html:46
+#: .\timetable\templates\reservations.html:36
+#: .\timetable\templates\substitutions.html:51
+msgid "Delete"
+msgstr "Видалити"
+
+#: .\documents\templates\edit_document.html:6
+#: .\documents\templates\edit_document.html:16
+msgid "Edit document"
+msgstr "Редагувати документ"
+
+#: .\documents\templates\edit_document.html:8
+#: .\documents\templates\edit_document.html:18
+msgid "Create a document"
+msgstr "Створити документ"
+
+#: .\documents\templates\edit_document.html:26
+#: .\documents\templates\edit_file.html:26
+#: .\timetable\templates\add_substitutions.html:49
+#: .\timetable\templates\edit_calendar.html:42
+msgid "Save"
+msgstr "Зберегти"
+
+#: .\documents\templates\edit_file.html:6
+#: .\documents\templates\edit_file.html:16
+msgid "Update file"
+msgstr "Оновити файл"
+
+#: .\documents\templates\edit_file.html:8
+#: .\documents\templates\edit_file.html:18
+msgid "Create a file"
+msgstr "Створити файл"
+
+#: .\documents\templates\show_category.html:13
+msgid "Subcategories:"
+msgstr "Підкатегорії:"
+
+#: .\documents\templates\show_category.html:27
+#: .\documents\templates\show_document.html:16
+#: .\documents\templates\show_mine.html:18
+#, python-format
+msgid "Created on %(created)s."
+msgstr "Створено %(created)s."
+
+#: .\documents\templates\show_category.html:27
+#: .\documents\templates\show_document.html:21
+#: .\documents\templates\show_mine.html:18
+#, python-format
+msgid "Modified on %(modified)s."
+msgstr "Змінено %(modified)s."
+
+#: .\documents\templates\show_category.html:45
+#: .\documents\templates\show_mine.html:37
+msgid "Nothing here!"
+msgstr "Тут нічого немає!"
+
+#: .\documents\templates\show_document.html:12
+msgid "Author: "
+msgstr "Автор: "
+
+#: .\documents\templates\show_mine.html:5
+#: .\documents\templates\show_mine.html:9
+#: .\timetable\templates\management.html:62
+msgid "My documents"
+msgstr "Мої документи"
+
+#: .\documents\templates\show_mine.html:28
+msgid "Edit"
+msgstr "Редагувати"
+
+#: .\documents\templates\show_mine.html:42
+msgid "Add a file"
+msgstr "Додати файл"
+
+#: .\documents\templates\show_mine.html:45
+msgid "Add a document"
+msgstr "Додати документ"
+
+#: .\templates\404.html:12
+msgid "Page not found"
+msgstr "Сторінку не знайдено"
+
+#: .\templates\base.html:18 .\templates\registration\logged_out.html:13
+#: .\timetable\templates\display.html:56
+#: .\timetable\templates\show_substitutions_to_print.html:18
+msgid "Visit the main page"
+msgstr "Перейти на головну сторінку"
+
+#: .\templates\base.html:37 .\timetable\templates\class_timetable.html:5
+#: .\timetable\templates\group_timetable.html:5
+#: .\timetable\templates\room_timetable.html:18
+#: .\timetable\templates\teacher_timetable.html:19
+#: .\timetable\templates\timetable_base.html:7
+msgid "Timetable"
+msgstr "Розклад"
+
+#: .\templates\base.html:50
+msgid "About"
+msgstr "Про проєкт"
+
+#: .\templates\base.html:52 .\timetable\templates\management.html:5
+#: .\timetable\templates\management.html:10
+msgid "Management"
+msgstr "Керування"
+
+#: .\templates\registration\logged_out.html:5
+#: .\templates\registration\logged_out.html:10
+msgid "Logged out"
+msgstr "Вихід із системи"
+
+#: .\templates\registration\logged_out.html:15
+msgid "or"
+msgstr "або"
+
+#: .\templates\registration\logged_out.html:17
+msgid "Log in again"
+msgstr "Увійти знову"
+
+#: .\templates\registration\login.html:5
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:33
+msgid "Log in"
+msgstr "Увійти"
+
+#: .\templates\registration\login.html:13
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Вказані ім'я користувача та пароль не збігаються. Будь ласка, спробуйте ще "
+"раз."
+
+#: .\templates\registration\login.html:20
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Ваш обліковий запис не має доступу до цієї сторінки. Щоб продовжити, "
+"увійдіть під обліковим записом з доступом."
+
+#: .\timetable\forms.py:43 .\timetable\forms.py:199
+#: .\timetable\templates\reservations.html:14
+#: .\timetable\templates\rooms.html:47
+msgid "Teacher"
+msgstr "Вчитель"
+
+#: .\timetable\forms.py:44 .\timetable\forms.py:162 .\timetable\forms.py:194
+#: .\timetable\forms.py:197 .\timetable\forms.py:211
+#: .\timetable\templates\edit_calendar.html:21
+msgid "Date"
+msgstr "Дата"
+
+#: .\timetable\forms.py:52
+msgid "The given date cannot be in the past"
+msgstr "Вказана дата не може бути в минулому"
+
+#: .\timetable\forms.py:61
+msgid "The given date must be within a year from now"
+msgstr "Вказана дата має бути в межах року відтепер"
+
+#: .\timetable\forms.py:63
+msgid "{} has no planned lessons on the given day."
+msgstr "{} не має запланованих уроків на вказаний день."
+
+#: .\timetable\forms.py:70
+msgid "-----"
+msgstr "-----"
+
+#: .\timetable\forms.py:70 .\timetable\forms.py:157 .\timetable\models.py:122
+#: .\timetable\models.py:167
+msgid "cancelled"
+msgstr "скасовано"
+
+#: .\timetable\forms.py:169 .\timetable\forms.py:198
+msgid "Period number"
+msgstr "Номер уроку"
+
+#: .\timetable\forms.py:186
+msgid "CSV file with substitutions"
+msgstr "CSV-файл із замінами"
+
+#: .\timetable\forms.py:200 .\timetable\templates\reservations.html:15
+#: .\timetable\templates\room_timetable.html:18
+#: .\timetable\templates\rooms.html:46
+#: .\timetable\templates\substitutions.html:23
+msgid "Room"
+msgstr "Кабінет"
+
+#: .\timetable\forms.py:207
+msgid "This room is already reserved during this period."
+msgstr "Цей кабінет уже заброньовано на цей період."
+
+#: .\timetable\forms.py:212
+msgid "Start period"
+msgstr "Початковий урок"
+
+#: .\timetable\forms.py:213
+msgid "End period"
+msgstr "Кінцевий урок"
+
+#: .\timetable\forms.py:214 .\timetable\templates\absences.html:24
+msgid "Whole day"
+msgstr "Увесь день"
+
+#: .\timetable\forms.py:215 .\timetable\templates\absences.html:14
+msgid "Reason"
+msgstr "Причина"
+
+#: .\timetable\forms.py:216 .\timetable\templates\absences.html:12
+#: .\timetable\templates\group_timetable.html:7
+#: .\timetable\templates\group_timetable.html:30
+#: .\timetable\templates\rooms.html:49
+#: .\timetable\templates\substitutions.html:22
+msgid "Group"
+msgstr "Група"
+
+#: .\timetable\forms.py:228
+msgid "Provide initial and final period."
+msgstr "Вкажіть початковий і кінцевий урок."
+
+#: .\timetable\forms.py:230
+msgid "The initial period cannot be later than the final period."
+msgstr "Початковий урок не може бути пізнішим за кінцевий."
+
+#: .\timetable\forms.py:242
+msgid "Date and time"
+msgstr "Дата і час"
+
+#: .\timetable\forms.py:243 .\timetable\templates\matches.html:12
+msgid "Sport"
+msgstr "Вид спорту"
+
+#: .\timetable\forms.py:244
+msgid "Class 1"
+msgstr "Клас 1"
+
+#: .\timetable\forms.py:245
+msgid "Class 2"
+msgstr "Клас 2"
+
+#: .\timetable\models.py:29
+msgid "link_to_class needs exactly one class"
+msgstr "link_to_class потребує рівно один клас"
+
+#: .\timetable\models.py:139 .\timetable\templates\add_substitutions.html:29
+msgid "Lesson"
+msgstr "Урок"
+
+#: .\timetable\models.py:208
+msgid "A class cannot play a match against itself"
+msgstr "Клас не може грати матч сам із собою"
+
+#: .\timetable\templates\absences.html:4
+#: .\timetable\templates\management.html:75
+msgid "Absences"
+msgstr "Відсутності"
+
+#: .\timetable\templates\absences.html:13
+msgid "Periods"
+msgstr "Уроки"
+
+#: .\timetable\templates\absences.html:16
+#: .\timetable\templates\reservations.html:17
+#: .\timetable\templates\substitutions.html:25
+msgid "Delete?"
+msgstr "Видалити?"
+
+#: .\timetable\templates\absences.html:39
+msgid "none"
+msgstr "немає"
+
+#: .\timetable\templates\add_absence.html:5
+msgid "Group absences"
+msgstr "Відсутності груп"
+
+#: .\timetable\templates\add_absence.html:10
+msgid "Adding group absences"
+msgstr "Додавання відсутностей груп"
+
+#: .\timetable\templates\add_absence.html:13
+#: .\timetable\templates\add_dayplan.html:13
+#: .\timetable\templates\add_reservation.html:13
+#: .\timetable\templates\date_select.html:13
+#: .\timetable\templates\print_substitutions1.html:13
+#: .\timetable\templates\teacher_and_date_select.html:13
+#, python-format
+msgid "Today's date is %(today)s."
+msgstr "Сьогоднішня дата — %(today)s."
+
+#: .\timetable\templates\add_absence.html:21
+#: .\timetable\templates\add_dayplan.html:21
+#: .\timetable\templates\add_reservation.html:21
+msgid "Submit"
+msgstr "Надіслати"
+
+#: .\timetable\templates\add_dayplan.html:5
+msgid "Dayplan"
+msgstr "Розклад дзвінків"
+
+#: .\timetable\templates\add_dayplan.html:10
+msgid "Adding dayplan"
+msgstr "Додавання розкладу дзвінків"
+
+#: .\timetable\templates\add_match.html:5
+#: .\timetable\templates\management.html:82
+#: .\timetable\templates\matches.html:4
+#: .\timetable\templates\matches_page.html:5
+msgid "Matches"
+msgstr "Спортивні матчі"
+
+#: .\timetable\templates\add_match.html:10
+msgid "Adding matches"
+msgstr "Додавання матчів"
+
+#: .\timetable\templates\add_match.html:15
+msgid "Add match"
+msgstr "Додати матч"
+
+#: .\timetable\templates\add_reservation.html:5
+#: .\timetable\templates\management.html:68
+#: .\timetable\templates\reservations.html:4
+msgid "Reservations"
+msgstr "Бронювання кабінетів"
+
+#: .\timetable\templates\add_reservation.html:10
+msgid "Adding reservations"
+msgstr "Додавання бронювань"
+
+#: .\timetable\templates\add_substitutions.html:5
+#, python-format
+msgid "Adding substitutions for %(teacher)s on %(date)s"
+msgstr "Додавання замін для %(teacher)s на %(date)s."
+
+#: .\timetable\templates\add_substitutions.html:13
+msgid "Adding substitutions — step 2"
+msgstr "Додавання замін — крок 2"
+
+#: .\timetable\templates\add_substitutions.html:18
+#, python-format
+msgid ""
+"Substitutions for <a href=\"%(url)s\">%(teacher)s</a> on %(date)s "
+"(%(weekday)s). "
+msgstr ""
+"Заміни для <a href=\"%(url)s\">%(teacher)s</a> на %(date)s (%(weekday)s). "
+
+#: .\timetable\templates\add_substitutions.html:28
+#: .\timetable\templates\reservations.html:12
+#: .\timetable\templates\schedules.html:26
+#: .\timetable\templates\substitutions.html:19
+#: .\timetable\templates\timetable_base.html:35
+msgctxt "timetable header"
+msgid "No."
+msgstr "№"
+
+#: .\timetable\templates\add_substitutions.html:30
+#: .\timetable\templates\substitutions.html:21
+msgid "Substitute"
+msgstr "Замінник"
+
+#: .\timetable\templates\add_substitutions.html:54
+#, python-format
+msgid "%(name)s has no planned lessons on that day (%(weekday)s)."
+msgstr "%(name)s не має запланованих уроків на цей день (%(weekday)s)."
+
+#: .\timetable\templates\class_timetable.html:5
+#: .\timetable\templates\class_timetable.html:22
+#: .\timetable\templates\group_timetable.html:39
+msgid "Class"
+msgstr "Клас"
+
+#: .\timetable\templates\csv_import_success.html:6
+msgid "CSV file imported"
+msgstr "CSV-файл імпортовано"
+
+#: .\timetable\templates\csv_import_success.html:11
+msgid "Substitutions imported successfully"
+msgstr "Заміни успішно імпортовано"
+
+#: .\timetable\templates\csv_import_success.html:13
+#, python-format
+msgid ""
+"<li>Rows added: %(rows_added)s</li> <li>Rows updated: %(rows_updated)s</li> "
+"<li>Rows failed: %(rows_failed)s</li>"
+msgstr ""
+"<li>Додано: %(rows_added)s</li> <li>Оновлено: %(rows_updated)s</li> "
+"<li>Помилок: %(rows_failed)s</li>"
+
+#: .\timetable\templates\csv_import_success.html:20
+msgid "Added/updated"
+msgstr "Додано/оновлено"
+
+#: .\timetable\templates\csv_import_success.html:27
+msgid "Errors"
+msgstr "Помилки"
+
+#: .\timetable\templates\date_select.html:5
+#: .\timetable\templates\import_substitutions.html:6
+#: .\timetable\templates\management.html:37
+#: .\timetable\templates\print_substitutions1.html:5
+#: .\timetable\templates\print_substitutions2.html:5
+#: .\timetable\templates\substitutions.html:4
+#: .\timetable\templates\teacher_and_date_select.html:5
+msgid "Substitutions"
+msgstr "Заміни"
+
+#: .\timetable\templates\date_select.html:10
+msgid "Select date"
+msgstr "Виберіть дату"
+
+#: .\timetable\templates\date_select.html:21
+#: .\timetable\templates\teacher_and_date_select.html:21
+msgid "Go to the next step"
+msgstr "Перейти до наступного кроку"
+
+#: .\timetable\templates\dayplans.html:11
+#, python-format
+msgctxt "dayplans"
+msgid "%(schedule)s takes effect."
+msgstr "Починає діяти %(schedule)s."
+
+#: .\timetable\templates\dayplans.html:15
+msgctxt "dayplans"
+msgid "lessons are cancelled."
+msgstr "уроки скасовано."
+
+#: .\timetable\templates\display.html:82
+msgid "Last connection:"
+msgstr "Останнє підключення:"
+
+#: .\timetable\templates\edit_calendar.html:5
+#: .\timetable\templates\edit_calendar.html:10
+#: .\timetable\templates\management.html:56
+msgid "Calendar"
+msgstr "Календар"
+
+#: .\timetable\templates\edit_calendar.html:12
+msgid "Add or change schedules for future dates."
+msgstr "Додавайте або змінюйте розклади дзвінків для майбутніх дат."
+
+#: .\timetable\templates\edit_calendar.html:22
+msgid "Schedule"
+msgstr "Тип дзвінків"
+
+#: .\timetable\templates\group_timetable.html:9
+#: .\timetable\templates\group_timetable.html:32
+msgid "Groups"
+msgstr "Групи"
+
+#: .\timetable\templates\group_timetable.html:41
+#: .\timetable\templates\matches.html:13
+msgid "Classes"
+msgstr "Класи"
+
+#: .\timetable\templates\import_substitutions.html:6
+msgid "Import from CSV"
+msgstr "Імпорт із CSV"
+
+#: .\timetable\templates\import_substitutions.html:11
+msgid "Import substitutions from a CSV file"
+msgstr "Імпортувати заміни з CSV-файлу"
+
+#: .\timetable\templates\import_substitutions.html:17
+msgid "Import"
+msgstr "Імпортувати"
+
+#: .\timetable\templates\management.html:12
+#, python-format
+msgid "Logged in as %(user)s."
+msgstr "Ви увійшли як %(user)s."
+
+#: .\timetable\templates\management.html:19
+msgid "Log out"
+msgstr "Вийти"
+
+#: .\timetable\templates\management.html:24
+msgid "Change password"
+msgstr "Змінити пароль"
+
+#: .\timetable\templates\management.html:30
+msgid "Administration"
+msgstr "Адміністрування"
+
+#: .\timetable\templates\management.html:42
+msgid "Print substitutions"
+msgstr "Друкувати заміни"
+
+#: .\timetable\templates\management.html:48
+msgid "Import substitutions from CSV"
+msgstr "Імпортувати заміни з CSV"
+
+#: .\timetable\templates\management.html:90
+#, python-format
+msgid ""
+"Due to efficiency reasons up to %(cache_time)s minutes may be needed to see "
+"changes on other pages."
+msgstr ""
+"З міркувань продуктивності може знадобитися до %(cache_time)s хвилин, щоб "
+"побачити зміни на інших сторінках."
+
+#: .\timetable\templates\matches.html:11
+msgid "Time"
+msgstr "Час"
+
+#: .\timetable\templates\matches.html:22
+#, python-format
+msgid ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
+msgstr ""
+"<a href=\"%(url1)s\">%(class1)s</a> vs <a href=\"%(url2)s\">%(class2)s</a>"
+
+#: .\timetable\templates\personalization.html:5
+#: .\timetable\templates\personalization.html:9
+msgid "Timetable personalization"
+msgstr "Персоналізація розкладу"
+
+#: .\timetable\templates\personalization.html:24
+msgid "Go to timetable"
+msgstr "Перейти до розкладу"
+
+#: .\timetable\templates\personalization_modal.html:2
+#: .\timetable\templates\personalization_modal.html:7
+msgid "Personalization"
+msgstr "Персоналізація"
+
+#: .\timetable\templates\personalization_modal.html:12
+msgid "Show substitutions in the timetable"
+msgstr "Показувати заміни в розкладі"
+
+#: .\timetable\templates\personalization_modal.html:13
+msgid "On/off substitutions"
+msgstr "Увімкнути/вимкнути. заміни"
+
+#: .\timetable\templates\personalization_modal.html:20
+msgid "Colors of subjects"
+msgstr "Кольори предметів"
+
+#: .\timetable\templates\personalization_modal.html:21
+msgid "On/off colors"
+msgstr "Увімкнути/вимкнути кольори"
+
+#: .\timetable\templates\personalization_modal.html:30
+msgid "Color:"
+msgstr "Колір:"
+
+#: .\timetable\templates\personalization_modal.html:37
+msgid "Select groups to show"
+msgstr "Виберіть групи для відображення"
+
+#: .\timetable\templates\print_substitutions1.html:10
+#: .\timetable\templates\print_substitutions2.html:19
+#: .\timetable\templates\show_substitutions_to_print.html:5
+msgid "Printing substitutions"
+msgstr "Друк замін"
+
+#: .\timetable\templates\print_substitutions1.html:21
+#: .\timetable\templates\timetable_select.html:31
+msgid "Go"
+msgstr "Перейти"
+
+#: .\timetable\templates\print_substitutions2.html:22
+#, python-format
+msgid "You're printing substitutions for %(date)s."
+msgstr "Ви друкуєте заміни за %(date)s."
+
+#: .\timetable\templates\print_substitutions2.html:30
+msgid "Select all"
+msgstr "Вибрати все"
+
+#: .\timetable\templates\print_substitutions2.html:44
+msgid "Print"
+msgstr "Друкувати"
+
+#: .\timetable\templates\reservations.html:13
+#: .\timetable\templates\substitutions.html:20
+#: .\timetable\templates\timetable_base.html:36
+msgctxt "timetable header"
+msgid "Period"
+msgstr "Урок"
+
+#: .\timetable\templates\room_timetable.html:22
+msgid "Classroom"
+msgstr "Кабінет"
+
+#: .\timetable\templates\rooms.html:5 .\timetable\templates\rooms.html:9
+#: .\timetable\templates\rooms_date_period_select.html:6
+msgid "Rooms"
+msgstr "Кабінети"
+
+#: .\timetable\templates\rooms.html:11
+#, python-format
+msgid "Showing lessons by room on %(date)s, period number %(period)s."
+msgstr "Показ уроків по кабінетах на %(date)s, номер уроку %(period)s."
+
+#: .\timetable\templates\rooms.html:48
+msgctxt "school subject"
+msgid "Subject"
+msgstr "Предмет"
+
+#: .\timetable\templates\rooms_date_period_select.html:6
+#: .\timetable\templates\rooms_date_period_select.html:11
+msgid "Select date and period"
+msgstr "Виберіть дату і номер уроку"
+
+#: .\timetable\templates\rooms_date_period_select.html:12
+msgid "Select the time for which to show lessons by room."
+msgstr "Виберіть час, для якого показати уроки по кабінетах."
+
+#: .\timetable\templates\rooms_date_period_select.html:18
+msgid "Show lessons in rooms"
+msgstr "Показати уроки по кабінетах"
+
+#: .\timetable\templates\schedules.html:6
+#: .\timetable\templates\schedules.html:11
+#: .\timetable\templates\timetable_footer.html:3
+msgid "Schedules"
+msgstr "Розклад дзвінків"
+
+#: .\timetable\templates\show_substitutions_to_print.html:16
+msgid "There are no substitutions that meet the given criteria."
+msgstr "Немає замін, що відповідають заданим критеріям."
+
+#: .\timetable\templates\teacher_and_date_select.html:10
+msgid "Adding substitutions — step 1"
+msgstr "Додавання замін — крок 1"
+
+#: .\timetable\templates\timer.html:3
+msgid "<time></time> until the first period today."
+msgstr "До першого уроку залишилося <time></time>."
+
+#: .\timetable\templates\timer.html:6
+msgid ""
+"<time></time> until the end of period no. <span class=\"period-no\"></span>."
+msgstr ""
+"До кінця <span class=\"period-no\"></span> уроку залишилося <time></time>."
+
+#: .\timetable\templates\timer.html:9
+msgid "<time></time> until period no. <span class=\"period-no\"></span>."
+msgstr "До <span class=\"period-no\"></span> уроку залишилося <time></time>."
+
+#: .\timetable\templates\timer.html:12
+msgid "Lessons have already finished today."
+msgstr "Уроки на сьогодні вже завершилися."
+
+#: .\timetable\templates\timetable_base.html:21
+msgid "Set as default timetable"
+msgstr "Зробити розкладом за замовчуванням"
+
+#: .\timetable\templates\timetable_base.html:83
+msgid "Click to change color"
+msgstr "Натисніть, щоб змінити колір"
+
+#: .\timetable\templates\timetable_footer.html:4
+msgid "Show lessons at a given time"
+msgstr "Показати уроки в заданий час"
+
+#: .\timetable\templates\timetable_select.html:3
+msgid "Choose timetable to display"
+msgstr "Виберіть розклад для відображення"
+
+#: .\timetable\templates\timetable_select.html:7
+msgid "Choose a class"
+msgstr "Виберіть клас"
+
+#: .\timetable\templates\timetable_select.html:15
+msgid "Choose a teacher"
+msgstr "Виберіть вчителя"
+
+#: .\timetable\templates\timetable_select.html:23
+msgid "Choose a classroom"
+msgstr "Виберіть кабінет"
+
+#: .\timetable\tests.py:13 .\zorza\settings.py:150
+msgid "Monday"
+msgstr "Понеділок"
+
+#: .\timetable\tests.py:14 .\zorza\settings.py:151
+msgid "Tuesday"
+msgstr "Вівторок"
+
+#: .\timetable\tests.py:15 .\zorza\settings.py:152
+msgid "Wednesday"
+msgstr "Середа"
+
+#: .\timetable\tests.py:16 .\zorza\settings.py:153
+msgid "Thursday"
+msgstr "Четвер"
+
+#: .\timetable\tests.py:17 .\zorza\settings.py:154
+msgid "Friday"
+msgstr "П'ятниця"
+
+#: .\timetable\tests.py:18
+msgid "Saturday"
+msgstr "Субота"
+
+#: .\timetable\tests.py:19
+msgid "Sunday"
+msgstr "Неділя"
+
+#: .\timetable\views.py:164
+msgid "Select at least one group"
+msgstr "Виберіть принаймні одну групу"
+
+#: .\timetable\views.py:529
+msgid "Select at least one teacher"
+msgstr "Виберіть принаймні одного вчителя"

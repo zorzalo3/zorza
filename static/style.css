@@ -185,6 +185,51 @@ a:hover {
   text-align: center;
 }
 
+.lang-switcher {
+  position: relative;
+}
+.lang-switcher .lang-current {
+  cursor: default;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+.lang-switcher .lang-arrow {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+.lang-switcher .lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% - 0.5rem);
+  right: 0;
+  background-color: #1d2124;
+  list-style: none;
+  padding: 0.3rem 0;
+  margin: 0;
+  min-width: 7rem;
+  z-index: 1000;
+  border-radius: 4px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+.lang-switcher .lang-dropdown li a {
+  display: block;
+  padding: 0.4rem 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+.lang-switcher .lang-dropdown li a:hover {
+  color: #79b6da;
+}
+.lang-switcher.open .lang-dropdown {
+  display: block;
+}
+
 .text-left {
   text-align: left;
 }
